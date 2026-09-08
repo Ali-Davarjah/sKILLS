@@ -218,7 +218,10 @@ def norm_loose(name):
 def twin_base(name):
     """پسوندهایی که نسخه‌ی جایگزین می‌سازند را برمی‌دارد."""
     base = name
-    for suf in ("_Deeel", "_deeel", "_New", "New", "_Old", "_old"):
+    # PPC = نسخه‌ی دستگاه همراه. جهانِ موازیِ همان جدول است، پس دوقلو
+    # حساب می‌شود: DariaftPardakht / DariaftPardakhtPPC.
+    for suf in ("_Deeel", "_deeel", "_New", "New", "_Old", "_old",
+                "PPC", "_PPC", "PPc", "_Tablet", "Tablet"):
         if base.endswith(suf) and len(base) > len(suf) + 3:
             base = base[: -len(suf)]
             break

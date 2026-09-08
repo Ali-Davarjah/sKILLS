@@ -119,6 +119,22 @@ WHERE OBJECT_SCHEMA_NAME(fkc.parent_object_id) = 'Warehouse'
 ORDER BY ParentTable, ParentColumn;
 ```
 
+### ۰.۸ جهانِ PPC — قبل از هر جمع
+
+```sql
+SELECT 'Kardex' AS jadval, COUNT(*) AS tedad FROM [Warehouse].[Kardex]
+UNION ALL SELECT 'KardexPPC', COUNT(*) FROM [Warehouse].[KardexPPC];
+```
+
+```sql
+SELECT COUNT(*) AS moshtarak
+FROM [Warehouse].[Kardex] AS a
+JOIN [Warehouse].[KardexPPC] AS b ON b.ccKardex = a.ccKardex;
+```
+
+هم‌پوشانیِ بالا یعنی PPC سینکِ همان است و باید فقط یکی را بگیری؛ صفر یعنی دو
+مجموعه‌ی جدا. **جمعِ هر دو در حالت اول یعنی دوباره‌شماریِ گردش.**
+
 ---
 
 ## ۱. گردش انبار در یک بازه

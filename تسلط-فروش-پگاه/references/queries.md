@@ -80,7 +80,7 @@ WHERE OBJECT_SCHEMA_NAME(fkc.parent_object_id) = 'Sales'
 ORDER BY ParentTable, ParentColumn;
 ```
 
-خروجی خالی یعنی همه‌ی ۹۲۸ یال حدس‌اند. خروجی پر یعنی **نقشه را با آن بسنج**.
+خروجی خالی یعنی همه‌ی ۶۰۴ یال حدس‌اند. خروجی پر یعنی **نقشه را با آن بسنج**.
 
 ### ۰.۵ دیکشنری نوع فروشنده — قبل از هر رتبه‌بندی
 
@@ -105,6 +105,35 @@ ORDER BY z.ccNoeMoshtary;
 سه نوع **ردیف ندارند**: شبه عمده (۳۵۳)، داروخانه (۳۵۴)، تعاونی کارکنان
 (۶۰۷). و عمده (۳۴۸) در جدول ۲ است ولی تصمیم مدیر فروش ۳ — این را در گزارش
 بنویس.
+
+### ۰.۷ جهانِ PPC — قبل از هر جمع
+
+```sql
+SELECT 'DarkhastFaktor' AS joft, COUNT(*) AS moshtarak
+FROM [Sales].[DarkhastFaktor] AS a
+JOIN [Sales].[DarkhastFaktorPPC] AS b ON b.ccDarkhastFaktor = a.ccDarkhastFaktor
+UNION ALL
+SELECT 'ElamMarjoee', COUNT(*)
+FROM [Sales].[ElamMarjoee] AS a
+JOIN [Sales].[ElamMarjoeePPC] AS b ON b.ccElamMarjoee = a.ccElamMarjoee;
+```
+
+و تعدادِ هرکدام:
+
+```sql
+SELECT 'ElamMarjoee' AS jadval, COUNT(*) AS tedad FROM [Sales].[ElamMarjoee]
+UNION ALL SELECT 'ElamMarjoeePPC', COUNT(*) FROM [Sales].[ElamMarjoeePPC];
+```
+
+| هم‌پوشانی | یعنی | چه کنی |
+|---|---|---|
+| بالا | PPC سینک است | فقط یکی |
+| صفر | دو مجموعه‌ی جدا | هر دو با `UNION ALL` |
+| جزئی | نامعلوم | **بپرس** |
+
+> **این روی معیارِ مرجوعیِ اسکیل ارزیابی فروشنده اثر دارد.** آن اسکیل از
+> `ElamMarjoee` استفاده می‌کند؛ اگر `ElamMarjoeePPC` سطرهای جدا داشته باشد،
+> آن معیار کم‌شماری می‌کند.
 
 ---
 

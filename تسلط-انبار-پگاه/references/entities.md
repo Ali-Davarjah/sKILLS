@@ -16,7 +16,6 @@
 | `AmalkardRozanehAnbar` | `ccAmalkardRozanehPakhsh` | None | rows_unknown | عملکرد روزانه انبار — نسخه‌ی «Rozaneh». |
 | `AmalkardRozanehPakhsh96` | `ccAmalkardRozanehPakhsh` | None | year_snapshot، rows_unknown | — |
 | `AmalkardRozanehPakhsh99` | `ccAmalkardRozanehPakhsh` | None | year_snapshot، rows_unknown | — |
-| `JaizehMamorPakhsh96_ArshiveReport98` | `ccJaizehMamorPakhsh96_ArshiveReport98` | None | year_snapshot، rows_unknown | — |
 | `TmpGroupKala` | `؟` | None | rows_unknown | — |
 | `Tmp_AmarForoshTaminKonandeh` | `؟` | None | legacy، rows_unknown | — |
 | `Tmp_EnteghalAnbar` | `ccTmp_EnteghalAnbar` | None | legacy، rows_unknown | — |
@@ -266,4 +265,12 @@
 | `Config_TajziehTahlilAnbar` | `ccConfig_TajziehTahlilAnbar` | None | config، rows_unknown | — |
 | `Config_Varedeh` | `ccConfig_Varedeh` | None | config، rows_unknown | — |
 | `SystemConfig` | `؟` | None | rows_unknown | — |
+
+---
+
+## دسته‌بندی‌نشده — دستی ببین
+
+| جدول | کلید | سطر | نشانه‌ها | نقش |
+|---|---|---:|---|---|
+| `JaizehMamorPakhsh96_ArshiveReport98` | `ccJaizehMamorPakhsh96_ArshiveReport98` | None | year_snapshot، rows_unknown | — |
 

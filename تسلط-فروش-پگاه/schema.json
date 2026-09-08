@@ -8976,8 +8976,64 @@
     "twins": [
       {
         "pair": [
+          "AdamDarkhast",
+          "AdamDarkhastPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "DarkhastFaktor",
+          "DarkhastFaktorPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "DarkhastFaktorSatr",
+          "DarkhastFaktorSatrPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "DarkhastFaktorSatrTakhfif",
+          "DarkhastFaktorSatrTakhfifPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "DarkhastFaktorTakhfif",
+          "DarkhastFaktorTakhfifPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "ElamMarjoee",
+          "ElamMarjoeePPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "ElamMarjoeeSatr",
+          "ElamMarjoeeSatrPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
           "HadafForoshRoozaneh",
           "HadafForoshRoozanehNew"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "MoshtaryPhoto",
+          "MoshtaryPhotoPPC"
         ],
         "confidence": "high"
       },

@@ -1,0 +1,4943 @@
+{
+  "meta": {
+    "version": "0.1-generated",
+    "database": "PegahAI",
+    "schema": "Treasury",
+    "source": "فهرست کاملِ اشیای PegahAI + بررسی ساختار ستون‌های جدول‌های کلیدی",
+    "verified_against_live_db": false,
+    "snapshot": "پشتیبانِ DB Master.xlsx",
+    "snapshot_note": "نقشه قابل اعتماد است و از آن استفاده کن. فقط بدان عکسِ یک لحظه است: فهرست اسکیماها و اشیای هسته ثابت‌اند، و در حاشیه ممکن است چند جدول اضافه یا کم شده باشد. اگر جدولی که مطمئنی هست در نقشه نبود، `map.py drift` بزن — نه اینکه بگویی وجود ندارد.",
+    "foreign_keys_declared": 0,
+    "join_rule": "اگر A.ccB هست و جدول B هم هست → حدسِ اول A.ccB = B.ccB.",
+    "warning": "یال‌های proven=false از هم‌نامی حدس زده شده‌اند و کلید خارجی ندارند."
+  },
+  "domains": {
+    "gozaresh": "گزارش، آرشیو و جدول موقت — منبع حقیقت نیست",
+    "dariaft": "دریافت و پرداخت — سندِ مرکزی",
+    "ejazeh": "اجازه پرداخت",
+    "tankhah": "تنخواه",
+    "sandogh": "صندوق",
+    "check": "چک و سفته",
+    "vosol": "وصول و تحصیل",
+    "boodjeh": "بودجه و پیش‌بینی",
+    "moghayerat": "مغایرت بانکی و اعلامیه",
+    "bank": "بانک، کارت و محل واریز",
+    "tasvieh": "تسویه معوقات و تمدید",
+    "tashilat": "تسهیلات",
+    "config": "پیکربندی و مرجع"
+  },
+  "external_cc": {
+    "ccMarkazPakhsh": {
+      "count": 35,
+      "resolves_to": "Global.MarkazPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccUser": {
+      "count": 31,
+      "note": ""
+    },
+    "ccShomarehHesab": {
+      "count": 23,
+      "resolves_to": "Global.ShomarehHesab",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkaz": {
+      "count": 23,
+      "resolves_to": "Global.Markaz",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkazAnbar": {
+      "count": 17,
+      "note": ""
+    },
+    "ccMarkazForosh": {
+      "count": 15,
+      "note": ""
+    },
+    "ccDarkhastFaktor": {
+      "count": 14,
+      "resolves_to": "Sales.DarkhastFaktor",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkazSazmanForoshSakhtarForosh": {
+      "count": 13,
+      "resolves_to": "Global.MarkazSazmanForoshSakhtarForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMoshtary": {
+      "count": 12,
+      "resolves_to": "Sales.Moshtary",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccElatOdat": {
+      "count": 11,
+      "resolves_to": "Global.ElatOdat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccSazmanForosh": {
+      "count": 9,
+      "resolves_to": "Global.SazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccUserSabegheh": {
+      "count": 9,
+      "note": ""
+    },
+    "ccBankSanad": {
+      "count": 8,
+      "note": ""
+    },
+    "ccSakhtarForosh": {
+      "count": 8,
+      "resolves_to": "Global.SakhtarForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfradErsalKonandeh": {
+      "count": 8,
+      "note": ""
+    },
+    "ccAfrad": {
+      "count": 8,
+      "resolves_to": "Global.Afrad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccBank": {
+      "count": 7,
+      "resolves_to": "Global.Bank",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccPhoto": {
+      "count": 7,
+      "resolves_to": "Global.Photo",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccForoshandeh": {
+      "count": 6,
+      "resolves_to": "Sales.Foroshandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccvTafsily1": {
+      "count": 5,
+      "note": ""
+    },
+    "ccNoeMoshtary": {
+      "count": 5,
+      "note": ""
+    },
+    "ccKardex": {
+      "count": 5,
+      "resolves_to": "Warehouse.Kardex",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccTafkikJoze": {
+      "count": 5,
+      "resolves_to": "Sales.TafkikJoze",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccHesab3": {
+      "count": 4,
+      "note": ""
+    },
+    "ccHesab4": {
+      "count": 4,
+      "note": ""
+    },
+    "ccAfradTahsildar": {
+      "count": 4,
+      "note": ""
+    },
+    "ccDariaftPardakhtLink": {
+      "count": 4,
+      "note": ""
+    },
+    "ccUserSabtKonandeh": {
+      "count": 4,
+      "note": ""
+    },
+    "ccTaminKonandeh": {
+      "count": 4,
+      "resolves_to": "Purchase.TaminKonandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfradMamorVosol": {
+      "count": 4,
+      "note": ""
+    },
+    "ccAfradMamorPakhsh": {
+      "count": 4,
+      "note": ""
+    },
+    "ccHesab0": {
+      "count": 3,
+      "note": ""
+    },
+    "ccHesab1": {
+      "count": 3,
+      "note": ""
+    },
+    "ccHesab2": {
+      "count": 3,
+      "note": ""
+    },
+    "ccHesab7": {
+      "count": 3,
+      "note": ""
+    },
+    "ccNoeHesabSanad": {
+      "count": 3,
+      "note": ""
+    },
+    "ccShahrCheck": {
+      "count": 3,
+      "note": ""
+    },
+    "ccCodeHesabMoeen": {
+      "count": 3,
+      "note": ""
+    },
+    "ccDorehMaly": {
+      "count": 3,
+      "resolves_to": "FinancialAccounting.DorehMaly",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccBrand": {
+      "count": 3,
+      "resolves_to": "Amargar.Brand",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccUserPardakhtKonandeh": {
+      "count": 3,
+      "note": ""
+    },
+    "ccRefrence": {
+      "count": 3,
+      "note": ""
+    },
+    "ccLink": {
+      "count": 3,
+      "note": ""
+    },
+    "ccElat": {
+      "count": 3,
+      "note": ""
+    },
+    "ccShomarehHesab1": {
+      "count": 3,
+      "note": ""
+    },
+    "ccGoroh": {
+      "count": 3,
+      "resolves_to": "Global.Goroh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccGorohForosh": {
+      "count": 3,
+      "resolves_to": "Sales.GorohForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccBankMarkazPakhsh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccBankCheck": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMarkazSazmanForosh": {
+      "count": 2,
+      "resolves_to": "Global.MarkazSazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccDarajeh": {
+      "count": 2,
+      "resolves_to": "Global.Darajeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccvTafsily0": {
+      "count": 2,
+      "note": ""
+    },
+    "ccDariaftPardakhtBargashtyLink": {
+      "count": 2,
+      "note": ""
+    },
+    "ccLinkTakhirTajilFaktor": {
+      "count": 2,
+      "note": ""
+    },
+    "ccdpdf_PPC": {
+      "count": 2,
+      "note": ""
+    },
+    "ccDarkhastFaktor_ForTest": {
+      "count": 2,
+      "note": ""
+    },
+    "ccFaktorZayeat": {
+      "count": 2,
+      "resolves_to": "Sales.FaktorZayeat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccLinkTakhirTajil": {
+      "count": 2,
+      "note": ""
+    },
+    "ccDarkhastFaktor_dp": {
+      "count": 2,
+      "note": ""
+    },
+    "ccDariaftPardakht_Check": {
+      "count": 2,
+      "note": ""
+    },
+    "ccElateOdat": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMadrakShenasaie": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMarkazPakhshPardakht": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMarkazPardakht": {
+      "count": 2,
+      "note": ""
+    },
+    "ccBastaneListHoghogh": {
+      "count": 2,
+      "resolves_to": "HumanResource.BastaneListHoghogh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkazSazmanForoshSakhtarForoshPardakht": {
+      "count": 2,
+      "note": ""
+    },
+    "ccCodeHesab7Name": {
+      "count": 2,
+      "resolves_to": "FinancialAccounting.CodeHesab7Name",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccTankhahSatr": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMoshakhasatAmval": {
+      "count": 2,
+      "resolves_to": "AssetAccounting.MoshakhasatAmval",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccNoeBedehy": {
+      "count": 2,
+      "note": ""
+    },
+    "ccVahedPool_NoeTankhahKhazaneh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccSuratHesab": {
+      "count": 2,
+      "note": ""
+    },
+    "ccTasviehMoavaghatBoodjeh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccNoeTarafHesab": {
+      "count": 2,
+      "note": ""
+    },
+    "ccBank_VagozarKonandeh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMoshtary_NaghlAzGhabl": {
+      "count": 2,
+      "note": ""
+    },
+    "ccNoeVahedForosh": {
+      "count": 2,
+      "resolves_to": "Global.NoeVahedForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMantaghehForosh": {
+      "count": 2,
+      "resolves_to": "Global.MantaghehForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccHouzehForosh": {
+      "count": 2,
+      "resolves_to": "Global.HouzehForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkazPakhshDP": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMarkazPakhshFaal": {
+      "count": 2,
+      "note": ""
+    },
+    "ccRpt": {
+      "count": 2,
+      "note": ""
+    },
+    "ccBankShobeh": {
+      "count": 1,
+      "resolves_to": "Global.BankShobeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccBoodjeh_Root": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLinkBoodjeh_Rizmarkaz": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPost": {
+      "count": 1,
+      "resolves_to": "HumanResource.Post",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccVahed": {
+      "count": 1,
+      "resolves_to": "Warehouse.Vahed",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccGorohNoeVosol": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSazamanForosh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccKardexAnbarak": {
+      "count": 1,
+      "resolves_to": "Warehouse.KardexAnbarak",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccVahedPool": {
+      "count": 1,
+      "resolves_to": "Global.VahedPool",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccDariaftPardakhtJaigozin": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDariaftPardakht_CheckBargashty": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDariaftPardakhtElamiehBank": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUser_MamorPakhsh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfrad_Bodjeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDariaftPardakhtPPC_MahaleVariz": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeDasteCheck": {
+      "count": 1,
+      "note": ""
+    },
+    "ccEjazehPardakhtFaktor_Photo": {
+      "count": 1,
+      "note": ""
+    },
+    "ccHesab5": {
+      "count": 1,
+      "note": ""
+    },
+    "ccHesab6": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAmvalSatr_EjazehFaktorSatr": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMoshakhasatAmvalsatr": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLinkPishPardakht": {
+      "count": 1,
+      "note": ""
+    },
+    "ccVahedSazmani": {
+      "count": 1,
+      "resolves_to": "HumanResource.VahedSazmani",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccBedehyPersonel": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPersonel": {
+      "count": 1,
+      "resolves_to": "HumanResource.Personel",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccLink_BedehyPersonel": {
+      "count": 1,
+      "note": ""
+    },
+    "ccBodjehYekDarHezar": {
+      "count": 1,
+      "note": ""
+    },
+    "ccRoot": {
+      "count": 1,
+      "note": ""
+    },
+    "ccTable": {
+      "count": 1,
+      "note": ""
+    },
+    "ccTmpKartBankEjazehPardakht": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazPakhsh_KartBank": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUser_KartBank": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkaz_KartBank": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradElamiehBedehkari": {
+      "count": 1,
+      "note": ""
+    },
+    "ccItemNaghdinegiSatr1": {
+      "count": 1,
+      "note": ""
+    },
+    "ccItemNaghdinegiSatr2": {
+      "count": 1,
+      "note": ""
+    },
+    "ccKartBankLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLinkPoshtiban": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDP": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMoghayeratLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccOdatTafkik": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSabtCheck": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeHesab": {
+      "count": 1,
+      "resolves_to": "Global.NoeHesab",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfradSandoghdar": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLinkSandoghMarkazi": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSandoghMarkaziLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradForoshandehMamorPakhsh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccRaveshTankhah": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoePhoto": {
+      "count": 1,
+      "resolves_to": "Global.NoePhoto",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccEjazehPardakhtFaktor_Dariaft": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShomarehHesab_Dariaft": {
+      "count": 1,
+      "note": ""
+    },
+    "ccKartBank_Dariaft": {
+      "count": 1,
+      "note": ""
+    },
+    "ccBankTashilat_ccHesab3": {
+      "count": 1,
+      "note": ""
+    },
+    "ccKartBank_Pardakht": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShomarehHesab_Pardakht": {
+      "count": 1,
+      "note": ""
+    },
+    "ccTasviehMoavaghatSatrBoodjeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLinkSatr": {
+      "count": 1,
+      "note": ""
+    },
+    "ccBodejhYekDarHezar": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradMasoul": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLinkVosol": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMantaghehPakhsh": {
+      "count": 1,
+      "resolves_to": "Global.MantaghehPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccHouzeh": {
+      "count": 1,
+      "resolves_to": "Global.Houzeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccDariaftPardakht_NaghlAzGhabl": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUserOfReport": {
+      "count": 1,
+      "note": ""
+    },
+    "ccRptKartBank": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLinkDariaftPardakht": {
+      "count": 1,
+      "note": ""
+    },
+    "ccRow": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPishPardakht": {
+      "count": 1,
+      "note": ""
+    },
+    "ccdarkhastFaktor": {
+      "count": 1,
+      "note": ""
+    },
+    "ccVorodKhoroj": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDarkhastfaktor": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMamorPakhsh": {
+      "count": 1,
+      "resolves_to": "Warehouse.MamorPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccNoeMamorPakhsh": {
+      "count": 1,
+      "resolves_to": "Warehouse.NoeMamorPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMashin": {
+      "count": 1,
+      "resolves_to": "Sales.Mashin",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    }
+  },
+  "tables": {
+    "AeenNamehElamiehBank": {
+      "domain": "moghayerat",
+      "pk": "ccAeenNamehElamiehBank",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAeenNamehElamiehBank",
+        "ccMarkazPakhsh",
+        "ccBankMarkazPakhsh",
+        "ccBankCheck",
+        "ccShomarehHesab",
+        "ccMarkazAnbar"
+      ]
+    },
+    "AeenNamehElamiehBank1": {
+      "domain": "moghayerat",
+      "pk": "ccAeenNamehElamiehBank",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAeenNamehElamiehBank",
+        "ccMarkazPakhsh",
+        "ccBankMarkazPakhsh",
+        "ccBankCheck",
+        "ccShomarehHesab",
+        "ccMarkazAnbar"
+      ]
+    },
+    "AeenNamehElamiehBank_ShobehBank": {
+      "domain": "moghayerat",
+      "pk": "ccMarkazPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccShomarehHesab",
+        "ccBankShobeh",
+        "ccMarkazAnbar"
+      ]
+    },
+    "ArshiveCheck": {
+      "domain": "gozaresh",
+      "pk": "ccArshiveCheck",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccArshiveCheck",
+        "ccDariaftPardakht"
+      ]
+    },
+    "BestankariRoozMoshtary": {
+      "domain": "bank",
+      "pk": "ccBestankariRoozMoshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccBestankariRoozMoshtary",
+        "ccMoshtary",
+        "ccSazmanForosh"
+      ]
+    },
+    "BestankaryMoshtary": {
+      "domain": "bank",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccvTafsily1",
+        "ccDariaftPardakht"
+      ]
+    },
+    "Boodjeh": {
+      "domain": "boodjeh",
+      "pk": "ccBoodjeh",
+      "role": "بودجه — اجازه پرداخت به آن گره می‌خورد.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccBoodjeh",
+        "ccBoodjeh_Root"
+      ]
+    },
+    "Boodjeh_Hesab": {
+      "domain": "boodjeh",
+      "pk": "ccBoodjeh_Hesab",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccBoodjeh_Hesab",
+        "ccBoodjeh",
+        "ccHesab0",
+        "ccHesab1",
+        "ccHesab2",
+        "ccHesab3",
+        "ccHesab4",
+        "ccHesab7"
+      ]
+    },
+    "Boodjeh_RizMarkaz": {
+      "domain": "boodjeh",
+      "pk": "ccBoodjeh_Rizmarkaz",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown",
+        "end_date_not_null"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccBoodjeh_Rizmarkaz",
+        "ccLinkBoodjeh_Rizmarkaz",
+        "ccPost",
+        "ccBoodjeh",
+        "ccMarkazPakhsh",
+        "ccVahed",
+        "ccMarkaz"
+      ]
+    },
+    "CodeNoeVosol": {
+      "domain": "vosol",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccGorohNoeVosol"
+      ]
+    },
+    "Config_ControlEtebar_NoeMoshtary": {
+      "domain": "config",
+      "pk": "ccConfig_ControlEtebar_NoeMoshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_ControlEtebar_NoeMoshtary",
+        "ccNoeMoshtary"
+      ]
+    },
+    "Config_DirKard_Tajil": {
+      "domain": "config",
+      "pk": "ccConfig_DirKard_Tajil",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_DirKard_Tajil",
+        "ccNoeMoshtary",
+        "ccUserSabegheh"
+      ]
+    },
+    "Config_DirkardOrTajil": {
+      "domain": "config",
+      "pk": "ccConfig_DirkardOrTajil",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_DirkardOrTajil",
+        "ccMarkazSazmanForosh",
+        "ccNoeMoshtary",
+        "ccDarajeh",
+        "ccUserSabegheh"
+      ]
+    },
+    "Config_EtelaatMali_SazmanForosh": {
+      "domain": "config",
+      "pk": "ccConfig_EtelaatMali_SazmanForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_EtelaatMali_SazmanForosh",
+        "ccMarkaz",
+        "ccSazamanForosh",
+        "ccUserSabegheh"
+      ]
+    },
+    "Config_NoeVosolMojaze_Faktor": {
+      "domain": "vosol",
+      "pk": "ccConfig_NoeVosolMojaze_Faktor",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_NoeVosolMojaze_Faktor",
+        "ccUserSabegheh"
+      ]
+    },
+    "Config_NoeVosolMojaze_Moshtary": {
+      "domain": "vosol",
+      "pk": "ccConfig_NoeVosolMojaze_Moshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_NoeVosolMojaze_Moshtary",
+        "ccNoeMoshtary",
+        "ccDarajeh",
+        "ccUserSabegheh"
+      ]
+    },
+    "Config_VazeiatNaghd": {
+      "domain": "config",
+      "pk": "ccConfig_VazeiatNaghd",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_VazeiatNaghd",
+        "ccMahaleVariz",
+        "ccBoodjeh"
+      ]
+    },
+    "Config_VosolCheck": {
+      "domain": "check",
+      "pk": "ccConfig_VosolCheck",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccConfig_VosolCheck"
+      ]
+    },
+    "Config_VosolFaktor": {
+      "domain": "vosol",
+      "pk": "ccConfig_VosolFaktor",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_VosolFaktor"
+      ]
+    },
+    "ControlEtebar_NoeMoshtary": {
+      "domain": "config",
+      "pk": "ccControlEtebar_NoeMoshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccControlEtebar_NoeMoshtary",
+        "ccNoeMoshtary"
+      ]
+    },
+    "DariaftPardakht": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakht",
+      "role": "سندِ دریافت/پرداخت — **مرکز ثقلِ این اسکیما** (۲۵ ارجاع ورودی).",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "tree",
+        "hub_target",
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccDariaftPardakht",
+        "ccMarkazPakhsh",
+        "ccSandogh",
+        "ccShomarehHesab",
+        "ccvTafsily0",
+        "ccvTafsily1",
+        "ccBankSanad",
+        "ccNoeHesabSanad",
+        "ccShahrCheck",
+        "ccAfradTahsildar",
+        "ccDariaftPardakhtLink",
+        "ccUser",
+        "ccManbaDP",
+        "ccCodeHesabMoeen",
+        "ccKardex",
+        "ccDorehMaly",
+        "ccBrand",
+        "ccMarkazAnbar",
+        "ccMoshtary",
+        "ccUserSabtKonandeh",
+        "ccMarkazForosh",
+        "ccSazmanForosh",
+        "ccSakhtarForosh",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccAfradErsalKonandeh",
+        "ccElatOdat",
+        "ccKardexAnbarak",
+        "ccDariaftPardakht_Parent",
+        "ccTaminKonandeh",
+        "ccMahaleVariz",
+        "ccVahedPool"
+      ],
+      "note": "CodeNoeDariaftPardakht جهت را می‌گوید (دریافت یا پرداخت) و CodeNoeSanad نوعِ سند (نقد، چک، فیش…). ccSandogh و ccShomarehHesab مقصدِ پول را می‌گویند. **ستون‌های ccvTafsily0/1 و CodeNoeTafsily0/1 پلِ حسابداری‌اند.**"
+    },
+    "DariaftPardakhtBargashty": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtBargashty",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "tree",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtBargashty",
+        "ccDariaftPardakhtJaigozin",
+        "ccDariaftPardakht",
+        "ccDariaftPardakhtBargashtyLink",
+        "ccUser"
+      ]
+    },
+    "DariaftPardakhtBargashtyPPC": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtBargashtyPPC",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtBargashtyPPC",
+        "ccDariaftPardakhtPPC",
+        "ccDariaftPardakht_CheckBargashty",
+        "ccUser",
+        "ccDariaftPardakhtBargashtyLink"
+      ]
+    },
+    "DariaftPardakhtDarkhastFaktor": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtDarkhastFaktor",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccDariaftPardakhtDarkhastFaktor",
+        "ccDarkhastFaktor",
+        "ccDariaftPardakht",
+        "ccAfradMamorVosol",
+        "ccMarkazPakhsh",
+        "ccUser",
+        "ccMarkazAnbar",
+        "ccMarkazForosh",
+        "ccMarkazSazmanForoshSakhtarForosh"
+      ]
+    },
+    "DariaftPardakhtDarkhastFaktorPPC": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtDarkhastFaktor",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtDarkhastFaktor",
+        "ccDarkhastFaktor",
+        "ccDariaftPardakht",
+        "ccAfradMamorVosol",
+        "ccMarkazPakhsh",
+        "ccUser",
+        "ccLinkTakhirTajilFaktor",
+        "ccdpdf_PPC",
+        "ccMarkazAnbar",
+        "ccMarkazForosh",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccDarkhastFaktor_ForTest"
+      ]
+    },
+    "DariaftPardakhtDarkhastFaktorppc_Tmp": {
+      "domain": "dariaft",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtppc",
+        "ccDarkhastFaktor"
+      ]
+    },
+    "DariaftPardakhtElamiehBankPPC": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtElamiehBank",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtElamiehBank",
+        "ccDariaftPardakhtPPC",
+        "ccBank"
+      ]
+    },
+    "DariaftPardakhtFaktorZayeat": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtFaktorZayeat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtFaktorZayeat",
+        "ccFaktorZayeat",
+        "ccDariaftPardakht",
+        "ccAfradMamorVosol",
+        "ccUser",
+        "ccMarkazAnbar",
+        "ccMarkazForosh",
+        "ccMarkazSazmanForosh"
+      ]
+    },
+    "DariaftPardakhtFaktorZayeatPPC": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtFaktorZayeatPPC",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtFaktorZayeatPPC",
+        "ccFaktorZayeat",
+        "ccDariaftPardakht",
+        "ccAfradMamorVosol",
+        "ccUser",
+        "ccLinkTakhirTajilFaktor",
+        "ccdpdf_PPC",
+        "ccMarkazAnbar",
+        "ccMarkazForosh",
+        "ccMarkazSazmanForoshSakhtarForosh"
+      ]
+    },
+    "DariaftPardakhtPPC": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtPPC",
+      "role": "همان سند، **ثبت‌شده روی دستگاه همراه** — ۹ ستون بیشتر.",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "hub_target",
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccDariaftPardakht",
+        "ccMarkazPakhsh",
+        "ccSandogh",
+        "ccShomarehHesab",
+        "ccvTafsily0",
+        "ccvTafsily1",
+        "ccBankSanad",
+        "ccNoeHesabSanad",
+        "ccShahrCheck",
+        "ccAfradTahsildar",
+        "ccDariaftPardakhtLink",
+        "ccUser",
+        "ccManbaDP",
+        "ccCodeHesabMoeen",
+        "ccKardex",
+        "ccDorehMaly",
+        "ccLinkTakhirTajil",
+        "ccDarkhastFaktor_dp",
+        "ccUser_MamorPakhsh",
+        "ccBrand",
+        "ccMarkazAnbar",
+        "ccElatOdat",
+        "ccAfradErsalKonandeh",
+        "ccMoshtary",
+        "ccUserSabtKonandeh",
+        "ccMarkazForosh",
+        "ccSazmanForosh",
+        "ccSakhtarForosh",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccDariaftPardakhtPPC",
+        "ccDarkhastFaktor_ForTest",
+        "ccMahaleVariz"
+      ],
+      "note": "**همان نام کلید (ccDariaftPardakht) را دارد ولی جدولِ جداست.** کدام مرجع است — یا PPC به جدول اصلی سینک می‌شود یا موازی‌اند — تصمیمِ کسب‌وکاری است. قبل از هر گزارشِ مالی بشمار و بپرس. **جمعِ هر دو یعنی دوباره‌شماریِ پول.**"
+    },
+    "DariaftPardakhtPPC_BargashtBodjeh": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtPPC",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtPPC",
+        "ccDariaftPardakht_Check",
+        "ccDarkhastFaktor",
+        "ccAfrad_Bodjeh"
+      ]
+    },
+    "DariaftPardakhtPPC_Photo": {
+      "domain": "dariaft",
+      "pk": "ccPhoto",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "attachment",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPhoto",
+        "ccDariaftPardakhtPPC"
+      ]
+    },
+    "DariaftPardakhtVazeiat": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtVazeiat",
+      "role": "تاریخچه‌ی وضعیت سند — **و مبلغ هم دارد**.",
+      "rows": null,
+      "flags": [
+        "status_history",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccDariaftPardakht",
+        "ccDariaftPardakhtVazeiat",
+        "ccUser"
+      ],
+      "note": "ستون Mablagh در تاریخچه است، نه فقط در سربرگ. یعنی مبلغِ سند با تغییر وضعیت عوض می‌شود؛ برای «چقدر واقعاً وصول شد» ممکن است لازم باشد آخرین وضعیت را بگیری نه سربرگ را."
+    },
+    "DariaftPardakhtVazeiatPPC": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakht",
+        "ccDariaftPardakhtVazeiat",
+        "ccUser",
+        "ccElateOdat"
+      ]
+    },
+    "DariaftPardakhtVazeiatPPC_Photo": {
+      "domain": "dariaft",
+      "pk": "ccPhoto",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "attachment",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPhoto",
+        "ccDariaftPardakhtPPC"
+      ]
+    },
+    "DariaftPardakht_Afrad": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakht",
+        "ccAfrad"
+      ]
+    },
+    "DariaftPardakht_MahaleVariz": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakhtPPC_MahaleVariz",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtPPC_MahaleVariz",
+        "ccDariaftPardakhtPPC",
+        "ccDariaftPardakht",
+        "ccMahaleVariz"
+      ]
+    },
+    "DariaftPardakht_NoeVazeiat": {
+      "domain": "dariaft",
+      "pk": "ccDariaftPardakht_NoeVazeiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccDariaftPardakht_NoeVazeiat"
+      ]
+    },
+    "DariaftPardakht_Photo": {
+      "domain": "dariaft",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "attachment",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPhoto",
+        "ccDariaftPardakht"
+      ]
+    },
+    "DarsadTankhahMarkazPakhsh": {
+      "domain": "tankhah",
+      "pk": "ccMarkazPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh"
+      ]
+    },
+    "DastehCheck": {
+      "domain": "check",
+      "pk": "ccDastehCheck",
+      "role": "دسته‌چک — بازه‌ی سریال و برگ‌های مانده.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccDastehCheck",
+        "ccShomarehHesab",
+        "ccNoeDastehCheck"
+      ],
+      "note": "Serial_Begin با TedadBarg بازه را می‌سازد؛ TedadBargMandeh مانده. Faal دسته‌چکِ فعال را جدا می‌کند."
+    },
+    "DastehCheckBarg": {
+      "domain": "check",
+      "pk": "ccDastehCheckBarg",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDastehCheck",
+        "ccDastehCheckBarg"
+      ]
+    },
+    "DastehCheckTankhah": {
+      "domain": "tankhah",
+      "pk": "ccDastehCheckTankhah",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDastehCheckTankhah",
+        "ccShomarehHesabTankhah",
+        "ccNoeDasteCheck"
+      ]
+    },
+    "EjazehPardakhtElatOdat": {
+      "domain": "ejazeh",
+      "pk": "ccElatOdat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "reason_dict",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccElatOdat"
+      ]
+    },
+    "EjazehPardakhtFaktor": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakhtFaktor",
+      "role": "اجازه پرداخت فاکتور — **دروازه‌ی خروجِ پول و پرارجاع‌ترین پل به بقیه‌ی اسکیماها**.",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "ledger",
+        "hub_target",
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccEjazehPardakhtFaktor",
+        "ccBoodjeh",
+        "ccUser",
+        "ccElatOdat",
+        "ccMadrakShenasaie",
+        "ccTaminKonandeh",
+        "ccKardex",
+        "ccMarkazPakhshPardakht",
+        "ccMarkazPakhsh",
+        "ccUserPardakhtKonandeh",
+        "ccTankhah",
+        "ccTankhahDar",
+        "ccMarkaz",
+        "ccMarkazPardakht",
+        "ccBastaneListHoghogh",
+        "ccRefrence",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccMarkazSazmanForoshSakhtarForoshPardakht",
+        "ccSazmanForosh",
+        "ccSakhtarForosh"
+      ],
+      "note": "HumanResource (حقوق، وام، تسویه‌حساب، درمان)، Sales و AssetAccounting همه به این ارجاع می‌دهند. ccBoodjeh بودجه را می‌بندد و CodeVazeiat گردشِ تأیید را. TarikhTaeedNahaee تاریخ تأیید نهایی است."
+    },
+    "EjazehPardakhtFaktorPhoto": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakhtFaktor_Photo",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccEjazehPardakhtFaktor_Photo",
+        "ccPhoto",
+        "ccEjazehPardakhtFaktor"
+      ]
+    },
+    "EjazehPardakhtFaktorSatr": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakhtFaktorSatr",
+      "role": "سطرِ تخصیصِ حسابداری — بده/بستان روی کدهای حساب.",
+      "rows": null,
+      "flags": [
+        "detail",
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccEjazehPardakhtFaktorSatr",
+        "ccEjazehPardakhtFaktor",
+        "ccMarkazPakhsh",
+        "ccHesab0",
+        "ccHesab1",
+        "ccHesab2",
+        "ccHesab3",
+        "ccHesab4",
+        "ccHesab7",
+        "ccCodeHesab7Name",
+        "ccTankhahSatr",
+        "ccAfrad",
+        "ccMarkaz",
+        "ccHesab5",
+        "ccHesab6",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccSazmanForosh",
+        "ccSakhtarForosh"
+      ],
+      "note": "**ccHesab0 تا ccHesab7 سطوحِ کدینگ حساب‌اند** و BedBes جهت. این جدول جایی است که خزانه به حسابداری وصل می‌شود. ccTankhahSatr تنخواه را هم می‌بندد."
+    },
+    "EjazehPardakhtFaktorVazeiat": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakhtFaktorVazeiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccEjazehPardakhtFaktorVazeiat"
+      ]
+    },
+    "EjazehPardakhtFaktor_ModatPardakht": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakhtFaktor_ModatPardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccEjazehPardakhtFaktor_ModatPardakht"
+      ]
+    },
+    "EjazehPardakhtFaktor_MoshakhasatAmval": {
+      "domain": "ejazeh",
+      "pk": "ccAmvalSatr_EjazehFaktorSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAmvalSatr_EjazehFaktorSatr",
+        "ccEjazehPardakhtFaktor",
+        "ccMoshakhasatAmval",
+        "ccEjazehPardakhtFaktorSatr",
+        "ccMoshakhasatAmvalsatr"
+      ]
+    },
+    "EjazehPardakhtMoshakhasatSheba": {
+      "domain": "ejazeh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccEjazehPardakhtFaktor",
+        "ccBank",
+        "ccShomarehHesab"
+      ]
+    },
+    "EjazehPardakhtPishPardakht": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakhtPishPardakht",
+      "role": "اجازه پرداختِ پیش‌پرداخت.",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccEjazehPardakhtPishPardakht",
+        "ccEjazehPardakhtFaktor",
+        "ccBoodjeh",
+        "ccKartBank",
+        "ccTankhah",
+        "ccUser",
+        "ccElatOdat",
+        "ccMarkazPakhshPardakht",
+        "ccMarkazPakhsh",
+        "ccUserPardakhtKonandeh",
+        "ccTankhahDar",
+        "ccLinkPishPardakht",
+        "ccMarkaz",
+        "ccMarkazPardakht"
+      ]
+    },
+    "EjazehPardakhtPishPardakhtPhoto": {
+      "domain": "ejazeh",
+      "pk": "ccPhoto",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPhoto",
+        "ccEjazehPardakhtPishPardakht"
+      ]
+    },
+    "EjazehPardakhtPishPardakhtSatr": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakhtPishPardakhtSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccEjazehPardakhtPishPardakhtSatr",
+        "ccEjazehPardakhtPishPardakht",
+        "ccMarkazPakhsh",
+        "ccHesab0",
+        "ccHesab1",
+        "ccHesab2",
+        "ccHesab3",
+        "ccHesab4",
+        "ccHesab7",
+        "ccCodeHesab7Name",
+        "ccVahedSazmani",
+        "ccTankhahSatr",
+        "ccAfrad",
+        "ccMarkaz"
+      ]
+    },
+    "EjazehPardakhtPishPardakht_MoshakhasatSheba": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakhtPishPardakht_MoshakhasatSheba",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccEjazehPardakhtPishPardakht_MoshakhasatSheba",
+        "ccEjazehPardakhtPishPardakht",
+        "ccBank",
+        "ccShomarehHesab"
+      ]
+    },
+    "EjazehPardakht_BedehyPersonel": {
+      "domain": "ejazeh",
+      "pk": "ccBedehyPersonel",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccBedehyPersonel",
+        "ccPersonel",
+        "ccNoeBedehy",
+        "ccEjazehPardakhtFaktor",
+        "ccLink_BedehyPersonel",
+        "ccBodjehYekDarHezar",
+        "ccMarkaz"
+      ]
+    },
+    "EjazehPardakht_NoeBedehyPersonel": {
+      "domain": "ejazeh",
+      "pk": "ccNoeBedehy",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccNoeBedehy",
+        "ccRoot",
+        "ccHesab3",
+        "ccHesab4"
+      ]
+    },
+    "EjazehPardakht_PishPardakht_ForSanad": {
+      "domain": "ejazeh",
+      "pk": "ccTable",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTable",
+        "ccEjazehPardakhtFaktor",
+        "ccEjazehPardakhtPishPardakht",
+        "ccTankhah",
+        "ccKartBank",
+        "ccKartBankEjazehPardakhtFaktor"
+      ]
+    },
+    "EjazehPardakht_TmpKartBankEjazehPardakht": {
+      "domain": "ejazeh",
+      "pk": "ccTmpKartBankEjazehPardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTmpKartBankEjazehPardakht",
+        "ccShomarehHesab",
+        "ccMarkazPakhsh_KartBank",
+        "ccUser_KartBank",
+        "ccEjazehPardakhtFaktor",
+        "ccMoshakhasatAmval",
+        "ccMarkaz_KartBank"
+      ]
+    },
+    "EjazehPardakht_ZamanVazeiat": {
+      "domain": "ejazeh",
+      "pk": "ccEjazehPardakht_ZamanVazeiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccEjazehPardakht_ZamanVazeiat",
+        "ccEjazehPardakhtFaktor",
+        "ccEjazehPardakhtPishPardakht",
+        "ccUser"
+      ]
+    },
+    "ElamiehBedehkari": {
+      "domain": "moghayerat",
+      "pk": "ccElamiehBedehkari",
+      "role": "اعلامیه بدهکاری",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccElamiehBedehkari",
+        "ccNoeElamiehBedehkari",
+        "ccLink",
+        "ccUser",
+        "ccMarkaz"
+      ]
+    },
+    "ElamiehBedehkariSatr": {
+      "domain": "moghayerat",
+      "pk": "ccElamiehBedehkariSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccElamiehBedehkariSatr",
+        "ccElamiehBedehkari",
+        "ccNoeAfradElamiehBedehkari",
+        "ccAfradElamiehBedehkari",
+        "ccUser"
+      ]
+    },
+    "ElatOdatVazeiatCheckNamayandegan": {
+      "domain": "check",
+      "pk": "ccElateOdat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "reason_dict",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccElateOdat"
+      ]
+    },
+    "ElatOdatVosol": {
+      "domain": "vosol",
+      "pk": "ccElatOdat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "reason_dict",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccElatOdat"
+      ]
+    },
+    "ElatOdatVosol_CodeNoeVosol": {
+      "domain": "vosol",
+      "pk": "ccElat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "reason_dict",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccElat",
+        "ccElatOdat"
+      ]
+    },
+    "ItemNaghdinegi_CodeHesab": {
+      "domain": "boodjeh",
+      "pk": "ccitemNaghdinegi_CodeHesab",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccitemNaghdinegi_CodeHesab",
+        "ccItemNaghdinegiSatr1",
+        "ccItemNaghdinegiSatr2"
+      ]
+    },
+    "ItemPishbini": {
+      "domain": "boodjeh",
+      "pk": "ccItemPishbini",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccItemPishbini"
+      ]
+    },
+    "ItemPishbiniSatr": {
+      "domain": "boodjeh",
+      "pk": "ccItemPishbiniSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccItemPishbiniSatr",
+        "ccItemPishbini"
+      ]
+    },
+    "KartBank": {
+      "domain": "bank",
+      "pk": "ccKartBank",
+      "role": "کارت بانکی",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "ledger",
+        "tree",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKartBank",
+        "ccShomarehHesab1",
+        "ccMarkazPakhsh",
+        "ccUser",
+        "ccKartBankLink",
+        "ccLinkPoshtiban",
+        "ccDP",
+        "ccMarkaz",
+        "ccShomarehHesab",
+        "ccMarkazForosh",
+        "ccSazmanForosh",
+        "ccSakhtarForosh",
+        "ccMarkazSazmanForoshSakhtarForosh"
+      ]
+    },
+    "KartBankEjazehPardakhtFaktor": {
+      "domain": "bank",
+      "pk": "ccKartBankEjazehPardakhtFaktor",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKartBankEjazehPardakhtFaktor",
+        "ccKartBank",
+        "ccEjazehPardakhtPishPardakht",
+        "ccEjazehPardakhtFaktor"
+      ]
+    },
+    "KartBankNoeAmalKard": {
+      "domain": "bank",
+      "pk": "ccKartBankNoeAmalKard",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKartBankNoeAmalKard"
+      ]
+    },
+    "KartBankVazeiat": {
+      "domain": "bank",
+      "pk": "ccKartBankVazeiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_history",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKartBank",
+        "ccKartBankVazeiat",
+        "ccUser"
+      ]
+    },
+    "KhazanehDar": {
+      "domain": "sandogh",
+      "pk": "ccKhazanehDar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKhazanehDar",
+        "ccAfrad",
+        "ccMarkaz",
+        "ccVahedPool_NoeTankhahKhazaneh",
+        "ccUserSabegheh"
+      ]
+    },
+    "LinkMoghayeratVosolCheck": {
+      "domain": "check",
+      "pk": "ccMoghayeratLink",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMoghayeratLink",
+        "ccSuratHesab",
+        "ccDariaftPardakht"
+      ]
+    },
+    "List_DPV_ForDelete": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakhtVazeiat"
+      ]
+    },
+    "MahaleDariaftPardakht": {
+      "domain": "dariaft",
+      "pk": "ccMahaleDariaftPardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMahaleDariaftPardakht"
+      ]
+    },
+    "MahaleVariz": {
+      "domain": "bank",
+      "pk": "ccMahaleVariz",
+      "role": "محل واریز",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccMahaleVariz"
+      ]
+    },
+    "MahaleVariz_CodeNoeVosol": {
+      "domain": "vosol",
+      "pk": "ccMahaleVariz_CodeNoeVosol",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMahaleVariz_CodeNoeVosol",
+        "ccMahaleVariz"
+      ]
+    },
+    "ManbaDP": {
+      "domain": "dariaft",
+      "pk": "ccManbaDP",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccManbaDP",
+        "ccCodeHesabMoeen"
+      ]
+    },
+    "MandehAvalSalDariaftPardakht": {
+      "domain": "dariaft",
+      "pk": null,
+      "role": "مانده اول سال",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccShomarehHesab"
+      ],
+      "note": "مانده‌ی افتتاحیه — با گردشِ جاری جمع نزن مگر عمداً."
+    },
+    "MoeenHesabMoshtaryKol_Archive": {
+      "domain": "gozaresh",
+      "pk": "ID",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "archive_check",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccGoroh",
+        "ccMarkazAnbar"
+      ]
+    },
+    "MoghayeratBank": {
+      "domain": "moghayerat",
+      "pk": "ccMoghayeratBank",
+      "role": "مغایرت‌گیری بانکی — بازه‌دار.",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown",
+        "nonstandard_start:AzTarikh",
+        "end_date_not_null"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMoghayeratBank",
+        "ccMarkaz",
+        "ccShomarehHesab",
+        "ccUser"
+      ],
+      "note": "AzTarikh/TaTarikh بازه و TypeOfMoghayerat نوعِ مغایرت."
+    },
+    "MoghayeratBankSatr": {
+      "domain": "moghayerat",
+      "pk": "ccMoghayeratBankSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMoghayeratBankSatr",
+        "ccMoghayeratBank",
+        "ccLink"
+      ]
+    },
+    "MojodySandogh_Arshiv": {
+      "domain": "gozaresh",
+      "pk": "ccMojodySandogh_Arshiv",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "archive_check",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMojodySandogh_Arshiv",
+        "ccMarkazAnbar"
+      ]
+    },
+    "NoeAfradElamiehBedehkari": {
+      "domain": "moghayerat",
+      "pk": "ccNoeAfradElamiehBedehkari",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeAfradElamiehBedehkari"
+      ]
+    },
+    "NoeCheckMoshtary": {
+      "domain": "check",
+      "pk": "ccNoeCheckMoshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeCheckMoshtary"
+      ]
+    },
+    "NoeDariaftPardakht": {
+      "domain": "dariaft",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected"
+    },
+    "NoeDastehCheck": {
+      "domain": "check",
+      "pk": "ccNoeDastehCheck",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeDastehCheck",
+        "ccBank"
+      ]
+    },
+    "NoeElamiehBedehkari": {
+      "domain": "moghayerat",
+      "pk": "ccNoeElamiehBedehkari",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeElamiehBedehkari"
+      ]
+    },
+    "NoeMoghayeratVosol": {
+      "domain": "vosol",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected"
+    },
+    "NoeVosolMojaze_Faktor": {
+      "domain": "vosol",
+      "pk": "ccNoeVosolMojaze_Faktor",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeVosolMojaze_Faktor"
+      ]
+    },
+    "NoeVosolMojaze_Moshtary": {
+      "domain": "vosol",
+      "pk": "ccNoeVosolMojaze_Moshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeVosolMojaze_Moshtary"
+      ]
+    },
+    "OdatTafkikMamorPakhsh_PPC": {
+      "domain": "vosol",
+      "pk": "ccOdatTafkik",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccOdatTafkik",
+        "ccTafkikJoze",
+        "ccAfradMamorPakhsh"
+      ]
+    },
+    "PardakhtElectronic": {
+      "domain": "bank",
+      "pk": "ccPardakhtElectronic",
+      "role": "پرداخت الکترونیک",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPardakhtElectronic",
+        "ccDarkhastFaktor",
+        "ccAfrad",
+        "ccDariaftPardakht",
+        "ccDariaftPardakhtPPC",
+        "ccMoshtary"
+      ]
+    },
+    "Pishbini": {
+      "domain": "boodjeh",
+      "pk": "ccPishbini",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPishbini",
+        "ccMarkazPakhsh",
+        "ccShomarehHesab"
+      ]
+    },
+    "PishbinidariaftPardakht": {
+      "domain": "dariaft",
+      "pk": "ccPishbinidariaftPardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPishbinidariaftPardakht",
+        "ccShomarehHesab",
+        "ccMarkazPakhsh",
+        "ccTaminKonandeh",
+        "ccUser"
+      ]
+    },
+    "Sabegheh_DariaftPardakhtPPC": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakht",
+        "ccSandogh",
+        "ccShomarehHesab",
+        "ccMoshtary",
+        "ccBankSanad",
+        "ccNoeHesabSanad",
+        "ccAfradTahsildar",
+        "ccDariaftPardakhtLink",
+        "ccUserSabtKonandeh",
+        "ccKardex",
+        "ccDorehMaly",
+        "ccLinkTakhirTajil",
+        "ccDarkhastFaktor_dp",
+        "ccBrand",
+        "ccMarkazAnbar",
+        "ccElatOdat",
+        "ccAfradErsalKonandeh",
+        "ccMarkazForosh",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccDariaftPardakhtPPC",
+        "ccUser"
+      ]
+    },
+    "Sabegheh_EjazehPardakhtFaktor": {
+      "domain": "gozaresh",
+      "pk": "ccEjazehPardakhtFaktor",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccEjazehPardakhtFaktor",
+        "ccBoodjeh",
+        "ccUser",
+        "ccElatOdat",
+        "ccMadrakShenasaie",
+        "ccTaminKonandeh",
+        "ccRefrence",
+        "ccUserPardakhtKonandeh",
+        "ccTankhah",
+        "ccTankhahDar",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccMarkazSazmanForoshSakhtarForoshPardakht",
+        "ccBastaneListHoghogh",
+        "ccMarkaz",
+        "ccSazmanForosh",
+        "ccSakhtarForosh",
+        "ccUserSabegheh"
+      ]
+    },
+    "Sabt_Check": {
+      "domain": "check",
+      "pk": "ccSabtCheck",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSabtCheck",
+        "ccTafkikJoze",
+        "ccDarkhastFaktor",
+        "ccBankSanad",
+        "ccAfradErsalKonandeh",
+        "ccNoeHesab"
+      ]
+    },
+    "Sabt_FishBanki": {
+      "domain": "check",
+      "pk": "ccSabt_FishBanki",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSabt_FishBanki",
+        "ccTafkikJoze",
+        "ccDarkhastFaktor",
+        "ccShomarehHesab",
+        "ccAfradErsalKonandeh"
+      ]
+    },
+    "Sabt_Naghd": {
+      "domain": "check",
+      "pk": "ccSabt_Naghd",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSabt_Naghd",
+        "ccTafkikJoze",
+        "ccDarkhastFaktor",
+        "ccAfradErsalKonandeh"
+      ]
+    },
+    "Sabt_NoeVosolMovaghat": {
+      "domain": "check",
+      "pk": "ccSabt_NoeVosolMovaghat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSabt_NoeVosolMovaghat",
+        "ccTafkikJoze",
+        "ccDarkhastFaktor",
+        "ccBankSanad",
+        "ccAfradErsalKonandeh"
+      ]
+    },
+    "Safteh": {
+      "domain": "check",
+      "pk": "ccSafteh",
+      "role": "سفته",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccSafteh",
+        "ccMarkazAnbar"
+      ]
+    },
+    "SaghfTankhah": {
+      "domain": "tankhah",
+      "pk": "ccSaghfTankhah",
+      "role": "سقف تنخواه",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSaghfTankhah",
+        "ccMarkazForosh",
+        "ccAfrad"
+      ]
+    },
+    "Sandogh": {
+      "domain": "sandogh",
+      "pk": "ccSandogh",
+      "role": "صندوق — به تفکیک مرکز پخش.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSandogh",
+        "ccMarkazPakhsh",
+        "ccAfradSandoghdar",
+        "ccMarkaz"
+      ],
+      "note": "SaghfeSandogh سقفِ نقدینگی و IsForVosol می‌گوید صندوقِ وصول است یا نه. ccAfradSandoghdar صندوق‌دار."
+    },
+    "SandoghMarkazi": {
+      "domain": "sandogh",
+      "pk": "ccSandoghMarkazi",
+      "role": "صندوق مرکزی — گردشِ تجمیعی.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSandoghMarkazi",
+        "ccRefrence",
+        "ccMahaleDariaftPardakht",
+        "ccMarkazForosh",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccLinkSandoghMarkazi",
+        "ccUser"
+      ],
+      "note": "**ccRefrence چندریخت است** و ccLinkSandoghMarkazi خودارجاع؛ بدونِ دانستنِ نوعشان join نکن."
+    },
+    "SandoghMarkaziSatr": {
+      "domain": "sandogh",
+      "pk": "ccSandoghMarkaziSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSandoghMarkaziSatr",
+        "ccSandoghMarkazi",
+        "ccBoodjeh",
+        "ccUser",
+        "ccSandoghMarkaziLink"
+      ]
+    },
+    "SandoghMarkazi_CodeNoeVosol": {
+      "domain": "sandogh",
+      "pk": "ccSandoghMarkazi_CodeNoeVosol",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSandoghMarkazi_CodeNoeVosol",
+        "ccMarkazSazmanForoshSakhtarForosh"
+      ]
+    },
+    "SandoghMarkazi_KharidDeyn": {
+      "domain": "sandogh",
+      "pk": "ccSandoghMarkazi_KharidDeyn",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSandoghMarkazi_KharidDeyn",
+        "ccSandoghMarkazi",
+        "ccBank",
+        "ccShomarehHesab"
+      ]
+    },
+    "ShomarehHesabTankhah": {
+      "domain": "tankhah",
+      "pk": "ccShomarehHesabTankhah",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccShomarehHesabTankhah",
+        "ccMarkazPakhsh",
+        "ccShomarehHesab",
+        "ccMarkaz"
+      ]
+    },
+    "SystemConfig": {
+      "domain": "config",
+      "pk": "ccMarkazPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccMarkaz",
+        "ccUserSabegheh"
+      ]
+    },
+    "TMP_BodjehYekDarHeazar": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccAfrad",
+        "ccForoshandeh",
+        "ccMarkazPakhsh",
+        "ccDarkhastFaktor",
+        "ccDariaftPardakht_Check"
+      ]
+    },
+    "TaaedVosolTablet": {
+      "domain": "vosol",
+      "pk": "ccTaaedVosolTablet",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTaaedVosolTablet",
+        "ccAfradForoshandehMamorPakhsh",
+        "ccUserSabtKonandeh"
+      ]
+    },
+    "Tahsildar": {
+      "domain": "vosol",
+      "pk": "ccTahsildar",
+      "role": "تحصیل‌دار — مسئولِ وصول.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccTahsildar",
+        "ccAfradTahsildar",
+        "ccMarkaz"
+      ],
+      "note": "ModatVosol مهلتِ وصول است. Faal را فیلتر کن."
+    },
+    "TamdidTasviehMoavaghat": {
+      "domain": "tasvieh",
+      "pk": "ccTamdidTasviehMoavaghat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccTamdidTasviehMoavaghat",
+        "ccMarkazPakhsh",
+        "ccDarkhastFaktor",
+        "ccDariaftPardakht",
+        "ccElatOdat",
+        "ccUser",
+        "ccMarkaz"
+      ]
+    },
+    "TamdidTasviehMoavaghat_ElatOdat": {
+      "domain": "tasvieh",
+      "pk": "ccElatOdat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "reason_dict",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccElatOdat"
+      ]
+    },
+    "TamdidTasviehMoavaghat_Photo": {
+      "domain": "tasvieh",
+      "pk": "ccTamdidTasviehMoavaghat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "attachment",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTamdidTasviehMoavaghat",
+        "ccPhoto"
+      ]
+    },
+    "Tankhah": {
+      "domain": "tankhah",
+      "pk": "ccTankhah",
+      "role": "تنخواه — گردشِ وجهِ در اختیار.",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccTankhah",
+        "ccEjazehPardakhtPishPardakht",
+        "ccEjazehPardakhtFaktor",
+        "ccMarkazPakhsh",
+        "ccUser",
+        "ccTankhahDar",
+        "ccLink",
+        "ccMarkaz",
+        "ccSazmanForosh",
+        "ccSakhtarForosh"
+      ],
+      "note": "BedBes جهت را می‌گوید. هم به ccEjazehPardakhtFaktor وصل است و هم به ccEjazehPardakhtPishPardakht. ccTankhahDar نگه‌دارنده‌ی تنخواه است."
+    },
+    "TankhahDar": {
+      "domain": "tankhah",
+      "pk": "ccTankhahDar",
+      "role": "نگه‌دارنده‌ی تنخواه",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccTankhahDar",
+        "ccAfrad",
+        "ccMarkaz",
+        "ccVahedPool_NoeTankhahKhazaneh",
+        "ccUserSabegheh",
+        "ccRaveshTankhah"
+      ]
+    },
+    "TankhahDariaftPardakht": {
+      "domain": "tankhah",
+      "pk": "ccTankhahDariaftPardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTankhahDariaftPardakht",
+        "ccTankhah",
+        "ccUser"
+      ]
+    },
+    "TankhahPhoto": {
+      "domain": "tankhah",
+      "pk": "ccTankhah",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTankhah",
+        "ccPhoto",
+        "ccNoePhoto"
+      ]
+    },
+    "TankhahVazeiat": {
+      "domain": "tankhah",
+      "pk": "ccTankhahVazeiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccTankhahVazeiat"
+      ]
+    },
+    "TarikhJobManual": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf"
+    },
+    "Tashilat": {
+      "domain": "tashilat",
+      "pk": "ccTashilat",
+      "role": "تسهیلات (وام بانکی)",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccTashilat",
+        "ccEjazehPardakhtFaktor_Dariaft",
+        "ccShomarehHesab_Dariaft",
+        "ccKartBank_Dariaft",
+        "ccBankTashilat_ccHesab3"
+      ]
+    },
+    "TashilatSatr": {
+      "domain": "tashilat",
+      "pk": "ccTashilatSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTashilatSatr",
+        "ccTashilat",
+        "ccKartBank_Pardakht",
+        "ccShomarehHesab_Pardakht"
+      ]
+    },
+    "TasviehMoavaghatSatr_Boodjeh": {
+      "domain": "tasvieh",
+      "pk": "ccTasviehMoavaghatSatrBoodjeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTasviehMoavaghatSatrBoodjeh",
+        "ccTasviehMoavaghatBoodjeh",
+        "ccNoeTarafHesab",
+        "ccElat",
+        "ccLinkSatr",
+        "ccUser",
+        "ccBodejhYekDarHezar"
+      ]
+    },
+    "TasviehMoavaghat_Boodjeh": {
+      "domain": "tasvieh",
+      "pk": "ccTasviehMoavaghatBoodjeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTasviehMoavaghatBoodjeh",
+        "ccMarkazPakhsh",
+        "ccDarkhastFaktor",
+        "ccDariaftPardakht",
+        "ccAfradMasoul",
+        "ccUser",
+        "ccMarkaz"
+      ]
+    },
+    "TasviehMoavaghat_BoodjehElat": {
+      "domain": "tasvieh",
+      "pk": "ccElat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccElat"
+      ]
+    },
+    "TasviehMoavaghat_NoeTarafHesab": {
+      "domain": "tasvieh",
+      "pk": "ccNoeTarafHesab",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccNoeTarafHesab"
+      ]
+    },
+    "TmpMoghayeratSuratHesabBanki": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccShomarehHesab",
+        "ccMarkazPakhsh"
+      ]
+    },
+    "TmpSuratHesabVosolCheck": {
+      "domain": "gozaresh",
+      "pk": "ccSuratHesab",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSuratHesab",
+        "ccMarkazPakhsh",
+        "ccShomarehHesab",
+        "ccLinkVosol",
+        "ccMarkazAnbar"
+      ]
+    },
+    "Tmp_AsnadDariafty": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMoshtary",
+        "ccBankSanad",
+        "ccMarkazPakhsh",
+        "ccMantaghehPakhsh",
+        "ccForoshandeh",
+        "ccGorohForosh",
+        "ccBank_VagozarKonandeh",
+        "ccMoshtary_NaghlAzGhabl",
+        "ccHouzeh",
+        "ccNoeVahedForosh",
+        "ccMantaghehForosh",
+        "ccHouzehForosh",
+        "ccMarkazForosh"
+      ]
+    },
+    "Tmp_AsnadVagozari": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccdariaftPardakht",
+        "ccMarkazAnbar",
+        "ccBankSanad"
+      ]
+    },
+    "Tmp_Bestankari": {
+      "domain": "gozaresh",
+      "pk": "ID",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazPakhshDP",
+        "ccMarkazPakhshFaal",
+        "ccDariaftPardakht",
+        "ccvTafsily1",
+        "ccMarkazAnbar"
+      ]
+    },
+    "Tmp_Bestankary": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazForosh",
+        "ccMoshtary"
+      ]
+    },
+    "Tmp_ChackBargashti": {
+      "domain": "gozaresh",
+      "pk": "ccTmp_ChackBargashti",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccTmp_ChackBargashti",
+        "ccDariaftPardakht",
+        "ccDariaftPardakht_NaghlAzGhabl",
+        "ccMoshtary",
+        "ccBankSanad",
+        "ccMarkazForosh",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccAfradErsalKonandeh",
+        "ccBank_VagozarKonandeh",
+        "ccMoshtary_NaghlAzGhabl",
+        "ccSazmanForosh",
+        "ccSakhtarForosh",
+        "ccMahaleVariz",
+        "ccMarkazAnbar",
+        "ccUserOfReport",
+        "ccForoshandeh"
+      ]
+    },
+    "Tmp_DariaftPardakhtppc": {
+      "domain": "gozaresh",
+      "pk": "ID",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccDariaftPardakhtPPC",
+        "ccDarkhastFaktor"
+      ]
+    },
+    "Tmp_DataPishbini": {
+      "domain": "gozaresh",
+      "pk": "ID",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile"
+    },
+    "Tmp_KartBank": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccShomarehHesab"
+      ]
+    },
+    "Tmp_MoshtaryBestankar": {
+      "domain": "gozaresh",
+      "pk": "ID",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazPakhshDP",
+        "ccMarkazPakhshFaal",
+        "ccDariaftPardakht",
+        "ccvTafsily1"
+      ]
+    },
+    "Tmp_MoshtaryNegEslahat": {
+      "domain": "gozaresh",
+      "pk": "ccMoshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMoshtary",
+        "ccDariaftPardakht"
+      ]
+    },
+    "Tmp_RptKartBank": {
+      "domain": "gozaresh",
+      "pk": "ccRptKartBank",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccRptKartBank",
+        "ccShomarehHesab1",
+        "ccMarkaz"
+      ]
+    },
+    "Tmp_SuratHesabVosolCheckByExcel": {
+      "domain": "gozaresh",
+      "pk": "ccTmp_SuratHesabVosolCheckByExcel",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "status_header",
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccTmp_SuratHesabVosolCheckByExcel",
+        "ccMarkazForosh",
+        "ccMahaleVariz",
+        "ccBank",
+        "ccShomarehHesab",
+        "ccLinkDariaftPardakht",
+        "ccUser"
+      ]
+    },
+    "Tmp_SuratHesabVosolCheckByExcel_Json": {
+      "domain": "gozaresh",
+      "pk": "ccTmp_SuratHesabVosolCheckByExcel_Json",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccTmp_SuratHesabVosolCheckByExcel_Json",
+        "ccShomarehHesab",
+        "ccBank",
+        "ccUser"
+      ]
+    },
+    "Tmp_TasviehEjazehPardakhtByKartBank": {
+      "domain": "gozaresh",
+      "pk": "ID",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "ledger",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccEjazehPardakhtFaktor",
+        "ccEjazehPardakhtPishPardakht",
+        "ccMarkazPakhsh",
+        "ccShomarehHesab1",
+        "ccUser",
+        "ccGoroh",
+        "ccMarkaz"
+      ]
+    },
+    "Tmp_TasviehNaghesFaktorByPishPardakht": {
+      "domain": "gozaresh",
+      "pk": "ccRow",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccRow",
+        "ccEjazehPardakhtFaktor",
+        "ccPishPardakht"
+      ]
+    },
+    "Tmp_rptCheckBargashty": {
+      "domain": "gozaresh",
+      "pk": "ccRpt",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccRpt",
+        "ccDariaftPardakht",
+        "ccdarkhastFaktor",
+        "ccMarkazPakhsh",
+        "ccGorohForosh",
+        "ccForoshandeh",
+        "ccMoshtary",
+        "ccNoeVahedForosh",
+        "ccMantaghehForosh",
+        "ccHouzehForosh",
+        "ccMarkazForosh"
+      ]
+    },
+    "VAsnadMoshtarianBeTafkikForoshandeh": {
+      "domain": "gozaresh",
+      "pk": "ccDariaftPardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDariaftPardakht",
+        "ccMarkazPakhsh",
+        "ccDariaftPardakhtLink",
+        "ccKardex",
+        "ccShahrCheck",
+        "ccDariaftPardakhtVazeiat",
+        "ccDarkhastFaktor",
+        "ccGorohForosh",
+        "ccForoshandeh"
+      ]
+    },
+    "VorodKhorojMamorPakhsh_FromTablet": {
+      "domain": "vosol",
+      "pk": "ccVorodKhoroj",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccVorodKhoroj",
+        "ccAfradMamorPakhsh"
+      ]
+    },
+    "VosolFaktor_Position": {
+      "domain": "vosol",
+      "pk": "ccVosolFaktor_Position",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccVosolFaktor_Position",
+        "ccAfradMamorPakhsh",
+        "ccDarkhastfaktor",
+        "ccMoshtary",
+        "ccMamorPakhsh",
+        "ccNoeMamorPakhsh",
+        "ccMashin"
+      ]
+    },
+    "tmpReportAmalKardSandogh": {
+      "domain": "gozaresh",
+      "pk": "ccRpt",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccRpt",
+        "ccMarkaz",
+        "ccMoshtary",
+        "ccForoshandeh",
+        "ccAfradMamorPakhsh"
+      ]
+    },
+    "tmp_MoghayeratMoeenMoshtaryKol": {
+      "domain": "gozaresh",
+      "pk": "ID",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccGoroh"
+      ]
+    }
+  },
+  "traps": {
+    "twins": [
+      {
+        "pair": [
+          "DariaftPardakht",
+          "DariaftPardakhtPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "DariaftPardakhtBargashty",
+          "DariaftPardakhtBargashtyPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "DariaftPardakhtDarkhastFaktor",
+          "DariaftPardakhtDarkhastFaktorPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "DariaftPardakhtFaktorZayeat",
+          "DariaftPardakhtFaktorZayeatPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "DariaftPardakhtVazeiat",
+          "DariaftPardakhtVazeiatPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "Tmp_Bestankari",
+          "Tmp_Bestankary"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "type_mismatch": [
+      {
+        "col": "EjazehPardakhtPishPardakht.ccTankhahDar",
+        "declared": "nchar",
+        "target": "TankhahDar.ccTankhahDar bigint"
+      }
+    ],
+    "width_mismatch": [
+      {
+        "child": "DariaftPardakht_MahaleVariz.ccDariaftPardakht",
+        "child_type": "int",
+        "parent": "DariaftPardakht.ccDariaftPardakht",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "DariaftPardakhtBargashtyPPC.ccDariaftPardakhtPPC",
+        "child_type": "bigint",
+        "parent": "DariaftPardakhtPPC.ccDariaftPardakhtPPC",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "DariaftPardakhtElamiehBankPPC.ccDariaftPardakhtPPC",
+        "child_type": "bigint",
+        "parent": "DariaftPardakhtPPC.ccDariaftPardakhtPPC",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "DariaftPardakhtPPC_BargashtBodjeh.ccDariaftPardakhtPPC",
+        "child_type": "bigint",
+        "parent": "DariaftPardakhtPPC.ccDariaftPardakhtPPC",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "DariaftPardakhtPPC_Photo.ccDariaftPardakhtPPC",
+        "child_type": "bigint",
+        "parent": "DariaftPardakhtPPC.ccDariaftPardakhtPPC",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "DariaftPardakhtVazeiatPPC_Photo.ccDariaftPardakhtPPC",
+        "child_type": "bigint",
+        "parent": "DariaftPardakhtPPC.ccDariaftPardakhtPPC",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "EjazehPardakhtFaktor.ccTankhahDar",
+        "child_type": "int",
+        "parent": "TankhahDar.ccTankhahDar",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "LinkMoghayeratVosolCheck.ccDariaftPardakht",
+        "child_type": "int",
+        "parent": "DariaftPardakht.ccDariaftPardakht",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "List_DPV_ForDelete.ccDariaftPardakhtVazeiat",
+        "child_type": "int",
+        "parent": "DariaftPardakhtVazeiat.ccDariaftPardakhtVazeiat",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "PardakhtElectronic.ccDariaftPardakhtPPC",
+        "child_type": "bigint",
+        "parent": "DariaftPardakhtPPC.ccDariaftPardakhtPPC",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "Sabegheh_EjazehPardakhtFaktor.ccTankhahDar",
+        "child_type": "int",
+        "parent": "TankhahDar.ccTankhahDar",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "Tankhah.ccTankhahDar",
+        "child_type": "int",
+        "parent": "TankhahDar.ccTankhahDar",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "TankhahDariaftPardakht.ccTankhah",
+        "child_type": "int",
+        "parent": "Tankhah.ccTankhah",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "TankhahPhoto.ccTankhah",
+        "child_type": "int",
+        "parent": "Tankhah.ccTankhah",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "TasviehMoavaghat_Boodjeh.ccDariaftPardakht",
+        "child_type": "int",
+        "parent": "DariaftPardakht.ccDariaftPardakht",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "Tmp_Bestankari.ccDariaftPardakht",
+        "child_type": "int",
+        "parent": "DariaftPardakht.ccDariaftPardakht",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "Tmp_DariaftPardakhtppc.ccDariaftPardakhtPPC",
+        "child_type": "bigint",
+        "parent": "DariaftPardakhtPPC.ccDariaftPardakhtPPC",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "Tmp_MoshtaryBestankar.ccDariaftPardakht",
+        "child_type": "int",
+        "parent": "DariaftPardakht.ccDariaftPardakht",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "Tmp_MoshtaryNegEslahat.ccDariaftPardakht",
+        "child_type": "int",
+        "parent": "DariaftPardakht.ccDariaftPardakht",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      }
+    ],
+    "misleading_satr": [],
+    "dead_columns": {
+      "rule_dead": "پسوند _deeeel / _deeel — استفاده نکن",
+      "rule_suspect": "پسوند _Old — اول ببین؛ گاهی یعنی «قبلی»",
+      "by_table": {},
+      "suspect_by_table": {
+        "Tmp_DataPishbini": [
+          "MablaghVosol_Old",
+          "MablaghBoodjeh_Old",
+          "MablaghForosh_Old",
+          "AzTarikh_Old",
+          "TaTarikh_Old",
+          "TedadRooz_Old"
+        ]
+      }
+    },
+    "begin_date_tables": [
+      "MoghayeratBank"
+    ],
+    "end_date_not_null": [
+      "Boodjeh_RizMarkaz",
+      "MoghayeratBank"
+    ],
+    "fk_contradicts_naming": []
+  },
+  "cross_schema": {
+    "Amargar.Brand": {
+      "via": "ccBrand",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "AssetAccounting.MoshakhasatAmval": {
+      "via": "ccMoshakhasatAmval",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "FinancialAccounting.CodeHesab7Name": {
+      "via": "ccCodeHesab7Name",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "FinancialAccounting.DorehMaly": {
+      "via": "ccDorehMaly",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Afrad": {
+      "via": "ccAfrad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "شخص (FName، LName) — صندوق‌دار، تحصیل‌دار، تنخواه‌دار"
+    },
+    "Global.Bank": {
+      "via": "ccBank",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "بانک"
+    },
+    "Global.BankShobeh": {
+      "via": "ccBankShobeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Darajeh": {
+      "via": "ccDarajeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.ElatOdat": {
+      "via": "ccElatOdat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Goroh": {
+      "via": "ccGoroh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Houzeh": {
+      "via": "ccHouzeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.HouzehForosh": {
+      "via": "ccHouzehForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MantaghehForosh": {
+      "via": "ccMantaghehForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MantaghehPakhsh": {
+      "via": "ccMantaghehPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Markaz": {
+      "via": "ccMarkaz",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MarkazPakhsh": {
+      "via": "ccMarkazPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مرکز پخش"
+    },
+    "Global.MarkazSazmanForosh": {
+      "via": "ccMarkazSazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MarkazSazmanForoshSakhtarForosh": {
+      "via": "ccMarkazSazmanForoshSakhtarForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoeHesab": {
+      "via": "ccNoeHesab",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoePhoto": {
+      "via": "ccNoePhoto",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoeVahedForosh": {
+      "via": "ccNoeVahedForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Photo": {
+      "via": "ccPhoto",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.SakhtarForosh": {
+      "via": "ccSakhtarForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.SazmanForosh": {
+      "via": "ccSazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.ShomarehHesab": {
+      "via": "ccShomarehHesab",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "شماره حساب بانکی"
+    },
+    "Global.VahedPool": {
+      "via": "ccVahedPool",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.BastaneListHoghogh": {
+      "via": "ccBastaneListHoghogh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.Personel": {
+      "via": "ccPersonel",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.Post": {
+      "via": "ccPost",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.VahedSazmani": {
+      "via": "ccVahedSazmani",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Purchase.TaminKonandeh": {
+      "via": "ccTaminKonandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "تأمین‌کننده — طرفِ پرداخت"
+    },
+    "Sales.DarkhastFaktor": {
+      "via": "ccDarkhastFaktor",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "فاکتور فروش — منشأِ مطالبات"
+    },
+    "Sales.FaktorZayeat": {
+      "via": "ccFaktorZayeat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.Foroshandeh": {
+      "via": "ccForoshandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.GorohForosh": {
+      "via": "ccGorohForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.Mashin": {
+      "via": "ccMashin",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.Moshtary": {
+      "via": "ccMoshtary",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مشتری — طرفِ وصول"
+    },
+    "Sales.TafkikJoze": {
+      "via": "ccTafkikJoze",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Warehouse.Kardex": {
+      "via": "ccKardex",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Warehouse.KardexAnbarak": {
+      "via": "ccKardexAnbarak",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Warehouse.MamorPakhsh": {
+      "via": "ccMamorPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Warehouse.NoeMamorPakhsh": {
+      "via": "ccNoeMamorPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Warehouse.Vahed": {
+      "via": "ccVahed",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    }
+  },
+  "views_excluded": [
+    "vAeenNamehElamiehBank",
+    "vAeenNamehElamiehBank_shobehBank",
+    "vBoodjeh",
+    "vBoodjehMarkazPakhsh",
+    "vBoodjeh_Hesab",
+    "vCodeNoeVosol",
+    "vDariaftPardakht",
+    "vDariaftPardakhtBargashty",
+    "vDariaftPardakhtBargashtyForReport",
+    "vDariaftPardakhtBargashtyPPC",
+    "vDariaftPardakhtDarkhastFaktor",
+    "vDariaftPardakhtDarkhastFaktorAllVazeiat",
+    "vDariaftPardakhtDarkhastFaktorBargashty",
+    "vDariaftPardakhtDarkhastFaktorForReport",
+    "vDariaftPardakhtDarkhastFaktorGroupBy",
+    "vDariaftPardakhtDarkhastFaktorNew",
+    "vDariaftPardakhtDarkhastFaktorPPC",
+    "vDariaftPardakhtPPC",
+    "vDariaftPardakhtVazeiat",
+    "vDariaftPardakhtVazeiatLast",
+    "vDariaftPardakhtVazeiatLastBargashty",
+    "vDariaftPardakhtVazeiatPPC",
+    "vDariaftPardakhtvazeiatLastPPC",
+    "vDastehCheck",
+    "vDastehCheckTankhah",
+    "vDataForSodorElamieh",
+    "vDetailDariaftPardakhtVazeiatLast",
+    "vEjazehPardakhtFaktor",
+    "vEjazehPardakhtFaktorPhoto",
+    "vEjazehPardakhtFaktorSatr",
+    "vEjazehPardakhtMoshakhasatSheba",
+    "vEjazehPardakhtPishPardakht",
+    "vEjazehPardakhtPishPardakhtPhoto",
+    "vEjazehPardakht_TmpKartBankEjazehPardakht",
+    "vEjazehPardakht_ZamanVazeiat",
+    "vElatOdatVosol",
+    "vKartbank",
+    "vMahaleVariz",
+    "vMoeenHesabMoshtaryKol_Archive",
+    "vMoghayeratVosolCheck",
+    "vPishbinidariaftPardakht",
+    "vSafteh",
+    "vSandogh",
+    "vTahsildar",
+    "vTamdidTasviehMoavaghat",
+    "vTankhah",
+    "vTankhahDariaftPardakht",
+    "vTankhahPhoto",
+    "vTashilat",
+    "vTashilatSatr",
+    "vTasviehMoavaghatSatr_Boodjeh",
+    "vTasviehMoavaghat_Boodjeh",
+    "vVosolFaktor_Position",
+    "vtmpRptAmalkardSandogh"
+  ],
+  "edges": [
+    {
+      "source": "AeenNamehElamiehBank1",
+      "col": "ccAeenNamehElamiehBank",
+      "target": "AeenNamehElamiehBank",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ArshiveCheck",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BestankaryMoshtary",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Boodjeh_Hesab",
+      "col": "ccBoodjeh",
+      "target": "Boodjeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Boodjeh_RizMarkaz",
+      "col": "ccBoodjeh",
+      "target": "Boodjeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_VazeiatNaghd",
+      "col": "ccBoodjeh",
+      "target": "Boodjeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_VazeiatNaghd",
+      "col": "ccMahaleVariz",
+      "target": "MahaleVariz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakht",
+      "col": "ccMahaleVariz",
+      "target": "MahaleVariz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakht",
+      "col": "ccManbaDP",
+      "target": "ManbaDP",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakht",
+      "col": "ccSandogh",
+      "target": "Sandogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtBargashty",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtBargashtyPPC",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtDarkhastFaktor",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtDarkhastFaktorPPC",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtDarkhastFaktorPPC",
+      "col": "ccDariaftPardakhtDarkhastFaktor",
+      "target": "DariaftPardakhtDarkhastFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtDarkhastFaktorppc_Tmp",
+      "col": "ccDariaftPardakhtppc",
+      "target": "DariaftPardakhtPPC",
+      "match": "case",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "DariaftPardakhtElamiehBankPPC",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtFaktorZayeat",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtFaktorZayeatPPC",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtPPC",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtPPC",
+      "col": "ccMahaleVariz",
+      "target": "MahaleVariz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtPPC",
+      "col": "ccManbaDP",
+      "target": "ManbaDP",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtPPC",
+      "col": "ccSandogh",
+      "target": "Sandogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtPPC_BargashtBodjeh",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtPPC_Photo",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtVazeiat",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtVazeiatPPC",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtVazeiatPPC",
+      "col": "ccDariaftPardakhtVazeiat",
+      "target": "DariaftPardakhtVazeiat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakhtVazeiatPPC_Photo",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakht_Afrad",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakht_MahaleVariz",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakht_MahaleVariz",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakht_MahaleVariz",
+      "col": "ccMahaleVariz",
+      "target": "MahaleVariz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DariaftPardakht_Photo",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DastehCheck",
+      "col": "ccNoeDastehCheck",
+      "target": "NoeDastehCheck",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DastehCheckBarg",
+      "col": "ccDastehCheck",
+      "target": "DastehCheck",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DastehCheckTankhah",
+      "col": "ccShomarehHesabTankhah",
+      "target": "ShomarehHesabTankhah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtFaktor",
+      "col": "ccBoodjeh",
+      "target": "Boodjeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtFaktor",
+      "col": "ccTankhah",
+      "target": "Tankhah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtFaktor",
+      "col": "ccTankhahDar",
+      "target": "TankhahDar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtFaktorPhoto",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtFaktorSatr",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtFaktor_MoshakhasatAmval",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtFaktor_MoshakhasatAmval",
+      "col": "ccEjazehPardakhtFaktorSatr",
+      "target": "EjazehPardakhtFaktorSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtMoshakhasatSheba",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtPishPardakht",
+      "col": "ccBoodjeh",
+      "target": "Boodjeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtPishPardakht",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtPishPardakht",
+      "col": "ccKartBank",
+      "target": "KartBank",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtPishPardakht",
+      "col": "ccTankhah",
+      "target": "Tankhah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtPishPardakht",
+      "col": "ccTankhahDar",
+      "target": "TankhahDar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtPishPardakhtPhoto",
+      "col": "ccEjazehPardakhtPishPardakht",
+      "target": "EjazehPardakhtPishPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtPishPardakhtSatr",
+      "col": "ccEjazehPardakhtPishPardakht",
+      "target": "EjazehPardakhtPishPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakhtPishPardakht_MoshakhasatSheba",
+      "col": "ccEjazehPardakhtPishPardakht",
+      "target": "EjazehPardakhtPishPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_BedehyPersonel",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_PishPardakht_ForSanad",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_PishPardakht_ForSanad",
+      "col": "ccEjazehPardakhtPishPardakht",
+      "target": "EjazehPardakhtPishPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_PishPardakht_ForSanad",
+      "col": "ccKartBank",
+      "target": "KartBank",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_PishPardakht_ForSanad",
+      "col": "ccKartBankEjazehPardakhtFaktor",
+      "target": "KartBankEjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_PishPardakht_ForSanad",
+      "col": "ccTankhah",
+      "target": "Tankhah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_TmpKartBankEjazehPardakht",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_ZamanVazeiat",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EjazehPardakht_ZamanVazeiat",
+      "col": "ccEjazehPardakhtPishPardakht",
+      "target": "EjazehPardakhtPishPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ElamiehBedehkari",
+      "col": "ccNoeElamiehBedehkari",
+      "target": "NoeElamiehBedehkari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ElamiehBedehkariSatr",
+      "col": "ccElamiehBedehkari",
+      "target": "ElamiehBedehkari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ElamiehBedehkariSatr",
+      "col": "ccNoeAfradElamiehBedehkari",
+      "target": "NoeAfradElamiehBedehkari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemPishbiniSatr",
+      "col": "ccItemPishbini",
+      "target": "ItemPishbini",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KartBankEjazehPardakhtFaktor",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KartBankEjazehPardakhtFaktor",
+      "col": "ccEjazehPardakhtPishPardakht",
+      "target": "EjazehPardakhtPishPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KartBankEjazehPardakhtFaktor",
+      "col": "ccKartBank",
+      "target": "KartBank",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KartBankVazeiat",
+      "col": "ccKartBank",
+      "target": "KartBank",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "LinkMoghayeratVosolCheck",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "List_DPV_ForDelete",
+      "col": "ccDariaftPardakhtVazeiat",
+      "target": "DariaftPardakhtVazeiat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MahaleVariz_CodeNoeVosol",
+      "col": "ccMahaleVariz",
+      "target": "MahaleVariz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MoghayeratBankSatr",
+      "col": "ccMoghayeratBank",
+      "target": "MoghayeratBank",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtElectronic",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtElectronic",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Sabegheh_DariaftPardakhtPPC",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Sabegheh_DariaftPardakhtPPC",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Sabegheh_DariaftPardakhtPPC",
+      "col": "ccSandogh",
+      "target": "Sandogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Sabegheh_EjazehPardakhtFaktor",
+      "col": "ccBoodjeh",
+      "target": "Boodjeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Sabegheh_EjazehPardakhtFaktor",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Sabegheh_EjazehPardakhtFaktor",
+      "col": "ccTankhah",
+      "target": "Tankhah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Sabegheh_EjazehPardakhtFaktor",
+      "col": "ccTankhahDar",
+      "target": "TankhahDar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghMarkazi",
+      "col": "ccMahaleDariaftPardakht",
+      "target": "MahaleDariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghMarkaziSatr",
+      "col": "ccBoodjeh",
+      "target": "Boodjeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghMarkaziSatr",
+      "col": "ccSandoghMarkazi",
+      "target": "SandoghMarkazi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghMarkazi_KharidDeyn",
+      "col": "ccSandoghMarkazi",
+      "target": "SandoghMarkazi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TamdidTasviehMoavaghat",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TamdidTasviehMoavaghat_Photo",
+      "col": "ccTamdidTasviehMoavaghat",
+      "target": "TamdidTasviehMoavaghat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tankhah",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tankhah",
+      "col": "ccEjazehPardakhtPishPardakht",
+      "target": "EjazehPardakhtPishPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tankhah",
+      "col": "ccTankhahDar",
+      "target": "TankhahDar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TankhahDariaftPardakht",
+      "col": "ccTankhah",
+      "target": "Tankhah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TankhahPhoto",
+      "col": "ccTankhah",
+      "target": "Tankhah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TashilatSatr",
+      "col": "ccTashilat",
+      "target": "Tashilat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehMoavaghat_Boodjeh",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_AsnadVagozari",
+      "col": "ccdariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "case",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Tmp_Bestankari",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_ChackBargashti",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_ChackBargashti",
+      "col": "ccMahaleVariz",
+      "target": "MahaleVariz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_DariaftPardakhtppc",
+      "col": "ccDariaftPardakhtPPC",
+      "target": "DariaftPardakhtPPC",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_MoshtaryBestankar",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_MoshtaryNegEslahat",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_SuratHesabVosolCheckByExcel",
+      "col": "ccMahaleVariz",
+      "target": "MahaleVariz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_TasviehEjazehPardakhtByKartBank",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_TasviehEjazehPardakhtByKartBank",
+      "col": "ccEjazehPardakhtPishPardakht",
+      "target": "EjazehPardakhtPishPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_TasviehNaghesFaktorByPishPardakht",
+      "col": "ccEjazehPardakhtFaktor",
+      "target": "EjazehPardakhtFaktor",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_rptCheckBargashty",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VAsnadMoshtarianBeTafkikForoshandeh",
+      "col": "ccDariaftPardakht",
+      "target": "DariaftPardakht",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VAsnadMoshtarianBeTafkikForoshandeh",
+      "col": "ccDariaftPardakhtVazeiat",
+      "target": "DariaftPardakhtVazeiat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    }
+  ]
+}

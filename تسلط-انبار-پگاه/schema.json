@@ -1479,7 +1479,7 @@
       ]
     },
     "JaizehMamorPakhsh96_ArshiveReport98": {
-      "domain": "gozaresh",
+      "domain": "other",
       "pk": "ccJaizehMamorPakhsh96_ArshiveReport98",
       "role": "",
       "rows": null,
@@ -3417,6 +3417,34 @@
   },
   "traps": {
     "twins": [
+      {
+        "pair": [
+          "Kardex",
+          "KardexPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "KardexSatr",
+          "KardexSatrPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "KardexSatrGhesmat",
+          "KardexSatrGhesmatPPC"
+        ],
+        "confidence": "high"
+      },
+      {
+        "pair": [
+          "KardexVazeiat",
+          "KardexVazeiatPPC"
+        ],
+        "confidence": "high"
+      },
       {
         "pair": [
           "AmalkardRoozanehAnbar",
