@@ -1,0 +1,5729 @@
+{
+  "meta": {
+    "version": "1405-06-18",
+    "schema": "HumanResource",
+    "source": "HR Map.xlsx + تأیید با فهرست کاملِ اشیای دیتابیس (DB Master.xlsx، ۳۰۸۴۹ ستون، ۱۸ اسکیما)",
+    "verified_against_live_db": false,
+    "join_rule": "اگر A.ccB هست و جدول B هم هست → حدسِ اول A.ccB = B.ccB. حدس است، نه کلید خارجی.",
+    "warning": "هیچ اتصالی در این فایل اثبات‌شده نیست. کوئری ۰.۴ references/queries.md کلیدهای واقعی را می‌آورد؛ هرجا اختلاف بود اسکیمای واقعی درست است.",
+    "database": "PegahAI",
+    "object_counts": {
+      "objects": 554,
+      "views": 112,
+      "tmp": 18,
+      "legacy": 19,
+      "core": 413
+    },
+    "snapshot": "نسخه‌ی پشتیبانِ DB Master.xlsx",
+    "snapshot_note": "نقشه قابل اعتماد است. عکسِ یک نسخه‌ی پشتیبان است، پس فهرست اسکیماها و اشیای هسته ثابت‌اند و فقط در حاشیه ممکن است چند جدول اضافه/کم شده باشد. تطبیق با دیتابیس زنده: hr_map.py drift",
+    "drift_checked": "۴۱۳ جدولِ هسته با فهرست اشیای دیتابیس خوانده — صفر اختلاف"
+  },
+  "domains": {
+    "personel": "پرسنل — هویت و پرونده",
+    "sazman": "سازمان — پست، شغل، واحد",
+    "gharardad": "قرارداد و حکم",
+    "hoghogh": "حقوق و دستمزد",
+    "karkard": "کارکرد، شیفت، مرخصی، مأموریت",
+    "maliat_bimeh": "مالیات و بیمه",
+    "refah": "رفاه، وام، درمان",
+    "jazb": "جذب و آزمون",
+    "arzyabi": "ارزیابی و آموزش",
+    "tasvieh": "تسویه‌حساب و خروج",
+    "config": "پیکربندی و گردش کار",
+    "migration": "انتقال اولیه"
+  },
+  "external_cc": {
+    "ccUserSabtKonandeh": {
+      "count": 68,
+      "note": "کاربر ثبت‌کننده — دامنه‌ی امنیت/کاربر — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccMarkaz": {
+      "count": 53,
+      "note": "→ Global.Markaz (اثبات‌شده از فهرست اشیای دیتابیس). مرکز — اسکیمای مشترک",
+      "resolves_to": "Global.Markaz",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccElatOdat": {
+      "count": 37,
+      "note": "→ Global.ElatOdat (اثبات‌شده از فهرست اشیای دیتابیس). علت برگشت — محلی است، هر دامنه X_ElatOdat خودش را دارد. کدها بین دامنه‌ها منتقل نمی‌شوند.",
+      "resolves_to": "Global.ElatOdat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccUser": {
+      "count": 29,
+      "note": "کاربر — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccSystem": {
+      "count": 25,
+      "note": "→ dbo.System (اثبات‌شده از فهرست اشیای دیتابیس). سیستم/زیرسامانه",
+      "resolves_to": "dbo.System",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccPhoto": {
+      "count": 23,
+      "note": "→ Global.Photo (اثبات‌شده از فهرست اشیای دیتابیس). تصویر/پیوست — مخزن فایل",
+      "resolves_to": "Global.Photo",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccAfrad": {
+      "count": 15,
+      "note": "→ Global.Afrad (اثبات‌شده از فهرست اشیای دیتابیس). شخص → Global.Afrad. پل به اسکیل‌های فروش (ccAfradForoshandeh).",
+      "resolves_to": "Global.Afrad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccMarkazPakhsh": {
+      "count": 10,
+      "note": "→ Global.MarkazPakhsh (اثبات‌شده از فهرست اشیای دیتابیس). مرکز پخش — دامنه‌ی پخش",
+      "resolves_to": "Global.MarkazPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccShahr": {
+      "count": 9,
+      "note": "شهر — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccSystemNext": {
+      "count": 8,
+      "note": "سیستم بعدی در گردش کار — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccEjazehPardakhtFaktor": {
+      "count": 7,
+      "note": "→ Treasury.EjazehPardakhtFaktor (اثبات‌شده از فهرست اشیای دیتابیس). اجازه پرداخت — مالی",
+      "resolves_to": "Treasury.EjazehPardakhtFaktor",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccBank": {
+      "count": 5,
+      "note": "→ Global.Bank (اثبات‌شده از فهرست اشیای دیتابیس). بانک",
+      "resolves_to": "Global.Bank",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccShomarehHesab": {
+      "count": 4,
+      "note": "→ Global.ShomarehHesab (اثبات‌شده از فهرست اشیای دیتابیس). شماره حساب",
+      "resolves_to": "Global.ShomarehHesab",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccOstan": {
+      "count": 3,
+      "note": "استان — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccAfradModir": {
+      "count": 3,
+      "note": "مدیر → Global.Afrad، نه Personel — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccMoaseseh": {
+      "count": 3,
+      "note": "مؤسسه — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccCompany": {
+      "count": 2,
+      "note": "→ Global.Company (اثبات‌شده از فهرست اشیای دیتابیس). شرکت",
+      "resolves_to": "Global.Company",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccNoeFile": {
+      "count": 2,
+      "note": "نوع فایل — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccRefrence": {
+      "count": 4,
+      "note": "ارجاع عمومی — با ccNoeRefrence معنی می‌گیرد — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    }
+  },
+  "tables": {
+    "Personel": {
+      "domain": "personel",
+      "pk": "ccPersonel",
+      "role": "لنگرگاه اصلی — یک سطر به ازای هر کارمند",
+      "cc": [
+        "ccAfrad",
+        "ccAfradModir",
+        "ccPersonelVazeiatMoafiat_BimehMaliat",
+        "ccNoeBazneshasteh",
+        "ccMarkazEstekhdam"
+      ],
+      "cols": [
+        "ShomarehPersonely",
+        "TarikhEstekhdam",
+        "TarikhEnfesal",
+        "ShomarehBimeh",
+        "IsBazneshasteh",
+        "CodeVazeiat",
+        "IsOzvSandoghRefah",
+        "IsOzvBimehTakmily"
+      ],
+      "flags": [
+        "anchor",
+        "status_header"
+      ],
+      "note": "نام کارمند اینجا نیست — از ccAfrad به Global.Afrad برو. متقاضیان استخدام هم رکورد دارند؛ با CodeVazeiat جدا کن.",
+      "stability": "core"
+    },
+    "Personel_CodeVazeiat": {
+      "domain": "personel",
+      "pk": "ccPersonel_CodeVazeiat",
+      "role": "دیکشنری وضعیت پرسنل",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelTakmily": {
+      "domain": "personel",
+      "pk": "ccPersonel",
+      "role": "اطلاعات تکمیلی — یک‌به‌یک با Personel",
+      "cc": [
+        "ccKargahBimeh",
+        "ccDinMazhab",
+        "ccVazeiatTaahol",
+        "ccBloodGroup"
+      ],
+      "note": "کلید اصلی‌اش ccPersonel است، نه یک شناسه‌ی جدید.",
+      "stability": "leaf"
+    },
+    "PersonelVabasteh": {
+      "domain": "personel",
+      "pk": "ccPersonelVabasteh",
+      "role": "افراد وابسته — خانواده، ضامن، معرف",
+      "cc": [
+        "ccPersonel",
+        "ccNoeNesbat",
+        "ccAfrad",
+        "ccMadrakTahsily",
+        "ccVazeiatTaahol",
+        "ccPersonelVabasteh_Link",
+        "ccReshteh",
+        "ccGeraiesh"
+      ],
+      "cols": [
+        "IsFamily",
+        "IsZamen",
+        "IsMoaref",
+        "IsTahtehTakafol",
+        "IsDaneshjoo",
+        "FName",
+        "LName",
+        "CodeMely",
+        "TarikhTavalod"
+      ],
+      "flags": [
+        "effective_dated",
+        "sensitive"
+      ],
+      "note": "یک سطر می‌تواند هم‌زمان چند نقش داشته باشد (خانواده و ضامن).",
+      "stability": "connected"
+    },
+    "PersonelVabasteh_Madrak": {
+      "domain": "personel",
+      "pk": "ccPersonelVabasteh_Madrak",
+      "role": "مدرک وابسته",
+      "cc": [
+        "ccPersonelVabasteh",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMadrakTahsily": {
+      "domain": "personel",
+      "pk": "ccPersonelMadrakTahsily",
+      "role": "مدارک تحصیلی",
+      "cc": [
+        "ccPersonel",
+        "ccMadrakTahsily",
+        "ccReshteh",
+        "ccGeraiesh",
+        "ccKeshvarMahalTahsil",
+        "ccShahrMahalTahsil",
+        "ccMoaseseh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "connected"
+    },
+    "PersonelMadrakTahsily_Madrak": {
+      "domain": "personel",
+      "pk": "ccPersonelMadrakTahsily_Madrak",
+      "role": "پیوست مدرک تحصیلی",
+      "cc": [
+        "ccPersonelMadrakTahsily",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelSabegheKari": {
+      "domain": "personel",
+      "pk": "ccPersonelSabegheKari",
+      "role": "سابقه‌ی کار — نسخه‌ی یک",
+      "cc": [
+        "ccPersonel"
+      ],
+      "flags": [
+        "effective_dated",
+        "twin"
+      ],
+      "note": "دوقلوی PersonelSavabeghKary.",
+      "stability": "leaf"
+    },
+    "PersonelSavabeghKary": {
+      "domain": "personel",
+      "pk": "ccPersonelSavabeghKary",
+      "role": "سابقه‌ی کار — نسخه‌ی دو",
+      "cc": [
+        "ccPersonel",
+        "ccAddress"
+      ],
+      "flags": [
+        "effective_dated",
+        "twin"
+      ],
+      "note": "دوقلوی PersonelSabegheKari.",
+      "stability": "leaf"
+    },
+    "PersonelKhedmatSarbazy": {
+      "domain": "personel",
+      "pk": "ccPersonelKhedmatSarbazy",
+      "role": "خدمت سربازی",
+      "cc": [
+        "ccPersonel",
+        "ccNoeMoafiat",
+        "ccYeganKhedmat",
+        "ccRastehKhedmat"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "connected"
+    },
+    "PersonelKhedmatSarbazy_Madrak": {
+      "domain": "personel",
+      "pk": "ccPersonelKhedmatSarbazy_Madrak",
+      "role": "پیوست خدمت",
+      "cc": [
+        "ccPersonelKhedmatSarbazy",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelZaban": {
+      "domain": "personel",
+      "pk": "ccPersonelZaban",
+      "role": "زبان",
+      "cc": [
+        "ccPersonel",
+        "ccNoeZaban"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMaharatComputer": {
+      "domain": "personel",
+      "pk": "ccPersonelMaharatComputer",
+      "role": "مهارت رایانه",
+      "cc": [
+        "ccPersonel",
+        "ccNoeMaharatComputer"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelGavahinamehRanandegy": {
+      "domain": "personel",
+      "pk": "ccPersonelGavahinamehRanandegy",
+      "role": "گواهینامه رانندگی",
+      "cc": [
+        "ccPersonel",
+        "ccNoeGavahinamehRanandegy"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelBimary": {
+      "domain": "personel",
+      "pk": "ccPersonelBimary",
+      "role": "بیماری — داده‌ی سلامت",
+      "cc": [
+        "ccPersonel",
+        "ccBimary"
+      ],
+      "flags": [
+        "sensitive"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelSabeghehBimari": {
+      "domain": "personel",
+      "pk": "ccPersonelSabeghehBimari",
+      "role": "سابقه‌ی بیماری — داده‌ی سلامت",
+      "cc": [
+        "ccPersonel"
+      ],
+      "flags": [
+        "sensitive"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelShomarehHesab": {
+      "domain": "personel",
+      "pk": "ccPersonelShomarehHesab",
+      "role": "حساب بانکی",
+      "cc": [
+        "ccPersonel",
+        "ccShomarehHesab",
+        "ccBank",
+        "ccShahr",
+        "ccNoePardakhtHoghogh",
+        "ccNoeEstefadeh",
+        "ccUserTaghirDahandeh"
+      ],
+      "flags": [
+        "effective_dated",
+        "sensitive"
+      ],
+      "note": "CodeVazeiat اینجا نوع bit است، نه کد وضعیت معمول.",
+      "stability": "connected"
+    },
+    "PersonelShomarehHesab_Madrak": {
+      "domain": "personel",
+      "pk": "ccPersonelShomarehHesab_Madrak",
+      "role": "پیوست حساب",
+      "cc": [
+        "ccPersonelShomarehHesab",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelPhoto": {
+      "domain": "personel",
+      "pk": "ccPersonelPhoto",
+      "role": "تصویر پرسنل",
+      "cc": [
+        "ccPersonel",
+        "ccPhoto",
+        "ccNoePhoto"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMadrak": {
+      "domain": "personel",
+      "pk": "ccPersonelMadrak",
+      "role": "مدرک پرسنل",
+      "cc": [
+        "ccPersonel",
+        "ccPhoto",
+        "ccNoeMadrak"
+      ],
+      "flags": [
+        "twin"
+      ],
+      "note": "دوقلوی Personel_Madrak.",
+      "stability": "leaf"
+    },
+    "Personel_Madrak": {
+      "domain": "personel",
+      "pk": "ccPersonel_Madrak",
+      "role": "مدرک پرسنل — نسخه‌ی دو",
+      "cc": [
+        "ccPersonel",
+        "ccPhoto",
+        "ccNoeMadrak"
+      ],
+      "flags": [
+        "twin",
+        "type_mismatch"
+      ],
+      "note": "ccPersonel اینجا bigint است ولی Personel.ccPersonel از نوع int.",
+      "stability": "leaf"
+    },
+    "PersonelMoaref": {
+      "domain": "personel",
+      "pk": "ccPersonelMoaref",
+      "role": "معرف",
+      "cc": [
+        "ccPersonel"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelTashvighiEnzebati": {
+      "domain": "personel",
+      "pk": "ccPersonelTashvighiEnzebati",
+      "role": "تشویق و انضباط",
+      "cc": [
+        "ccPersonel",
+        "ccNoeTashvighiEnzebati",
+        "ccElatOdat"
+      ],
+      "flags": [
+        "sensitive",
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelTashvighiEnzebati_CodeVazeiat": {
+      "domain": "personel",
+      "pk": "ccPersonelTashvighiEnzebati_CodeVazeiat",
+      "role": "دیکشنری وضعیت",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelTashvighiEnzebati_ElatOdat": {
+      "domain": "personel",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelVazeiat": {
+      "domain": "personel",
+      "pk": "ccPersonelVazeiat",
+      "role": "تاریخچه‌ی وضعیت پرسنل",
+      "cc": [
+        "ccPersonel",
+        "ccUser"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelInfo_Movaghat": {
+      "domain": "personel",
+      "pk": "ccPersonelInfo_Movaghat",
+      "role": "اطلاعات موقت/پیش‌نویس",
+      "cc": [
+        "ccPersonel",
+        "ccElatOdat"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelAdmin": {
+      "domain": "personel",
+      "pk": "ccPersonelAdmin",
+      "role": "دسترسی مدیریتی",
+      "cc": [
+        "ccPersonel",
+        "ccSystem",
+        "ccPost",
+        "ccAfrad"
+      ],
+      "stability": "leaf"
+    },
+    "VaziatZaheri": {
+      "domain": "personel",
+      "pk": "ccVaziatZaheri",
+      "role": "وضعیت ظاهری",
+      "cc": [
+        "ccPersonel",
+        "ccUser",
+        "ccNoeLebas"
+      ],
+      "flags": [
+        "type_mismatch"
+      ],
+      "note": "ccPersonel از نوع nvarchar است ولی Personel.ccPersonel از نوع int — join نیاز به CAST دارد.",
+      "stability": "leaf"
+    },
+    "NoeVaziatZaheri": {
+      "domain": "personel",
+      "pk": "ccNoeLebas",
+      "role": "نوع وضعیت ظاهری",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "MarkazMohasebat_Personel": {
+      "domain": "personel",
+      "pk": "ccMarkazMohasebat_Personel",
+      "role": "تخصیص مرکز محاسبات به پرسنل",
+      "cc": [
+        "ccMarkaz",
+        "ccPersonel",
+        "ccUser"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelVazeiateMoafiat": {
+      "domain": "personel",
+      "pk": "ccPersonelVazeiateMoafiat",
+      "role": "وضعیت معافیت",
+      "cc": [
+        "ccNoeVazeiat"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelVazeiatMoafiat_BimehMaliat": {
+      "domain": "personel",
+      "pk": "ccPersonelVazeiatMoafiat_BimehMaliat",
+      "role": "معافیت بیمه/مالیات",
+      "cols": [
+        "Mashmol_BimehPersonel",
+        "Mashmol_BimehSherkat",
+        "Mashmol_BimehBikari",
+        "Mashmol_Maliat",
+        "CodeMoafiat_Maliat"
+      ],
+      "stability": "connected"
+    },
+    "TarikhEtebarHaghOlad": {
+      "domain": "personel",
+      "pk": "ccTarikhEtebarHaghOlad",
+      "role": "اعتبار حق اولاد",
+      "cc": [
+        "ccPersonel",
+        "ccAfradVabasteh"
+      ],
+      "stability": "leaf"
+    },
+    "Personel_ErsaliEjazehPardakht": {
+      "domain": "personel",
+      "pk": "ccPersonel_ErsaliEjazehPardakht",
+      "role": "ارسال به اجازه پرداخت",
+      "cc": [
+        "ccPersonel",
+        "ccBastanListHoghogh"
+      ],
+      "stability": "leaf"
+    },
+    "Personel_GheyreFaal_Voc": {
+      "domain": "personel",
+      "pk": "ccPersonel",
+      "role": "پرسنل غیرفعال",
+      "cc": [
+        "ccPersonel",
+        "ccAfrad",
+        "ccAfradModir"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "ListPersonelForDeleteDastresi_InJob": {
+      "domain": "personel",
+      "pk": "ccListPersonelForDeleteDastresi",
+      "role": "صف حذف دسترسی",
+      "cc": [
+        "ccAfrad",
+        "ccUserHazfKonandeh"
+      ],
+      "flags": [
+        "legacy",
+        "job_queue"
+      ],
+      "stability": "volatile"
+    },
+    "personel_UpdateKarkardByJob": {
+      "domain": "personel",
+      "pk": "Id",
+      "role": "صف به‌روزرسانی کارکرد",
+      "flags": [
+        "legacy",
+        "job_queue"
+      ],
+      "stability": "volatile"
+    },
+    "ShomarehPersonel_SabtNashodeh": {
+      "domain": "personel",
+      "role": "شماره پرسنلی ثبت‌نشده",
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "BloodGroup": {
+      "domain": "personel",
+      "pk": "ccBloodGroup",
+      "role": "گروه خون",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "DinMazhab": {
+      "domain": "personel",
+      "pk": "ccDinMazhab",
+      "role": "دین و مذهب",
+      "cc": [
+        "ccDinMazhabLink"
+      ],
+      "flags": [
+        "dict",
+        "tree"
+      ],
+      "stability": "connected"
+    },
+    "VazeiatTaahol": {
+      "domain": "personel",
+      "pk": "ccVazeiatTaahol",
+      "role": "وضعیت تأهل",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "MadrakTahsily": {
+      "domain": "personel",
+      "pk": "ccMadrakTahsily",
+      "role": "مدرک تحصیلی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "MaghtaeTahsily": {
+      "domain": "personel",
+      "pk": "ccMaghtaeTahsily",
+      "role": "مقطع تحصیلی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "Reshteh": {
+      "domain": "personel",
+      "pk": "ccReshteh",
+      "role": "رشته تحصیلی",
+      "cc": [
+        "ccGoroh",
+        "ccZirGoroh"
+      ],
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "ReshtehGeraiesh": {
+      "domain": "personel",
+      "pk": "ccReshtehGeraiesh",
+      "role": "رشته و گرایش",
+      "cc": [
+        "ccReshtehGeraieshLink"
+      ],
+      "flags": [
+        "dict",
+        "tree"
+      ],
+      "stability": "connected"
+    },
+    "MoasesehTahsili": {
+      "domain": "personel",
+      "pk": "ccMoaseseh",
+      "role": "مؤسسه تحصیلی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeZaban": {
+      "domain": "personel",
+      "pk": "ccNoeZaban",
+      "role": "نوع زبان",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeMaharatComputer": {
+      "domain": "personel",
+      "pk": "ccNoeMaharatComputer",
+      "role": "نوع مهارت رایانه",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeGavahinamehRanandegy": {
+      "domain": "personel",
+      "pk": "ccNoeGavahinamehRanandegy",
+      "role": "نوع گواهینامه",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeMadrak": {
+      "domain": "personel",
+      "pk": "ccNoeMadrak",
+      "role": "نوع مدرک",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "YeganKhedmat": {
+      "domain": "personel",
+      "pk": "ccYeganKhedmat",
+      "role": "یگان خدمت",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "RastehKhedmat": {
+      "domain": "personel",
+      "pk": "ccRastehKhedmat",
+      "role": "رسته خدمت",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeMoafiat": {
+      "domain": "personel",
+      "pk": "ccNoeMoafiat",
+      "role": "نوع معافیت",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "Bimary": {
+      "domain": "personel",
+      "pk": "ccBimary",
+      "role": "بیماری",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeNesbat": {
+      "domain": "personel",
+      "pk": "ccNoeNesbat",
+      "role": "نوع نسبت خانوادگی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "core"
+    },
+    "NoeAmoozeshPersonel": {
+      "domain": "arzyabi",
+      "pk": "ccNoeAmoozeshPersonel",
+      "role": "نوع آموزش",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeAshanaeeSherkat": {
+      "domain": "jazb",
+      "pk": "ccNoeAshnaee",
+      "role": "نوع آشنایی با شرکت",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "VahedSazmani": {
+      "domain": "sazman",
+      "pk": "ccVahedSazmani",
+      "role": "واحد سازمانی — درخت",
+      "cc": [
+        "ccVahedSazmaniLink",
+        "ccLinkCharteSazmani"
+      ],
+      "flags": [
+        "tree",
+        "status_header"
+      ],
+      "note": "ccVahedSazmaniLink والدِ خودِ همین جدول است. برای زیرمجموعه‌ها CTE بازگشتی لازم است.",
+      "stability": "core"
+    },
+    "Post": {
+      "domain": "sazman",
+      "pk": "ccPost",
+      "role": "پست سازمانی",
+      "cc": [
+        "ccPostBimeh",
+        "ccShoghl",
+        "ccShoghl_Old"
+      ],
+      "flags": [
+        "dead_column"
+      ],
+      "note": "ccShoghl_Old مرده است — ccShoghl را بگیر.",
+      "stability": "core"
+    },
+    "Shoghl": {
+      "domain": "sazman",
+      "pk": "ccShoghl",
+      "role": "شغل",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "ShoghlTitr": {
+      "domain": "sazman",
+      "pk": "ccShoghlTitr",
+      "role": "عنوان شغلی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "PostShoghl": {
+      "domain": "sazman",
+      "pk": "ccPostShoghl",
+      "role": "پست × شغل",
+      "cc": [
+        "ccShoghl",
+        "ccPost",
+        "ccShoghlTitr"
+      ],
+      "stability": "core"
+    },
+    "PostBimeh": {
+      "domain": "sazman",
+      "pk": "ccPostBimeh",
+      "role": "پست بیمه‌ای",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "GorohShoghli": {
+      "domain": "sazman",
+      "pk": "ccGorohShoghli",
+      "role": "گروه شغلی — پایه‌ی سنوات",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "GorohShoghli_MablaghSanavat": {
+      "domain": "sazman",
+      "pk": "ccGorohShoghli_MablaghSanavat",
+      "role": "مبلغ سنوات هر گروه شغلی",
+      "cc": [
+        "ccGorohShoghli"
+      ],
+      "stability": "leaf"
+    },
+    "GorohShoghliAfzayeshHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccGorohShoghliAfzayeshHoghogh",
+      "role": "افزایش حقوق گروه شغلی",
+      "cc": [
+        "ccGorohShoghli"
+      ],
+      "stability": "leaf"
+    },
+    "RastehShoghli": {
+      "domain": "sazman",
+      "pk": "Id",
+      "role": "رسته شغلی",
+      "flags": [
+        "dict",
+        "non_cc_key"
+      ],
+      "stability": "connected"
+    },
+    "VahedSazmani_Post": {
+      "domain": "sazman",
+      "pk": "ccVahedSazmani_Post",
+      "role": "تخصیص پست به واحد",
+      "cc": [
+        "ccVahedSazmani",
+        "ccPost"
+      ],
+      "stability": "leaf"
+    },
+    "VahedSazmaniPostShoghl": {
+      "domain": "sazman",
+      "pk": "ccVahedSazmaniPostShoghl",
+      "role": "واحد × پست‌شغل",
+      "cc": [
+        "ccVahedSazmani",
+        "ccPostShoghl"
+      ],
+      "stability": "connected"
+    },
+    "VahedSazmani_MarkazHazineh": {
+      "domain": "sazman",
+      "pk": "ccVahedSazmani_MarkazHazineh",
+      "role": "مرکز هزینه واحد",
+      "cc": [
+        "ccVahedSazmani",
+        "ccMarkazHazineh",
+        "ccUserSabegheh"
+      ],
+      "stability": "leaf"
+    },
+    "VahedSazmani_NoeMarkazPakhsh": {
+      "domain": "sazman",
+      "pk": "ccVahedSazmani_NoeMarkazPakhsh",
+      "role": "نوع مرکز پخش واحد",
+      "cc": [
+        "ccVahedSazmani",
+        "ccNoeMarkazPakhsh",
+        "ccNoeVahedForosh"
+      ],
+      "stability": "leaf"
+    },
+    "VahedSazmani_Tafsily": {
+      "domain": "sazman",
+      "pk": "ccVahedSazmani_Tafsily",
+      "role": "تفصیلی واحد",
+      "cc": [
+        "ccVahedSazmani",
+        "ccTafsily",
+        "ccUserSabegheh"
+      ],
+      "stability": "leaf"
+    },
+    "Post_SandoghRefah": {
+      "domain": "refah",
+      "pk": "ccPost_SandoghRefah",
+      "role": "سهم صندوق رفاه هر پست",
+      "cc": [
+        "ccPost"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "post_HazineMamuryat": {
+      "domain": "karkard",
+      "pk": "ccNoeHazine",
+      "role": "هزینه مأموریت هر پست",
+      "cc": [
+        "ccNoeHazine",
+        "ccPost"
+      ],
+      "stability": "leaf"
+    },
+    "MarkazMohasebat": {
+      "domain": "config",
+      "pk": "ccMarkazMohasebat",
+      "role": "وضعیت محاسبات هر مرکز در هر ماه",
+      "cc": [
+        "ccMarkaz",
+        "ccUser"
+      ],
+      "cols": [
+        "IsHoghogh",
+        "IsTaeedNahaeeHoghogh",
+        "IsUpdateKarkard",
+        "IsMohasebatTasviehHesab",
+        "IsEbtal"
+      ],
+      "note": "برای «حقوق این ماه نهایی شده؟» این و BastanListHoghogh را با هم ببین.",
+      "stability": "leaf"
+    },
+    "MarkazBimeh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccMarkazBimeh",
+      "role": "مرکز بیمه",
+      "cc": [
+        "ccMarkaz",
+        "ccMarkazAsliBimeh",
+        "ccShahr"
+      ],
+      "stability": "leaf"
+    },
+    "MarkazMoshabeh_Bime_Maliat": {
+      "domain": "maliat_bimeh",
+      "pk": "ccMarkazMoshabeh_Bime_Maliat",
+      "role": "مرکز مشابه بیمه/مالیات",
+      "cc": [
+        "ccMarkaz",
+        "ccMarkazMoshabeh",
+        "ccKargahBimeh",
+        "ccShobehBimeh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelGharardad": {
+      "domain": "gharardad",
+      "pk": "ccPersonelGharardad",
+      "role": "قرارداد",
+      "cc": [
+        "ccNoeEstekhdam",
+        "ccPersonel",
+        "ccTasviyehesab"
+      ],
+      "cols": [
+        "ShomareGharardad",
+        "CodeVaziat",
+        "IsTasvieh"
+      ],
+      "flags": [
+        "effective_dated",
+        "status_header"
+      ],
+      "note": "EndDate تهی‌پذیر نیست — الگوی EndDate IS NULL اینجا کار نمی‌کند. و ستون وضعیت CodeVaziat است نه CodeVazeiat.",
+      "stability": "core"
+    },
+    "PersonelGharardad_Movaghat": {
+      "domain": "gharardad",
+      "pk": "ccPersonelGharardad_Movaghat",
+      "role": "قرارداد موقت",
+      "cc": [
+        "ccNoeEstekhdam",
+        "ccPersonel",
+        "ccElatOdat",
+        "ccPersonelGharardad_Asli"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "connected"
+    },
+    "PersonelGharardadVaziat": {
+      "domain": "gharardad",
+      "pk": "ccPersonelGharardadVaziat",
+      "role": "تاریخچه وضعیت قرارداد",
+      "cc": [
+        "ccPersonel",
+        "ccPersonelGharardad",
+        "ccNoeEstekhdam"
+      ],
+      "flags": [
+        "status_history",
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelGharardad_Madarek": {
+      "domain": "gharardad",
+      "pk": "ccPersonelGharardad_Madarek",
+      "role": "مدارک قرارداد",
+      "cc": [
+        "ccPersonelGharardad",
+        "ccPhoto",
+        "ccPersonelGharardad_Movaghat"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelGharardad_CodeVazeiat": {
+      "domain": "gharardad",
+      "pk": "ccPersonelGharardad_CodeVazeiat",
+      "role": "دیکشنری وضعیت قرارداد",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelGharardad_ElatOdat": {
+      "domain": "gharardad",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت قرارداد",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokm": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokm",
+      "role": "حکم — سربرگ",
+      "cc": [
+        "ccNoeHokm",
+        "ccPersonel",
+        "ccPersonelGharardad"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "core"
+    },
+    "PersonelHokmVazeiat": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmVazeiat",
+      "role": "تاریخچه وضعیت حکم",
+      "cc": [
+        "ccPersonelHokm",
+        "ccUser"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokmHoghogh": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmHoghogh",
+      "role": "حکم حقوقی — حقوق مصوب (لایه‌ی تعریف)",
+      "cc": [
+        "ccPersonel",
+        "ccPersonelGharardad",
+        "ccGorohShoghli",
+        "ccElatTaghirHokm",
+        "ccNoeMohasebehKarkard",
+        "ccNoeAyabZahab",
+        "ccPersonelHokm",
+        "ccElatOdat",
+        "ccPersonelHokmPostVahedSazmani_Link"
+      ],
+      "cols": [
+        "MablaghMozdeShoghl",
+        "MablaghSanavat",
+        "MablaghHaghFanni",
+        "Maskan",
+        "Bon",
+        "HaghOlad",
+        "Ezafekar",
+        "Nahar",
+        "Kharebar",
+        "ZamanGheirFaali",
+        "CodeVazeiat"
+      ],
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "deactivatable"
+      ],
+      "note": "سه فیلتر با هم لازم است: بازه، CodeVazeiat، و ZamanGheirFaali IS NULL.",
+      "stability": "connected"
+    },
+    "PersonelHokmHoghoghSatr": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmHoghoghSatr",
+      "role": "اقلام حکم حقوقی",
+      "cc": [
+        "ccPersonelHokmHoghogh",
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokmHoghogh_SayerAvamel": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmHoghogh_SayerAvamel",
+      "role": "سایر عوامل — مسیر موازی حکم حقوقی",
+      "cc": [
+        "ccPersonel",
+        "ccElatOdat",
+        "ccPersonelHokmPostVahedSazmani_Link"
+      ],
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "deactivatable"
+      ],
+      "stability": "connected"
+    },
+    "PersonelHokmHoghoghSatr_SayerAvamel": {
+      "domain": "gharardad",
+      "pk": "PersonelHokmHoghoghSatr_SayerAvamel",
+      "role": "اقلام سایر عوامل",
+      "cc": [
+        "ccItemHoghogh",
+        "ccPersonelHokmHoghogh_SayerAvamel"
+      ],
+      "flags": [
+        "detail",
+        "non_cc_key"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokmHoghogh_CodeVazeiat": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmHoghogh_CodeVazeiat",
+      "role": "دیکشنری وضعیت حکم حقوقی",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokmHoghogh_ElatOdat": {
+      "domain": "gharardad",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت حکم حقوقی",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokmPostVahedSazmani": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmPostVahedSazmani",
+      "role": "جایگاه سازمانی — چه کسی کجا نشسته",
+      "cc": [
+        "ccPersonel",
+        "ccPost",
+        "ccVahedSazmani",
+        "ccMarkaz",
+        "ccPersonelGharardad",
+        "ccElatOdat"
+      ],
+      "flags": [
+        "effective_dated",
+        "status_header"
+      ],
+      "note": "ccPersonelHokm ندارد — مستقل از PersonelHokm است. برای «کجای چارت» همین را بگیر.",
+      "stability": "core"
+    },
+    "PersonelHokmPostVahedSazmani_CodeVazeiat": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmPostVahedSazmani_CodeVazeiat",
+      "role": "دیکشنری وضعیت جایگاه",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokmPostVahedSazmani_ElatOdat": {
+      "domain": "gharardad",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت جایگاه",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokmPostVahedSazmani_SystemPermission": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmPostVahedSazmani_SystemPermission",
+      "role": "دسترسی سیستمی جایگاه",
+      "cc": [
+        "ccPersonelHokmPostVahedSazmani",
+        "ccPersonel",
+        "ccMarkaz",
+        "ccSazmanForosh",
+        "ccSakhtarForosh",
+        "ccMarkazSazmanForoshSakhtarForosh"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelHokmPostShoghl": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmPostShoghl",
+      "role": "پست‌شغل حکم",
+      "cc": [
+        "ccPersonelHokm",
+        "ccPostShoghl",
+        "ccNoeHamkari"
+      ],
+      "stability": "connected"
+    },
+    "PersonelHokmVahedSazmani": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmVahedSazmani",
+      "role": "واحد سازمانی حکم",
+      "cc": [
+        "ccPersonelHokm",
+        "ccVahedSazmani",
+        "ccMarkazPakhsh_NoeMarkazPakhshBakhsh",
+        "ccMarkazSazmanForoshSakhtarForosh"
+      ],
+      "stability": "connected"
+    },
+    "PersonelHokmShiftKary": {
+      "domain": "gharardad",
+      "pk": "ccPersonelHokmShiftKary",
+      "role": "شیفت حکم",
+      "cc": [
+        "ccPersonelHokm",
+        "ccShiftKary"
+      ],
+      "note": "به ShiftKary (با y) وصل است، نه ShiftKari.",
+      "stability": "leaf"
+    },
+    "NoeEstekhdam": {
+      "domain": "gharardad",
+      "pk": "ccNoeEstekhdam",
+      "role": "نوع استخدام — و قواعد مشمولیت بیمه/مالیات",
+      "cols": [
+        "Mashmol_BimehPersonel",
+        "Mashmol_BimehSherkat",
+        "Mashmol_Maliat",
+        "Mashmol_HaghMaskan",
+        "Mashmol_Eydi",
+        "IsMoaf_Maliat",
+        "DarsadMaliatPardakhti",
+        "ErsalBeEdarehMaliat"
+      ],
+      "flags": [
+        "dict"
+      ],
+      "note": "فقط دیکشنری نیست — پرچم‌های مشمولیت را حمل می‌کند. برای «چرا این نفر بیمه نشده» اول اینجا.",
+      "stability": "core"
+    },
+    "NoeHokm": {
+      "domain": "gharardad",
+      "pk": "ccNoeHokm",
+      "role": "نوع حکم",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeHamkari": {
+      "domain": "gharardad",
+      "pk": "ccNoeHamkari",
+      "role": "نوع همکاری",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeEnfesal": {
+      "domain": "gharardad",
+      "pk": "ccNoeEnfesal",
+      "role": "نوع انفصال",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "ElatHokm": {
+      "domain": "gharardad",
+      "pk": "ccElatHokm",
+      "role": "علت حکم",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "ItemHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccItemHoghogh",
+      "role": "دیکشنری اقلام حقوق — مرکز ثقل دوم",
+      "cc": [
+        "ccVahedMohasebehHoghogh"
+      ],
+      "cols": [
+        "CodeItemHoghogh",
+        "NameItemHoghogh_Farsi",
+        "Noe_KaheshAfzayesh",
+        "IsMazaya",
+        "IsKosorat",
+        "IsHoghoghMabna",
+        "IsKarkard",
+        "IsHokmHoghogh",
+        "Noe_Roozaneh_Mahaneh",
+        "Faal",
+        "OlaviatNamayesh"
+      ],
+      "flags": [
+        "dict",
+        "hub"
+      ],
+      "note": "برای «مزایا/کسورات» از پرچم‌ها استفاده کن، نه فهرست دستی اسم اقلام.",
+      "stability": "core"
+    },
+    "ItemHoghogh_FormulMohasebeh": {
+      "domain": "hoghogh",
+      "pk": "ccItemHoghogh_FormulMohasebeh",
+      "role": "فرمول محاسبه‌ی قلم",
+      "cc": [
+        "ccItemHoghogh"
+      ],
+      "stability": "leaf"
+    },
+    "ItemHoghogh_Mashmol_BimehMaliat": {
+      "domain": "hoghogh",
+      "pk": "ccItemHoghogh_Mashmol_BimehMaliat",
+      "role": "مشمولیت بیمه/مالیات قلم",
+      "cc": [
+        "ccItemHoghogh",
+        "ccUserGheyreFaalKonandeh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "ItemHoghogh_SabetPardakhti": {
+      "domain": "hoghogh",
+      "pk": "ccItemHoghoghSabetPardakhti",
+      "role": "مبلغ ثابت قلم",
+      "cc": [
+        "ccItemHoghogh",
+        "ccItemHoghogh_Link"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "ItemHoghogh_Sanavat_Eydi": {
+      "domain": "hoghogh",
+      "pk": "ccItemHoghogh_Sanavat_Eydi",
+      "role": "مشمولیت سنوات/عیدی قلم",
+      "cc": [
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "ItemHoghogh_ChandPardakhti": {
+      "domain": "hoghogh",
+      "pk": "ccItemHoghogh_ChandPardakhti",
+      "role": "چندپرداختی قلم",
+      "cc": [
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "ItemHokmHoghogh_SayerAvamel": {
+      "domain": "hoghogh",
+      "pk": "ccItemHokmHoghogh_SayerAvamel",
+      "role": "اقلام سایر عوامل حکم",
+      "cc": [
+        "ccItemHoghogh",
+        "ccVahedMohasebehHoghogh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "ItemhayeHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccItemhayeHoghogh",
+      "role": "اقلام حقوق — جدول کوچک جدا",
+      "cc": [
+        "ccNoeItemhayeHoghogh"
+      ],
+      "flags": [
+        "effective_dated",
+        "twin"
+      ],
+      "note": "با ItemHoghogh اشتباه نشود.",
+      "stability": "leaf"
+    },
+    "NoeItemhayeHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccNoeItemhayeHoghogh",
+      "role": "نوع اقلام حقوق",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeItemhayeHoghoghSharayet": {
+      "domain": "hoghogh",
+      "pk": "ccNoeItemhayeHoghoghSharayet",
+      "role": "شرایط اقلام",
+      "cc": [
+        "ccNoeItemhayeHoghogh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "PardakhtHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccPardakhtHoghogh",
+      "role": "پرداخت حقوق — نتیجه‌ی محاسبه (لایه‌ی نتیجه)",
+      "cc": [
+        "ccPersonelHokmVahedSazmani",
+        "ccPersonelHokmHoghogh",
+        "ccPersonelHokmPostShoghl",
+        "ccMarkaz",
+        "ccPersonel",
+        "ccNoePardakhti",
+        "ccPersonelHokmMazaya",
+        "ccPersonelHokmPostVahedSazmani",
+        "ccPersonelGharardad",
+        "ccNoeEstekhdam",
+        "ccMarkazMoshabeh_BimehMaliat",
+        "ccShobehBimeh",
+        "ccMarkazMoshabeh_Bimeh",
+        "ccMarkazMoshabeh_Maliat",
+        "ccPersonelHokmHoghogh_SayerAvamel",
+        "ccEjazehPardakhtFaktor"
+      ],
+      "cols": [
+        "Sal",
+        "Mah",
+        "MablaghMozdeShoghl",
+        "MablaghEzafeKar",
+        "MablaghMaliat",
+        "MablaghBimehPersonel",
+        "MablaghKhalesPardakhti",
+        "Tedad_RoozKarkard",
+        "TedadRoozKarkard_Sanavat",
+        "TedadRoozKarkard_Eydi",
+        "CodeNoeRecord",
+        "CodeVazeiat"
+      ],
+      "dead_cols": [
+        "Mablagh_MashmolBimeh_deeeel",
+        "MablaghBimeh_Pardakhti_deeeel",
+        "MablaghBimeh_Bikari_deeeel",
+        "MablaghBimeh_SahmKarfarma_deeeel",
+        "MablaghBimeh_SahmPersonel_deeeel",
+        "Mablagh_HaghOlad_deeeel",
+        "cctmp_PardakhtHoghogh_deeeel",
+        "Mablagh_MashmolMaliat_old"
+      ],
+      "flags": [
+        "status_header",
+        "grain_risk",
+        "sensitive",
+        "hub_target"
+      ],
+      "note": "دانه را قبل از هر SUM بشمار. ستون‌های پهن و PardakhtHoghoghSatr دو نمایشِ یک چیزند — جمعِ هر دو دوباره‌شماری است. کلید bigint است ولی فرزندانش int.",
+      "stability": "core"
+    },
+    "PardakhtHoghoghSatr": {
+      "domain": "hoghogh",
+      "pk": "ccPardakhtHoghoghSatr",
+      "role": "اقلام پرداخت حقوق",
+      "cc": [
+        "ccPardakhtHoghogh",
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "detail",
+        "type_mismatch"
+      ],
+      "note": "ccPardakhtHoghogh اینجا int است ولی والد bigint.",
+      "stability": "leaf"
+    },
+    "PardakhtHoghogh_CodeVazeiat": {
+      "domain": "hoghogh",
+      "pk": "Id",
+      "role": "دیکشنری وضعیت پرداخت — IsEbtal دارد",
+      "cc": [
+        "ccSystem",
+        "ccSystemNext"
+      ],
+      "cols": [
+        "CodeVazeiat",
+        "NameVazeiat",
+        "IsEbtal"
+      ],
+      "flags": [
+        "status_dict",
+        "non_cc_key"
+      ],
+      "note": "IsEbtal = 1 یعنی کدِ باطل.",
+      "stability": "leaf"
+    },
+    "PardakhtHoghogh_ElatOdat": {
+      "domain": "hoghogh",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت پرداخت",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PardakhtHoghogh_FaktorTaavoni": {
+      "domain": "hoghogh",
+      "pk": "ccPardakhtHoghogh_FaktorTaavoni",
+      "role": "تسویه فاکتور تعاونی از حقوق",
+      "cc": [
+        "ccPardakhtHoghogh",
+        "ccDarkhastFaktor",
+        "ccPersonel",
+        "ccAfrad"
+      ],
+      "stability": "leaf"
+    },
+    "PardakhtEydi": {
+      "domain": "hoghogh",
+      "pk": "ccPardakhtEydi",
+      "role": "پرداخت عیدی",
+      "cc": [
+        "ccPardakhtHoghogh",
+        "ccPersonel",
+        "ccMarkaz",
+        "ccPersonelHokmPostVahedSazmani",
+        "ccPersonelHokmHoghogh",
+        "ccPersonelGharardad",
+        "ccNoeEstekhdam"
+      ],
+      "stability": "leaf"
+    },
+    "PardakhtEydi_CodeVazeiat": {
+      "domain": "hoghogh",
+      "pk": "ccPardakhtEydi_CodeVazeiat",
+      "role": "دیکشنری وضعیت عیدی",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PardakhtEydi_ElatOdat": {
+      "domain": "hoghogh",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت عیدی",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "Karaneh": {
+      "domain": "hoghogh",
+      "pk": "ccKaraneh",
+      "role": "کارانه",
+      "cc": [
+        "ccPersonel",
+        "ccPardakhtHoghogh"
+      ],
+      "stability": "leaf"
+    },
+    "Karaneh_MojavezPardakht": {
+      "domain": "hoghogh",
+      "pk": "ccKaraneh_MojavezPardakht",
+      "role": "مجوز پرداخت کارانه",
+      "cc": [
+        "ccPersonel",
+        "ccUser"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "PardakhtMosaedehGorohi": {
+      "domain": "hoghogh",
+      "pk": "ccPardakhtMosaedehGorohi",
+      "role": "مساعده گروهی",
+      "cc": [
+        "ccPersonel",
+        "ccPersonelHokmHoghogh",
+        "ccPersonelHokmPostVahedSazmani",
+        "ccEjazehPardakhtFaktor",
+        "ccAeenNamehMosaedeh",
+        "ccElatOdat"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "PardakhtMosaedehGorohi_CodeVazeiat": {
+      "domain": "hoghogh",
+      "pk": "CodeVazeiat",
+      "role": "دیکشنری وضعیت مساعده",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PardakhtMosaedehGorohi_ElatOdat": {
+      "domain": "hoghogh",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت مساعده",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "AeenNamehMosaedeh": {
+      "domain": "hoghogh",
+      "pk": "ccAeenNamehMosaedeh",
+      "role": "آیین‌نامه مساعده",
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "connected"
+    },
+    "AfzayeshHoghoghSalianeh": {
+      "domain": "hoghogh",
+      "pk": "ccAfzayeshHoghoghSalianeh",
+      "role": "افزایش حقوق سالانه",
+      "cc": [
+        "ccMarkaz",
+        "ccPersonel",
+        "ccPersonelHokmHoghogh_Old",
+        "ccPersonelHokmHoghogh_Jadid"
+      ],
+      "note": "ccPersonelHokmHoghogh_Old مرده نیست — یعنی «حکم قبلی» در برابر _Jadid «حکم جدید».",
+      "stability": "leaf"
+    },
+    "AfzayeshHoghogh_ElatOdat": {
+      "domain": "hoghogh",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت افزایش حقوق",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "AfzayeshHoghog_NoeAmaliat": {
+      "domain": "hoghogh",
+      "pk": "ccNoeAmaliat",
+      "role": "نوع عملیات افزایش حقوق",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeAmaliat": {
+      "domain": "hoghogh",
+      "pk": "ccNoeAmaliat",
+      "role": "نوع عملیات",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "MaliatBarDaramadHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccMaliatBarDaramadHoghogh",
+      "role": "پلکان مالیات حقوق",
+      "cc": [
+        "ccNoeEstekhdam"
+      ],
+      "flags": [
+        "effective_dated",
+        "rate_table",
+        "type_mismatch"
+      ],
+      "note": "ccNoeEstekhdam اینجا nvarchar است ولی NoeEstekhdam.ccNoeEstekhdam از نوع tinyint.",
+      "stability": "leaf"
+    },
+    "Zakhireh_ItemHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccZakhirehEydi_Sanavat",
+      "role": "ذخیره/تعهد اقلام (لایه‌ی سوم)",
+      "cc": [
+        "ccMarkaz",
+        "ccPersonel",
+        "ccAfrad",
+        "ccLink",
+        "ccItemHoghogh",
+        "ccUser"
+      ],
+      "flags": [
+        "type_mismatch"
+      ],
+      "note": "ccItemHoghogh از نوع tinyint است — سقف ۲۵۵. اقلام با کد بالاتر اینجا ذخیره نمی‌شوند.",
+      "stability": "leaf"
+    },
+    "MablaghZakhireh_Eydi_Sanavat": {
+      "domain": "hoghogh",
+      "pk": "ccMablaghZakhireh_Eydi_Sanavat",
+      "role": "مبلغ ذخیره عیدی/سنوات",
+      "cc": [
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "BastanListHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccBastanListHoghogh",
+      "role": "بستن لیست حقوق ماه",
+      "cc": [
+        "ccEjazehPardakhtFaktor_Hoghogh",
+        "ccEjazehPardakhtFaktor_Bimeh",
+        "ccEjazehPardakhtFaktor_Maliat",
+        "ccMarkaz",
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "status_header",
+        "twin"
+      ],
+      "note": "دوقلوی BastaneListHoghogh.",
+      "stability": "connected"
+    },
+    "BastaneListHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccBastaneListHoghogh",
+      "role": "بستن لیست حقوق — نسخه‌ی دو",
+      "cc": [
+        "ccUserTaeed_ListBime",
+        "ccUserTaeed_ListMaliat",
+        "ccBank"
+      ],
+      "flags": [
+        "twin"
+      ],
+      "stability": "leaf"
+    },
+    "BastanListHoghoghVazeiat": {
+      "domain": "hoghogh",
+      "pk": "ccBastanListHoghoghVazeiat",
+      "role": "تاریخچه وضعیت بستن لیست",
+      "cc": [
+        "ccBastanListHoghogh"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "BastanListHoghogh_CodeVazeiat": {
+      "domain": "hoghogh",
+      "pk": "ccBastanListHoghogh_CodeVazeiat",
+      "role": "دیکشنری وضعیت بستن لیست",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "MohasebehHoghogh_CodeVazeiat": {
+      "domain": "hoghogh",
+      "pk": "ccMohasebehHoghogh_CodeVazeiat",
+      "role": "دیکشنری وضعیت محاسبه حقوق",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "MohasebehHoghogh_ElatOdat": {
+      "domain": "hoghogh",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت محاسبه حقوق",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "MoavaghePardakhtiHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccMoavaghePardakhtiHoghogh",
+      "role": "معوقه پرداختی",
+      "cc": [
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "EslahItemhayeHoghoghPardakhtiMah": {
+      "domain": "hoghogh",
+      "pk": "ccEslahItemhayeHoghoghPardakhtiMah",
+      "role": "اصلاح اقلام حقوق ماه",
+      "cc": [
+        "ccMarkaz",
+        "ccPost",
+        "ccPersonel",
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "ItemTaghiratHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccItemTaghiratHoghogh",
+      "role": "اقلام تغییرات حقوق",
+      "cc": [
+        "ccUser"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "SaghfeEzafeKar": {
+      "domain": "hoghogh",
+      "pk": "ccSaghfeEzafeKar",
+      "role": "سقف اضافه‌کار",
+      "cc": [
+        "ccPersonel",
+        "ccUser",
+        "ccMarkaz"
+      ],
+      "stability": "leaf"
+    },
+    "SaghfeMablaghAghsat": {
+      "domain": "refah",
+      "pk": "SaghfeMablaghAghsatId",
+      "role": "سقف مبلغ اقساط",
+      "cc": [
+        "ccMarkaz",
+        "ccPost",
+        "ccPersonel",
+        "ccUser"
+      ],
+      "flags": [
+        "effective_dated",
+        "non_cc_key"
+      ],
+      "stability": "leaf"
+    },
+    "ZaribEzafehKar": {
+      "domain": "hoghogh",
+      "pk": "ccZaribEzafehKar",
+      "role": "ضرایب اضافه‌کار و شب‌کاری",
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "EzafeKarBazneshastegi": {
+      "domain": "hoghogh",
+      "pk": "ccEzafeKarBazneshastegi",
+      "role": "اضافه‌کار بازنشستگی",
+      "cc": [
+        "ccMarkaz",
+        "ccPersonel",
+        "ccUser"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "SerialDisketeHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccSerialDisketeHoghogh",
+      "role": "سریال دیسکت حقوق",
+      "stability": "leaf"
+    },
+    "ShoroMohasebatHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccShoroMohasebatHoghogh",
+      "role": "شروع محاسبات حقوق",
+      "stability": "leaf"
+    },
+    "NahvePardakhMaliatHoghogh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccNahvePardakhMaliatHoghogh",
+      "role": "نحوه پرداخت مالیات حقوق",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccShomarehHesab",
+        "ccMarkaz",
+        "ccBank"
+      ],
+      "stability": "leaf"
+    },
+    "TashvighiBeNesbatRoozKarkard": {
+      "domain": "hoghogh",
+      "pk": "TashvighiBeNesbatRoozKarkardId",
+      "role": "تشویقی به نسبت روز کارکرد",
+      "cc": [
+        "ccMarkaz",
+        "ccVahedSazmani",
+        "ccPost",
+        "ccPersonel",
+        "ccUser"
+      ],
+      "flags": [
+        "non_cc_key"
+      ],
+      "stability": "leaf"
+    },
+    "KarkardePayaneMahGhabl": {
+      "domain": "hoghogh",
+      "pk": "ccKarkardePayaneSalGhabl",
+      "role": "کارکرد پایان ماه قبل",
+      "cc": [
+        "ccPersonel"
+      ],
+      "flags": [
+        "type_mismatch"
+      ],
+      "note": "ccPersonel از نوع bigint است ولی Personel.ccPersonel از نوع int.",
+      "stability": "leaf"
+    },
+    "VahedMohasebehHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccVahedMohasebehHoghogh",
+      "role": "واحد محاسبه حقوق",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeMohasebehKarkard": {
+      "domain": "hoghogh",
+      "pk": "ccNoeMohasebehKarkard",
+      "role": "نوع محاسبه کارکرد",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeAyabZahab": {
+      "domain": "hoghogh",
+      "pk": "ccNoeAyabZahab",
+      "role": "نوع ایاب و ذهاب",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoePardakhtHoghogh": {
+      "domain": "hoghogh",
+      "pk": "ccNoePardakhtHoghogh",
+      "role": "نوع پرداخت حقوق",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoePardakhti": {
+      "domain": "hoghogh",
+      "pk": "ccNoePardakhti",
+      "role": "نوع پرداختی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoePardakhtAghsat": {
+      "domain": "refah",
+      "pk": "ccNoePardakhtAghsat",
+      "role": "نوع پرداخت اقساط",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeMohasebeh_RoozMah": {
+      "domain": "hoghogh",
+      "pk": "ccNoeMohasebeh_RoozMah",
+      "role": "نوع محاسبه روز/ماه",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "PersonelKarkard": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard",
+      "role": "کارکرد روزانه — یک سطر به ازای کارمند × روز",
+      "cc": [
+        "ccPersonel",
+        "ccGorohKari",
+        "ccShiftKari",
+        "ccNoeMorakhasi",
+        "ccNobatKari",
+        "ccPersonelJaygozinShodeh"
+      ],
+      "cols": [
+        "Sal",
+        "Mah",
+        "Tarikh",
+        "Karkard_Daghigheh",
+        "EzafehKar_Daghigheh",
+        "EzafehkarTatili_Daghigheh",
+        "Takhir_Daghigheh",
+        "Gheybat_Daghigheh",
+        "Morakhasi_Daghigheh",
+        "Mamoriat_Daghigheh",
+        "ShabKari_Daghigheh",
+        "NobatKari_Daghigheh",
+        "TarikhKarkard_Shamsi"
+      ],
+      "note": "واحد همه‌ی مقادیر دقیقه است. ستون‌های _Modat همان عدد را متنی نگه می‌دارند — برای جمع از _Daghigheh استفاده کن. به ShiftKari (با i) وصل است.",
+      "stability": "connected"
+    },
+    "PersonelKarkardSatr": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkardSatr",
+      "role": "تردد داخل روز",
+      "cc": [
+        "ccPersonelKarkard",
+        "ccPersonelMorakhasi",
+        "ccPersonelMamoriat",
+        "ccNoeMamoriat"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "note": "به PersonelMamoriat (با o) وصل است، نه PersonelMamuryat.",
+      "stability": "leaf"
+    },
+    "PersonelKarkard_NoeMorakhasi": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard_NoeMorakhasi",
+      "role": "تفکیک نوع مرخصی در کارکرد",
+      "cc": [
+        "ccPersonelKarkard",
+        "ccNoeMorakhasi"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelKarkard_Morakhasi_Mamuryat": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard_Morakhasi_Mamuryat",
+      "role": "ارجاع کارکرد به مرخصی/مأموریت",
+      "cc": [
+        "ccPersonelKarkard",
+        "ccRefrence",
+        "ccNoeRefrence"
+      ],
+      "flags": [
+        "detail",
+        "type_mismatch"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelKarkard_Item": {
+      "domain": "karkard",
+      "pk": "ccItemKarkard",
+      "role": "اقلام کارکرد",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "PersonelKarkard_CodeVazeiat": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard_CodeVazeiat",
+      "role": "دیکشنری وضعیت کارکرد",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelKarkard_Excel": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard_Excel",
+      "role": "ورودی اکسل کارکرد",
+      "cc": [
+        "ccPersonel"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelKarkard_ExcelDariafti": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard_ExcelDariafti",
+      "role": "سربرگ اکسل دریافتی",
+      "cc": [
+        "ccMarkaz"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "connected"
+    },
+    "PersonelKarkard_ExcelDariaftiSatr": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard_ExcelDariaftiSatr",
+      "role": "سطر اکسل دریافتی",
+      "cc": [
+        "ccPersonelKarkard_ExcelDariafti",
+        "ccPersonel",
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelKarkard_ExcelDariafti_Arshive": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard_ExcelDariafti_Arshive",
+      "role": "آرشیو اکسل دریافتی",
+      "cc": [
+        "ccMarkaz",
+        "ccPersonel",
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "PersonelKarkard_ExcelDariafti_Arshive_Nahaee": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard_ExcelDariafti_TaghirNahaee_Arshive",
+      "role": "آرشیو نهایی اکسل دریافتی",
+      "cc": [
+        "ccMarkaz",
+        "ccPersonel",
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "PersonelKarkard_oooold": {
+      "domain": "karkard",
+      "pk": "ccPersonelKarkard",
+      "role": "کارکرد — نسخه‌ی مرده",
+      "cc": [
+        "ccPersonel",
+        "ccPardakhtHoghogh",
+        "ccMarkaz",
+        "ccUser"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "note": "میراث. استفاده نکن.",
+      "stability": "volatile"
+    },
+    "ErrorKarkard": {
+      "domain": "karkard",
+      "pk": "ccErrorKarkard",
+      "role": "خطاهای محاسبه کارکرد",
+      "cc": [
+        "ccPersonel"
+      ],
+      "stability": "leaf"
+    },
+    "VorodKhorojPersonel": {
+      "domain": "karkard",
+      "pk": "ccVorodKhorojPersonel",
+      "role": "تردد خام دستگاه",
+      "cc": [
+        "ccNoeVorodKhoroj"
+      ],
+      "cols": [
+        "ShomarehPersonely",
+        "Tarikh",
+        "Saat",
+        "Id_InOut"
+      ],
+      "note": "با ShomarehPersonely کلید می‌خورد نه ccPersonel — برای اتصال از Personel.ShomarehPersonely رد شو.",
+      "stability": "leaf"
+    },
+    "NoeVorodKhoroj": {
+      "domain": "karkard",
+      "pk": "ccNoeVorodKhoroj",
+      "role": "نوع ورود/خروج",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "ShiftKari": {
+      "domain": "karkard",
+      "pk": "ccShiftKari",
+      "role": "شیفت کاری — نسخه‌ی پرمحتوا (با i)",
+      "cc": [
+        "ccNobatKari",
+        "ccNoeVorod",
+        "ccNoeKhoroj"
+      ],
+      "cols": [
+        "CodeShiftKari",
+        "NameShiftKari",
+        "AzSaat",
+        "TaSaat",
+        "MahRamezan_AzSaat",
+        "TakhirMojaz_Daghigheh",
+        "Mashmol_Nahar",
+        "Mashmol_ShabKari"
+      ],
+      "flags": [
+        "twin"
+      ],
+      "note": "مشتری‌هایش: PersonelKarkard، TaghvimKariPersonel، GorohKari، GorohKariDorehGardesh.",
+      "stability": "core"
+    },
+    "ShiftKary": {
+      "domain": "karkard",
+      "pk": "ccShiftKary",
+      "role": "شیفت کاری — نسخه‌ی نحیف (با y)",
+      "flags": [
+        "twin"
+      ],
+      "note": "فقط سه ستون، ولی جدول‌های اقماری دارد. مشتری‌هایش: PersonelShiftKary، PersonelHokmShiftKary، ShiftKarySatr، ShiftKaryTaghirat.",
+      "stability": "connected"
+    },
+    "ShiftKarySatr": {
+      "domain": "karkard",
+      "pk": "ccShiftKarySatr",
+      "role": "سطر شیفت — به تفکیک روز هفته",
+      "cc": [
+        "ccShiftKary"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "note": "ستون شروع BeginDate است نه FromDate.",
+      "stability": "leaf"
+    },
+    "ShiftKaryTaghirat": {
+      "domain": "karkard",
+      "pk": "ccShiftKaryTaghirat",
+      "role": "تغییرات شیفت",
+      "cc": [
+        "ccShiftKary"
+      ],
+      "note": "ستون شروع BeginDate است.",
+      "stability": "leaf"
+    },
+    "PersonelShiftKary": {
+      "domain": "karkard",
+      "pk": "ccPersonelShiftKary",
+      "role": "شیفت هر پرسنل",
+      "cc": [
+        "ccPersonel",
+        "ccShiftKary"
+      ],
+      "note": "ستون شروع BeginDate است.",
+      "stability": "leaf"
+    },
+    "GorohKari": {
+      "domain": "karkard",
+      "pk": "ccGorohKari",
+      "role": "گروه کاری",
+      "cc": [
+        "ccShiftKari"
+      ],
+      "flags": [
+        "type_mismatch"
+      ],
+      "note": "ccShiftKari از نوع varchar است ولی ShiftKari.ccShiftKari از نوع int — ممکن است فهرست باشد.",
+      "stability": "connected"
+    },
+    "GorohKariDorehGardesh": {
+      "domain": "karkard",
+      "pk": "ccGorohKariDorehGardesh",
+      "role": "دوره گردش گروه کاری",
+      "cc": [
+        "ccGorohKari",
+        "ccShiftKari"
+      ],
+      "stability": "leaf"
+    },
+    "NobatKari": {
+      "domain": "karkard",
+      "pk": "ccNobatKari",
+      "role": "نوبت‌کاری و ضریبش",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "SaatShabKari": {
+      "domain": "karkard",
+      "pk": "ccSaatShabKari",
+      "role": "ساعت شب‌کاری",
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "TaghvimKariPersonel": {
+      "domain": "karkard",
+      "pk": "ccTaghvimKariPersonel",
+      "role": "تقویم کاری هر نفر به تفکیک روز",
+      "cc": [
+        "ccPersonel",
+        "ccGorohKari",
+        "ccShiftKari",
+        "ccPersonelGharardad",
+        "ccShiftKari_RoozTatil"
+      ],
+      "note": "برای «امروز شیفتش چه بود» این را بگیر.",
+      "stability": "leaf"
+    },
+    "TaghvimKariPersonelJaygozin": {
+      "domain": "karkard",
+      "pk": "ccTaghvimKariPersonelJaygozin",
+      "role": "شیفت جایگزین",
+      "cc": [
+        "ccPersonel",
+        "ccShiftKari",
+        "ccPersonelJaygozin"
+      ],
+      "stability": "leaf"
+    },
+    "TaghvimTatilManabeEnsani": {
+      "domain": "karkard",
+      "pk": "ccTaghvimTatilManabeEnsani",
+      "role": "تعطیلات منابع انسانی",
+      "cc": [
+        "ccMarkaz",
+        "ccCompany",
+        "ccPost"
+      ],
+      "note": "ممکن است با Global.Taghvim یکی نباشد — هر دو را بگیر و اختلاف را گزارش کن.",
+      "stability": "leaf"
+    },
+    "KhorojMojaz": {
+      "domain": "karkard",
+      "pk": "ccKhorojMojaz",
+      "role": "خروج مجاز",
+      "cc": [
+        "ccPersonel",
+        "ccUser_SabtKonandeh"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelTakhirMojaz_KasrKar": {
+      "domain": "karkard",
+      "pk": "ccPersonelTakhirMojaz_KasrKar",
+      "role": "تأخیر مجاز و کسر کار",
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelDarkhastMorakhasi": {
+      "domain": "karkard",
+      "pk": "ccPersonelDarkhastMorakhasi",
+      "role": "درخواست مرخصی",
+      "cc": [
+        "ccPersonel",
+        "ccNoeMorakhasi",
+        "ccPersonelJaygozin"
+      ],
+      "note": "ستون‌های بازه BeginDate/EndDate هستند.",
+      "stability": "connected"
+    },
+    "PersonelDarkhastMorakhasi_Madarek": {
+      "domain": "karkard",
+      "pk": "ccPersonelDarkhastMorakhasi_Madarek",
+      "role": "مدارک درخواست مرخصی",
+      "cc": [
+        "ccPersonelDarkhastMorakhasi",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelDarkhastMorakhasiVazeiat": {
+      "domain": "karkard",
+      "pk": "ccPersonelDarkhastMorakhasiVazeiat",
+      "role": "تاریخچه وضعیت درخواست مرخصی",
+      "cc": [
+        "ccPersonelDarkhastMorakhasi",
+        "ccUser",
+        "ccElatOdatMorakhasi"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMorakhasi": {
+      "domain": "karkard",
+      "pk": "ccPersonelMorakhasi",
+      "role": "مرخصی ثبت‌شده",
+      "cc": [
+        "ccPersonel",
+        "ccNoeMorakhasi",
+        "ccPersonelJaygozin",
+        "ccElatOdat",
+        "ccRefrence",
+        "ccNoeRefrence"
+      ],
+      "flags": [
+        "effective_dated",
+        "status_header"
+      ],
+      "note": "EndDate تهی‌پذیر نیست.",
+      "stability": "connected"
+    },
+    "PersonelMorakhasiSatr": {
+      "domain": "karkard",
+      "pk": "ccPersonelMorakhasiSatr",
+      "role": "سطر مرخصی",
+      "cc": [
+        "ccPersonel",
+        "ccPersonelMorakhasi",
+        "ccNoeMorakhasi",
+        "ccBazKharid",
+        "ccPardakhtHoghogh"
+      ],
+      "cols": [
+        "Daghigheh_MorakhasiDarkhasti",
+        "Daghigheh_MorakhasiVaghei"
+      ],
+      "dead_cols": [
+        "BedBes_deeeel",
+        "Kind_deeeel"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMorakhasiVazeiat": {
+      "domain": "karkard",
+      "pk": "ccPersonelMorakhasiVazeiat",
+      "role": "تاریخچه وضعیت مرخصی",
+      "cc": [
+        "ccPersonelMorakhasi",
+        "ccUser"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMorakhasi_Madrak": {
+      "domain": "karkard",
+      "pk": "ccPersonelMorakhasi_Madrak",
+      "role": "مدرک مرخصی",
+      "cc": [
+        "ccPersonelMorakhasi",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMorakhasi_CodeVazeiat": {
+      "domain": "karkard",
+      "pk": "ccPersonelMorakhasi_CodeVazeiat",
+      "role": "دیکشنری وضعیت مرخصی",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMorakhasi_ElatOdat": {
+      "domain": "karkard",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت مرخصی",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMandehMorakhasi": {
+      "domain": "karkard",
+      "pk": "ccPersonelMandehMorakhasi",
+      "role": "دفتر گردش مانده‌ی مرخصی",
+      "cc": [
+        "ccPersonel",
+        "ccPersonelDarkhastMorakhasi",
+        "ccPardakhtHoghogh",
+        "ccNoeMorakhasi",
+        "ccBazKharid"
+      ],
+      "cols": [
+        "BedBes",
+        "ZamanMorakhasi",
+        "ZamanHaghighiMorakhasi",
+        "Kind"
+      ],
+      "flags": [
+        "ledger"
+      ],
+      "note": "مانده در یک ستون نیست — از جمع جبری سطرها با علامت BedBes درمی‌آید. جهت BedBes را تأیید کن.",
+      "stability": "leaf"
+    },
+    "PersonelMandehMorakhasiTakhirGheybat": {
+      "domain": "karkard",
+      "pk": "ccPersonelMandehTakhirGheybat",
+      "role": "دفتر مانده تأخیر/غیبت",
+      "cc": [
+        "ccPardakhtHoghogh"
+      ],
+      "flags": [
+        "ledger"
+      ],
+      "stability": "leaf"
+    },
+    "NoeMorakhasi": {
+      "domain": "karkard",
+      "pk": "ccNoeMorakhasi",
+      "role": "نوع مرخصی — و سقف‌های مجاز",
+      "cols": [
+        "TedadRoozMojaz",
+        "TedadRoozMojazMah",
+        "TedadRoozMojazGharardad",
+        "ModatMojazSabtMorakhasi_Daghigheh",
+        "MojazBeTahatorByEzafekar"
+      ],
+      "flags": [
+        "dict",
+        "modern"
+      ],
+      "note": "ستون‌های CreatedDateTime/BusinessId دارد — لایه‌ی جدید سیستم.",
+      "stability": "core"
+    },
+    "ElatOdatMorakhasi": {
+      "domain": "karkard",
+      "pk": "ccElatOdatMorakhasi",
+      "role": "علت برگشت مرخصی",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "connected"
+    },
+    "VazeiatMorkhasi": {
+      "domain": "karkard",
+      "pk": "CodeVazeiat",
+      "role": "دیکشنری وضعیت مرخصی",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelDarkhastGheybat": {
+      "domain": "karkard",
+      "pk": "ccPersonelDarkhastGheybat",
+      "role": "درخواست غیبت",
+      "cc": [
+        "ccPersonel"
+      ],
+      "note": "ستون شروع BeginDate است.",
+      "stability": "connected"
+    },
+    "PersonelDarkhastGheybat_Vaziat": {
+      "domain": "karkard",
+      "pk": "ccPersonelDarkhastGheybat_Vaziat",
+      "role": "تاریخچه وضعیت غیبت",
+      "cc": [
+        "ccPersonelDarkhastGheybat",
+        "ccUser",
+        "ccElatOdat"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelDarkhastGheybat_CodeVaziat": {
+      "domain": "karkard",
+      "pk": "CodeVaziat",
+      "role": "دیکشنری وضعیت غیبت",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelDarkhastGheybat_ElatOdat": {
+      "domain": "karkard",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت غیبت",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelGheybat": {
+      "domain": "karkard",
+      "pk": "ccPersonelDarkhastGheybat",
+      "role": "غیبت ثبت‌شده",
+      "cc": [
+        "ccPersonel",
+        "ccPersonelDarkhastGheybat"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMamoriat": {
+      "domain": "karkard",
+      "pk": "ccPersonelMamoriat",
+      "role": "مأموریت — جهان یک (با o)",
+      "cc": [
+        "ccPersonel",
+        "ccNoeMamoriat",
+        "ccNoeVasilehNaghlieh",
+        "ccShahr",
+        "ccElatOdat"
+      ],
+      "cols": [
+        "Masafat",
+        "Mablagh_FogholadehMamoriat",
+        "CodeVazeiat"
+      ],
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "twin"
+      ],
+      "note": "PersonelKarkardSatr به این وصل است.",
+      "stability": "connected"
+    },
+    "PersonelMamoriat_Madarek": {
+      "domain": "karkard",
+      "pk": "ccPersonelMamoriat_Madarek",
+      "role": "مدارک مأموریت",
+      "cc": [
+        "ccPersonelMamoriat",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMamoriatVazeiat": {
+      "domain": "karkard",
+      "pk": "ccMamoriatVazeiat",
+      "role": "تاریخچه وضعیت مأموریت",
+      "cc": [
+        "ccPersonelMamoriat",
+        "ccUser"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMamoriat_CodeVazeiat": {
+      "domain": "karkard",
+      "pk": "ccMamoriat_CodeVazeiat",
+      "role": "دیکشنری وضعیت مأموریت",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMamoriat_ElatOdat": {
+      "domain": "karkard",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت مأموریت",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMamuryat": {
+      "domain": "karkard",
+      "pk": "ccMamuryat",
+      "role": "مأموریت — جهان دو (با u)",
+      "cc": [
+        "ccPersonel",
+        "ccVasile",
+        "ccNoeMamuryat",
+        "ccShahr",
+        "ccOstan"
+      ],
+      "flags": [
+        "effective_dated",
+        "twin"
+      ],
+      "note": "PersonelMandehMamuryat به این وصل است.",
+      "stability": "leaf"
+    },
+    "PersonelMamuryat_Satr": {
+      "domain": "karkard",
+      "pk": "ccMamuryat_Satr",
+      "role": "هزینه‌های مأموریت",
+      "cc": [
+        "ccMamuryat",
+        "ccphoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMamuryat_Vazeiat": {
+      "domain": "karkard",
+      "pk": "ccMamuryat_Vazeiat",
+      "role": "تاریخچه وضعیت مأموریت",
+      "cc": [
+        "ccMamuryat",
+        "ccuser",
+        "ccPersonelMamuryat_ElatOdat"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMamuryat_Madrak": {
+      "domain": "karkard",
+      "pk": "ccPersonelMamuryat_Madrak",
+      "role": "مدرک مأموریت",
+      "cc": [
+        "ccMamuryat",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMamuryat_ElatOdat": {
+      "domain": "karkard",
+      "pk": "ccPersonelMamuryat_ElatOdat",
+      "role": "علت برگشت مأموریت",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "connected"
+    },
+    "PersonelMamuryatCodeVazeiat": {
+      "domain": "karkard",
+      "pk": "CodeVazeiat",
+      "role": "دیکشنری وضعیت مأموریت",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMandehMamuryat": {
+      "domain": "karkard",
+      "pk": "ccPersonelMandehMamuryat",
+      "role": "دفتر مانده مأموریت",
+      "cc": [
+        "ccMamuryat",
+        "ccPardakhtHoghogh",
+        "ccPersonel"
+      ],
+      "flags": [
+        "ledger"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelFogholadeMamoriat": {
+      "domain": "karkard",
+      "pk": "ccPersonelFogholadeMamuryat",
+      "role": "فوق‌العاده مأموریت پرسنل",
+      "cc": [
+        "ccOstan",
+        "ccPersonel"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "NoeMamoriat": {
+      "domain": "karkard",
+      "pk": "ccNoeMamoriat",
+      "role": "نوع مأموریت — جهان یک",
+      "flags": [
+        "dict",
+        "twin"
+      ],
+      "stability": "connected"
+    },
+    "NoeMamuryat": {
+      "domain": "karkard",
+      "pk": "ccNoeMamuryat",
+      "role": "نوع مأموریت — جهان دو",
+      "flags": [
+        "dict",
+        "twin"
+      ],
+      "stability": "connected"
+    },
+    "NoeHazineMamuryat": {
+      "domain": "karkard",
+      "pk": "ccNoeHazine",
+      "role": "نوع هزینه مأموریت",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "Mamuryat_ItemhayeMasafat": {
+      "domain": "karkard",
+      "pk": "ccMasafat",
+      "role": "اقلام مسافت مأموریت",
+      "cc": [
+        "ccNoeHazine"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "AeenNameFogholadehMamoriat": {
+      "domain": "karkard",
+      "pk": "ccAeenNameFogholadehMamoriat",
+      "role": "آیین‌نامه فوق‌العاده مأموریت",
+      "cc": [
+        "ccItemFogholadehMamoriat"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "connected"
+    },
+    "AeenNameFogholadehMamoriatNew": {
+      "domain": "karkard",
+      "pk": "ccAeenNameFogholadehMamoriat",
+      "role": "آیین‌نامه فوق‌العاده — نسخه‌ی جدید",
+      "cc": [
+        "ccShahr_Mabda",
+        "ccShahr_Maghsad",
+        "ccNoeVasilehNaghlieh"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule",
+        "twin"
+      ],
+      "stability": "leaf"
+    },
+    "AeenNameFogholadehMamoriatSatr": {
+      "domain": "karkard",
+      "pk": "ccAeenNameFogholadehMamoriatSatr",
+      "role": "سطر آیین‌نامه",
+      "cc": [
+        "ccAeenNameFogholadehMamoriat",
+        "ccPost",
+        "ccOstan",
+        "ccShahr"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "AeenNameFogholadehMamoriatSatrNew": {
+      "domain": "karkard",
+      "pk": "ccAeenNameFogholadehMamoriatSatr",
+      "role": "سطر آیین‌نامه — جدید",
+      "cc": [
+        "ccAeenNameFogholadehMamoriat",
+        "ccItemFogholadehMamoriat"
+      ],
+      "flags": [
+        "detail",
+        "twin"
+      ],
+      "stability": "leaf"
+    },
+    "AeenNameFogholadehMamoriat_PostNew": {
+      "domain": "karkard",
+      "pk": "ccAeenNameFogholadehMamoriat_Post",
+      "role": "آیین‌نامه به تفکیک پست",
+      "cc": [
+        "ccAeenNameFogholadehMamoriat",
+        "ccPost"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "AeenNameFogholadehMamoriatKilometrNew": {
+      "domain": "karkard",
+      "pk": "ccAeenNameFogholadehMamoriatKilometr",
+      "role": "آیین‌نامه کیلومتری",
+      "cc": [
+        "ccItemFogholadehMamoriat"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "ItemFogholadehMamoriat": {
+      "domain": "karkard",
+      "pk": "ccItemFogholadehMamoriat",
+      "role": "اقلام فوق‌العاده مأموریت",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "SabtKiloometer": {
+      "domain": "karkard",
+      "pk": "ccSabtKiloometer",
+      "role": "ثبت کیلومتر",
+      "cc": [
+        "ccPersonel",
+        "ccNoeVasilehNaghlieh",
+        "ccElatOdat"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "SabtKiloometer_ElatOdat": {
+      "domain": "karkard",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت ثبت کیلومتر",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "Shahr_HazineMamuryat": {
+      "domain": "karkard",
+      "pk": "ccShahr_HazineMamuryat",
+      "role": "هزینه مأموریت هر شهر",
+      "cc": [
+        "ccShahr"
+      ],
+      "stability": "leaf"
+    },
+    "Shahr_HazineMamuryat_CodeVaziat": {
+      "domain": "karkard",
+      "pk": "CodeVaziatHazineMamuryat",
+      "role": "مبلغ هر وضعیت هزینه",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "KmForoshandegan": {
+      "domain": "karkard",
+      "pk": "ccKmForoshandegan",
+      "role": "کیلومتر فروشندگان",
+      "cc": [
+        "ccAfrad",
+        "ccUser"
+      ],
+      "stability": "leaf"
+    },
+    "KarKardMamoorPakhshKaregarAnbar": {
+      "domain": "karkard",
+      "pk": "ccKarKardMamoorPakhshKaregarAnbar",
+      "role": "کارکرد مأمور پخش و کارگر انبار",
+      "cc": [
+        "ccAfrad",
+        "ccPostShoghl",
+        "ccMarkaz"
+      ],
+      "stability": "connected"
+    },
+    "Config_Morakhasi": {
+      "domain": "config",
+      "pk": "ccConfig_Morakhasi",
+      "role": "گردش کار مرخصی",
+      "cc": [
+        "ccNoeMorakhasi",
+        "ccSystem",
+        "ccSystemNext"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "Config_Mamoriat": {
+      "domain": "config",
+      "pk": "ccConfig_Mamoriat",
+      "role": "گردش کار مأموریت",
+      "cc": [
+        "ccSystem",
+        "ccSystemNext"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "Maliat": {
+      "domain": "maliat_bimeh",
+      "pk": "ccMaliat",
+      "role": "پلکان نرخ مالیات",
+      "flags": [
+        "effective_dated",
+        "rate_table"
+      ],
+      "stability": "leaf"
+    },
+    "Maliat_RadifMaliati": {
+      "domain": "maliat_bimeh",
+      "pk": "Id",
+      "role": "ردیف مالیاتی",
+      "flags": [
+        "non_cc_key"
+      ],
+      "stability": "leaf"
+    },
+    "Maliat_RadifMaliatiSatr": {
+      "domain": "maliat_bimeh",
+      "pk": "Id",
+      "role": "نگاشت ردیف مالیاتی به اقلام حقوق",
+      "flags": [
+        "detail",
+        "non_cc_key",
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMaliat": {
+      "domain": "maliat_bimeh",
+      "pk": "ccPersonelMaliat",
+      "role": "سربرگ مالیات ماه",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "sensitive"
+      ],
+      "stability": "connected"
+    },
+    "PersonelMaliatSatr": {
+      "domain": "maliat_bimeh",
+      "pk": "ccPersonelMaliatSatr",
+      "role": "سطر مالیات هر نفر",
+      "cc": [
+        "ccPersonelMaliat",
+        "ccPersonel",
+        "ccPardakhtHoghogh",
+        "ccMarkazPakhsh",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "detail",
+        "sensitive",
+        "type_mismatch"
+      ],
+      "note": "ccPardakhtHoghogh اینجا int است ولی والد bigint.",
+      "stability": "leaf"
+    },
+    "PersonelMaliatSatrNew": {
+      "domain": "maliat_bimeh",
+      "pk": "PersonelMaliatSatrId",
+      "role": "سطر مالیات — نسخه‌ی جدید",
+      "flags": [
+        "detail",
+        "non_cc_key",
+        "twin"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMaliatInformation": {
+      "domain": "maliat_bimeh",
+      "pk": "ccPersonelMaliatInformation",
+      "role": "مشخصات ارسالی به اداره مالیات",
+      "cc": [
+        "ccPersonelMaliat",
+        "ccPersonel",
+        "ccMarkazPakhsh",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "sensitive"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelMaliat_NahvePardakh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccPersonelMaliat_NahvePardakh",
+      "role": "نحوه پرداخت مالیات",
+      "cc": [
+        "ccMarkaz",
+        "ccBank",
+        "ccShomarehHesab"
+      ],
+      "stability": "leaf"
+    },
+    "MaliatRizPersonel": {
+      "domain": "maliat_bimeh",
+      "pk": "ccMaliatRizPersonel",
+      "role": "قالب فایل ریز مالیات",
+      "cc": [
+        "ccPardakhtHoghogh",
+        "ccMarkazPakhsh",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "export_format",
+        "sensitive"
+      ],
+      "note": "اسم ستون‌ها شماره‌ی ستونِ فایل سازمان مالیاتی است. برای تحلیل از PersonelMaliatSatr استفاده کن.",
+      "stability": "leaf"
+    },
+    "MaliatTitrPersonel": {
+      "domain": "maliat_bimeh",
+      "pk": "ccMaliatTitrPersonel",
+      "role": "قالب فایل تیتر مالیات",
+      "cc": [
+        "ccMarkazPakhsh"
+      ],
+      "flags": [
+        "export_format"
+      ],
+      "stability": "leaf"
+    },
+    "MaliatMoshakhasateKarfarma": {
+      "domain": "maliat_bimeh",
+      "pk": "ccMaliatMoshakhasateKarfarma",
+      "role": "مشخصات کارفرما",
+      "stability": "leaf"
+    },
+    "MaliatMoshakhasateKarfarmaBackup": {
+      "domain": "maliat_bimeh",
+      "pk": "ccMaliatMoshakhasateKarfarma",
+      "role": "پشتیبان مشخصات کارفرما",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "MaliatBarayeShoroMohasebe": {
+      "domain": "maliat_bimeh",
+      "pk": "ccMaliatBarayeShoroMohasebe",
+      "role": "مالیات ابتدای دوره",
+      "cc": [
+        "ccPersonel"
+      ],
+      "stability": "leaf"
+    },
+    "CodeBank_Maliat": {
+      "domain": "maliat_bimeh",
+      "pk": "ccCodeBank_Maliat",
+      "role": "کد بانک مالیات",
+      "flags": [
+        "effective_dated",
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "BastanListMaliat": {
+      "domain": "maliat_bimeh",
+      "pk": "ccBastanListMaliat",
+      "role": "بستن لیست مالیات",
+      "cc": [
+        "ccMarkaz"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "BastanListBimeh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccBastanListBimeh",
+      "role": "بستن لیست بیمه",
+      "cc": [
+        "ccMarkaz"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "BastanListEydi": {
+      "domain": "hoghogh",
+      "pk": "ccBastanListEydi",
+      "role": "بستن لیست عیدی",
+      "cc": [
+        "ccEjazehPardakhtFaktor_Eydi",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "BastanSanad": {
+      "domain": "config",
+      "pk": "ccBastanSanad",
+      "role": "بستن سند",
+      "cc": [
+        "ccUser",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "leaf"
+    },
+    "DarsadTakhfifMaliat_Personel": {
+      "domain": "maliat_bimeh",
+      "pk": "ccDarsadTakhfifMaliat_Personel",
+      "role": "درصد تخفیف مالیات",
+      "cc": [
+        "ccPersonel"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "connected"
+    },
+    "DarsadTakhfifMaliat_Personel_Photo": {
+      "domain": "maliat_bimeh",
+      "pk": "ccDarsadTakhfifMaliat_Personel_Photo",
+      "role": "پیوست تخفیف مالیات",
+      "cc": [
+        "ccPhoto",
+        "ccDarsadTakhfifMaliat_Personel",
+        "ccAfrad_SabtKonandeh"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "BimehDarsadMaliat_Bimeh_Personel": {
+      "domain": "maliat_bimeh",
+      "pk": "ccBimehDarsadMaliat_Bimeh_Personel",
+      "role": "درصد بیمه/مالیات پرسنل",
+      "cc": [
+        "ccPersonel"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "ListBime": {
+      "domain": "maliat_bimeh",
+      "pk": "ccListBime",
+      "role": "لیست بیمه — قالب تأمین اجتماعی",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccMarkaz",
+        "ccShobehBimeh"
+      ],
+      "flags": [
+        "export_format"
+      ],
+      "note": "ستون‌های DSK_* فرمت فایل تأمین اجتماعی‌اند.",
+      "stability": "connected"
+    },
+    "ListBimeSatr": {
+      "domain": "maliat_bimeh",
+      "pk": "ccListBimeSatr",
+      "role": "سطر لیست بیمه",
+      "cc": [
+        "ccListBime",
+        "ccPersonel"
+      ],
+      "flags": [
+        "detail",
+        "export_format"
+      ],
+      "note": "ستون‌های DSW_* فرمت فایل‌اند؛ ccPersonel پل به پرسنل است.",
+      "stability": "leaf"
+    },
+    "ListBimeh_JabejaeiPersonel": {
+      "domain": "maliat_bimeh",
+      "role": "جابه‌جایی پرسنل در لیست بیمه",
+      "cc": [
+        "ccPersonel",
+        "ccMarkaz"
+      ],
+      "stability": "leaf"
+    },
+    "LitsBimeh_AdamErsalPersonel": {
+      "domain": "maliat_bimeh",
+      "pk": "Id",
+      "role": "عدم ارسال پرسنل در لیست بیمه",
+      "cc": [
+        "ccPersonel",
+        "ccUser"
+      ],
+      "flags": [
+        "non_cc_key"
+      ],
+      "note": "اسم جدول غلط املایی دارد: Lits نه List.",
+      "stability": "leaf"
+    },
+    "PersonelSabeghehBimeh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccPersonelSabeghehbimeh",
+      "role": "سابقه بیمه",
+      "cc": [
+        "ccPersonel",
+        "ccPardakhtHoghogh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelShomarehHesabOBime_Sabeghe": {
+      "domain": "maliat_bimeh",
+      "pk": "ccPersonelShomarehHesabOBime_Sabeghe",
+      "role": "سابقه حساب و بیمه",
+      "cc": [
+        "ccPersonel",
+        "ccShomarehHesab",
+        "ccUser"
+      ],
+      "flags": [
+        "sensitive"
+      ],
+      "stability": "leaf"
+    },
+    "KargahBimeh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccKargahBimeh",
+      "role": "کارگاه بیمه",
+      "cc": [
+        "ccShahr",
+        "ccMarkaz"
+      ],
+      "stability": "connected"
+    },
+    "ShobehBimeh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccShobehBimeh",
+      "role": "شعبه بیمه",
+      "cc": [
+        "ccMarkazMoshabehBimeh",
+        "ccKargahBimeh",
+        "ccShahr"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "connected"
+    },
+    "SherkateBimeh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccSherkateBimeh",
+      "role": "شرکت بیمه",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "BimehGharardad": {
+      "domain": "maliat_bimeh",
+      "pk": "ccBimehGharardad",
+      "role": "قرارداد بیمه تکمیلی",
+      "cc": [
+        "ccSherkateBimeh"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "connected"
+    },
+    "BimehGharardad_Madrak": {
+      "domain": "maliat_bimeh",
+      "pk": "ccBimehGharardad_Madrak",
+      "role": "مدرک قرارداد بیمه",
+      "cc": [
+        "ccBimehGharardad",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "NoeBimehNameh": {
+      "domain": "maliat_bimeh",
+      "pk": "ccNoeBimehNameh",
+      "role": "نوع بیمه‌نامه",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeNesbat_TarefeBimehTakmily": {
+      "domain": "maliat_bimeh",
+      "pk": "ccNoeNesbat_TarefeBimehTakmily",
+      "role": "تعرفه بیمه تکمیلی به تفکیک نسبت و سن",
+      "cc": [
+        "ccNoeNesbat",
+        "ccSherkateBimeh",
+        "ccNoeBimehNameh"
+      ],
+      "flags": [
+        "effective_dated",
+        "rate_table"
+      ],
+      "stability": "leaf"
+    },
+    "TarefeBimehTakmily_SabeghehPersonel": {
+      "domain": "maliat_bimeh",
+      "pk": "ccTarefeBimehTakmily_SabeghehPersonel",
+      "role": "تعرفه بیمه تکمیلی بر پایه سابقه",
+      "cc": [
+        "ccNoeNesbat"
+      ],
+      "flags": [
+        "effective_dated",
+        "rate_table",
+        "type_mismatch"
+      ],
+      "note": "ccNoeNesbat از نوع nvarchar است ولی NoeNesbat.ccNoeNesbat از نوع tinyint.",
+      "stability": "leaf"
+    },
+    "BimehTakmilyPardakhti": {
+      "domain": "maliat_bimeh",
+      "pk": "BimehTakmilyPardakhtiId",
+      "role": "پرداختی بیمه تکمیلی",
+      "cc": [
+        "ccPersonel",
+        "ccNoeNesbat",
+        "ccLink",
+        "ccNoeBimehNameh"
+      ],
+      "flags": [
+        "non_cc_key",
+        "modern"
+      ],
+      "stability": "leaf"
+    },
+    "MashmolBimehMaliat_NoeMashmol": {
+      "domain": "maliat_bimeh",
+      "pk": "Id",
+      "role": "نوع مشمولیت بیمه/مالیات",
+      "flags": [
+        "dict",
+        "non_cc_key"
+      ],
+      "stability": "connected"
+    },
+    "DarkhastAzSandoghRefah": {
+      "domain": "refah",
+      "pk": "ccDarkhastAzSandoghRefah",
+      "role": "درِ ورودی همه‌ی خدمات رفاهی",
+      "cc": [
+        "ccPersonel",
+        "ccNoeSandoghRefah",
+        "ccReference",
+        "ccEjazehPardakhtFaktor"
+      ],
+      "flags": [
+        "hub_target"
+      ],
+      "note": "هم وام و هم هزینه درمان از اینجا رد می‌شوند. DarkhastVamSatr و DarkhastHazineDarmanSatr هر دو فرزندِ این‌اند، نه فرزندِ DarkhastVam/DarkhastHazinehDarman.",
+      "stability": "core"
+    },
+    "DarkhastAzSandoghRefah_Vazeiat": {
+      "domain": "refah",
+      "pk": "ccDarkhastAzSandoghRefahVazeiat",
+      "role": "تاریخچه وضعیت درخواست رفاه",
+      "cc": [
+        "ccDarkhastAzSandoghRefah",
+        "ccUser"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastAzSandoghRefahCodeVaziat": {
+      "domain": "refah",
+      "pk": "ccDarkhastAzSandoghRefahCodeVaziat",
+      "role": "دیکشنری وضعیت درخواست رفاه",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastAzSandoghRefahModir": {
+      "domain": "refah",
+      "pk": "ccDarkhastAzSandoghRefahModir",
+      "role": "رأی مدیران صندوق",
+      "cc": [
+        "ccDarkhastAzSandoghRefah",
+        "ccSandoghRefahModir"
+      ],
+      "stability": "leaf"
+    },
+    "SandoghRefah": {
+      "domain": "refah",
+      "pk": "ccSandoghRefah",
+      "role": "دفتر گردش صندوق رفاه",
+      "cc": [
+        "ccPersonelHokmVahedSazmani",
+        "ccNoeSandoghRefah",
+        "ccPardakhtHoghogh",
+        "ccDarkhastAzSandoghRefah",
+        "ccItemSandoghRefah",
+        "ccBazKharid",
+        "ccPersonel",
+        "ccPersonelHokmPostVahedSazmani",
+        "ccRefrence",
+        "ccNoeRefrence",
+        "ccMarkaz",
+        "ccVahedSazmaniParent"
+      ],
+      "cols": [
+        "BedBes",
+        "MablaghPersonel",
+        "MablaghSherkat",
+        "Mablagh_SahmPersonel",
+        "Mablagh_SahmSherkat"
+      ],
+      "flags": [
+        "ledger"
+      ],
+      "note": "MablaghPersonelOLD و MablaghSherkatOLD کنارِ ستون‌های زنده نشسته‌اند — کدام مرجع است تأیید کن.",
+      "stability": "leaf"
+    },
+    "SandoghRefahModir": {
+      "domain": "refah",
+      "pk": "ccSandoghRefahModir",
+      "role": "مدیران صندوق",
+      "cc": [
+        "ccPersonel"
+      ],
+      "note": "ستون‌های بازه DateBegin/DateEnd هستند.",
+      "stability": "connected"
+    },
+    "ItemSandoghRefah": {
+      "domain": "refah",
+      "pk": "ccItemSandoghRefah",
+      "role": "اقلام صندوق رفاه",
+      "flags": [
+        "dict",
+        "twin"
+      ],
+      "stability": "connected"
+    },
+    "ItemhayeSandoghRefah": {
+      "domain": "refah",
+      "pk": "ccItemsandoghRefah",
+      "role": "اقلام صندوق رفاه — دوقلو",
+      "flags": [
+        "dict",
+        "twin"
+      ],
+      "stability": "connected"
+    },
+    "NoeSandoghRefah": {
+      "domain": "refah",
+      "pk": "ccNoeSandoghRefah",
+      "role": "نوع صندوق رفاه",
+      "flags": [
+        "dict"
+      ],
+      "stability": "core"
+    },
+    "NoeItemSandoghRefah": {
+      "domain": "refah",
+      "pk": "ccNoeItemSandoghRefah",
+      "role": "نوع اقلام صندوق",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "TarefeZakhireNoeSandoghRefah": {
+      "domain": "refah",
+      "pk": "ccTarefeZakhireNoeSandoghRefah",
+      "role": "تعرفه ذخیره صندوق",
+      "flags": [
+        "effective_dated",
+        "rate_table"
+      ],
+      "stability": "connected"
+    },
+    "TarefeZakhireNoeSandoghRefahSatr": {
+      "domain": "refah",
+      "pk": "ccTarefeZakhireNoeSandoghRefahSatr",
+      "role": "سطر تعرفه ذخیره",
+      "cc": [
+        "ccTarefeZakhireNoeSandoghRefah",
+        "ccNoeSandoghRefah"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "Tmp_Rpt_SandoghRefah": {
+      "domain": "refah",
+      "pk": "ccTmp_Rpt_SandoghRefah",
+      "role": "جدول موقت گزارش صندوق",
+      "cc": [
+        "ccPersonel",
+        "ccNoeSandoghRefah",
+        "ccItemSandoghRefah",
+        "ccVahedSazmani",
+        "ccMarkaz",
+        "ccHouzeh",
+        "ccMantaghehPakhsh"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "DarkhastVam": {
+      "domain": "refah",
+      "pk": "ccDarkhastVam",
+      "role": "درخواست وام — سربرگ",
+      "cc": [
+        "ccPersonel",
+        "ccNoeVam",
+        "ccElatOdat",
+        "ccDarkhastAzSandoghRefah",
+        "ccConfig_Vam",
+        "ccEjazehPardakhtFaktor"
+      ],
+      "cols": [
+        "MablaghVamDarkhastiPersonel",
+        "MablaghVamPardakhtiBePersonel",
+        "TedadAghsat",
+        "MablaghAghsat",
+        "CodeVazeiat"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "note": "ستونی به اسم «مانده» ندارد — مانده از کسر جمع اقساط درمی‌آید.",
+      "stability": "core"
+    },
+    "DarkhastVamSatr": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamSatr",
+      "role": "سطر درخواست رفاه برای وام",
+      "cc": [
+        "ccDarkhastAzSandoghRefah",
+        "ccNoeVam",
+        "ccElatOdat",
+        "ccUser"
+      ],
+      "flags": [
+        "misleading_name"
+      ],
+      "note": "زیرِ DarkhastVam نیست — زیرِ DarkhastAzSandoghRefah است. ستون ccDarkhastVam ندارد.",
+      "stability": "connected"
+    },
+    "DarkhastVamSatr_Madarek": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamSatr_Madarek",
+      "role": "مدارک سطر وام",
+      "cc": [
+        "ccDarkhastVamSatr",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastVam_Madarek": {
+      "domain": "refah",
+      "pk": "ccDarkhastVam_Madarek",
+      "role": "مدارک وام",
+      "cc": [
+        "ccDarkhastVam",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastVamVazeiat": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamVazeiat",
+      "role": "تاریخچه وضعیت وام",
+      "cc": [
+        "ccDarkhastVam",
+        "ccAfrad"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastVam_CodeVazeiat": {
+      "domain": "refah",
+      "pk": "ccDarkhastVam_CodeVazeiat",
+      "role": "دیکشنری وضعیت وام",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastVamPardakhtAghsat": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamPardakhtAghsat",
+      "role": "اقساط وام و کسر از حقوق",
+      "cc": [
+        "ccDarkhastVam",
+        "ccPardakhtHoghogh",
+        "ccRefrence"
+      ],
+      "flags": [
+        "type_mismatch"
+      ],
+      "note": "ccPardakhtHoghogh اینجا int است ولی والد bigint.",
+      "stability": "leaf"
+    },
+    "DarkhastVamZamen": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamZamen",
+      "role": "ضامن وام",
+      "cc": [
+        "ccDarkhastVam",
+        "ccNoeZamen",
+        "ccPersonel_Zamen",
+        "ccElatOdat"
+      ],
+      "flags": [
+        "status_header",
+        "sensitive"
+      ],
+      "stability": "connected"
+    },
+    "DarkhastVamZamenInfo": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamZamenInfo",
+      "role": "اطلاعات ضامن",
+      "cc": [
+        "ccShahr",
+        "ccNoeNesbat",
+        "ccDarkhastVamSatr",
+        "ccDarkhastVamZamen",
+        "ccAfrad",
+        "ccPersonel"
+      ],
+      "flags": [
+        "sensitive"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastVamZamenMadrakZemanat": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamZamenMadrakZemanat",
+      "role": "مدرک ضمانت",
+      "cc": [
+        "ccDarkhastVamZamen",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastVamZamen_ListEntezar": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamZamen_ListEntezar",
+      "role": "لیست انتظار ضامن",
+      "cc": [
+        "ccDarkhastVamSatr",
+        "ccAfrad",
+        "ccElatOdat"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastVamZamen_ElatOdat": {
+      "domain": "refah",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت ضامن",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastVamNatijeHeyatModireSandogh": {
+      "domain": "refah",
+      "pk": "ccDarkhastVamNatijeHeyatModireSandogh",
+      "role": "رأی هیأت مدیره صندوق",
+      "cc": [
+        "ccDarkhastVamSatr",
+        "ccPersonel",
+        "ccElatOdat"
+      ],
+      "stability": "leaf"
+    },
+    "NoeVam": {
+      "domain": "refah",
+      "pk": "ccNoeVam",
+      "role": "نوع وام",
+      "cc": [
+        "ccMahalePardakht"
+      ],
+      "flags": [
+        "dict"
+      ],
+      "stability": "core"
+    },
+    "NoeVam_Items": {
+      "domain": "refah",
+      "pk": "ccNoeVam_Items",
+      "role": "قواعد هر نوع وام",
+      "cc": [
+        "ccNoeVam",
+        "ccPost",
+        "ccNoeGavahinamehRanandegy"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "SaghfeNoeVam": {
+      "domain": "refah",
+      "pk": "ccSaghfNoeVam",
+      "role": "سقف نوع وام",
+      "cc": [
+        "ccNoeVam"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "AeenNamehVam": {
+      "domain": "refah",
+      "pk": "ccAeenNamehVam",
+      "role": "آیین‌نامه وام",
+      "cc": [
+        "ccNoeVam",
+        "ccMahalTaminVam",
+        "ccNoeTaminBazPardakhtVam",
+        "ccMahalBazPardakhtVam",
+        "ccMarkazPardakhtVam",
+        "ccNoeGavahinamehRanandegy"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "AeenNamehVam_TakhsisMablaghPost": {
+      "domain": "refah",
+      "pk": "ccAeenNamehVam_TakhsisMablaghPost",
+      "role": "تخصیص مبلغ وام به پست",
+      "cc": [
+        "ccNoeVam",
+        "ccMarkaz",
+        "ccPost"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "NoeTaminBazPardakhtVam": {
+      "domain": "refah",
+      "pk": "ccNoeTaminBazPardakhtVam",
+      "role": "نوع تأمین بازپرداخت",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "ElatOdatVam": {
+      "domain": "refah",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت وام",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "NoeZamen": {
+      "domain": "refah",
+      "pk": "ccNoeZamen",
+      "role": "نوع ضامن",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "Kind_Vam": {
+      "domain": "refah",
+      "pk": "KIND",
+      "role": "نگاشت نوع قدیمی وام",
+      "cc": [
+        "ccNoeVam"
+      ],
+      "flags": [
+        "non_cc_key",
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "Insert_VamDasti": {
+      "domain": "refah",
+      "pk": "ccInsert_VamDasti",
+      "role": "درج دستی وام",
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "Config_Vam": {
+      "domain": "config",
+      "pk": "ccConfig_Vam",
+      "role": "پیکربندی وام",
+      "cc": [
+        "ccNoeVam"
+      ],
+      "flags": [
+        "config",
+        "effective_dated"
+      ],
+      "stability": "connected"
+    },
+    "Config_VamDetail": {
+      "domain": "config",
+      "pk": "ccConfig_VamSatr",
+      "role": "گردش کار وام",
+      "cc": [
+        "ccConfig_Vam",
+        "ccSystem",
+        "ccSystemNext"
+      ],
+      "flags": [
+        "config",
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastHazinehDarman": {
+      "domain": "refah",
+      "pk": "ccDarkhastHazinehDarman",
+      "role": "درخواست هزینه درمان — مسیر مستقیم",
+      "cc": [
+        "ccPersonel",
+        "ccNoeHazinehDarman",
+        "ccPersonelVabasteh",
+        "ccEjazehPardakhtFaktor",
+        "ccElatOdat",
+        "ccNoeKhedmat",
+        "ccAfradBimar",
+        "ccUser"
+      ],
+      "flags": [
+        "status_header",
+        "sensitive"
+      ],
+      "stability": "connected"
+    },
+    "DarkhastHazinehDarman_Madarek": {
+      "domain": "refah",
+      "pk": "ccDarkhastHazinehDarman_Madarek",
+      "role": "مدارک هزینه درمان",
+      "cc": [
+        "ccDarkhastHazinehDarman",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastHazinehDarmanVazeiat": {
+      "domain": "refah",
+      "pk": "ccDarkhastHazinehDarmanVazeiat",
+      "role": "تاریخچه وضعیت هزینه درمان",
+      "cc": [
+        "ccDarkhastHazinehDarman",
+        "ccAfrad"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastHazinehDarman_CodeVazeiat": {
+      "domain": "refah",
+      "pk": "ccDarkhastHazinehDarman_CodeVazeiat",
+      "role": "دیکشنری وضعیت هزینه درمان",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastHazinehDarman_ElatOdat": {
+      "domain": "refah",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت هزینه درمان",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastHazineDarmanSatr": {
+      "domain": "refah",
+      "pk": "ccDarkhastHazineDarmanSatr",
+      "role": "سطر هزینه درمان زیر صندوق رفاه",
+      "cc": [
+        "ccPersonel",
+        "ccDarkhastAzSandoghRefah",
+        "ccNoeHazineDarman",
+        "ccUser",
+        "ccNoeNesbat",
+        "ccDarkhastHazineDarmanSatrElatOdat",
+        "ccNoeKhedmat",
+        "ccAfradBimar"
+      ],
+      "flags": [
+        "misleading_name",
+        "sensitive"
+      ],
+      "note": "زیرِ DarkhastHazinehDarman نیست — زیرِ DarkhastAzSandoghRefah است.",
+      "stability": "connected"
+    },
+    "DarkhastHazineDarmanSatr_Madarek": {
+      "domain": "refah",
+      "pk": "ccDarkhastHazineDarmanSatr_Madarek",
+      "role": "مدارک سطر هزینه درمان",
+      "cc": [
+        "ccDarkhastHazineDarmanSatr",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastHazineDarmanSatrElatOdat": {
+      "domain": "refah",
+      "pk": "ccDarkhastHazineDarmanSatrElatOdat",
+      "role": "علت برگشت سطر هزینه درمان",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeHazinehDarman": {
+      "domain": "refah",
+      "pk": "ccNoeHazinehDarman",
+      "role": "نوع هزینه درمان",
+      "cc": [
+        "ccNoeHazinehDarmanLink"
+      ],
+      "flags": [
+        "dict",
+        "tree"
+      ],
+      "stability": "connected"
+    },
+    "NoeHazineDarman_Deeel": {
+      "domain": "refah",
+      "pk": "ccNoeHazineDarman",
+      "role": "نوع هزینه درمان — مرده",
+      "cc": [
+        "ccNoeHazineDarmanLink"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "note": "پسوند _Deeel یعنی مرده.",
+      "stability": "volatile"
+    },
+    "AeenNamehHazinehDarman": {
+      "domain": "refah",
+      "pk": "ccAeenNamehHazinehDarman",
+      "role": "آیین‌نامه هزینه درمان",
+      "cc": [
+        "ccNoeHazineDarman"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "SaghfeNoeHazineDarman": {
+      "domain": "refah",
+      "pk": "ccSaghfeNoeHazineDarman",
+      "role": "سقف نوع هزینه درمان",
+      "cc": [
+        "ccNoeHazineDarman"
+      ],
+      "flags": [
+        "effective_dated",
+        "rule"
+      ],
+      "stability": "leaf"
+    },
+    "GorohBandiHazinehDarman": {
+      "domain": "refah",
+      "pk": "ccGorohBandiHazinehDarman",
+      "role": "گروه‌بندی هزینه درمان",
+      "cc": [
+        "ccMarkazPardakht"
+      ],
+      "stability": "connected"
+    },
+    "GorohBandiHazinehDarmanSatr": {
+      "domain": "refah",
+      "pk": "ccGorohBandiHazinehDarmanSatr",
+      "role": "سطر گروه‌بندی",
+      "cc": [
+        "ccGorohBandiHazinehDarman",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "detail",
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastJazbNiro": {
+      "domain": "jazb",
+      "pk": "ccDarkhastJazbNiro",
+      "role": "درخواست جذب نیرو",
+      "cc": [
+        "ccVahedSazmani",
+        "ccMarkaz",
+        "ccVahedSazmaniPostShoghl",
+        "ccPersonelDarkhastKonandeh",
+        "ccUser"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "connected"
+    },
+    "DarkhastJazbNiroVazeiat": {
+      "domain": "jazb",
+      "pk": "ccDarkhastJazbNiroVazeiat",
+      "role": "تاریخچه وضعیت جذب",
+      "cc": [
+        "ccDarkhastJazbNiro",
+        "ccUser"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "DarkhastJazbNiroAgahi": {
+      "domain": "jazb",
+      "pk": "ccDarkhastJazbNiroAgahi",
+      "role": "آگهی جذب",
+      "cc": [
+        "ccAgahi",
+        "ccDarkhastJazbNiro"
+      ],
+      "stability": "connected"
+    },
+    "DarkhastJazbNiroAgahiMosahebeh": {
+      "domain": "jazb",
+      "pk": "ccDarkhastJazbNiroAgahiMosahebeh",
+      "role": "مصاحبه آگهی",
+      "cc": [
+        "ccDarkhastJazbNiroAgahi",
+        "ccPostShoghl"
+      ],
+      "stability": "connected"
+    },
+    "DarkhastJazbNiroAgahiMosahebehRadif": {
+      "domain": "jazb",
+      "pk": "ccDarkhastJazbNiroAgahiMosahebehRadif",
+      "role": "مصاحبه‌گر",
+      "cc": [
+        "ccDarkhastJazbNiroAgahiMosahebeh",
+        "ccPersonelMosahebehgar"
+      ],
+      "stability": "connected"
+    },
+    "Agahi": {
+      "domain": "jazb",
+      "pk": "ccAgahi",
+      "role": "آگهی",
+      "cc": [
+        "ccNoeAgahi",
+        "ccPhoto"
+      ],
+      "stability": "connected"
+    },
+    "NoeAgahi": {
+      "domain": "jazb",
+      "pk": "ccNoeAgahi",
+      "role": "نوع آگهی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "PersonelMosahebeh": {
+      "domain": "jazb",
+      "pk": "ccPersonelMosahebeh",
+      "role": "مصاحبه متقاضی",
+      "cc": [
+        "ccPersonel",
+        "ccDarkhstJazbNiroAgahiMosahebeh"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "note": "به ccPersonel وصل است — متقاضی قبل از استخدام رکورد Personel دارد.",
+      "stability": "leaf"
+    },
+    "PersonelMosahebehRadif": {
+      "domain": "jazb",
+      "pk": "ccPersonelMosahebehRadif",
+      "role": "سطر مصاحبه",
+      "cc": [
+        "ccPersonel",
+        "ccDarkhastJazbNiroAgahiMosahebehRadif"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "AzmoonNoe": {
+      "domain": "jazb",
+      "pk": "ccAzmoonNoe",
+      "role": "نوع آزمون",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "AzmoonNoeBarresi": {
+      "domain": "jazb",
+      "pk": "ccAzmoonNoeBarresi",
+      "role": "نوع بررسی آزمون",
+      "cc": [
+        "ccAzmoonNoe"
+      ],
+      "stability": "connected"
+    },
+    "AzmoonNoePasokh": {
+      "domain": "jazb",
+      "pk": "ccAzmoonNoePasokh",
+      "role": "نوع پاسخ",
+      "cc": [
+        "ccAzmoonNoe"
+      ],
+      "stability": "connected"
+    },
+    "AzmoonSoal": {
+      "domain": "jazb",
+      "pk": "ccAzmoonSoal",
+      "role": "سؤال آزمون",
+      "cc": [
+        "ccAzmoonNoe"
+      ],
+      "stability": "connected"
+    },
+    "AzmoonSoalEmtiyaz": {
+      "domain": "jazb",
+      "pk": "ccAzmoonSoalEmtiyaz",
+      "role": "امتیاز سؤال",
+      "cc": [
+        "ccAzmoonSoal",
+        "ccAzmoonNoeBarresi",
+        "ccAzmoonNoePasokh"
+      ],
+      "stability": "leaf"
+    },
+    "AzmoonTitr": {
+      "domain": "jazb",
+      "pk": "ccAzmoonTitr",
+      "role": "برگزاری آزمون",
+      "cc": [
+        "ccAzmoonNoe",
+        "ccAfrad"
+      ],
+      "stability": "connected"
+    },
+    "AzmoonSatr": {
+      "domain": "jazb",
+      "pk": "ccAzmoonSatr",
+      "role": "پاسخ آزمون",
+      "cc": [
+        "ccAzmoonTitr",
+        "ccAzmoonSoal"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "PorseshnameNoe": {
+      "domain": "jazb",
+      "pk": "ccPorseshnameNoe",
+      "role": "نوع پرسشنامه",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "PorseshnameSoal": {
+      "domain": "jazb",
+      "pk": "ccPorseshnameSoal",
+      "role": "سؤال پرسشنامه",
+      "cc": [
+        "ccPorseshnameNoe"
+      ],
+      "stability": "leaf"
+    },
+    "ArzyabiPersonel": {
+      "domain": "arzyabi",
+      "pk": "ccArzyabiPersonel",
+      "role": "ارزیابی پرسنل",
+      "cc": [
+        "ccPersonel",
+        "ccFormArzyabi",
+        "ccAfrad_ArzyabiKonandeh",
+        "ccPersonelHokmPostVahedSazmani",
+        "ccAfradModir"
+      ],
+      "flags": [
+        "status_header",
+        "sensitive"
+      ],
+      "stability": "connected"
+    },
+    "ArzyabiPersonelSatr": {
+      "domain": "arzyabi",
+      "pk": "ccArzyabiPersonelSatr",
+      "role": "نمره هر شاخص",
+      "cc": [
+        "ccArzyabiPersonel",
+        "ccFormArzyabiSatr",
+        "ccNoeRotbehArzyabi"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "ArzyabiPersonel_TabaghebandiEmtiazat": {
+      "domain": "arzyabi",
+      "pk": "ID",
+      "role": "طبقه‌بندی امتیازات",
+      "flags": [
+        "non_cc_key"
+      ],
+      "stability": "leaf"
+    },
+    "FormArzyabi": {
+      "domain": "arzyabi",
+      "pk": "ccFormArzyabi",
+      "role": "فرم ارزیابی",
+      "cc": [
+        "ccNoeFormArzyabi",
+        "ccNoeRotbehArzyabi",
+        "ccNoeArzyabi"
+      ],
+      "flags": [
+        "status_header"
+      ],
+      "stability": "connected"
+    },
+    "FormArzyabiSatr": {
+      "domain": "arzyabi",
+      "pk": "ccFormArzyabiSatr",
+      "role": "شاخص و وزن فرم",
+      "cc": [
+        "ccFormArzyabi",
+        "ccShakhesArzyabi"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "connected"
+    },
+    "FormArzyabi_Post": {
+      "domain": "arzyabi",
+      "pk": "ccFormArzyabi",
+      "role": "تخصیص فرم به پست",
+      "cc": [
+        "ccFormArzyabi",
+        "ccPost"
+      ],
+      "stability": "leaf"
+    },
+    "FormArzyabi_Response": {
+      "domain": "arzyabi",
+      "pk": "ccFormArzyabi",
+      "role": "پاسخ فرم",
+      "cc": [
+        "ccFormArzyabi",
+        "ccPersonel"
+      ],
+      "stability": "leaf"
+    },
+    "FormArzyabi_Codevazieat": {
+      "domain": "arzyabi",
+      "pk": "ccFormArzyabi_Codevazieat",
+      "role": "دیکشنری وضعیت فرم",
+      "cc": [
+        "ccSystem",
+        "ccSystem_Next"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "ShakhesArzyabi": {
+      "domain": "arzyabi",
+      "pk": "ccShakhesArzyabi",
+      "role": "شاخص ارزیابی",
+      "cc": [
+        "ccShakhesArzyabiLink"
+      ],
+      "flags": [
+        "dict",
+        "tree"
+      ],
+      "stability": "connected"
+    },
+    "NoeArzyabi": {
+      "domain": "arzyabi",
+      "pk": "ccNoeArzyabi",
+      "role": "نوع ارزیابی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "NoeFormArzyabi": {
+      "domain": "arzyabi",
+      "pk": "ccNoeFormArzyabi",
+      "role": "نوع فرم ارزیابی",
+      "flags": [
+        "dict",
+        "effective_dated"
+      ],
+      "stability": "connected"
+    },
+    "NoeFormArzyabi_SendConfig": {
+      "domain": "arzyabi",
+      "pk": "ID",
+      "role": "پیکربندی ارسال فرم",
+      "flags": [
+        "non_cc_key",
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "NoeRotbehArzyabi": {
+      "domain": "arzyabi",
+      "pk": "ccNoeRotbehArzyabi",
+      "role": "رتبه ارزیابی — با باند نمره",
+      "cc": [
+        "ccNoeRotbehArzyabiLink"
+      ],
+      "cols": [
+        "Emtiaz",
+        "Of_points",
+        "To_points"
+      ],
+      "flags": [
+        "dict",
+        "tree"
+      ],
+      "stability": "connected"
+    },
+    "NoeTashvighiEnzebati": {
+      "domain": "arzyabi",
+      "pk": "ccNoeTashvighiEnzebati",
+      "role": "نوع تشویق/انضباط",
+      "flags": [
+        "dict"
+      ],
+      "note": "ستون Noe تشویق را از انضباط جدا می‌کند.",
+      "stability": "connected"
+    },
+    "PersonelDorehAmozeshi": {
+      "domain": "arzyabi",
+      "pk": "ccPersonelDorehAmozesh",
+      "role": "دوره آموزشی پرسنل",
+      "cc": [
+        "ccPersonel",
+        "ccNoeAmoozeshPersonel"
+      ],
+      "stability": "leaf"
+    },
+    "PersonelDorehAmozeshi_Madrak": {
+      "domain": "arzyabi",
+      "pk": "ccPersonelDorehAmozeshi_Madrak",
+      "role": "مدرک دوره",
+      "cc": [
+        "ccPersonelDorehAmozesh",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail",
+        "type_mismatch"
+      ],
+      "stability": "leaf"
+    },
+    "TasviehHesab": {
+      "domain": "tasvieh",
+      "pk": "ccTasviehHesab",
+      "role": "تسویه‌حساب — سبک سربرگ/سطر",
+      "cc": [
+        "ccMarkaz",
+        "ccPersonel",
+        "ccPardakhtHoghogh",
+        "ccPersonelGharardad",
+        "ccDarkhastVam",
+        "ccElatTasviehHesab",
+        "ccElatOdat",
+        "ccElatTasviehHesab_Link",
+        "ccEjazehPardakhtFaktor"
+      ],
+      "flags": [
+        "status_header",
+        "type_mismatch",
+        "sensitive"
+      ],
+      "note": "ccPersonelGharardad و ccDarkhastVam از نوع varchar هستند ولی مقصدشان عددی است.",
+      "stability": "connected"
+    },
+    "TasviehHesabSatr": {
+      "domain": "tasvieh",
+      "pk": "ccTasviehHesabSatr",
+      "role": "اقلام تسویه‌حساب",
+      "cc": [
+        "ccTasviehHesab",
+        "ccItemHoghogh"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "TasviehHesab_Vazeiat": {
+      "domain": "tasvieh",
+      "pk": "ccTasviehHesab_Vazeiat",
+      "role": "تاریخچه وضعیت تسویه",
+      "cc": [
+        "ccTasviehHesab",
+        "ccSystem",
+        "ccUser"
+      ],
+      "flags": [
+        "status_history"
+      ],
+      "stability": "leaf"
+    },
+    "TasviehHesab_CodeVazeiat": {
+      "domain": "tasvieh",
+      "pk": "ccTasviehHesab_CodeVazeiat",
+      "role": "دیکشنری وضعیت تسویه — IsEbtal دارد",
+      "cc": [
+        "ccSystem"
+      ],
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "TasviehHesab_ElatOdat": {
+      "domain": "tasvieh",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت تسویه",
+      "flags": [
+        "reason_dict",
+        "twin"
+      ],
+      "stability": "leaf"
+    },
+    "Tasviehesab_ElatOdat": {
+      "domain": "tasvieh",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت تسویه — دوقلو با یک H کمتر",
+      "flags": [
+        "reason_dict",
+        "twin"
+      ],
+      "stability": "leaf"
+    },
+    "TasviehHesabPhoto": {
+      "domain": "tasvieh",
+      "role": "پیوست تسویه",
+      "cc": [
+        "ccTasviehHesab",
+        "ccEjazehPardakhtFaktor",
+        "ccPhoto"
+      ],
+      "flags": [
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "TasviehHesab_PersonelForTasvieh": {
+      "domain": "tasvieh",
+      "pk": "TasviehHesab_PersonelForTasviehId",
+      "role": "صف پرسنل برای تسویه",
+      "flags": [
+        "non_cc_key"
+      ],
+      "stability": "leaf"
+    },
+    "TasviehHesab_RaveshPardakhtMorakhasi": {
+      "domain": "tasvieh",
+      "pk": "RaveshPardakhtMorakhasiId",
+      "role": "روش پرداخت مرخصی در تسویه",
+      "flags": [
+        "non_cc_key",
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "BazKharid": {
+      "domain": "tasvieh",
+      "pk": "ccBazKharid",
+      "role": "بازخرید — سبک قدیمی با ستون‌های پهن",
+      "cc": [
+        "ccPersonel",
+        "ccPersonelGharardad",
+        "ccPardakhtHoghogh",
+        "ccMarkazPakhsh",
+        "ccElatTasviehHesab",
+        "ccMarkaz",
+        "ccElatTasviehHesab_Link"
+      ],
+      "cols": [
+        "Eydi",
+        "Sanavat",
+        "MandeMorakhasi",
+        "Vam1",
+        "Vam8",
+        "Bime",
+        "Maliat"
+      ],
+      "flags": [
+        "status_header",
+        "sensitive"
+      ],
+      "note": "هشت ستون وام دارد. PersonelMandehMorakhasi و SandoghRefah هنوز به این ارجاع می‌دهند.",
+      "stability": "connected"
+    },
+    "NoeTasviehHesab": {
+      "domain": "tasvieh",
+      "pk": "ccNoeTasviehHesab",
+      "role": "نوع تسویه‌حساب",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "ElatTasviehHesabeDaem": {
+      "domain": "tasvieh",
+      "pk": "ccElatTasviehHesab",
+      "role": "علت تسویه دائم",
+      "cc": [
+        "ccLink"
+      ],
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "NoeBazneshasteh": {
+      "domain": "tasvieh",
+      "pk": "ccNoeBazneshasteh",
+      "role": "نوع بازنشستگی",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "MosaedeNazdikBazneshastegi": {
+      "domain": "tasvieh",
+      "pk": "ccMosaedeNazdikBazneshastegi",
+      "role": "مساعده نزدیک بازنشستگی",
+      "cc": [
+        "ccPersonel"
+      ],
+      "flags": [
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "Config_TasviehHesab": {
+      "domain": "config",
+      "pk": "ccConfig_TasviehHesab",
+      "role": "گردش کار تسویه",
+      "cc": [
+        "ccNoeTasviehHesab",
+        "ccSystem",
+        "ccSystemNext"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "Config_Eydi": {
+      "domain": "config",
+      "pk": "ccConfig_Eydi",
+      "role": "گردش کار عیدی",
+      "cc": [
+        "ccSystem",
+        "ccSystemNext"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "Config_MohasebehHoghogh": {
+      "domain": "config",
+      "pk": "ccConfig_MohasebehHoghogh",
+      "role": "گردش کار محاسبه حقوق",
+      "cc": [
+        "ccSystem",
+        "ccSystemNext"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "Config_BastanListHoghogh": {
+      "domain": "config",
+      "pk": "ccConfig_BastanListHoghogh",
+      "role": "گردش کار بستن لیست حقوق",
+      "cc": [
+        "ccSystem",
+        "ccSystemNext"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "Config_Hokm": {
+      "domain": "config",
+      "pk": "ccConfig_Hokm",
+      "role": "پیکربندی حکم",
+      "cc": [
+        "ccUserSabegheh"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "Config_DastgahSaatZani": {
+      "domain": "config",
+      "pk": "ccConfig_DastgahSaatZani",
+      "role": "دستگاه ساعت‌زنی",
+      "cc": [
+        "ccMarkaz",
+        "ccUserSabegh"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "Config_DisketHoghogh": {
+      "domain": "config",
+      "pk": "ccConfig_DisketHoghogh",
+      "role": "قالب دیسکت بانک",
+      "flags": [
+        "config",
+        "effective_dated"
+      ],
+      "stability": "leaf"
+    },
+    "Config_Item": {
+      "domain": "config",
+      "pk": "ccConfig_Item",
+      "role": "اقلام پیکربندی",
+      "flags": [
+        "config"
+      ],
+      "stability": "connected"
+    },
+    "Config_ItemSatr": {
+      "domain": "config",
+      "pk": "ccConfig_ItemSatr",
+      "role": "سطر اقلام پیکربندی",
+      "cc": [
+        "ccConfig_Item"
+      ],
+      "flags": [
+        "config",
+        "detail"
+      ],
+      "stability": "connected"
+    },
+    "Config_ItemSatr_Info": {
+      "domain": "config",
+      "pk": "ccConfig_ItemSatr_Info",
+      "role": "مقدار اقلام پیکربندی",
+      "cc": [
+        "ccConfig_ItemSatr"
+      ],
+      "flags": [
+        "config",
+        "detail"
+      ],
+      "stability": "leaf"
+    },
+    "Config_Item_CodeVazeiat": {
+      "domain": "config",
+      "pk": "ccConfig_Item_CodeVazeiat",
+      "role": "دیکشنری وضعیت اقلام پیکربندی",
+      "flags": [
+        "status_dict"
+      ],
+      "stability": "leaf"
+    },
+    "SystemConfig": {
+      "domain": "config",
+      "pk": "ccSystemConfig",
+      "role": "تنظیمات کلی سیستم",
+      "cc": [
+        "ccCompany",
+        "ccSystemKartabl"
+      ],
+      "cols": [
+        "MaxSenOlad",
+        "SaghfMorakhasiPardakhti_Rooz",
+        "TedadMojazZemanat",
+        "Tabdil_KaranehBeEzafehkar"
+      ],
+      "flags": [
+        "config"
+      ],
+      "stability": "leaf"
+    },
+    "HelpPage": {
+      "domain": "config",
+      "pk": "ccHelpPage",
+      "role": "صفحه راهنما",
+      "cc": [
+        "ccSystem",
+        "ccPhoto",
+        "ccNoeFile",
+        "ccUser"
+      ],
+      "stability": "leaf"
+    },
+    "HelpPage_NoeFile": {
+      "domain": "config",
+      "pk": "ccNoeFile",
+      "role": "نوع فایل راهنما",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "MessageInbox": {
+      "domain": "config",
+      "pk": "Id",
+      "role": "صف پیام ورودی بین سرویس‌ها",
+      "flags": [
+        "non_cc_key",
+        "infra"
+      ],
+      "stability": "leaf"
+    },
+    "OutBoxEventItems": {
+      "domain": "config",
+      "pk": "OutBoxEventItemId",
+      "role": "صف رویداد خروجی",
+      "flags": [
+        "non_cc_key",
+        "infra"
+      ],
+      "stability": "leaf"
+    },
+    "ElateBedehy": {
+      "domain": "config",
+      "pk": "ccElateBedehy",
+      "role": "علت بدهی",
+      "cc": [
+        "ccLink"
+      ],
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    },
+    "NoeRefrence": {
+      "domain": "config",
+      "pk": "ccNoeRefrence",
+      "role": "نوع ارجاع — همراه ccRefrence معنی می‌دهد",
+      "flags": [
+        "dict"
+      ],
+      "stability": "connected"
+    },
+    "SeriPardakhtDisketHazineha": {
+      "domain": "config",
+      "pk": "ccSeriePardakhtDisketHazineha",
+      "role": "سری پرداخت دیسکت هزینه‌ها",
+      "cc": [
+        "ccNoePardakht"
+      ],
+      "stability": "leaf"
+    },
+    "EnteghalAvalieh_PersonelInfo": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_PersonelInfo",
+      "role": "مهاجرت — اطلاعات پرسنل",
+      "cc": [
+        "ccBloodGroup",
+        "ccDin",
+        "ccMazhab",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_PersonelKarkard": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_PersonelKarkard",
+      "role": "مهاجرت — کارکرد",
+      "cc": [
+        "ccMarkaz"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_PersonelHokmHoghogh": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_PersonelHokmHoghogh",
+      "role": "مهاجرت — حکم حقوقی",
+      "cc": [
+        "ccNoeMohasebehKarkard",
+        "ccGorohShoghli",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_PersonelHokmPostVahedSazmani": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_PersonelHokmPostVahedSazmani",
+      "role": "مهاجرت — جایگاه سازمانی",
+      "cc": [
+        "ccPersonel",
+        "ccPost",
+        "ccVahedSazmani",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "migration",
+        "effective_dated"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_MandehMorakhasi": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_MandehMorakhasi",
+      "role": "مهاجرت — مانده مرخصی",
+      "cc": [
+        "ccPersonel"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_MandehVam": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_MandehVam",
+      "role": "مهاجرت — مانده وام",
+      "cc": [
+        "ccNoeVam",
+        "ccPersonel"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_SandoghRefah": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_SandoghRefah",
+      "role": "مهاجرت — صندوق رفاه",
+      "cc": [
+        "ccPersonel",
+        "ccNoeSandoghRefah",
+        "ccItemSandoghRefah"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_MaliatPardakhti": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_MaliatPardakhti",
+      "role": "مهاجرت — مالیات پرداختی",
+      "cc": [
+        "ccPersonel"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_MadrakTahsily": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_MadrakTahsily",
+      "role": "مهاجرت — مدرک تحصیلی",
+      "cc": [
+        "ccMadrakTahsily",
+        "ccReshteh",
+        "ccGrayesh",
+        "ccKeshvarMahalTahsil",
+        "ccShahrMahalTahsil",
+        "ccMoaseseh",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_AfradVabasteh": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_AfradVabasteh",
+      "role": "مهاجرت — افراد وابسته",
+      "cc": [
+        "ccNoeNesbat",
+        "ccMadrakTahsily",
+        "ccVazeiatTaahol",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_ShomarehHesabPersonel": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_ShomarehHesabPersonel",
+      "role": "مهاجرت — حساب بانکی",
+      "cc": [
+        "ccPersonel",
+        "ccBank",
+        "ccNoePardakhti",
+        "ccNoeHesab",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "migration",
+        "sensitive"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_KhedmatSarbazy": {
+      "domain": "migration",
+      "pk": "ccEnteghalAvalieh_KhedmatSarbazy",
+      "role": "مهاجرت — خدمت سربازی",
+      "cc": [
+        "ccNoeMoafiat",
+        "ccYeganKhedmat",
+        "ccRastehKhedmat",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_PersonelKarkard_Vazieat": {
+      "domain": "migration",
+      "pk": "CodeVazeiat",
+      "role": "مهاجرت — دیکشنری وضعیت کارکرد",
+      "flags": [
+        "migration",
+        "status_dict"
+      ],
+      "stability": "volatile"
+    },
+    "EnteghalAvalieh_SakhtDisketHoghogh_ByExcel": {
+      "domain": "migration",
+      "pk": "ccSakhtDisketHoghogh_ByExcel",
+      "role": "مهاجرت — ساخت دیسکت حقوق",
+      "flags": [
+        "migration"
+      ],
+      "stability": "volatile"
+    },
+    "DELETED_vShoghlSharh": {
+      "domain": "sazman",
+      "pk": "ccShoghl",
+      "role": "شرح شغل — ویو حذف‌شده",
+      "cc": [
+        "ccShoghl",
+        "ccShoghlSharhNoe",
+        "ccShoghlSharh"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "DELETED_vKarKardMamoorPakhshKaregarAnbar": {
+      "domain": "karkard",
+      "pk": "ccKarKardMamoorPakhshKaregarAnbar",
+      "role": "کارکرد مأمور پخش — ویو حذف‌شده",
+      "cc": [
+        "ccKarKardMamoorPakhshKaregarAnbar",
+        "ccAfrad",
+        "ccPostShoghl",
+        "ccMarkazPakhsh",
+        "ccMarkaz"
+      ],
+      "flags": [
+        "legacy"
+      ],
+      "stability": "volatile"
+    },
+    "PersonelInfo_Movaghat_ElatOdat": {
+      "domain": "personel",
+      "pk": "ccElatOdat",
+      "role": "علت برگشت اطلاعات موقت پرسنل",
+      "flags": [
+        "reason_dict"
+      ],
+      "stability": "leaf"
+    }
+  },
+  "traps": {
+    "twins": [
+      {
+        "pair": [
+          "ShiftKari",
+          "ShiftKary"
+        ],
+        "diff": "i در برابر y",
+        "note": "ShiftKari مشتریِ PersonelKarkard/TaghvimKariPersonel/GorohKari است؛ ShiftKary مشتریِ PersonelShiftKary/PersonelHokmShiftKary/ShiftKarySatr/ShiftKaryTaghirat."
+      },
+      {
+        "pair": [
+          "PersonelMamoriat",
+          "PersonelMamuryat"
+        ],
+        "diff": "o در برابر u",
+        "note": "PersonelKarkardSatr به Mamoriat وصل است؛ PersonelMandehMamuryat به Mamuryat."
+      },
+      {
+        "pair": [
+          "NoeMamoriat",
+          "NoeMamuryat"
+        ],
+        "diff": "o در برابر u"
+      },
+      {
+        "pair": [
+          "ItemSandoghRefah",
+          "ItemhayeSandoghRefah"
+        ],
+        "diff": "haye",
+        "note": "SandoghRefah به ItemSandoghRefah وصل است."
+      },
+      {
+        "pair": [
+          "ItemHoghogh",
+          "ItemhayeHoghogh"
+        ],
+        "diff": "haye",
+        "note": "همه‌ی حقوق به ItemHoghogh وصل‌اند."
+      },
+      {
+        "pair": [
+          "TasviehHesab_ElatOdat",
+          "Tasviehesab_ElatOdat"
+        ],
+        "diff": "یک H"
+      },
+      {
+        "pair": [
+          "PersonelMadrak",
+          "Personel_Madrak"
+        ],
+        "diff": "یک زیرخط"
+      },
+      {
+        "pair": [
+          "PersonelSabegheKari",
+          "PersonelSavabeghKary"
+        ],
+        "diff": "کل کلمه"
+      },
+      {
+        "pair": [
+          "NoeHazinehDarman",
+          "NoeHazineDarman_Deeel"
+        ],
+        "diff": "پسوند _Deeel",
+        "note": "دومی مرده است."
+      },
+      {
+        "pair": [
+          "BastanListHoghogh",
+          "BastaneListHoghogh"
+        ],
+        "diff": "یک e"
+      },
+      {
+        "pair": [
+          "PersonelMaliatSatr",
+          "PersonelMaliatSatrNew"
+        ],
+        "diff": "پسوند New"
+      }
+    ],
+    "type_mismatch": [
+      {
+        "col": "VaziatZaheri.ccPersonel",
+        "declared": "nvarchar",
+        "target": "Personel.ccPersonel int"
+      },
+      {
+        "col": "TasviehHesab.ccPersonelGharardad",
+        "declared": "varchar",
+        "target": "PersonelGharardad.ccPersonelGharardad int"
+      },
+      {
+        "col": "TasviehHesab.ccDarkhastVam",
+        "declared": "varchar",
+        "target": "DarkhastVam.ccDarkhastVam bigint"
+      },
+      {
+        "col": "MaliatBarDaramadHoghogh.ccNoeEstekhdam",
+        "declared": "nvarchar",
+        "target": "NoeEstekhdam.ccNoeEstekhdam tinyint"
+      },
+      {
+        "col": "GorohKari.ccShiftKari",
+        "declared": "varchar",
+        "target": "ShiftKari.ccShiftKari int"
+      },
+      {
+        "col": "TarefeBimehTakmily_SabeghehPersonel.ccNoeNesbat",
+        "declared": "nvarchar",
+        "target": "NoeNesbat.ccNoeNesbat tinyint"
+      },
+      {
+        "col": "ShiftKari.ccNoeVorod",
+        "declared": "varchar",
+        "target": "نامشخص"
+      },
+      {
+        "col": "ShiftKari.ccNoeKhoroj",
+        "declared": "varchar",
+        "target": "نامشخص"
+      }
+    ],
+    "width_mismatch": [
+      {
+        "child": "PardakhtHoghoghSatr.ccPardakhtHoghogh",
+        "child_type": "int",
+        "parent": "PardakhtHoghogh.ccPardakhtHoghogh",
+        "parent_type": "bigint"
+      },
+      {
+        "child": "PersonelMaliatSatr.ccPardakhtHoghogh",
+        "child_type": "int",
+        "parent": "PardakhtHoghogh.ccPardakhtHoghogh",
+        "parent_type": "bigint"
+      },
+      {
+        "child": "DarkhastVamPardakhtAghsat.ccPardakhtHoghogh",
+        "child_type": "int",
+        "parent": "PardakhtHoghogh.ccPardakhtHoghogh",
+        "parent_type": "bigint"
+      },
+      {
+        "child": "TasviehHesab.ccPardakhtHoghogh",
+        "child_type": "int",
+        "parent": "PardakhtHoghogh.ccPardakhtHoghogh",
+        "parent_type": "bigint"
+      },
+      {
+        "child": "PardakhtEydi.ccPardakhtHoghogh",
+        "child_type": "int",
+        "parent": "PardakhtHoghogh.ccPardakhtHoghogh",
+        "parent_type": "bigint"
+      },
+      {
+        "child": "PardakhtHoghogh_FaktorTaavoni.ccPardakhtHoghogh",
+        "child_type": "int",
+        "parent": "PardakhtHoghogh.ccPardakhtHoghogh",
+        "parent_type": "bigint"
+      },
+      {
+        "child": "Zakhireh_ItemHoghogh.ccItemHoghogh",
+        "child_type": "tinyint",
+        "parent": "ItemHoghogh.ccItemHoghogh",
+        "parent_type": "int",
+        "note": "سقف ۲۵۵ — اقلام با کد بالاتر ذخیره نمی‌شوند."
+      },
+      {
+        "child": "Personel_Madrak.ccPersonel",
+        "child_type": "bigint",
+        "parent": "Personel.ccPersonel",
+        "parent_type": "int"
+      },
+      {
+        "child": "KarkardePayaneMahGhabl.ccPersonel",
+        "child_type": "bigint",
+        "parent": "Personel.ccPersonel",
+        "parent_type": "int"
+      }
+    ],
+    "misleading_satr": [
+      {
+        "table": "DarkhastVamSatr",
+        "expected_parent": "DarkhastVam",
+        "actual_parent": "DarkhastAzSandoghRefah"
+      },
+      {
+        "table": "DarkhastHazineDarmanSatr",
+        "expected_parent": "DarkhastHazinehDarman",
+        "actual_parent": "DarkhastAzSandoghRefah"
+      }
+    ],
+    "dead_columns": {
+      "rule_dead": "پسوند _deeeel یا _deeel — استفاده نکن",
+      "rule_suspect": "پسوند _Old یا _OLD — اول ببین؛ گاهی مرده و گاهی یعنی «قبلی»",
+      "alive_old": [
+        "AfzayeshHoghoghSalianeh.ccPersonelHokmHoghogh_Old"
+      ],
+      "suspect": [
+        "SandoghRefah.MablaghPersonelOLD",
+        "SandoghRefah.MablaghSherkatOLD"
+      ]
+    },
+    "begin_date_tables": [
+      "PersonelShiftKary",
+      "ShiftKarySatr",
+      "ShiftKaryTaghirat",
+      "PersonelDarkhastGheybat",
+      "PersonelDarkhastMorakhasi",
+      "SandoghRefahModir"
+    ],
+    "end_date_not_null": [
+      "PersonelGharardad",
+      "PersonelMorakhasi",
+      "PersonelMamoriat",
+      "PersonelMamuryat",
+      "Maliat",
+      "ItemhayeHoghogh",
+      "SaghfeNoeVam"
+    ]
+  },
+  "cross_schema": {
+    "FinancialAccounting.MarkazHazineh": {
+      "via": "ccMarkazHazineh (در FinancialAccounting)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مرکز هزینه — اسکیمای حسابداری مالی"
+    },
+    "FinancialAccounting.Tafsily": {
+      "via": "ccTafsily (در FinancialAccounting)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "تفصیلی حسابداری"
+    },
+    "Global.Address": {
+      "via": "ccAddress (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.Afrad": {
+      "via": "ccAfrad (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "نام و مشخصات فردی: FName, LName, CodeMely, Mobile. همان مقصدِ Sales.AmarForosh_Arshive.ccAfradForoshandeh — پل به اسکیل‌های فروش."
+    },
+    "Global.Bank": {
+      "via": "ccBank (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "بانک"
+    },
+    "Global.Company": {
+      "via": "ccCompany (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "شرکت"
+    },
+    "Global.ElatOdat": {
+      "via": "ccElatOdat (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "علت برگشتِ عمومی — ولی هر دامنه X_ElatOdat خودش را هم دارد؛ بخش ۳ را ببین"
+    },
+    "Global.Goroh": {
+      "via": "ccGoroh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "گروه‌بندی عمومی، با ccGorohLink تفکیک می‌شود"
+    },
+    "Global.Houzeh": {
+      "via": "ccHouzeh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.MahalePardakht": {
+      "via": "ccMahalePardakht (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.MantaghehPakhsh": {
+      "via": "ccMantaghehPakhsh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.Markaz": {
+      "via": "ccMarkaz (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مرکز"
+    },
+    "Global.MarkazPakhsh": {
+      "via": "ccMarkazPakhsh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مرکز پخش"
+    },
+    "Global.MarkazPakhsh_NoeMarkazPakhshBakhsh": {
+      "via": "ccMarkazPakhsh_NoeMarkazPakhshBakhsh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.MarkazSazmanForoshSakhtarForosh": {
+      "via": "ccMarkazSazmanForoshSakhtarForosh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoeHesab": {
+      "via": "ccNoeHesab (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoeMarkazPakhsh": {
+      "via": "ccNoeMarkazPakhsh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoePhoto": {
+      "via": "ccNoePhoto (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoeVahedForosh": {
+      "via": "ccNoeVahedForosh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoeVasilehNaghlieh": {
+      "via": "ccNoeVasilehNaghlieh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.Photo": {
+      "via": "ccPhoto (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مخزن تصویر/پیوست"
+    },
+    "Global.SakhtarForosh": {
+      "via": "ccSakhtarForosh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.SazmanForosh": {
+      "via": "ccSazmanForosh (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.ShomarehHesab": {
+      "via": "ccShomarehHesab (در Global)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Sales.DarkhastFaktor": {
+      "via": "ccDarkhastFaktor (در Sales)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Treasury.EjazehPardakhtFaktor": {
+      "via": "ccEjazehPardakhtFaktor (در Treasury)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "dbo.System": {
+      "via": "ccSystem (در dbo)",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد"
+    },
+    "Global.Taghvim": {
+      "via": "تاریخ",
+      "evidence": "OBSERVED_OBJECT",
+      "verified": true,
+      "note": "تقویم شمسی شرکت: Tarikh, TarikhShamsi, Sal, Mah, Rooz, CodeNoeTatili (NULL = روز کاری)."
+    }
+  }
+}
