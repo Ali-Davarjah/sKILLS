@@ -1,5 +1,5 @@
 {
-  "version": "1405-06-07",
+  "version": "1405-06-16",
   "boundary": "lower_inclusive",
   "min_visits": 3,
   "customer_types": {
@@ -14,6 +14,35 @@
       "codes": [
         348
       ]
+    },
+    "zanjirei": {
+      "label": "زنجیره‌ای",
+      "codes": [
+        350
+      ]
+    },
+    "taavoni_vizheh": {
+      "label": "تعاونی ویژه",
+      "codes": [
+        349
+      ]
+    },
+    "vizheh": {
+      "label": "مشتریان ویژه",
+      "codes": []
+    },
+    "taavoni_karkonan": {
+      "label": "تعاونی کارکنان",
+      "codes": [
+        607
+      ],
+      "ranked": false
+    },
+    "sayer": {
+      "label": "سایر",
+      "codes": [],
+      "catch_all": true,
+      "ranked": false
     }
   },
   "criteria": [
@@ -24,16 +53,34 @@
       "weight": 3,
       "thresholds": {
         "khord": [
-          450,
-          550,
+          350,
+          500,
           650,
-          751
+          800
         ],
         "omde": [
-          4500,
-          5500,
+          3500,
+          5000,
           6500,
-          7501
+          7500
+        ],
+        "zanjirei": [
+          2000,
+          3000,
+          4000,
+          5000
+        ],
+        "taavoni_vizheh": [
+          3500,
+          5000,
+          6500,
+          8000
+        ],
+        "vizheh": [
+          5500,
+          7000,
+          8500,
+          10000
         ]
       }
     },
@@ -54,6 +101,24 @@
           50,
           60,
           70
+        ],
+        "zanjirei": [
+          40,
+          50,
+          60,
+          70
+        ],
+        "taavoni_vizheh": [
+          40,
+          50,
+          60,
+          70
+        ],
+        "vizheh": [
+          40,
+          50,
+          60,
+          70
         ]
       }
     },
@@ -70,6 +135,24 @@
           31
         ],
         "omde": [
+          16,
+          21,
+          26,
+          31
+        ],
+        "zanjirei": [
+          16,
+          21,
+          26,
+          31
+        ],
+        "taavoni_vizheh": [
+          16,
+          21,
+          26,
+          31
+        ],
+        "vizheh": [
           16,
           21,
           26,

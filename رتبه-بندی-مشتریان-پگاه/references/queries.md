@@ -4,17 +4,19 @@
 
 > **`run_query` نتیجه را در ۵۰۰ سطر می‌برد** (`connectors.max_results`). با
 > ۲۶ هزار مشتری، کوئری‌ای که سطرِ خام برمی‌گرداند بی‌صدا قیچی می‌شود — و چون
-> مرتب‌سازی معمولاً با نوع مشتری شروع می‌شود، **عمده کلاً از جدول می‌افتد**.
-> این دقیقاً همان باگی بود که «فقط ۲ عمده» می‌داد. پس: **در SQL جمع بزن، سطر
-> خام نخواه.**
+> مرتب‌سازی معمولاً با نوع مشتری شروع می‌شود، **نوع‌های کم‌جمعیت کلاً از جدول
+> می‌افتند**. این دقیقاً همان باگی بود که «فقط ۲ عمده» می‌داد. پس: **در SQL جمع
+> بزن، سطر خام نخواه.**
 
 > **نمره در SQL حساب می‌شود، نه در کوئریِ خام + اسکریپت.** بلوک `astaneh` در هر
 > کوئری همان چیزی است که در `rules.json` است. **اگر یکی را عوض کردی، آن یکی را
 > هم بکن.** `scripts/rank.py` برای وقتی است که سطرها را از قبل در دست داری
 > (زیرمجموعه‌ی کوچک، یا خروجی صادرشده).
 
-> کوئری‌های زیر روی `pakhsh` اجرا شده‌اند و امتیازشان **صفر اختلاف** با
-> `rank.py` دارد (۲۶٬۲۵۶ مشتری، اسنپ‌شات واحد).
+> **چهار کد رتبه می‌گیرند: ۳۴۷، ۳۴۸، ۳۴۹ و ۳۵۰.** «مشتریان ویژه» در `rules.json`
+> آستانه دارد ولی کد `ccNoeMoshtary`ش تأیید نشده، پس هنوز سطری در `astaneh`
+> ندارد و آن مشتریان در «سایر» می‌افتند. تعاونی کارکنان (۶۰۷) و سایر آستانه
+> ندارند و **رتبه نمی‌گیرند** — با کوئری ۵ فقط شمرده می‌شوند.
 
 > **`DECLARE` ننویس.** `run_query` یک دستور می‌پذیرد که با `SELECT` یا `WITH`
 > شروع شود. در SSMS اگر `USE pakhsh` بالایش می‌گذاری، **نقطه‌ویرگول لازم دارد**
@@ -28,10 +30,10 @@ SELECT MAX(Tarikh) AS "آخرین تاریخ" FROM Sales.AmarForosh_Arshive
 
 ## ۱. توزیع رتبه‌ها — کوئری پیش‌فرض
 
-۱۲ سطر. این را اول بزن؛ خطای بازه و اشباع آستانه هر دو همین‌جا دیده می‌شوند.
+این را اول بزن؛ خطای بازه و اشباع آستانه هر دو همین‌جا دیده می‌شوند.
 
 ```sql
-/* توزیع رتبه‌ها به تفکیک نوع مشتری — ۱۰ سطر، زیر سقف ۵۰۰. */
+/* توزیع رتبه‌ها به تفکیک نوع مشتری — حداکثر ۲۴ سطر، زیر سقف ۵۰۰. */
 WITH params AS (
     SELECT CAST('2026-08-31' AS date) AS rooz_payan, 3 AS tedad_mah,
            CAST(NULL AS int) AS sazman_forosh
@@ -42,11 +44,26 @@ bazeh AS (
            DATEADD(day, 1, CAST(p.rooz_payan AS datetime))                                AS d_to
     FROM params p
 ),
-astaneh AS (
+noe_ha AS (                     -- فقط نوع‌هایی که آستانه دارند
     SELECT * FROM (VALUES
-        ('aghlam', 347, 3,  450,  550,  650,  751), ('aghlam', 348, 3, 4500, 5500, 6500, 7501),
-        ('vizit',  347, 4,   40,   50,   60,   70), ('vizit',  348, 4,   40,   50,   60,   70),
-        ('sku',    347, 5,   16,   21,   26,   31), ('sku',    348, 5,   16,   21,   26,   31)
+        (347, N'خرد'), (348, N'عمده'), (349, N'تعاونی ویژه'), (350, N'زنجیره‌ای')
+    ) AS t(noe, name_noe)
+),
+astaneh AS (                    -- باید با rules.json یکی بماند
+    SELECT * FROM (VALUES
+    --   معیار     نوع  ضریب  حد۲   حد۳   حد۴   حد۵
+        ('aghlam', 347,  3,    350,  500,  650,   800),
+        ('aghlam', 348,  3,   3500, 5000, 6500,  7500),
+        ('aghlam', 349,  3,   3500, 5000, 6500,  8000),
+        ('aghlam', 350,  3,   2000, 3000, 4000,  5000),
+        ('vizit',  347,  4,     40,   50,   60,    70),
+        ('vizit',  348,  4,     40,   50,   60,    70),
+        ('vizit',  349,  4,     40,   50,   60,    70),
+        ('vizit',  350,  4,     40,   50,   60,    70),
+        ('sku',    347,  5,     16,   21,   26,    31),
+        ('sku',    348,  5,     16,   21,   26,    31),
+        ('sku',    349,  5,     16,   21,   26,    31),
+        ('sku',    350,  5,     16,   21,   26,    31)
     ) AS t(meyar, noe, zarib, h2, h3, h4, h5)
 ),
 baand AS (
@@ -60,7 +77,7 @@ kharid AS (
            SUM(a.Tedad) AS tedad_aghlam, COUNT(DISTINCT a.ccKalaCode) AS tedad_sku
     FROM Sales.AmarForosh_Arshive a CROSS JOIN bazeh b
     WHERE a.Tarikh >= b.d_from AND a.Tarikh < b.d_to AND a.IsMarjoee = 0
-      AND a.ccNoeMoshtary IN (347, 348)
+      AND a.ccNoeMoshtary IN (347, 348, 349, 350)
       AND (b.sazman_forosh IS NULL OR a.ccSazmanForosh = b.sazman_forosh)
     GROUP BY a.ccMoshtary
 ),
@@ -101,13 +118,13 @@ barchasb AS (
                    AND (d.hadd_paeen IS NULL OR n.emtiaz >= d.hadd_paeen)
                  ORDER BY d.olaviat) g
 )
-SELECT CASE noe WHEN 347 THEN N'خرد' ELSE N'عمده' END AS "نوع",
-       rotbe                                          AS "رتبه",
+SELECT t.name_noe                                     AS "نوع",
+       b.rotbe                                        AS "رتبه",
        COUNT(*)                                       AS "تعداد مشتری",
-       CAST(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (PARTITION BY noe) AS decimal(5,1)) AS "سهم ٪"
-FROM barchasb
-GROUP BY noe, rotbe, olaviat
-ORDER BY noe, olaviat
+       CAST(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (PARTITION BY b.noe) AS decimal(5,1)) AS "سهم ٪"
+FROM barchasb b JOIN noe_ha t ON t.noe = b.noe
+GROUP BY b.noe, t.name_noe, b.rotbe, b.olaviat
+ORDER BY b.noe, b.olaviat
 ```
 
 ## ۲. برترها — یک سطر به ازای هر نمره، نه هر نفر
@@ -130,11 +147,19 @@ bazeh AS (
            DATEADD(day, 1, CAST(p.rooz_payan AS datetime))                                AS d_to
     FROM params p
 ),
+noe_ha AS (
+    SELECT * FROM (VALUES
+        (347, N'خرد'), (348, N'عمده'), (349, N'تعاونی ویژه'), (350, N'زنجیره‌ای')
+    ) AS t(noe, name_noe)
+),
 astaneh AS (
     SELECT * FROM (VALUES
-        ('aghlam', 347, 3,  450,  550,  650,  751), ('aghlam', 348, 3, 4500, 5500, 6500, 7501),
+        ('aghlam', 347, 3,  350,  500,  650,  800), ('aghlam', 348, 3, 3500, 5000, 6500, 7500),
+        ('aghlam', 349, 3, 3500, 5000, 6500, 8000), ('aghlam', 350, 3, 2000, 3000, 4000, 5000),
         ('vizit',  347, 4,   40,   50,   60,   70), ('vizit',  348, 4,   40,   50,   60,   70),
-        ('sku',    347, 5,   16,   21,   26,   31), ('sku',    348, 5,   16,   21,   26,   31)
+        ('vizit',  349, 4,   40,   50,   60,   70), ('vizit',  350, 4,   40,   50,   60,   70),
+        ('sku',    347, 5,   16,   21,   26,   31), ('sku',    348, 5,   16,   21,   26,   31),
+        ('sku',    349, 5,   16,   21,   26,   31), ('sku',    350, 5,   16,   21,   26,   31)
     ) AS t(meyar, noe, zarib, h2, h3, h4, h5)
 ),
 baand AS (
@@ -148,7 +173,7 @@ kharid AS (
            SUM(a.Tedad) AS tedad_aghlam, COUNT(DISTINCT a.ccKalaCode) AS tedad_sku
     FROM Sales.AmarForosh_Arshive a CROSS JOIN bazeh b
     WHERE a.Tarikh >= b.d_from AND a.Tarikh < b.d_to AND a.IsMarjoee = 0
-      AND a.ccNoeMoshtary IN (347, 348)
+      AND a.ccNoeMoshtary IN (347, 348, 349, 350)
       AND (b.sazman_forosh IS NULL OR a.ccSazmanForosh = b.sazman_forosh)
     GROUP BY a.ccMoshtary
 ),
@@ -192,13 +217,14 @@ bartar AS (
     GROUP BY n.noe, n.emtiaz
 )
 SELECT b.jaygah                                         AS "جایگاه",
-       CASE b.noe WHEN 347 THEN N'خرد' ELSE N'عمده' END AS "نوع",
+       t.name_noe                                       AS "نوع",
        b.emtiaz                                         AS "امتیاز",
        g.rotbe                                          AS "رتبه",
        b.tedad_hamnomreh                                AS "تعداد مشتری هم‌نمره",
        CAST(b.aghlam_min AS bigint)                     AS "کمترین اقلام",
        CAST(b.aghlam_max AS bigint)                     AS "بیشترین اقلام"
 FROM bartar b
+JOIN noe_ha t ON t.noe = b.noe
 CROSS JOIN bazeh z
 OUTER APPLY (SELECT TOP 1 d.rotbe FROM baand d
              WHERE d.olaviat < 6 AND (d.hadd_paeen IS NULL OR b.emtiaz >= d.hadd_paeen)
@@ -217,12 +243,12 @@ ORDER BY b.noe, b.jaygah
 دیگری بگیر.
 
 ```sql
-/* مشتریان خرد و عمده که در سه ماه گذشته خرید داشته‌اند — با جزئیات و امتیاز.
-   noe = NULL هر دو نوع، 347 فقط خرد، 348 فقط عمده. */
+/* مشتریانی که در سه ماه گذشته خرید داشته‌اند — با جزئیات و امتیاز.
+   noe = NULL هر چهار نوعِ دارای آستانه، یا یکی از 347/348/349/350. */
 WITH params AS (
     SELECT CAST('2026-08-31' AS date) AS rooz_payan,   -- روز پایان بازه
            3                          AS tedad_mah,    -- طول بازه به ماه
-           CAST(NULL AS int)          AS noe           -- NULL = خرد و عمده
+           CAST(NULL AS int)          AS noe           -- NULL = هر چهار نوع
 ),
 bazeh AS (
     SELECT p.noe,
@@ -230,15 +256,26 @@ bazeh AS (
            DATEADD(day, 1, CAST(p.rooz_payan AS datetime))                                AS d_to
     FROM params p
 ),
+noe_ha AS (
+    SELECT * FROM (VALUES
+        (347, N'خرد'), (348, N'عمده'), (349, N'تعاونی ویژه'), (350, N'زنجیره‌ای')
+    ) AS t(noe, name_noe)
+),
 astaneh AS (                    -- باید با rules.json یکی بماند
     SELECT * FROM (VALUES
     --   معیار     نوع  ضریب  حد۲   حد۳   حد۴   حد۵
-        ('aghlam', 347,  3,    450,  550,  650,  751),
-        ('aghlam', 348,  3,   4500, 5500, 6500, 7501),
-        ('vizit',  347,  4,     40,   50,   60,   70),
-        ('vizit',  348,  4,     40,   50,   60,   70),
-        ('sku',    347,  5,     16,   21,   26,   31),
-        ('sku',    348,  5,     16,   21,   26,   31)
+        ('aghlam', 347,  3,    350,  500,  650,   800),
+        ('aghlam', 348,  3,   3500, 5000, 6500,  7500),
+        ('aghlam', 349,  3,   3500, 5000, 6500,  8000),
+        ('aghlam', 350,  3,   2000, 3000, 4000,  5000),
+        ('vizit',  347,  4,     40,   50,   60,    70),
+        ('vizit',  348,  4,     40,   50,   60,    70),
+        ('vizit',  349,  4,     40,   50,   60,    70),
+        ('vizit',  350,  4,     40,   50,   60,    70),
+        ('sku',    347,  5,     16,   21,   26,    31),
+        ('sku',    348,  5,     16,   21,   26,    31),
+        ('sku',    349,  5,     16,   21,   26,    31),
+        ('sku',    350,  5,     16,   21,   26,    31)
     ) AS t(meyar, noe, zarib, h2, h3, h4, h5)
 ),
 baand AS (
@@ -259,7 +296,7 @@ kharid AS (
     FROM Sales.AmarForosh_Arshive a CROSS JOIN bazeh b
     WHERE a.Tarikh >= b.d_from AND a.Tarikh < b.d_to
       AND a.IsMarjoee = 0
-      AND a.ccNoeMoshtary IN (347, 348)
+      AND a.ccNoeMoshtary IN (347, 348, 349, 350)
       AND (b.noe IS NULL OR a.ccNoeMoshtary = b.noe)
     GROUP BY a.ccMoshtary
 ),
@@ -312,8 +349,7 @@ SELECT
     m.NameMoshtary                            AS "نام",
     m.NameTablo                               AS "نام تابلو",
     p.noe                                     AS "کد نوع",
-    CASE p.noe WHEN 347 THEN N'خرد'
-               WHEN 348 THEN N'عمده' END      AS "نوع مشتری",
+    nt.name_noe                               AS "نوع مشتری",
     r.NameMarkaz                              AS "شعبه",
     r.NameMarkazSazmanForosh                  AS "لاین فروش",
     r.NameSenfMoshtary                        AS "صنف",
@@ -342,6 +378,7 @@ SELECT
     r.NameDarajeh                             AS "درجه پگاه"
 FROM paye p
 JOIN nomreh n              ON n.ccMoshtary = p.ccMoshtary
+JOIN noe_ha nt             ON nt.noe = p.noe
 LEFT JOIN Sales.Moshtary m ON m.ccMoshtary = p.ccMoshtary
 LEFT JOIN rotbe_rasmi r    ON r.ccMoshtary = p.ccMoshtary
 OUTER APPLY (
@@ -370,6 +407,12 @@ bazeh AS (
            p.sazman_forosh
     FROM params p
 ),
+noe_ha AS (                     -- تعاونی کارکنان هم هست تا وقتی آستانه‌اش آمد عددی داشته باشی
+    SELECT * FROM (VALUES
+        (347, N'خرد'), (348, N'عمده'), (349, N'تعاونی ویژه'), (350, N'زنجیره‌ای'),
+        (607, N'تعاونی کارکنان')
+    ) AS t(noe, name_noe)
+),
 kharid AS (
     SELECT a.ccMoshtary,
            MAX(a.ccNoeMoshtary)         AS noe_moshtary,
@@ -382,19 +425,18 @@ kharid AS (
     GROUP BY a.ccMoshtary
 )
 SELECT DISTINCT
-    CASE noe_moshtary WHEN 347 THEN N'خرد' WHEN 348 THEN N'عمده' END                AS "نوع",
-    COUNT(*)       OVER (PARTITION BY noe_moshtary)                                 AS "تعداد مشتری",
-    MIN(tedad_aghlam) OVER (PARTITION BY noe_moshtary)                              AS "اقلام کمینه",
-    PERCENTILE_CONT(0.20) WITHIN GROUP (ORDER BY tedad_aghlam) OVER (PARTITION BY noe_moshtary) AS "اقلام ۲۰٪",
-    PERCENTILE_CONT(0.40) WITHIN GROUP (ORDER BY tedad_aghlam) OVER (PARTITION BY noe_moshtary) AS "اقلام ۴۰٪",
-    PERCENTILE_CONT(0.60) WITHIN GROUP (ORDER BY tedad_aghlam) OVER (PARTITION BY noe_moshtary) AS "اقلام ۶۰٪",
-    PERCENTILE_CONT(0.80) WITHIN GROUP (ORDER BY tedad_aghlam) OVER (PARTITION BY noe_moshtary) AS "اقلام ۸۰٪",
-    MAX(tedad_aghlam) OVER (PARTITION BY noe_moshtary)                              AS "اقلام بیشینه",
-    PERCENTILE_CONT(0.20) WITHIN GROUP (ORDER BY tedad_sku) OVER (PARTITION BY noe_moshtary) AS "SKU ۲۰٪",
-    PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY tedad_sku) OVER (PARTITION BY noe_moshtary) AS "SKU ۵۰٪",
-    PERCENTILE_CONT(0.80) WITHIN GROUP (ORDER BY tedad_sku) OVER (PARTITION BY noe_moshtary) AS "SKU ۸۰٪"
-FROM kharid
-WHERE noe_moshtary IN (347, 348)
+    t.name_noe                                                                      AS "نوع",
+    COUNT(*)            OVER (PARTITION BY k.noe_moshtary)                          AS "تعداد مشتری",
+    MIN(k.tedad_aghlam) OVER (PARTITION BY k.noe_moshtary)                          AS "اقلام کمینه",
+    PERCENTILE_CONT(0.20) WITHIN GROUP (ORDER BY k.tedad_aghlam) OVER (PARTITION BY k.noe_moshtary) AS "اقلام ۲۰٪",
+    PERCENTILE_CONT(0.40) WITHIN GROUP (ORDER BY k.tedad_aghlam) OVER (PARTITION BY k.noe_moshtary) AS "اقلام ۴۰٪",
+    PERCENTILE_CONT(0.60) WITHIN GROUP (ORDER BY k.tedad_aghlam) OVER (PARTITION BY k.noe_moshtary) AS "اقلام ۶۰٪",
+    PERCENTILE_CONT(0.80) WITHIN GROUP (ORDER BY k.tedad_aghlam) OVER (PARTITION BY k.noe_moshtary) AS "اقلام ۸۰٪",
+    MAX(k.tedad_aghlam) OVER (PARTITION BY k.noe_moshtary)                          AS "اقلام بیشینه",
+    PERCENTILE_CONT(0.20) WITHIN GROUP (ORDER BY k.tedad_sku) OVER (PARTITION BY k.noe_moshtary) AS "SKU ۲۰٪",
+    PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY k.tedad_sku) OVER (PARTITION BY k.noe_moshtary) AS "SKU ۵۰٪",
+    PERCENTILE_CONT(0.80) WITHIN GROUP (ORDER BY k.tedad_sku) OVER (PARTITION BY k.noe_moshtary) AS "SKU ۸۰٪"
+FROM kharid k JOIN noe_ha t ON t.noe = k.noe_moshtary
 ```
 
 بعد `python scripts/rules.py set item_count.khord <۲۰٪> <۴۰٪> <۶۰٪> <۸۰٪>` —
@@ -403,6 +445,34 @@ WHERE noe_moshtary IN (347, 348)
 - **عدد را گرد کن.** آستانه‌ی ۱۸٬۴۳۷ در جلسه قابل دفاع نیست؛ ۱۸٬۰۰۰ همان کار را می‌کند.
 - **این کوئری فقط مشتریِ خریدکرده را می‌بیند**، پس صدک‌ها به بالا منحرف‌اند.
 - **صدک، قاعده‌ی کسب‌وکار نیست.** خروجی را به مدیر فروش نشان بده.
+
+## ۵. مشتریانِ خارج از رتبه‌بندی — برای بند ۵ گزارش
+
+تعاونی کارکنان و «سایر» آستانه ندارند و در چهار کوئری بالا نمی‌آیند. **این کوئری
+را هر بار بزن**، وگرنه در گزارش نمی‌توانی بگویی چند مشتری کنار گذاشته شدند.
+خروجی‌اش کدهای واقعیِ موجود در بازه را هم می‌دهد — همان‌جا معلوم می‌شود کد
+«مشتریان ویژه» کدام است.
+
+```sql
+/* یک سطر به ازای هر کد نوع مشتری — همه‌ی کدها، نه فقط رتبه‌گیرها. */
+WITH params AS (
+    SELECT CAST('2026-08-31' AS date) AS rooz_payan, 3 AS tedad_mah
+),
+bazeh AS (
+    SELECT DATEADD(day, 1, DATEADD(month, -p.tedad_mah, CAST(p.rooz_payan AS datetime))) AS d_from,
+           DATEADD(day, 1, CAST(p.rooz_payan AS datetime))                                AS d_to
+    FROM params p
+)
+SELECT a.ccNoeMoshtary                                 AS "کد نوع",
+       COUNT(DISTINCT a.ccMoshtary)                    AS "تعداد مشتری",
+       CAST(SUM(a.Tedad) AS bigint)                    AS "تعداد اقلام",
+       CASE WHEN a.ccNoeMoshtary IN (347, 348, 349, 350)
+            THEN N'رتبه می‌گیرد' ELSE N'بدون رتبه' END AS "وضعیت"
+FROM Sales.AmarForosh_Arshive a CROSS JOIN bazeh b
+WHERE a.Tarikh >= b.d_from AND a.Tarikh < b.d_to AND a.IsMarjoee = 0
+GROUP BY a.ccNoeMoshtary
+ORDER BY COUNT(DISTINCT a.ccMoshtary) DESC
+```
 
 ## اعتبارسنجی — بار اول روی هر بازه‌ی تازه
 
@@ -414,7 +484,8 @@ FROM Sales.AmarForosh_Arshive
 WHERE Tarikh >= '2026-05-31' AND Tarikh < '2026-08-31' AND IsMarjoee = 0
 ```
 
-خروجی باید **کمتر یا مساوی** این باشد؛ اختلاف = مشتریانِ خارج از ۳۴۷/۳۴۸.
+خروجی باید **کمتر یا مساوی** این باشد؛ اختلاف = مشتریانِ خارج از
+۳۴۷/۳۴۸/۳۴۹/۳۵۰، که کوئری ۵ به تفکیک کد می‌شماردشان.
 
 **۲. مشتری با بیش از یک کد نوع** (که `MAX` پنهانش می‌کند):
 
@@ -438,17 +509,25 @@ SELECT COUNT(*) AS "مشتری چندنوعی" FROM (
 **۴. سهم مشتریانِ بدون رکورد ویزیت.** اگر بالاست، رتبه‌ی ویزیت برای بخش بزرگی
 از جدول محاسبه نشده — این را باید بالای گزارش گفت.
 
+**۵. زنجیره‌ای و تعاونی ویژه روی هیچ بازه‌ای اجرا نشده‌اند.** آستانه‌شان از مدیر
+فروش آمده، ولی جمعیتشان کوچک است و معیارِ اشباع‌شده در گروه ۴۰ نفره راحت‌تر از
+خرد پنهان می‌ماند. بار اول توزیعشان را جدا نگاه کن.
+
 ## ورودی `rank.py` — وقتی سطرها را در دست داری
 
 | ستون | کلید JSON |
 |---|---|
 | `کد مشتری` | `code` |
 | نام | `name` |
-| `کد نوع` | `type` — ۳۴۷/۳۴۸، یا `khord`/`omde`، یا `خرد`/`عمده` |
+| `کد نوع` | `type` — کد عددی، یا کلید انگلیسی، یا برچسب فارسی |
 | `تعداد اقلام` | `item_count` |
 | `ویزیت رفته` | `visits_total` |
 | `ویزیت مثبت` | `visits_positive` |
 | `تعداد SKU` | `sku_count` |
+
+کلیدهای نوع مشتری را با `rules.py show` ببین. **کدی که در هیچ نوعی نباشد به
+«سایر» می‌افتد و رتبه نمی‌گیرد** — خطا نمی‌دهد، پس اگر جدولی خالی درآمد اول کد
+نوع را چک کن.
 
 مقدارِ نداشته را `null` بفرست، نه صفر. با `kind='python'` اجرا کن —
 `kind='bash'` روی میزبان ویندوزی خروجی فارسی را خراب می‌کند:

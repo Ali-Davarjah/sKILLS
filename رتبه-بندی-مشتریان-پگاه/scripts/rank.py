@@ -26,12 +26,27 @@ def as_code(value):
     return value
 
 
+def is_ranked(entry):
+    """نوعی که جدول آستانه ندارد شمرده می‌شود ولی رتبه نمی‌گیرد."""
+    return entry.get("ranked", True)
+
+
+def catch_all_key(rules):
+    for key, entry in rules["customer_types"].items():
+        if entry.get("catch_all"):
+            return key
+    return None
+
+
 def type_key(customer, rules):
     """کلید نوع مشتری از روی کلید انگلیسی، برچسب فارسی یا کد ccNoeMoshtary."""
     given = as_code(customer.get("type", customer.get("ccNoeMoshtary")))
     for key, entry in rules["customer_types"].items():
         if given in (key, entry["label"], *(entry.get("codes") or [])):
             return key
+    fallback = catch_all_key(rules)
+    if fallback is not None:
+        return fallback
     known = "، ".join(
         f"{key} ({entry['label']}: {', '.join(str(c) for c in entry.get('codes') or [])})"
         for key, entry in rules["customer_types"].items()
@@ -70,15 +85,17 @@ def grade(total, rules):
 
 def evaluate(customer, rules):
     kind = type_key(customer, rules)
+    entry = rules["customer_types"][kind]
+    ranked = is_ranked(entry)
     min_visits = rules.get("min_visits") or 0
     visits = customer.get("visits_total")
-    weak_visits = visits is not None and 0 < visits < min_visits
+    weak_visits = ranked and visits is not None and 0 < visits < min_visits
 
     rows = []
     total = 0
     possible = 0
     missing = []
-    for criterion in rules["criteria"]:
+    for criterion in rules["criteria"] if ranked else []:
         value = measure(criterion["key"], customer)
         if value is None:
             missing.append(criterion["label"])
@@ -105,14 +122,15 @@ def evaluate(customer, rules):
         "code": customer.get("code"),
         "name": customer.get("name") or customer.get("code") or "—",
         "type": kind,
-        "type_label": rules["customer_types"][kind]["label"],
+        "type_label": entry["label"],
+        "ranked": ranked,
         "criteria": rows,
         "missing": missing,
         "scored_count": len(rows) - len(missing),
         "criteria_count": len(rows),
         "total": total,
         "possible": possible,
-        "grade": "" if missing else grade(total, rules),
+        "grade": "" if missing or not ranked else grade(total, rules),
         "weak_visits": weak_visits,
         "visits_total": visits,
     }
@@ -202,6 +220,15 @@ def render(report, rules):
             continue
         lines += [f"### {entry['label']} — {len(results)} مشتری", ""]
 
+        if not is_ranked(entry):
+            lines += [
+                "**این نوع مشتری جدول آستانه ندارد و رتبه نمی‌گیرد** — فقط شمرده "
+                "می‌شود. برای رتبه گرفتن، آستانه‌ی «تعداد اقلام» را از مدیر فروش "
+                "بگیر و با `scripts/rules.py` بگذارش.",
+                "",
+            ]
+            continue
+
         if not report["summary_only"]:
             header = "| # | مشتری | کد | " + " | ".join(
                 criterion["label"] for criterion in rules["criteria"]
@@ -250,9 +277,9 @@ def render(report, rules):
     lines += [
         f"نمره = {formula}. عدد داخل پرانتز رتبه‌ی همان معیار است.",
         "",
-        "**خرد و عمده دو جدول جدا هستند و در یک جدول با هم مرتب نمی‌شوند** — "
-        "آستانه‌هایشان فرق می‌کند، پس نمره‌شان با هم مقایسه‌شدنی است ولی «تعداد اقلام» "
-        "خامشان نه. هم‌نمره‌ها یک جایگاه دارند و ترتیبشان در جدول معنا ندارد.",
+        "**هر نوع مشتری یک جدول جداست و در یک جدول با هم مرتب نمی‌شوند** — "
+        "آستانه‌ی «تعداد اقلام» بینشان فرق می‌کند، پس نمره‌شان با هم مقایسه‌شدنی است "
+        "ولی عدد خامشان نه. هم‌نمره‌ها یک جایگاه دارند و ترتیبشان در جدول معنا ندارد.",
         "",
         f"قواعد: نسخه‌ی {report.get('rules_version')}.",
     ]
@@ -275,7 +302,9 @@ def read_input(path):
 def main():
     parser = argparse.ArgumentParser(description="رتبه‌بندی مشتریان پگاه")
     parser.add_argument("input", help="فایل JSON متریک‌ها، یا - برای ورودی استاندارد")
-    parser.add_argument("--type", help="فقط یک نوع مشتری: khord یا omde")
+    parser.add_argument(
+        "--type", help="فقط یک نوع مشتری — کلیدها را با `rules.py show` ببین"
+    )
     parser.add_argument("--rules", default=str(RULES_PATH))
     parser.add_argument("--json", action="store_true", help="خروجی JSON به جای جدول")
     parser.add_argument("--summary", action="store_true", help="فقط توزیع رتبه‌ها")
@@ -302,12 +331,15 @@ def main():
     results = sorted(
         (evaluate(customer, rules) for customer in customers),
         key=lambda result: (
+            not result["ranked"],
             bool(result["missing"]),
             -result["total"],
             str(result["code"] or ""),
         ),
     )
-    for kind in rules["customer_types"]:
+    for kind, entry in rules["customer_types"].items():
+        if not is_ranked(entry):
+            continue
         group = [result for result in results if result["type"] == kind]
         for result, place in zip(group, positions(group)):
             result["position"] = place

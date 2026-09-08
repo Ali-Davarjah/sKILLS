@@ -108,6 +108,19 @@ def reachability(rules):
     return warnings
 
 
+def is_ranked(entry):
+    """نوعی که جدول آستانه ندارد شمرده می‌شود ولی رتبه نمی‌گیرد."""
+    return entry.get("ranked", True)
+
+
+def codes_of(entry):
+    if entry.get("catch_all"):
+        return "هر کد دیگر"
+    if entry.get("codes"):
+        return ", ".join(str(code) for code in entry["codes"])
+    return "کد تأیید نشده"
+
+
 def show(rules):
     low, high = score_span(rules)
     lines = [
@@ -131,33 +144,46 @@ def show(rules):
         lines.append(f"| {entry['label']} | {span} |")
         ceiling = entry["min"]
 
-    types = list(rules["customer_types"])
-    lines += [
-        "",
-        "### معیارها و آستانه‌ها",
-        "",
-        "| معیار | کلید | ضریب | "
-        + " | ".join(rules["customer_types"][key]["label"] for key in types)
-        + " |",
-        "|---|---|---:|" + "---|" * len(types),
-    ]
-    for criterion in rules["criteria"]:
-        cells = " | ".join(
-            " / ".join(str(value) for value in criterion["thresholds"][key])
-            for key in types
-        )
-        lines.append(
-            f"| {criterion['label']} | `{criterion['key']}` | "
-            f"{criterion['weight']} | {cells} |"
-        )
-
-    codes = "، ".join(
-        f"{entry['label']} = {', '.join(str(code) for code in entry['codes'])}"
-        for entry in rules["customer_types"].values()
+    header = " | ".join(
+        f"{criterion['label']} (×{criterion['weight']})"
+        for criterion in rules["criteria"]
     )
     lines += [
         "",
-        f"چهار عدد هر ستون، حد پایینِ رتبه‌های ۲ تا ۵ است. کدهای نوع مشتری: {codes}. "
+        "### آستانه‌ها به تفکیک نوع مشتری",
+        "",
+        f"| نوع مشتری | کلید | کد | {header} |",
+        "|---|---|---|" + "---|" * len(rules["criteria"]),
+    ]
+    for key, entry in rules["customer_types"].items():
+        if not is_ranked(entry):
+            continue
+        cells = " | ".join(
+            " / ".join(str(value) for value in criterion["thresholds"].get(key) or [])
+            or "—"
+            for criterion in rules["criteria"]
+        )
+        lines.append(f"| {entry['label']} | `{key}` | {codes_of(entry)} | {cells} |")
+
+    unranked = [
+        f"{entry['label']} (`{key}` — {codes_of(entry)})"
+        for key, entry in rules["customer_types"].items()
+        if not is_ranked(entry)
+    ]
+    if unranked:
+        lines += [
+            "",
+            "**بدون رتبه — شمرده می‌شوند ولی نمره نمی‌گیرند:** "
+            + "، ".join(unranked)
+            + ".",
+            "",
+            "برای رتبه دادن به یکی از اینها اول آستانه‌ی هر سه معیارش را بگذار، "
+            "بعد `rules.py set ranked.<کلید> 1`.",
+        ]
+
+    lines += [
+        "",
+        f"چهار عدد هر خانه، حد پایینِ رتبه‌های ۲ تا ۵ است. "
         f"کف ویزیت: {rules['min_visits']}.",
     ]
 
@@ -201,6 +227,27 @@ def set_thresholds(rules, criterion_key, type_key, values):
     )
 
 
+def set_ranked(rules, type_key, values):
+    entry = type_of(rules, type_key)
+    if len(values) != 1 or values[0] not in ("0", "1"):
+        raise SystemExit("مقدار ranked یا 1 است یا 0.")
+    if values[0] == "0":
+        entry["ranked"] = False
+        return f"«{entry['label']}» دیگر رتبه نمی‌گیرد — فقط شمرده می‌شود"
+    bare = [
+        criterion["label"]
+        for criterion in rules["criteria"]
+        if not criterion["thresholds"].get(type_key)
+    ]
+    if bare:
+        raise SystemExit(
+            f"«{entry['label']}» آستانه‌ی {'، '.join(bare)} را ندارد. اول آنها را "
+            f"با `rules.py set <معیار>.{type_key} ...` بگذار، بعد ranked را روشن کن."
+        )
+    entry.pop("ranked", None)
+    return f"«{entry['label']}» از این پس رتبه می‌گیرد"
+
+
 def set_weight(rules, criterion_key, values):
     criterion = criterion_of(rules, criterion_key)
     weight = numbers(values, "ضریب")
@@ -236,9 +283,11 @@ def apply(rules, target, values):
     if "." not in target:
         raise SystemExit(
             f"هدف '{target}' را نمی‌شناسم. شکل‌های مجاز: grades، min_visits، "
-            "<معیار>.<نوع>، weight.<معیار>، codes.<نوع>."
+            "<معیار>.<نوع>، weight.<معیار>، codes.<نوع>، ranked.<نوع>."
         )
     head, key = target.split(".", 1)
+    if head == "ranked":
+        return set_ranked(rules, key, values)
     if head == "weight":
         return set_weight(rules, key, values)
     if head == "codes":
