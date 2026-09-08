@@ -55,11 +55,15 @@ DICT_PREFIX_RE = re.compile(r"^(Noe|Elat|Vahed|Goroh|Rasteh|Maghta)")
 RULE_RE = re.compile(r"^(AeenNameh?|Saghfe?|Tarefe|Zarib)")
 # ویوها: vXxx یا V_Xxx . ۲۵٪ اشیای این دیتابیس‌اند و از فهرست ستون‌ها
 # جدانشدنی‌اند مگر با همین قاعده یا با sys.tables.
-VIEW_RE = re.compile(r"^(v[A-Z_]|V_|vtmp)")
+VIEW_RE = re.compile(r"^(v[A-Z_]|V_|vtmp|vrpt)")
 # «آرشیو» در این دیتابیس دو معنی دارد: گاهی جدولِ مرده، و گاهی خودِ
 # جدولِ اصلیِ واقعیت (Sales.AmarForosh_Arshive مرکزِ کلِ گزارش‌های فروش است).
 # پس میراث علامتش نمی‌زنیم — فقط «بررسی کن» می‌گذاریم و تعداد سطر تصمیم می‌گیرد.
 ARCHIVE_RE = re.compile(r"(_Arshive?$|_Archive$|Arshiv$)", re.I)
+# جدولِ سال‌دار: عکسِ یک سال یا یک تاریخ. AmalkardRozanehPakhsh96،
+# JayezehForosh_ArshiveReport98، Kala_14020830، Taghirgheymat1402.
+YEAR_RE = re.compile(r"(?:[^0-9](9[0-9]|1[34][0-9]{2}|20[0-2][0-9])$"
+                     r"|_1[34][0-9]{6}$|_[0-9]{8}$)")
 
 # پسوندهای نقشی که روی نام یک ارجاع می‌نشینند بدون عوض‌کردن مقصد
 ROLE_SUFFIXES = ("_Link", "_Old", "_OLD", "_Jadid", "_Asli", "_Movaghat",
@@ -67,15 +71,19 @@ ROLE_SUFFIXES = ("_Link", "_Old", "_OLD", "_Jadid", "_Asli", "_Movaghat",
                  "_RoozTatil", "_Next", "_Hoghogh", "_Bimeh", "_Maliat",
                  "_Eydi", "_Parent", "_Sabegh")
 
+KEY_SUFFIXES = ("Code", "Codes")
+
 START_COLS = ("FromDate", "BeginDate", "DateBegin", "AzTarikh", "StartDate")
 END_COLS = ("EndDate", "DateEnd", "TaTarikh", "SarTarikh")
 STATUS_COLS = ("CodeVazeiat", "CodeVaziat", "CodeVazieat", "Codevazieat")
 LEDGER_COLS = ("BedBes", "BedBess")
 
 EVIDENCE_OF = {"exact": "EXACT_CC_ID_MATCH", "exact_id": "EXACT_CC_ID_MATCH",
+               "altkey": "SAME_NAME_ID_PATTERN",
                "case": "SAME_NAME_ID_PATTERN", "case_id": "SAME_NAME_ID_PATTERN",
                "suffix": "NAMING_ONLY", "tail_id": "NAMING_ONLY"}
 CONFIDENCE_OF = {"exact": "HIGH", "exact_id": "HIGH", "case": "MEDIUM",
+                 "altkey": "MEDIUM",
                  "case_id": "MEDIUM", "suffix": "LOW", "tail_id": "LOW"}
 
 SEP_TAB = chr(9)
@@ -130,7 +138,7 @@ def load_inventory_tsv(path, schema=None):
     نام دیتابیس). catalog برای حلِ ارجاع‌های بین‌اسکیمایی لازم است.
     """
     cols_by_table = defaultdict(list)
-    catalog = defaultdict(set)
+    catalog = defaultdict(lambda: defaultdict(set))
     dbname = None
     with io.open(path, encoding="utf-8-sig") as fh:
         for raw in fh:
@@ -146,7 +154,7 @@ def load_inventory_tsv(path, schema=None):
             if db.lower() in ("database", "db", "table_catalog"):
                 continue
             dbname = dbname or db
-            catalog[sch].add(tbl)
+            catalog[sch][tbl].add(col)
             if schema and sch != schema:
                 continue
             try:
@@ -157,7 +165,9 @@ def load_inventory_tsv(path, schema=None):
                 (col, typ.strip().lower(), nul.strip().upper(), pos_i))
     for t in cols_by_table:
         cols_by_table[t].sort(key=lambda c: c[3])
-    return (cols_by_table, {k: sorted(v) for k, v in catalog.items()}, dbname)
+    return (cols_by_table,
+            {k: {t: sorted(c) for t, c in v.items()}
+             for k, v in catalog.items()}, dbname)
 
 
 def load_columns(raw_dir):
@@ -248,6 +258,14 @@ def resolve(cc, tables):
             trimmed = base[: -len(suf)]
             if trimmed in tables:
                 return trimmed, "suffix"
+    # کلیدِ دوم: جدول می‌تواند دو شناسه داشته باشد و اقمارش روی دومی
+    # کلید بخورند. Warehouse.Kala هم ccKala دارد و هم ccKalaCode، و ۲۵
+    # جدولِ اقماری روی ccKalaCode می‌نشینند.
+    for suf in KEY_SUFFIXES:
+        if base.endswith(suf) and len(base) > len(suf) + 2:
+            trimmed = base[: -len(suf)]
+            if trimmed in tables:
+                return trimmed, "altkey"
     low = {t.lower(): t for t in tables}
     if base.lower() in low:
         return low[base.lower()], "case"
@@ -348,6 +366,8 @@ def classify(tbl, cols, incoming, rows, has_fks):
 
     if LEGACY_RE.search(tbl):
         flags.append("legacy")
+    elif YEAR_RE.search(tbl):
+        flags.append("year_snapshot")
     elif ARCHIVE_RE.search(tbl):
         flags.append("archive_check")
     if MIGRATION_RE.match(tbl):
@@ -412,7 +432,8 @@ def stability_of(flags, incoming):
     بدونِ شکستنِ نصفِ سیستم حذف نمی‌شود. جدولی که هیچ‌کس به آن اشاره
     نمی‌کند، می‌تواند فردا نباشد.
     """
-    if any(f in flags for f in ("legacy", "migration", "archive_check")):
+    if any(f in flags for f in ("legacy", "migration", "archive_check",
+                                "year_snapshot")):
         return "volatile"
     if incoming >= 5 or "anchor" in flags or "hub_target" in flags:
         return "core"
@@ -671,16 +692,27 @@ def main(argv=None):
 
     external = Counter()
     cross_target = {}
-    other = {s2: set(ts) for s2, ts in catalog.items() if s2 != args.schema}
+    other = {s2: ts for s2, ts in catalog.items() if s2 != args.schema}
     for t in tables:
         for c, _, _, _ in cols_by_table.get(t, []):
             if not c.startswith("cc") or resolve(c, tables)[0]:
                 continue
             external[c] += 1
             base = c[2:]
-            hits = sorted(s2 for s2, ts in other.items() if base in ts)
-            if hits:
-                cross_target[c] = "%s.%s" % (hits[0], base)
+            cands = [base]
+            for suf in ROLE_SUFFIXES + KEY_SUFFIXES:
+                if base.endswith(suf) and len(base) > len(suf) + 2:
+                    cands.append(base[: -len(suf)])
+            for cand in cands:
+                hits = sorted(s2 for s2, ts in other.items() if cand in ts)
+                if not hits:
+                    continue
+                # چند اسکیما جدولِ هم‌نام دارند؛ آنکه **همین ستون را دارد**
+                # مقصد است. Sales.ccKalaCode به Warehouse.Kala می‌رود نه
+                # Amargar.Kala، چون فقط اولی ستون ccKalaCode را دارد.
+                best = [s2 for s2 in hits if c in other[s2].get(cand, ())]
+                cross_target[c] = "%s.%s" % ((best or hits)[0], cand)
+                break
 
     schema = {
         "meta": {
@@ -827,6 +859,17 @@ def write_findings(args, schema, tables, edges, incoming, contradictions,
         for m in misleading:
             add("- `%s` → انتظار `%s` ، واقعاً `%s`"
                 % (m["table"], m["expected_parent"], m["actual_parent"]))
+        add("")
+
+    years = sorted(t for t, v in schema["tables"].items()
+                   if "year_snapshot" in v["flags"])
+    if years:
+        add("## جدول‌های سال‌دار (%d)" % len(years))
+        add("")
+        add("اسمشان به سال یا تاریخ ختم می‌شود — عکسِ یک دوره‌اند، نه جدولِ")
+        add("جاری. برای گزارشِ امروز از هیچ‌کدام عدد نگیر.")
+        add("")
+        add("`" + "`، `".join(years) + "`")
         add("")
 
     empties = sorted(t for t, v in schema["tables"].items() if v["rows"] == 0)

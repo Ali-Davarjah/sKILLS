@@ -31,6 +31,8 @@
     },
     "ccKalaCode": {
       "count": 68,
+      "resolves_to": "Warehouse.Kala",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
       "note": "کد کالا — کلیدِ کالا در آمار فروش. مقصدش هم‌نام نیست؛ Warehouse را ببین"
     },
     "ccMarkazPakhsh": {
@@ -529,6 +531,8 @@
     },
     "ccPost_Link": {
       "count": 2,
+      "resolves_to": "HumanResource.Post",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
       "note": ""
     },
     "cc": {
@@ -3649,11 +3653,12 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "effective_dated",
         "rows_unknown",
         "end_date_not_null"
       ],
-      "stability": "leaf"
+      "stability": "volatile"
     },
     "JayezehForoshConfig_Noe": {
       "domain": "tashvigh",
@@ -3765,9 +3770,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehForoshVijeh_Arshive98",
         "ccMarkazForosh",
@@ -3781,9 +3787,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehForosh_ArshiveReport",
         "ccMarkazForosh",
@@ -3802,9 +3809,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehForosh_ArshiveReport",
         "ccMarkazForosh",
@@ -3823,9 +3831,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehForoshandeh",
         "ccMantaghehForosh",
@@ -3866,9 +3875,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehForoshandeh",
         "ccMantaghehForosh",
@@ -3887,9 +3897,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehForoshandeh",
         "ccMantaghehForosh",
@@ -3929,9 +3940,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehForoshandeh",
         "ccMarkazForosh",
@@ -3947,9 +3959,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehForoshandeh",
         "ccMarkazForosh",
@@ -3965,9 +3978,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehRaeesMarkaz",
         "ccMantaghehForosh",
@@ -4000,9 +4014,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccJayezehRaeesMarkaz",
         "ccMantaghehForosh",
@@ -8519,9 +8534,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccReport",
         "ccMarkazForosh",
@@ -8540,9 +8556,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccReport",
         "ccMarkazForosh",
@@ -8561,9 +8578,10 @@
       "role": "",
       "rows": null,
       "flags": [
+        "year_snapshot",
         "rows_unknown"
       ],
-      "stability": "leaf",
+      "stability": "volatile",
       "cc": [
         "ccReport",
         "ccMarkazForosh",
@@ -9524,6 +9542,12 @@
       "evidence": "CROSS_SCHEMA_CC_MATCH",
       "verified": true,
       "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Warehouse.Kala": {
+      "via": "ccKalaCode",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "کالا — ۶۸ ارجاع، بزرگ‌ترین پلِ این اسکیما. Warehouse.Kala دو شناسه دارد و ارجاع‌های Sales روی ccKalaCode می‌نشینند نه ccKala."
     },
     "Warehouse.KalaAdamElat": {
       "via": "ccKalaAdamElat",

@@ -70,9 +70,9 @@
 | `tmpReportForoosh` | `ccRpt` | None | ledger، rows_unknown | — |
 | `tmpReportHadaf` | `ccRpt` | None | rows_unknown | — |
 | `tmpReportJaizehForosh` | `ccReport` | None | rows_unknown | — |
-| `tmpReportJaizehForosh96` | `ccReport` | None | rows_unknown | — |
-| `tmpReportJaizehForosh97` | `ccReport` | None | rows_unknown | — |
-| `tmpReportJaizehForosh98` | `ccReport` | None | rows_unknown | — |
+| `tmpReportJaizehForosh96` | `ccReport` | None | year_snapshot، rows_unknown | — |
+| `tmpReportJaizehForosh97` | `ccReport` | None | year_snapshot، rows_unknown | — |
+| `tmpReportJaizehForosh98` | `ccReport` | None | year_snapshot، rows_unknown | — |
 | `tmpReportJaizehForoshDelpazir` | `ccReport` | None | rows_unknown | — |
 | `tmpReportJaizehForoshEmtiaz` | `ccRpt` | None | rows_unknown | — |
 | `tmpReportJaizehForoshKala` | `ccRpt` | None | rows_unknown | — |
@@ -366,7 +366,7 @@
 | `JayezehForosh1400_3_Arshive` | `ccJayezehForosh1400_3_Arshive` | None | archive_check، rows_unknown | — |
 | `JayezehForosh1400_Arshive` | `ccJayezehForosh1400_Arshive` | None | archive_check، rows_unknown | — |
 | `JayezehForoshConfig` | `؟` | None | effective_dated، rows_unknown، end_date_not_null | — |
-| `JayezehForoshConfig95` | `؟` | None | effective_dated، rows_unknown، end_date_not_null | — |
+| `JayezehForoshConfig95` | `؟` | None | year_snapshot، effective_dated، rows_unknown، end_date_not_null | — |
 | `JayezehForoshConfig_Noe` | `؟` | None | rows_unknown | — |
 | `JayezehForoshDarsadKala` | `ccJayezehForoshDarsadKala` | None | rows_unknown | — |
 | `JayezehForoshEmtiazConfig` | `؟` | None | effective_dated، rows_unknown، end_date_not_null | — |
@@ -374,19 +374,19 @@
 | `JayezehForoshKalaTakidi` | `ccJayezehForoshKalaTakidi` | None | rows_unknown | — |
 | `JayezehForoshModirMantagheh_Emtiaz` | `ccEmtiaz` | None | rows_unknown | — |
 | `JayezehForoshNoeMoshtary` | `؟` | None | rows_unknown | — |
-| `JayezehForoshVijeh_Arshive98` | `ccJayezehForoshVijeh_Arshive98` | None | rows_unknown | — |
-| `JayezehForosh_ArshiveReport97` | `ccJayezehForosh_ArshiveReport` | None | rows_unknown | — |
-| `JayezehForosh_ArshiveReport98` | `ccJayezehForosh_ArshiveReport` | None | rows_unknown | — |
-| `JayezehForoshandeh1402` | `ccJayezehForoshandeh` | None | rows_unknown | — |
+| `JayezehForoshVijeh_Arshive98` | `ccJayezehForoshVijeh_Arshive98` | None | year_snapshot، rows_unknown | — |
+| `JayezehForosh_ArshiveReport97` | `ccJayezehForosh_ArshiveReport` | None | year_snapshot، rows_unknown | — |
+| `JayezehForosh_ArshiveReport98` | `ccJayezehForosh_ArshiveReport` | None | year_snapshot، rows_unknown | — |
+| `JayezehForoshandeh1402` | `ccJayezehForoshandeh` | None | year_snapshot، rows_unknown | — |
 | `JayezehForoshandeh1402_OLD` | `ccJayezehForoshandeh` | None | legacy، rows_unknown | — |
-| `JayezehForoshandeh1403` | `ccJayezehForoshandeh` | None | rows_unknown | — |
-| `JayezehForoshandeh1404` | `ccJayezehForoshandeh` | None | rows_unknown | — |
+| `JayezehForoshandeh1403` | `ccJayezehForoshandeh` | None | year_snapshot، rows_unknown | — |
+| `JayezehForoshandeh1404` | `ccJayezehForoshandeh` | None | year_snapshot، rows_unknown | — |
 | `JayezehForoshandeh14040321` | `ccJayezehForoshandeh` | None | rows_unknown | — |
-| `JayezehForoshandeh96` | `ccJayezehForoshandeh` | None | rows_unknown | — |
-| `JayezehForoshandeh97` | `ccJayezehForoshandeh` | None | rows_unknown | — |
-| `JayezehRaeesMarkaz1402` | `ccJayezehRaeesMarkaz` | None | rows_unknown | — |
+| `JayezehForoshandeh96` | `ccJayezehForoshandeh` | None | year_snapshot، rows_unknown | — |
+| `JayezehForoshandeh97` | `ccJayezehForoshandeh` | None | year_snapshot، rows_unknown | — |
+| `JayezehRaeesMarkaz1402` | `ccJayezehRaeesMarkaz` | None | year_snapshot، rows_unknown | — |
 | `JayezehRaeesMarkaz1402_OLD` | `ccJayezehRaeesMarkaz` | None | legacy، rows_unknown | — |
-| `JayezehRaeesMarkaz1403` | `ccJayezehRaeesMarkaz` | None | rows_unknown | — |
+| `JayezehRaeesMarkaz1403` | `ccJayezehRaeesMarkaz` | None | year_snapshot، rows_unknown | — |
 | `JayezehSatrKala` | `ccJayezehSatrKala` | None | rows_unknown | — |
 | `JayezehTelephoni_Arshive` | `ccJayezehTelephoni_Arshive` | None | archive_check، rows_unknown | — |
 | `KalaJayezehForosh` | `ccKalaJayezehForosh` | None | effective_dated، rows_unknown | — |

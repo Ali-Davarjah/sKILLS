@@ -1,0 +1,5629 @@
+{
+  "meta": {
+    "version": "0.1-generated",
+    "database": "PegahAI",
+    "schema": "Warehouse",
+    "source": "فهرست کاملِ اشیای PegahAI + دانشِ اسکیل تست‌شده‌ی ارزیابی فروشنده (علتِ مرجوعی)",
+    "verified_against_live_db": false,
+    "snapshot": "پشتیبانِ DB Master.xlsx",
+    "snapshot_note": "نقشه قابل اعتماد است و از آن استفاده کن. فقط بدان عکسِ یک لحظه است: فهرست اسکیماها و اشیای هسته ثابت‌اند، و در حاشیه ممکن است چند جدول اضافه یا کم شده باشد. اگر جدولی که مطمئنی هست در نقشه نبود، `map.py drift` بزن — نه اینکه بگویی وجود ندارد.",
+    "foreign_keys_declared": 0,
+    "join_rule": "اگر A.ccB هست و جدول B هم هست → حدسِ اول A.ccB = B.ccB.",
+    "warning": "یال‌های proven=false از هم‌نامی حدس زده شده‌اند و کلید خارجی ندارند."
+  },
+  "domains": {
+    "gozaresh": "گزارش و جدول موقت — منبع حقیقت نیست",
+    "kardex": "کاردکس — دفترِ گردش انبار",
+    "kala": "کالا — تعریف، گروه، بچ، معادل",
+    "anbar": "انبار و انبارک",
+    "mojody": "موجودی",
+    "sefaresh": "سفارش و درخواست",
+    "tafkik": "تفکیک، بارنامه و مأمور پخش",
+    "gheymat": "قیمت و بهای تمام‌شده",
+    "marjoee": "مرجوعی و ضایعات",
+    "kharid": "خرید و تأمین‌کننده",
+    "keyfi": "کنترل کیفی",
+    "sdpms": "SDPMS",
+    "config": "پیکربندی و مرجع",
+    "other": "دسته‌بندی‌نشده — دستی ببین"
+  },
+  "external_cc": {
+    "ccMarkazAnbar": {
+      "count": 37,
+      "note": ""
+    },
+    "ccTaminKonandeh": {
+      "count": 31,
+      "resolves_to": "Purchase.TaminKonandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkazPakhsh": {
+      "count": 27,
+      "resolves_to": "Global.MarkazPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccUser": {
+      "count": 16,
+      "note": ""
+    },
+    "ccMoshtary": {
+      "count": 12,
+      "resolves_to": "Sales.Moshtary",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfrad": {
+      "count": 11,
+      "resolves_to": "Global.Afrad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccForoshandeh": {
+      "count": 11,
+      "resolves_to": "Sales.Foroshandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccDarkhastFaktor": {
+      "count": 10,
+      "resolves_to": "Sales.DarkhastFaktor",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccUserSabegheh": {
+      "count": 10,
+      "note": ""
+    },
+    "ccElat": {
+      "count": 10,
+      "note": ""
+    },
+    "ccMarkazForosh": {
+      "count": 7,
+      "note": ""
+    },
+    "ccTafkikJoze": {
+      "count": 6,
+      "resolves_to": "Sales.TafkikJoze",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfradMamorPakhsh": {
+      "count": 5,
+      "note": ""
+    },
+    "ccNoeMashin": {
+      "count": 5,
+      "resolves_to": "Sales.NoeMashin",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccRefrence": {
+      "count": 5,
+      "note": ""
+    },
+    "ccGoroh": {
+      "count": 5,
+      "resolves_to": "Global.Goroh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMantaghehAnbarPakhsh": {
+      "count": 5,
+      "resolves_to": "Global.MantaghehAnbarPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfradRanandeh": {
+      "count": 4,
+      "note": ""
+    },
+    "ccAfradSabegheh": {
+      "count": 4,
+      "note": ""
+    },
+    "ccElatOdat": {
+      "count": 4,
+      "resolves_to": "Global.ElatOdat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMantaghehPakhsh": {
+      "count": 4,
+      "resolves_to": "Global.MantaghehPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAmalkardRozanehPakhsh": {
+      "count": 3,
+      "resolves_to": "Sales.AmalkardRozanehPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAnbarBe": {
+      "count": 3,
+      "note": ""
+    },
+    "ccVahedSize": {
+      "count": 3,
+      "note": ""
+    },
+    "ccVahedVazn": {
+      "count": 3,
+      "note": ""
+    },
+    "ccMarkazSazmanForoshSakhtarForosh": {
+      "count": 3,
+      "resolves_to": "Global.MarkazSazmanForoshSakhtarForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccPhoto": {
+      "count": 3,
+      "resolves_to": "Global.Photo",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccNoeSys": {
+      "count": 3,
+      "resolves_to": "Global.NoeSys",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfradGoroh": {
+      "count": 3,
+      "resolves_to": "Global.AfradGoroh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccKalaCodeAsli": {
+      "count": 3,
+      "note": ""
+    },
+    "ccMarkazPakhshBe": {
+      "count": 3,
+      "note": ""
+    },
+    "ccAfradMamurPakhsh": {
+      "count": 3,
+      "note": ""
+    },
+    "ccMarkazAnbarBe": {
+      "count": 3,
+      "note": ""
+    },
+    "ccElatMarjoee": {
+      "count": 3,
+      "resolves_to": "Sales.ElatMarjoee",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccSystem": {
+      "count": 2,
+      "resolves_to": "dbo.System",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkazSazmanForosh": {
+      "count": 2,
+      "resolves_to": "Global.MarkazSazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccGorohKala": {
+      "count": 2,
+      "note": ""
+    },
+    "ccKalaLink": {
+      "count": 2,
+      "note": ""
+    },
+    "ccVahedShomaresh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccTaminkonandeh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccTolidKonandeh": {
+      "count": 2,
+      "resolves_to": "Purchase.TolidKonandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfradForoshandeh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccSanad": {
+      "count": 2,
+      "resolves_to": "FinancialAccounting.Sanad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccReport": {
+      "count": 2,
+      "note": ""
+    },
+    "ccAfradSarparastRanandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradSarparastMamorPakhsh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAddress": {
+      "count": 1,
+      "resolves_to": "Global.Address",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccDamayeNegahdari": {
+      "count": 1,
+      "resolves_to": "Global.DamayeNegahdari",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccSazmanForosh": {
+      "count": 1,
+      "resolves_to": "Global.SazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAnbarAz": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexAnbarAz": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexAnbarBe": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGoroh1": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGoroh2": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGoroh3": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGoroh4": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMashin": {
+      "count": 1,
+      "resolves_to": "Sales.Mashin",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccBrandLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardex_Kahesh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardex_Afzaiesh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSystemNext": {
+      "count": 1,
+      "note": ""
+    },
+    "ccHesab": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGorohTolid": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLevelTolid": {
+      "count": 1,
+      "resolves_to": "Global.LevelTolid",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccKalaBOM": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeMohasebeh_GheymatTamamShodeh_Standard": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexVaredeh_TaminKonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexVaredeh_PishFaktor": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexVaredeh_GharantinehTolid": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexKahesh_BOMFromAnbarDarJaryan": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexKahesh_Zayeat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexAfzaiesh_Zayeat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardex_HesabrasiDarRah_Afzaiesh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardex_HesabrasiDarRah_Kahesh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexVaredeh_Tarehbar": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexKahesh_AghlamJanebi": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGoroh_AghlamJanebi": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKardexVaredeh_OutSource": {
+      "count": 1,
+      "note": ""
+    },
+    "ccControlKeyfi_ShakhesKala": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGheymatMiangin": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazPakhsh_NoeMarkazPakhshBakhsh": {
+      "count": 1,
+      "resolves_to": "Global.MarkazPakhsh_NoeMarkazPakhshBakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMahal": {
+      "count": 1,
+      "resolves_to": "Global.Mahal",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMoshtaryGharardad": {
+      "count": 1,
+      "resolves_to": "Sales.MoshtaryGharardad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccSazmanforosh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoePhoto": {
+      "count": 1,
+      "resolves_to": "Global.NoePhoto",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccKalaSahmieh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPersonel": {
+      "count": 1,
+      "resolves_to": "HumanResource.Personel",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccPost": {
+      "count": 1,
+      "resolves_to": "HumanResource.Post",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkazPakhshAsli": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAnbarOld": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradForoshandehMamorPakhsh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAnbarGhesmatOld": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradTaavoni": {
+      "count": 1,
+      "note": ""
+    },
+    "ccKalaCodeRefrence": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPosShomarehHesab": {
+      "count": 1,
+      "resolves_to": "Global.PosShomarehHesab",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccGorohForosh": {
+      "count": 1,
+      "resolves_to": "Sales.GorohForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarjooeeKamel_Image": {
+      "count": 1,
+      "note": ""
+    },
+    "cctmpSefareshKala": {
+      "count": 1,
+      "note": ""
+    },
+    "ccBrands": {
+      "count": 1,
+      "resolves_to": "dbo.Brands",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccSefareshMalzomat": {
+      "count": 1,
+      "resolves_to": "Purchase.SefareshMalzomat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccElatAdamSakhtSefaresh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSefareshVazeiat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccRanandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeMoshtary": {
+      "count": 1,
+      "note": ""
+    },
+    "ccKardexAz": {
+      "count": 1,
+      "note": ""
+    },
+    "ccKardexBe": {
+      "count": 1,
+      "note": ""
+    },
+    "ccRpt": {
+      "count": 1,
+      "note": ""
+    },
+    "ccVahedAz": {
+      "count": 1,
+      "note": ""
+    },
+    "ccVahedBe": {
+      "count": 1,
+      "note": ""
+    }
+  },
+  "tables": {
+    "AmalkardRoozanehAnbar": {
+      "domain": "gozaresh",
+      "pk": "ccAmalkardRoozanehAnbar",
+      "role": "عملکرد روزانه انبار — نسخه‌ی «Roozaneh».",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAmalkardRoozanehAnbar",
+        "ccMarkazAnbar"
+      ],
+      "note": "**دوقلو با AmalkardRozanehAnbar.** قبل از استفاده هر دو را بشمار."
+    },
+    "AmalkardRozanehAnbar": {
+      "domain": "gozaresh",
+      "pk": "ccAmalkardRozanehPakhsh",
+      "role": "عملکرد روزانه انبار — نسخه‌ی «Rozaneh».",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAmalkardRozanehPakhsh",
+        "ccMarkazPakhsh",
+        "ccMarkazAnbar"
+      ],
+      "note": "**دوقلو با AmalkardRoozanehAnbar.**"
+    },
+    "AmalkardRozanehPakhsh96": {
+      "domain": "gozaresh",
+      "pk": "ccAmalkardRozanehPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "year_snapshot",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccAmalkardRozanehPakhsh",
+        "ccMarkazAnbar",
+        "ccAfrad",
+        "ccTafkikJoze"
+      ]
+    },
+    "AmalkardRozanehPakhsh99": {
+      "domain": "gozaresh",
+      "pk": "ccAmalkardRozanehPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "year_snapshot",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccAmalkardRozanehPakhsh",
+        "ccMarkazAnbar",
+        "ccAfradMamorPakhsh",
+        "ccAfradRanandeh",
+        "ccTafkikJoze",
+        "ccAfradSarparastRanandeh",
+        "ccAfradSarparastMamorPakhsh"
+      ]
+    },
+    "Anbar": {
+      "domain": "anbar",
+      "pk": "ccAnbar",
+      "role": "انبار — زیرِ یک مرکز پخش.",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "hub_target",
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccAnbar",
+        "ccMarkazPakhsh",
+        "ccAddress",
+        "ccMarkazAnbar",
+        "ccAnbar_Noe",
+        "ccAnbar_NoeEstefadeh",
+        "ccAnbar_NoeSakhteman",
+        "ccAnbar_DamayeNegahdari",
+        "ccDamayeNegahdari",
+        "ccAnbar_Goroh",
+        "ccSazmanForosh"
+      ],
+      "note": "ccMarkazPakhsh و ccMarkazAnbar هر دو دارد؛ سطحِ متفاوت‌اند."
+    },
+    "AnbarBeAnbar": {
+      "domain": "anbar",
+      "pk": "ccAnbarBeAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbarBeAnbar",
+        "ccAnbarAz",
+        "ccAnbarBe",
+        "ccNoeKardexAnbarAz",
+        "ccNoeKardexAnbarBe"
+      ]
+    },
+    "AnbarGardany": {
+      "domain": "anbar",
+      "pk": "ccAnbarGardany",
+      "role": "انبارگردانی — سربرگِ شمارشِ موجودی.",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccAnbar",
+        "ccAnbarGardany",
+        "ccMarkazAnbar"
+      ],
+      "note": "بازه‌دار: TarikhShoro/TarikhPaian. CodeVazeiat مرحله را می‌گوید."
+    },
+    "AnbarGardanyForoshSayar": {
+      "domain": "anbar",
+      "pk": "ccAnbarGardanyForoshSayar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccAnbar",
+        "ccAnbarGardanyForoshSayar",
+        "ccForoshandeh",
+        "ccMarkazAnbar",
+        "ccMarkazForosh"
+      ]
+    },
+    "AnbarGardanyForoshSayarShomareshKala": {
+      "domain": "anbar",
+      "pk": "ccAnbarGardanyForoshSayarShomareshKala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbarGardanyForoshSayar",
+        "ccAnbarGardanyForoshSayarShomareshKala",
+        "ccKalaCode",
+        "ccAnbarGhesmat"
+      ]
+    },
+    "AnbarGardanyShomaresh": {
+      "domain": "anbar",
+      "pk": "ccAnbarGardanyShomaresh",
+      "role": "شمارشِ انبارگردانی",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbarGardany",
+        "ccAnbarGardanyShomaresh"
+      ]
+    },
+    "AnbarGardanyShomareshKala": {
+      "domain": "anbar",
+      "pk": "ccAnbarGardanyShomareshKala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbarGardanyShomaresh",
+        "ccAnbarGardanyShomareshKala",
+        "ccKalaCode",
+        "ccAnbarGhesmat"
+      ]
+    },
+    "AnbarGhesmat": {
+      "domain": "anbar",
+      "pk": "ccAnbarGhesmat",
+      "role": "قسمتِ انبار — سطحِ ریزترِ مکان.",
+      "rows": null,
+      "flags": [
+        "hub_target",
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccAnbar",
+        "ccAnbarGhesmat",
+        "ccVahedSize",
+        "ccVahedVazn",
+        "ccForoshandeh"
+      ]
+    },
+    "AnbarMalzoomat_Kala": {
+      "domain": "anbar",
+      "pk": "ccAnbarMalzoomat_Kala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbarMalzoomat_Kala",
+        "ccGoroh1",
+        "ccGoroh2",
+        "ccGoroh3",
+        "ccGoroh4",
+        "ccKalaCode"
+      ]
+    },
+    "AnbarPermission": {
+      "domain": "anbar",
+      "pk": "ccAnbarPermission",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbarPermission",
+        "ccSystem",
+        "ccUser",
+        "ccAnbar",
+        "ccAfradSabegheh"
+      ]
+    },
+    "AnbarSazmanSakhtar": {
+      "domain": "anbar",
+      "pk": "ccAnbarSazmanSakhtar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbarSazmanSakhtar",
+        "ccAnbar",
+        "ccMarkazSazmanForoshSakhtarForosh"
+      ]
+    },
+    "Anbar_DamayeNegahdari": {
+      "domain": "anbar",
+      "pk": "ccAnbar_DamayeNegahdari",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbar_DamayeNegahdari"
+      ]
+    },
+    "Anbar_Goroh": {
+      "domain": "anbar",
+      "pk": "ccAnbar_Goroh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbar_Goroh"
+      ]
+    },
+    "Anbar_Noe": {
+      "domain": "anbar",
+      "pk": "ccAnbar_Noe",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbar_Noe",
+        "ccAnbar_Goroh"
+      ]
+    },
+    "Anbar_NoeEstefadeh": {
+      "domain": "anbar",
+      "pk": "ccAnbar_NoeEstefadeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbar_NoeEstefadeh"
+      ]
+    },
+    "Anbar_NoeSakhteman": {
+      "domain": "anbar",
+      "pk": "ccAnbar_NoeSakhteman",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbar_NoeSakhteman"
+      ]
+    },
+    "Anbar_Tajhizat": {
+      "domain": "anbar",
+      "pk": "ccAnbar_Tajhizat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbar_Tajhizat"
+      ]
+    },
+    "Anbar_TajhizatJabeJaei": {
+      "domain": "anbar",
+      "pk": "ccAnbar_TajhizatJabeJaei",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbar_TajhizatJabeJaei",
+        "ccAnbarGhesmat",
+        "ccAnbar_Tajhizat"
+      ]
+    },
+    "Anbarak": {
+      "domain": "anbar",
+      "pk": "ccAnbarak",
+      "role": "انبارک — انبارِ سیار/فرعی (مثلاً روی ماشین فروش).",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccAnbarak",
+        "ccNoeAnbarak",
+        "ccMarkazAnbar",
+        "ccMarkazForosh",
+        "ccMarkazSazmanForosh"
+      ]
+    },
+    "AnbarakAfrad": {
+      "domain": "anbar",
+      "pk": "ccAnbarakAfrad",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbarakAfrad",
+        "ccAnbarak",
+        "ccForoshandeh",
+        "ccMamorPakhsh",
+        "ccAfrad",
+        "ccMashin"
+      ]
+    },
+    "Anbarak_Control": {
+      "domain": "anbar",
+      "pk": "ccAnbarak",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbarak"
+      ]
+    },
+    "BarNameh": {
+      "domain": "tafkik",
+      "pk": "ccBarNameh",
+      "role": "بارنامه — حملِ کالا به مرکز/مشتری.",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccBarNameh",
+        "ccKardex",
+        "ccNoeMashin",
+        "ccMarkazAnbar",
+        "ccUser"
+      ]
+    },
+    "BarNamehSatr": {
+      "domain": "tafkik",
+      "pk": "ccBarnamehSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccBarnamehSatr",
+        "ccRefrence",
+        "ccBarnameh",
+        "ccKalaCode",
+        "ccKardex",
+        "ccMoshtary",
+        "ccDarkhastFaktor"
+      ]
+    },
+    "BarnamehPhoto": {
+      "domain": "tafkik",
+      "pk": "ccBarnamehPhoto",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccBarnamehPhoto",
+        "ccBarnameh",
+        "ccPhoto"
+      ]
+    },
+    "Brand": {
+      "domain": "kala",
+      "pk": "ccBrand",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "tree",
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccBrand",
+        "ccBrandLink",
+        "ccUserSabegheh"
+      ]
+    },
+    "Config_Anbar": {
+      "domain": "config",
+      "pk": "ccConfig_Anbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_Anbar",
+        "ccSystem",
+        "ccNoeKardex_Kahesh",
+        "ccNoeKardex_Afzaiesh",
+        "ccSystemNext"
+      ]
+    },
+    "Config_CodingKala": {
+      "domain": "config",
+      "pk": "ccConfig_CodingKala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_CodingKala",
+        "ccNoeSys",
+        "ccAfradSabegheh"
+      ]
+    },
+    "Config_ControlKeyfi": {
+      "domain": "keyfi",
+      "pk": "ccConfig_ControlKeyfi",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_ControlKeyfi",
+        "ccNoeKardex",
+        "ccUserSabegheh"
+      ]
+    },
+    "Config_GheymatTamamShodeh": {
+      "domain": "gheymat",
+      "pk": "ccConfig_GheymatTamamShodeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "tree",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccConfig_GheymatTamamShodeh",
+        "ccConfig_GheymatTamamShodeh_Link"
+      ]
+    },
+    "Config_GheymatTamamShodeh_Hesab": {
+      "domain": "gheymat",
+      "pk": "ccConfig_GheymatTamamShodeh_Hesab",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_GheymatTamamShodeh_Hesab",
+        "ccConfig_GheymatTamamShodeh",
+        "ccHesab"
+      ]
+    },
+    "Config_GheymatTamamShodeh_Standard": {
+      "domain": "gheymat",
+      "pk": "ccConfig_GheymatTamamShodeh_Standard",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccConfig_GheymatTamamShodeh_Standard",
+        "ccTaminKonandeh",
+        "ccGorohTolid",
+        "ccLevelTolid",
+        "ccNoeSys",
+        "ccGorohKala",
+        "ccKalaCode",
+        "ccKalaBOM",
+        "ccUser"
+      ]
+    },
+    "Config_GheymatTamamShodeh_StandardSatr": {
+      "domain": "gheymat",
+      "pk": "ccConfig_GheymatTamamShodeh_StandardSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "detail",
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_GheymatTamamShodeh_StandardSatr",
+        "ccConfig_GheymatTamamShodeh_Standard",
+        "ccConfig_GheymatTamamShodeh",
+        "ccNoeMohasebeh_GheymatTamamShodeh_Standard"
+      ]
+    },
+    "Config_GorohKala": {
+      "domain": "config",
+      "pk": "ccConfig_GorohKala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_GorohKala",
+        "ccNoeSys",
+        "ccGoroh",
+        "ccAfradSabegheh"
+      ]
+    },
+    "Config_TajziehTahlilAnbar": {
+      "domain": "config",
+      "pk": "ccConfig_TajziehTahlilAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_TajziehTahlilAnbar"
+      ]
+    },
+    "Config_Varedeh": {
+      "domain": "config",
+      "pk": "ccConfig_Varedeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_Varedeh",
+        "ccNoeKardexVaredeh_TaminKonandeh",
+        "ccNoeKardexVaredeh_PishFaktor",
+        "ccNoeKardexVaredeh_GharantinehTolid",
+        "ccNoeKardexKahesh_BOMFromAnbarDarJaryan",
+        "ccNoeKardexKahesh_Zayeat",
+        "ccNoeKardexAfzaiesh_Zayeat",
+        "ccNoeKardex_HesabrasiDarRah_Afzaiesh",
+        "ccNoeKardex_HesabrasiDarRah_Kahesh",
+        "ccNoeKardexVaredeh_Tarehbar",
+        "ccNoeKardexKahesh_AghlamJanebi",
+        "ccGoroh_AghlamJanebi",
+        "ccNoeKardexVaredeh_OutSource"
+      ]
+    },
+    "ControlKeyfi_Azmon": {
+      "domain": "keyfi",
+      "pk": "ccControlKeyfi_Azmon",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccControlKeyfi_Azmon",
+        "ccKardexSatr",
+        "ccUserSabegheh"
+      ]
+    },
+    "ControlKeyfi_AzmonSatr": {
+      "domain": "keyfi",
+      "pk": "ccControlKeyfi_AzmonSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccControlKeyfi_AzmonSatr",
+        "ccControlKeyfi_Azmon",
+        "ccControlKeyfi_ShakhesKala",
+        "ccUserSabegheh"
+      ]
+    },
+    "DarkhastMalzomat": {
+      "domain": "sefaresh",
+      "pk": "ccDarkhastMalzomat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccDarkhastMalzomat",
+        "ccMarkazAnbar",
+        "ccAnbar",
+        "ccUser",
+        "ccElatOdatMalzomat"
+      ]
+    },
+    "DarkhastMalzomatSatr": {
+      "domain": "sefaresh",
+      "pk": "ccDarkhastMalzomatSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDarkhastMalzomatSatr",
+        "ccDarkhastMalzomat",
+        "ccKalaCode"
+      ]
+    },
+    "DastehBandiNezaraty": {
+      "domain": "kala",
+      "pk": "ccDastehBandiNezaraty",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeDastehBandiNezaraty",
+        "ccDastehBandiNezaraty"
+      ]
+    },
+    "ElamMarjoeeZayeatAnbarak": {
+      "domain": "marjoee",
+      "pk": "ccElamMarjoeeZayeatAnbarak",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccElamMarjoeeZayeatAnbarak",
+        "ccDarkhastFaktor",
+        "ccKardexAnbarak",
+        "ccKardexAnbarakSatr",
+        "ccKalaCode"
+      ]
+    },
+    "ElatMarjoeeKala": {
+      "domain": "marjoee",
+      "pk": "ccElatMarjoeeKala",
+      "role": "علتِ مرجوعی کالا — و **مسئولیتِ آن**.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccElatMarjoeeKala"
+      ],
+      "note": "MasoleiatElat: **۱ فروش**، ۲ پخش، ۳ تولید، ۴ فروش و پخش، ۰ نامشخص. اسکیل ارزیابی فروشنده فقط ۱ را «مرجوعی ویزیتور» می‌شمارد. IsZayeat و IsZayeatTolid ضایعات را جدا می‌کنند."
+    },
+    "ElatOdatMalzomat": {
+      "domain": "sefaresh",
+      "pk": "ccElatOdatMalzomat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "reason_dict",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccElatOdatMalzomat"
+      ]
+    },
+    "FaktorKharid": {
+      "domain": "kharid",
+      "pk": "ccFaktorKharid",
+      "role": "فاکتور خرید",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccTaminKonandeh",
+        "ccFaktorKharid"
+      ]
+    },
+    "FaktorKharidSatr": {
+      "domain": "kharid",
+      "pk": "ccFaktorKharidSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccFaktorKharid",
+        "ccFaktorKharidSatr",
+        "ccKalaCode"
+      ]
+    },
+    "FaktorKharidSatrAnbar": {
+      "domain": "kharid",
+      "pk": "ccFaktorKharidSatrAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccFaktorKharidSatr",
+        "ccFaktorKharidSatrAnbar",
+        "ccKardexSatr"
+      ]
+    },
+    "GheymatMianginKala": {
+      "domain": "gheymat",
+      "pk": null,
+      "role": "قیمت میانگین کالا",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccKardexSatr"
+      ]
+    },
+    "GheymatMianginKalaTaminKonandeh": {
+      "domain": "gheymat",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccTaminKonandeh"
+      ]
+    },
+    "GheymatMiangin_Arshiv": {
+      "domain": "gheymat",
+      "pk": "ccGheymatMiangin",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "archive_check",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccGheymatMiangin",
+        "ccKalaCode"
+      ]
+    },
+    "GorohPakhsh": {
+      "domain": "kala",
+      "pk": "ccGorohPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccGorohPakhsh",
+        "ccMarkazPakhsh_NoeMarkazPakhshBakhsh",
+        "ccAfrad",
+        "ccMarkazAnbar"
+      ]
+    },
+    "GorohPakhshMahal": {
+      "domain": "kala",
+      "pk": "ccGorohPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccGorohPakhsh",
+        "ccMahal"
+      ]
+    },
+    "HadafMarkazAnbar": {
+      "domain": "anbar",
+      "pk": "ccHadafMarkazAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccHadafMarkazAnbar",
+        "ccMarkazAnbar",
+        "ccKalaCode"
+      ]
+    },
+    "JaizehMamorPakhsh96_ArshiveReport98": {
+      "domain": "gozaresh",
+      "pk": "ccJaizehMamorPakhsh96_ArshiveReport98",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "year_snapshot",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccJaizehMamorPakhsh96_ArshiveReport98",
+        "ccMarkazAnbar",
+        "ccMantaghehAnbarPakhsh",
+        "ccAfrad",
+        "ccGorohPakhsh",
+        "ccAfradGoroh"
+      ]
+    },
+    "Kala": {
+      "domain": "kala",
+      "pk": "ccKala",
+      "role": "کالا — جدول مرجعِ محصول با **دو شناسه**.",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "tree",
+        "anchor",
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccKala",
+        "ccKalaCode",
+        "ccKalaLink",
+        "ccBrand",
+        "ccVahedSize",
+        "ccVahedVazn",
+        "ccVahedShomaresh",
+        "ccUserSabegheh"
+      ],
+      "note": "`ccKala` کلید جانشین است و `ccKalaCode` کدِ کالا. **بیشترِ اقمار روی ccKalaCode کلید می‌خورند، نه ccKala** — و ارجاع‌های Sales هم به همین می‌آیند. ccKalaLink سلسله‌مراتبِ کالاست."
+    },
+    "KalaAdamElat": {
+      "domain": "kala",
+      "pk": "ccKalaAdamElat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaAdamElat"
+      ]
+    },
+    "KalaAdamMarjoee": {
+      "domain": "kala",
+      "pk": "ccKalaAdamMarjoee",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccMarkazPakhsh",
+        "ccKalaAdamMarjoee",
+        "ccElat",
+        "ccMarkazAnbar"
+      ]
+    },
+    "KalaAdamSefaresh": {
+      "domain": "kala",
+      "pk": "ccKalaAdamSefaresh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccMarkazPakhsh",
+        "ccKalaAdamSefaresh",
+        "ccElat",
+        "ccMarkazAnbar"
+      ]
+    },
+    "KalaAnbar": {
+      "domain": "kala",
+      "pk": "ccKalaAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbar",
+        "ccKalaCode",
+        "ccKalaAnbar",
+        "ccUserSabegheh"
+      ]
+    },
+    "KalaAnbarForoshandeh": {
+      "domain": "kala",
+      "pk": "ccKalaAnbarForoshandeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaAnbarForoshandeh",
+        "ccKalaCode",
+        "ccForoshandeh"
+      ]
+    },
+    "KalaAnbarGhesmat": {
+      "domain": "kala",
+      "pk": "ccKalaCode",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccAnbarGhesmat"
+      ]
+    },
+    "KalaAnbarMoshtary": {
+      "domain": "kala",
+      "pk": "ccKalaAnbarMoshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaAnbarMoshtary",
+        "ccKalaCode",
+        "ccMoshtary",
+        "ccTaminKonandeh"
+      ]
+    },
+    "KalaArzeshAfzodeh": {
+      "domain": "kala",
+      "pk": "ccKalaArzeshAfzodeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaArzeshAfzodeh",
+        "ccKalaCode",
+        "ccTaminKonandeh",
+        "ccUserSabegheh"
+      ]
+    },
+    "KalaAsli": {
+      "domain": "kala",
+      "pk": "ccKalaCodeAsli",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCodeAsli",
+        "ccUser"
+      ]
+    },
+    "KalaBachAdamForosh": {
+      "domain": "kala",
+      "pk": "ccKalaBachAdamForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccKalaBachAdamForosh",
+        "ccElat"
+      ]
+    },
+    "KalaBachAdamMarjoee": {
+      "domain": "kala",
+      "pk": "ccKalaBachAdamMarjoee",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccKalaBachAdamMarjoee",
+        "ccElat"
+      ]
+    },
+    "KalaDastehBandiNezaraty": {
+      "domain": "kala",
+      "pk": "ccKalaDastehBandiNezaraty",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaDastehBandiNezaraty",
+        "ccKalaCode",
+        "ccDastehBandiNezaraty"
+      ]
+    },
+    "KalaGheymatKharid": {
+      "domain": "kala",
+      "pk": "ccKalaGheymatKharid",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccTaminkonandeh",
+        "ccKalaGheymatKharid",
+        "ccUserSabegheh"
+      ]
+    },
+    "KalaGheymatMasrafKonandeh": {
+      "domain": "kala",
+      "pk": "ccKalaGheymatMasrafKonandeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccKalaGheymatMasrafKonandeh",
+        "ccUserSabegheh"
+      ]
+    },
+    "KalaGoroh": {
+      "domain": "kala",
+      "pk": "ccKalaCode",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccGoroh"
+      ]
+    },
+    "KalaHamsan": {
+      "domain": "kala",
+      "pk": "ccKalaHamsan",
+      "role": "کالای همسان/معادل.",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaHamsan",
+        "ccKalaCodeAsli",
+        "ccKalaCode",
+        "ccUser"
+      ]
+    },
+    "KalaHamsanOld": {
+      "domain": "kala",
+      "pk": "ccKalaHamsanOld",
+      "role": "کالای همسان — نسخه‌ی قدیمی.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaHamsanOld",
+        "ccKalaCodeAsli",
+        "ccKalaCode"
+      ],
+      "note": "پسوند Old؛ قبل از استفاده تأیید بگیر."
+    },
+    "KalaModatEngheza": {
+      "domain": "kala",
+      "pk": "ccKalaModatEngheza",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaModatEngheza",
+        "ccKalaCode"
+      ]
+    },
+    "KalaMosavabeh": {
+      "domain": "kala",
+      "pk": "ccKalaMosavabeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaMosavabeh",
+        "ccKalaCode",
+        "ccMoshtary",
+        "ccUser",
+        "ccMoshtaryGharardad",
+        "ccSazmanforosh"
+      ]
+    },
+    "KalaPegahKadbanooProject": {
+      "domain": "kala",
+      "pk": "ccKalaPegahKadbanooProject",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaPegahKadbanooProject",
+        "ccKalaCode"
+      ]
+    },
+    "KalaPhoto": {
+      "domain": "kala",
+      "pk": "ccKalaCode",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccPhoto",
+        "ccNoePhoto"
+      ]
+    },
+    "KalaSahmiehBandy": {
+      "domain": "kala",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccKalaSahmieh"
+      ]
+    },
+    "KalaShomarehBach": {
+      "domain": "kala",
+      "pk": "ccKalaCode",
+      "role": "ثبتِ بچ — کالا × شماره بچ، با تاریخ تولید و انقضا.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccTaminKonandeh",
+        "ccTolidKonandeh"
+      ],
+      "note": "کلیدش ccKalaCode است نه ccKala."
+    },
+    "KalaTaminKonandeh": {
+      "domain": "kala",
+      "pk": "ccKalaCode",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccTaminKonandeh"
+      ]
+    },
+    "KalaTolidKonandeh": {
+      "domain": "kala",
+      "pk": "ccKalaCode",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccTolidKonandeh"
+      ]
+    },
+    "KalaVazeiat": {
+      "domain": "kala",
+      "pk": "ccKalaVazeiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKalaVazeiat"
+      ]
+    },
+    "KalaZaribBazariaby": {
+      "domain": "kala",
+      "pk": "ccKalaZaribBazariaby",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccKalaZaribBazariaby"
+      ]
+    },
+    "KalaZaribSefareshAnbarShobeh": {
+      "domain": "kala",
+      "pk": "ccKalaZaribSefareshAnbarShobeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaZaribSefareshAnbarShobeh",
+        "ccKalaCode",
+        "ccMarkazAnbar",
+        "ccUser"
+      ]
+    },
+    "KalaZayeatTolid": {
+      "domain": "kala",
+      "pk": "ccKalaZayeatTolid",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaZayeatTolid",
+        "ccKalaCode",
+        "ccAfradSabegheh",
+        "ccElatOdat"
+      ]
+    },
+    "Kala_14020830": {
+      "domain": "kala",
+      "pk": "ccKala",
+      "role": "عکسِ جدول کالا در تاریخ ۱۴۰۲/۰۸/۳۰.",
+      "rows": null,
+      "flags": [
+        "year_snapshot",
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccKala",
+        "ccKalaCode",
+        "ccKalaLink",
+        "ccBrand",
+        "ccVahedSize",
+        "ccVahedVazn",
+        "ccVahedShomaresh",
+        "ccUserSabegheh"
+      ],
+      "note": "**جدولِ جاری نیست.** برای گزارش امروز از Kala بگیر."
+    },
+    "KaranehAnbar": {
+      "domain": "anbar",
+      "pk": "ccKaranehAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKaranehAnbar",
+        "ccAmalkardRoozanehAnbar",
+        "ccAfrad",
+        "ccPersonel",
+        "ccPost"
+      ]
+    },
+    "Kardex": {
+      "domain": "kardex",
+      "pk": "ccKardex",
+      "role": "سربرگِ گردش انبار — دفترِ مرکزیِ ورود و خروج کالا.",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "hub_target",
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccAnbar",
+        "ccKardex",
+        "ccMarkazPakhshBe",
+        "ccRefrence",
+        "ccUser",
+        "ccMoshtary",
+        "ccForoshandeh",
+        "ccAfradMamurPakhsh",
+        "ccMarkazPakhshAsli",
+        "ccAfradForoshandeh",
+        "ccSanad",
+        "ccMarkazAnbar",
+        "ccMarkazForosh",
+        "ccMarkazAnbarBe",
+        "ccAnbarOld",
+        "ccTafkikJoze",
+        "ccMarkazSazmanForosh",
+        "ccNoeKardex",
+        "ccAfradMamorPakhsh",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccElatOdat",
+        "ccAnbarSazmanSakhtar",
+        "ccElatMarjoee",
+        "ccAnbarBe"
+      ],
+      "note": "CodeNoeAmalyat جهتِ حرکت را می‌گوید و CodeNoeForm نوعِ فرم. **ccRefrence چندریخت است** — به سندی در دامنه‌ی دیگر اشاره می‌کند و بدونِ دانستنِ نوعش قابل تفسیر نیست. CodeVazeiat را فیلتر کن."
+    },
+    "KardexAnbarak": {
+      "domain": "kardex",
+      "pk": "ccKardexAnbarak",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKardexAnbarak",
+        "ccAnbarak",
+        "ccRefrence",
+        "ccUser",
+        "ccMoshtary",
+        "ccElatOdat",
+        "ccNoeKardex",
+        "ccForoshandeh",
+        "ccMamorPakhsh",
+        "ccAfradForoshandehMamorPakhsh",
+        "ccAnbar",
+        "ccAnbarSazmanSakhtar",
+        "ccElatMarjoee",
+        "ccAfrad"
+      ]
+    },
+    "KardexAnbarakSatr": {
+      "domain": "kardex",
+      "pk": "ccKardexAnbarakSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKardexAnbarakSatr",
+        "ccKardexAnbarak",
+        "ccTaminKonandeh",
+        "ccKalaCode",
+        "ccElat"
+      ]
+    },
+    "KardexPPC": {
+      "domain": "kardex",
+      "pk": "ccMarkazPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccAnbar",
+        "ccKardex",
+        "ccMarkazPakhshBe",
+        "ccRefrence",
+        "ccUser",
+        "ccMoshtary",
+        "ccForoshandeh"
+      ]
+    },
+    "KardexPhoto": {
+      "domain": "kardex",
+      "pk": "ccKardexPhoto",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardexPhoto",
+        "ccPhoto",
+        "ccKardex"
+      ]
+    },
+    "KardexSatr": {
+      "domain": "kardex",
+      "pk": "ccKardexSatr",
+      "role": "سطرِ گردش انبار — کالا، بچ، تعداد، قیمت.",
+      "rows": null,
+      "flags": [
+        "detail",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccKardex",
+        "ccKardexSatr",
+        "ccTaminKonandeh",
+        "ccKala",
+        "ccKalaCode",
+        "ccElat",
+        "ccDarkhastFaktor",
+        "ccAfrad",
+        "ccSanad"
+      ],
+      "note": "**هم ccKala دارد و هم ccKalaCode.** سه ستون تعداد (Tedad1/2/3) و سه ستون قیمت (Gheymat/2/3) دارد — کدام واحد و کدام قیمت را می‌خواهی باید تعیین کنی. ShomarehBach دانه را ضرب می‌کند: یک کالا به ازای هر بچ یک سطر."
+    },
+    "KardexSatrGhesmat": {
+      "domain": "kardex",
+      "pk": "ccKardexSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardexSatr",
+        "ccAnbarGhesmat",
+        "ccForoshandeh",
+        "ccAnbarGhesmatOld"
+      ]
+    },
+    "KardexSatrGhesmatPPC": {
+      "domain": "kardex",
+      "pk": "ccKardexSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardexSatr",
+        "ccAnbarGhesmat",
+        "ccForoshandeh"
+      ]
+    },
+    "KardexSatrPPC": {
+      "domain": "kardex",
+      "pk": "ccKardex",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardex",
+        "ccKardexSatr",
+        "ccTaminKonandeh",
+        "ccKala",
+        "ccKalaCode",
+        "ccElat",
+        "ccDarkhastFaktor",
+        "ccAfrad"
+      ]
+    },
+    "KardexSatr_GheymatMiangin": {
+      "domain": "kardex",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardexSatr"
+      ]
+    },
+    "KardexSharh": {
+      "domain": "kardex",
+      "pk": "ccKardexSharh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardexSharh",
+        "ccKardex"
+      ]
+    },
+    "KardexTolid": {
+      "domain": "kardex",
+      "pk": "ccKardexTolid",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKardexTolid",
+        "ccAnbar",
+        "ccRefrence",
+        "ccUser",
+        "ccMoshtary",
+        "ccForoshandeh",
+        "ccAfradMamorPakhsh",
+        "ccAfradForoshandeh",
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccMarkazAnbar",
+        "ccMarkazAnbarBe",
+        "ccTafkikJoze",
+        "ccElatOdat",
+        "ccNoeKardex",
+        "ccAnbarSazmanSakhtar",
+        "ccElatMarjoee",
+        "ccAnbarBe",
+        "ccElat",
+        "ccKardex"
+      ]
+    },
+    "KardexTolidSatr": {
+      "domain": "kardex",
+      "pk": "ccKardexTolidSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKardexTolidSatr",
+        "ccKardexTolid",
+        "ccTaminKonandeh",
+        "ccKalaCode",
+        "ccElat",
+        "ccAfradTaavoni",
+        "ccKalaCodeRefrence"
+      ]
+    },
+    "KardexTolidSatrGhesmat": {
+      "domain": "kardex",
+      "pk": "ccKardexTolidSatrGhesmat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardexTolidSatrGhesmat",
+        "ccKardexTolidSatr",
+        "ccAnbarGhesmat"
+      ]
+    },
+    "KardexTolidSharh": {
+      "domain": "kardex",
+      "pk": "ccKardexTolidSharh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardexTolidSharh",
+        "ccKardexTolid"
+      ]
+    },
+    "KardexVazeiat": {
+      "domain": "kardex",
+      "pk": "ccKardexVazeiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKardexVazeiat"
+      ]
+    },
+    "KardexVazeiatPPC": {
+      "domain": "kardex",
+      "pk": "ccKardex",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKardex",
+        "ccKardexVazeiat"
+      ]
+    },
+    "MamorPakhsh": {
+      "domain": "tafkik",
+      "pk": "ccMamorPakhsh",
+      "role": "مأمور پخش",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMamorPakhsh",
+        "ccMarkazPakhsh",
+        "ccGorohPakhsh",
+        "ccNoeMamorPakhsh",
+        "ccAfrad",
+        "ccMarkazAnbar",
+        "ccPosShomarehHesab",
+        "ccGorohForosh"
+      ]
+    },
+    "MamorPakhshEtebar": {
+      "domain": "tafkik",
+      "pk": "ccMamorPakhshEtebar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMamorPakhshEtebar",
+        "ccMamorPakhsh",
+        "ccUser"
+      ]
+    },
+    "MarjoeeKamel_Image": {
+      "domain": "marjoee",
+      "pk": "ccMarjooeeKamel_Image",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarjooeeKamel_Image",
+        "ccKardex",
+        "ccMoshtary"
+      ]
+    },
+    "MizanMasrafMalzomat": {
+      "domain": "sefaresh",
+      "pk": "ccMizanMasrafMalzomat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMizanMasrafMalzomat",
+        "ccMarkazPakhsh",
+        "ccKalaCode",
+        "ccTaminKonandeh",
+        "ccMarkazAnbar"
+      ]
+    },
+    "ModatMojazErsaleSefaresh": {
+      "domain": "sefaresh",
+      "pk": "ccModatMojazErsaleSefaresh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccModatMojazErsaleSefaresh",
+        "ccTaminKonandeh"
+      ]
+    },
+    "MojodyAnbarGharantineh": {
+      "domain": "mojody",
+      "pk": "ccMojodyAnbarGharantineh",
+      "role": "موجودی انبار قرنطینه",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodyAnbarGharantineh",
+        "ccMarkazAnbar",
+        "ccKalaCode",
+        "ccAnbarGhesmat",
+        "ccTaminKonandeh"
+      ]
+    },
+    "MojodyAnbarZayeat": {
+      "domain": "mojody",
+      "pk": "ccMojodyAnbarZayeat",
+      "role": "موجودی انبار ضایعات",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodyAnbarZayeat",
+        "ccMarkazAnbar",
+        "ccKalaCode",
+        "ccAnbarGhesmat",
+        "ccTaminKonandeh"
+      ]
+    },
+    "MojodyForosh": {
+      "domain": "mojody",
+      "pk": "ccMojodyForosh",
+      "role": "موجودیِ قابل فروش — **عکسِ روزانه**، به تفکیک تاریخ × مرکز × کالا × قسمت × بچ.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodyForosh",
+        "ccMarkazPakhsh",
+        "ccKalaCode",
+        "ccAnbarGhesmat",
+        "ccMarkazAnbar",
+        "ccTaminKonandeh"
+      ],
+      "note": "چون تاریخ‌دار است، هر روز یک نسخه دارد. برای «موجودی الان» آخرین تاریخ را بگیر، نه جمعِ همه‌ی تاریخ‌ها — وگرنه موجودی چند برابر می‌شود."
+    },
+    "MojodyForoshAnbar": {
+      "domain": "mojody",
+      "pk": "ccMojodyForoshAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodyForoshAnbar",
+        "ccAnbar",
+        "ccKalaCode",
+        "ccMarkazAnbar",
+        "ccTaminKonandeh"
+      ]
+    },
+    "MojodyForoshAnbarak": {
+      "domain": "mojody",
+      "pk": "ccMojodyForoshAnbarak",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodyForoshAnbarak",
+        "ccAnbarak",
+        "ccKalaCode",
+        "ccTaminKonandeh",
+        "ccAnbar"
+      ]
+    },
+    "MojodyForosh_ArshiveJob": {
+      "domain": "mojody",
+      "pk": "ccMojodyForosh_ArshiveJob",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodyForosh_ArshiveJob",
+        "ccAnbar",
+        "ccAnbarak"
+      ]
+    },
+    "MojodyMajazi": {
+      "domain": "mojody",
+      "pk": "ccMojodyMajazi",
+      "role": "موجودی مجازی",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodyMajazi",
+        "ccAnbar",
+        "ccTaminkonandeh",
+        "ccKalaCode",
+        "ccUser"
+      ]
+    },
+    "MojodyMoshtary": {
+      "domain": "mojody",
+      "pk": "ccMojodyMoshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodyMoshtary",
+        "ccMarkazPakhsh",
+        "ccKalaCode",
+        "ccTaminKonandeh",
+        "ccMoshtary",
+        "ccMarkazForosh",
+        "ccNoeMashin",
+        "ccBrand"
+      ]
+    },
+    "MojodySefaresh": {
+      "domain": "mojody",
+      "pk": "ccMojodySefaresh",
+      "role": "موجودیِ سفارش‌شده",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMojodySefaresh",
+        "ccMarkazPakhsh",
+        "ccKalaCode",
+        "ccTaminKonandeh",
+        "ccDarkhastFaktor",
+        "ccMarkazAnbar"
+      ]
+    },
+    "NoeAmalyatKardex": {
+      "domain": "kardex",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected"
+    },
+    "NoeAnbarak": {
+      "domain": "config",
+      "pk": "ccNoeAnbarak",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeAnbarak"
+      ]
+    },
+    "NoeDastehBandiNezaraty": {
+      "domain": "kala",
+      "pk": "ccNoeDastehBandiNezaraty",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeDastehBandiNezaraty"
+      ]
+    },
+    "NoeFormKardex": {
+      "domain": "kardex",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected"
+    },
+    "NoeKardex": {
+      "domain": "kardex",
+      "pk": "ccNoeKardex",
+      "role": "نوع کاردکس.",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeKardex"
+      ],
+      "note": "IsYekTarafe یعنی حرکتِ یک‌طرفه (فقط ورود یا فقط خروج)."
+    },
+    "NoeMamorPakhsh": {
+      "domain": "tafkik",
+      "pk": "ccNoeMamorPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeMamorPakhsh"
+      ]
+    },
+    "NoeSanadSdpms": {
+      "domain": "sdpms",
+      "pk": "ccNoeSanadSdpms",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeSanadSdpms"
+      ]
+    },
+    "NoeSefaresh": {
+      "domain": "config",
+      "pk": "ccNoeSefaresh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeSefaresh"
+      ]
+    },
+    "SabeghehSefareshKala": {
+      "domain": "sefaresh",
+      "pk": "cctmpSefareshKala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "cctmpSefareshKala",
+        "ccMarkazPakhsh",
+        "ccTaminKonandeh",
+        "ccKalaCode",
+        "ccKala",
+        "ccMoshtary",
+        "ccBrands",
+        "ccDarkhastFaktor",
+        "ccMarkazForosh",
+        "ccMarkazAnbar"
+      ]
+    },
+    "SabeghehSefareshMalzomatKala": {
+      "domain": "sefaresh",
+      "pk": "ccSabeghehSefareshMalzomatKala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSabeghehSefareshMalzomatKala",
+        "ccKalaCode",
+        "ccKala",
+        "ccSefareshMalzomat",
+        "ccTaminKonandeh"
+      ]
+    },
+    "Sdpms": {
+      "domain": "sdpms",
+      "pk": "ccSdpms",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown",
+        "nonstandard_start:AzTarikh",
+        "end_date_not_null"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSdpms",
+        "ccNoeSanadSdpms",
+        "ccUser"
+      ]
+    },
+    "SdpmsLog": {
+      "domain": "sdpms",
+      "pk": "ccSdpmsLog",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSdpmsLog"
+      ]
+    },
+    "SdpmsSatr": {
+      "domain": "sdpms",
+      "pk": "ccSdpmsSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSdpmsSatr",
+        "ccSdpms",
+        "ccKardex",
+        "ccDarkhastFaktor"
+      ]
+    },
+    "Sefaresh": {
+      "domain": "sefaresh",
+      "pk": "ccSefaresh",
+      "role": "سفارشِ انبار — سربرگ.",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "tree",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccSefaresh",
+        "ccDarkhastFaktor",
+        "ccNoeMashin",
+        "ccSefaresh_Link",
+        "ccMarkazAnbar"
+      ],
+      "note": "ccDarkhastFaktor پل به Sales است: سفارش از فاکتور فروش می‌آید."
+    },
+    "SefareshAnbarak": {
+      "domain": "sefaresh",
+      "pk": "ccSefareshAnbarak",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSefareshAnbarak",
+        "ccAnbarak",
+        "ccNoeSefaresh",
+        "ccElatAdamSakhtSefaresh"
+      ]
+    },
+    "SefareshAnbarakSatr": {
+      "domain": "sefaresh",
+      "pk": "ccSefareshAnbarakSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSefareshAnbarak",
+        "ccSefareshAnbarakSatr",
+        "ccKalaCode",
+        "ccTaminKonandeh"
+      ]
+    },
+    "SefareshAnbarakVazeiat": {
+      "domain": "sefaresh",
+      "pk": "ccSefareshVazeiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSefareshVazeiat"
+      ]
+    },
+    "SefareshNoeBastehBandyKala": {
+      "domain": "sefaresh",
+      "pk": "ccSefareshNoeBastehBandyKala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSefareshNoeBastehBandyKala",
+        "ccMarkazPakhsh",
+        "ccKalaCode"
+      ]
+    },
+    "SefareshNoeMashin": {
+      "domain": "sefaresh",
+      "pk": "ccSefareshNoeMashin",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSefareshNoeMashin",
+        "ccTaminKonandeh",
+        "ccNoeMashin",
+        "ccMoshtary",
+        "ccBrand",
+        "ccMarkazAnbar",
+        "ccMarkazForosh"
+      ]
+    },
+    "SefareshSatr": {
+      "domain": "sefaresh",
+      "pk": "ccSefareshSatr",
+      "role": "سطر سفارش — کالا، تعداد، تأمین‌کننده، بچ.",
+      "rows": null,
+      "flags": [
+        "detail",
+        "effective_dated",
+        "rows_unknown",
+        "nonstandard_start:AzTarikh"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSefaresh",
+        "ccSefareshSatr",
+        "ccKala",
+        "ccTaminKonandeh"
+      ],
+      "note": "Tedad1/Tedad2 دو واحد."
+    },
+    "SystemConfig": {
+      "domain": "config",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf"
+    },
+    "TafkikJozeForoshSayar": {
+      "domain": "tafkik",
+      "pk": "ccTafkikJozeForoshSayar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccTafkikJozeForoshSayar",
+        "ccMarkazPakhsh",
+        "ccKardex",
+        "ccAfradRanandeh",
+        "ccUser",
+        "ccRanandeh",
+        "ccMarkazAnbar"
+      ]
+    },
+    "TafkikKolForoshSayar": {
+      "domain": "tafkik",
+      "pk": "ccTafkikKolForoshSayar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccTafkikKolForoshSayar"
+      ]
+    },
+    "TafkikKolForoshSayarSatr": {
+      "domain": "tafkik",
+      "pk": "ccTafkikKolForoshSayar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTafkikKolForoshSayar",
+        "ccTafkikJozeForoshSayar"
+      ]
+    },
+    "TafkikKolMalzomat": {
+      "domain": "tafkik",
+      "pk": "ccTafkikKolMalzomat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccTafkikKolMalzomat",
+        "ccMarkazAnbar"
+      ]
+    },
+    "TafkikKolMalzomatSatr": {
+      "domain": "tafkik",
+      "pk": "ccTafkikKolMalzomat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTafkikKolMalzomat",
+        "ccDarkhastMalzomat"
+      ]
+    },
+    "TmpGroupKala": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode"
+      ]
+    },
+    "Tmp_AmarForoshTaminKonandeh": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccNoeMoshtary",
+        "ccMarkazPakhsh",
+        "ccMantaghehPakhsh",
+        "ccGoroh",
+        "ccKalaCode"
+      ]
+    },
+    "Tmp_EnteghalAnbar": {
+      "domain": "gozaresh",
+      "pk": "ccTmp_EnteghalAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccTmp_EnteghalAnbar",
+        "ccKardexAz",
+        "ccKardexBe",
+        "ccKala",
+        "ccKalaCode",
+        "ccTaminKonandeh"
+      ]
+    },
+    "Tmp_EnteghalSefarsh": {
+      "domain": "gozaresh",
+      "pk": "ccSefaresh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccSefaresh",
+        "ccDarkhastFaktor"
+      ]
+    },
+    "Tmp_KasriAnbar": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazAnbar",
+        "ccKalaCode",
+        "ccTaminKonandeh"
+      ]
+    },
+    "Tmp_MojodyAnbar": {
+      "domain": "gozaresh",
+      "pk": "ccRpt",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccRpt",
+        "ccMarkazPakhsh",
+        "ccMantaghehPakhsh",
+        "ccGoroh",
+        "ccTaminKonandeh",
+        "ccKala",
+        "ccKalaCode",
+        "ccMarkazPakhshBe",
+        "ccMarkazAnbar",
+        "ccMantaghehAnbarPakhsh",
+        "ccMarkazAnbarBe"
+      ]
+    },
+    "Tmp_MojodyKadBanoo_Namayandehgan": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMoshtary"
+      ]
+    },
+    "Tmp_MojodyKadbanoo": {
+      "domain": "gozaresh",
+      "pk": "ccTmp_MojodyKadbanoo",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccTmp_MojodyKadbanoo"
+      ]
+    },
+    "Tmp_MojodyRialy_MaxMojoudy": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccTaminKonandeh",
+        "ccKalaCode",
+        "ccMantaghehAnbarPakhsh",
+        "ccMarkazAnbar",
+        "ccGoroh"
+      ]
+    },
+    "Tmp_PishBiniSefareshAnbar": {
+      "domain": "gozaresh",
+      "pk": "ccTmp_PishBiniSefareshAnbar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccTmp_PishBiniSefareshAnbar",
+        "ccMarkazAnbar",
+        "ccKalaCode",
+        "ccTaminKonandeh",
+        "ccBrand",
+        "ccGorohKala"
+      ]
+    },
+    "Tmp_RoozMojodyToziNashodeh": {
+      "domain": "gozaresh",
+      "pk": "ccTmp_RoozMojodyToziNashodeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccTmp_RoozMojodyToziNashodeh",
+        "ccMarkazForosh",
+        "ccForoshandeh"
+      ]
+    },
+    "Tmp_ToziNashodehDoreh": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazAnbar"
+      ]
+    },
+    "VGheymatMianginKala": {
+      "domain": "gheymat",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode",
+        "ccKala"
+      ]
+    },
+    "Vahed": {
+      "domain": "kala",
+      "pk": "ccVahed",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccVahed"
+      ]
+    },
+    "VahedTabdil": {
+      "domain": "kala",
+      "pk": "ccVahedAz",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccVahedAz",
+        "ccVahedBe"
+      ]
+    },
+    "VazeiatMarjoeeFaktor": {
+      "domain": "marjoee",
+      "pk": "ccVazeiatMarjoeeFaktor",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccVazeiatMarjoeeFaktor",
+        "ccDarkhastFaktor",
+        "ccAnbar",
+        "ccElat"
+      ]
+    },
+    "VazeiatSefaresh": {
+      "domain": "sefaresh",
+      "pk": "ccVazeiatSefaresh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccVazeiatSefaresh",
+        "ccSefaresh"
+      ]
+    },
+    "hashemi": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccvahed"
+      ]
+    },
+    "rptTaghiratKala": {
+      "domain": "gozaresh",
+      "pk": "ccKalaCode",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccKalaCode"
+      ]
+    },
+    "tmpAmalkardRoozanehMamoorPakhshRanandeh": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccAfradMamorPakhsh",
+        "ccAfradRanandeh",
+        "ccTafkikJoze",
+        "ccAfradMamurPakhsh",
+        "ccMantaghehPakhsh"
+      ]
+    },
+    "tmpAmalkardRoozanehMamoorPakhshRanandehFaktor": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccNoeMashin",
+        "ccMarkazPakhsh",
+        "ccAfradMamorPakhsh",
+        "ccAfradRanandeh",
+        "ccTafkikJoze",
+        "ccAfradMamurPakhsh",
+        "ccMantaghehPakhsh"
+      ]
+    },
+    "tmpReportJaizehMamorPakhsh": {
+      "domain": "gozaresh",
+      "pk": "ccReport",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccReport",
+        "ccMarkazAnbar",
+        "ccMantaghehAnbarPakhsh",
+        "ccAfrad",
+        "ccGorohPakhsh",
+        "ccAfradGoroh"
+      ]
+    },
+    "tmpReportJaizehMamorPakhsh96": {
+      "domain": "gozaresh",
+      "pk": "ccReport",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "year_snapshot",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccReport",
+        "ccMarkazAnbar",
+        "ccMantaghehAnbarPakhsh",
+        "ccAfrad",
+        "ccGorohPakhsh",
+        "ccAfradGoroh"
+      ]
+    },
+    "tmp_TajziehTahlilAnbar": {
+      "domain": "gozaresh",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccKalaCode",
+        "ccTaminKonandeh",
+        "ccAnbar",
+        "ccKala"
+      ]
+    }
+  },
+  "traps": {
+    "twins": [
+      {
+        "pair": [
+          "AmalkardRoozanehAnbar",
+          "AmalkardRozanehAnbar"
+        ],
+        "confidence": "low"
+      }
+    ],
+    "type_mismatch": [],
+    "width_mismatch": [
+      {
+        "child": "BarNamehSatr.ccKardex",
+        "child_type": "int",
+        "parent": "Kardex.ccKardex",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "ControlKeyfi_Azmon.ccKardexSatr",
+        "child_type": "int",
+        "parent": "KardexSatr.ccKardexSatr",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "DarkhastMalzomatSatr.ccDarkhastMalzomat",
+        "child_type": "bigint",
+        "parent": "DarkhastMalzomat.ccDarkhastMalzomat",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "FaktorKharidSatrAnbar.ccKardexSatr",
+        "child_type": "int",
+        "parent": "KardexSatr.ccKardexSatr",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "KalaArzeshAfzodeh.ccKalaCode",
+        "child_type": "bigint",
+        "parent": "Kala.ccKala",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "KardexPhoto.ccKardex",
+        "child_type": "int",
+        "parent": "Kardex.ccKardex",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "KardexTolid.ccKardex",
+        "child_type": "int",
+        "parent": "Kardex.ccKardex",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "KardexVazeiatPPC.ccKardexVazeiat",
+        "child_type": "bigint",
+        "parent": "KardexVazeiat.ccKardexVazeiat",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "SdpmsSatr.ccKardex",
+        "child_type": "int",
+        "parent": "Kardex.ccKardex",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "TafkikKolMalzomatSatr.ccDarkhastMalzomat",
+        "child_type": "bigint",
+        "parent": "DarkhastMalzomat.ccDarkhastMalzomat",
+        "parent_type": "int",
+        "note": ""
+      },
+      {
+        "child": "Tmp_EnteghalSefarsh.ccSefaresh",
+        "child_type": "int",
+        "parent": "Sefaresh.ccSefaresh",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      }
+    ],
+    "misleading_satr": [
+      {
+        "table": "BarNamehSatr",
+        "expected_parent": "BarNameh",
+        "actual_parent": "BarNameh",
+        "all_candidates": [
+          "BarNameh",
+          "Kardex",
+          "Kala"
+        ],
+        "stem_exact": true
+      }
+    ],
+    "dead_columns": {
+      "rule_dead": "پسوند _deeeel / _deeel — استفاده نکن",
+      "rule_suspect": "پسوند _Old — اول ببین؛ گاهی یعنی «قبلی»",
+      "by_table": {},
+      "suspect_by_table": {}
+    },
+    "begin_date_tables": [
+      "Sdpms",
+      "SefareshSatr"
+    ],
+    "end_date_not_null": [
+      "Sdpms"
+    ],
+    "fk_contradicts_naming": []
+  },
+  "cross_schema": {
+    "FinancialAccounting.Sanad": {
+      "via": "ccSanad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Address": {
+      "via": "ccAddress",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Afrad": {
+      "via": "ccAfrad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "شخص (FName، LName)"
+    },
+    "Global.AfradGoroh": {
+      "via": "ccAfradGoroh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.DamayeNegahdari": {
+      "via": "ccDamayeNegahdari",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.ElatOdat": {
+      "via": "ccElatOdat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Goroh": {
+      "via": "ccGoroh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.LevelTolid": {
+      "via": "ccLevelTolid",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Mahal": {
+      "via": "ccMahal",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MantaghehAnbarPakhsh": {
+      "via": "ccMantaghehAnbarPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MantaghehPakhsh": {
+      "via": "ccMantaghehPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MarkazPakhsh": {
+      "via": "ccMarkazPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مرکز پخش — پرتکرارترین ارجاع بیرونی"
+    },
+    "Global.MarkazPakhsh_NoeMarkazPakhshBakhsh": {
+      "via": "ccMarkazPakhsh_NoeMarkazPakhshBakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MarkazSazmanForosh": {
+      "via": "ccMarkazSazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.MarkazSazmanForoshSakhtarForosh": {
+      "via": "ccMarkazSazmanForoshSakhtarForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoePhoto": {
+      "via": "ccNoePhoto",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.NoeSys": {
+      "via": "ccNoeSys",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.Photo": {
+      "via": "ccPhoto",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.PosShomarehHesab": {
+      "via": "ccPosShomarehHesab",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Global.SazmanForosh": {
+      "via": "ccSazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.Personel": {
+      "via": "ccPersonel",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.Post": {
+      "via": "ccPost",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Purchase.SefareshMalzomat": {
+      "via": "ccSefareshMalzomat",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Purchase.TaminKonandeh": {
+      "via": "ccTaminKonandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "تأمین‌کننده"
+    },
+    "Purchase.TolidKonandeh": {
+      "via": "ccTolidKonandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.AmalkardRozanehPakhsh": {
+      "via": "ccAmalkardRozanehPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.DarkhastFaktor": {
+      "via": "ccDarkhastFaktor",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "فاکتور فروش — سفارشِ انبار از آن می‌آید"
+    },
+    "Sales.ElatMarjoee": {
+      "via": "ccElatMarjoee",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.Foroshandeh": {
+      "via": "ccForoshandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "فروشنده/مسیر"
+    },
+    "Sales.GorohForosh": {
+      "via": "ccGorohForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.Mashin": {
+      "via": "ccMashin",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.Moshtary": {
+      "via": "ccMoshtary",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مشتری — گردش انبار به مشتری وصل می‌شود"
+    },
+    "Sales.MoshtaryGharardad": {
+      "via": "ccMoshtaryGharardad",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.NoeMashin": {
+      "via": "ccNoeMashin",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.TafkikJoze": {
+      "via": "ccTafkikJoze",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "dbo.Brands": {
+      "via": "ccBrands",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "dbo.System": {
+      "via": "ccSystem",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    }
+  },
+  "views_excluded": [
+    "vAnbar",
+    "vAnbarBeAnbar",
+    "vAnbarGardany",
+    "vAnbarGardanyForoshSayar",
+    "vAnbarGardanyForoshSayarShomareshKala",
+    "vAnbarGardanyShomaresh",
+    "vAnbarGardanyShomareshKala",
+    "vAnbarGhesmat",
+    "vAnbarMalzoomat_Kala",
+    "vAnbarSazmanSakhtar",
+    "vAnbar_TajhizatJabeJaei",
+    "vAnbarak",
+    "vAnbarakAfrad",
+    "vAnbarakAfrad_LastVazeiat",
+    "vBarNameh",
+    "vBarNamehSatr",
+    "vBrand",
+    "vDarkhastFaktorSartForMarjoee",
+    "vDarkhastFaktorSatrHamlMostaghimFormarjoee",
+    "vDarkhastMalzomat",
+    "vDarkhastMalzomatSatr",
+    "vDastehBandiNezaraty",
+    "vDescLinkKala",
+    "vDescLinkKalaForEditProperty",
+    "vElatMarjoeeKala",
+    "vFaktorKharid",
+    "vFaktorKharidSatr",
+    "vFaktorKharidSatrAnbar",
+    "vKala",
+    "vKalaAdamElat",
+    "vKalaAdamMarjoee",
+    "vKalaAdamMarjoeeHistory",
+    "vKalaAdamSefaresh",
+    "vKalaAdamSefareshHistory",
+    "vKalaAnbar",
+    "vKalaAnbarGhesmat",
+    "vKalaAnbarMoshtary",
+    "vKalaArzeshAfzodeh",
+    "vKalaAsli",
+    "vKalaBachAdamForosh",
+    "vKalaBachAdamForoshHistory",
+    "vKalaBachAdamMarjoee",
+    "vKalaBachAdamMarjoeeHistory",
+    "vKalaDastehBandiNezaraty",
+    "vKalaGheireFaal",
+    "vKalaGheymat",
+    "vKalaGheymatKharid",
+    "vKalaGheymatKharidHistory",
+    "vKalaGheymatMasrafKonandeh",
+    "vKalaGheymatMasrafKonandehHistory",
+    "vKalaGoroh",
+    "vKalaGorohTablet",
+    "vKalaHamsan",
+    "vKalaHistory",
+    "vKalaHistoryNEW",
+    "vKalaModatEngheza",
+    "vKalaModatEnghezaHistory",
+    "vKalaMosavabeh",
+    "vKalaResidAvalDorehSatrGhesmat",
+    "vKalaSahmiehBandy",
+    "vKalaSahmiehBandyHistory",
+    "vKalaShomarehBach",
+    "vKalaTaminKonandeh",
+    "vKalaTolidKonandeh",
+    "vKalaWithOutVazeiat",
+    "vKalaZaribBazariaby",
+    "vKalaZaribBazariabyHistory",
+    "vKalaZayeatTolid",
+    "vKalanew",
+    "vKaranehAnbar",
+    "vKardex",
+    "vKardexAnbarakSatr",
+    "vKardexDarkhastFaktor",
+    "vKardexHavalehBeMarkazAnbar",
+    "vKardexHavalehBeMarkazAnbarSatr",
+    "vKardexHavalehBeMarkazAnbarSatrGhesmat",
+    "vKardexHavalehBeMarkazPakhsh",
+    "vKardexHavalehBeMarkazPakhshSatr",
+    "vKardexHavalehBeMarkazPakhshSatrGhesmat",
+    "vKardexHavalehForoshandehSayar",
+    "vKardexHavalehForoshandehSayarSatr",
+    "vKardexKaheshAfzaiesh",
+    "vKardexKaheshAfzaieshView",
+    "vKardexMarjoeeAzMoshtaryElamMarjoee",
+    "vKardexMarjoeeAzMoshtaryMostaghim",
+    "vKardexMarjoeeDaem",
+    "vKardexMarjoeeDaemSatr",
+    "vKardexMarjoeeDaemSatrGhesmat",
+    "vKardexMarjoeeTaminKonandeh",
+    "vKardexMarjoeeTaminKonandehSatr",
+    "vKardexMarjoeeTaminKonandehsatrGhesmat",
+    "vKardexNaghlBeSaleBaad",
+    "vKardexNaghlBeSaleBaadSatr",
+    "vKardexNaghlBeSaleBaadSatrGhesmat",
+    "vKardexResid",
+    "vKardexResidAvalDoreh",
+    "vKardexResidAvalDorehSatr",
+    "vKardexResidAvalDorehSatrGhesmat",
+    "vKardexResidAzMarkazPakhsh",
+    "vKardexResidAzMarkazPakhshSatr",
+    "vKardexResidAzMarkazPakhshSatrGhesmat",
+    "vKardexResidSatr",
+    "vKardexResidSatrGhesmat",
+    "vKardexSatr",
+    "vKardexSatrFilter",
+    "vKardexSatrForMojody",
+    "vKardexSatrGhesmat",
+    "vKardexTitrSatr",
+    "vKardexTitrSatrGhesmat",
+    "vKardexTitrSatrGhesmatForMojodiForosh",
+    "vKardexTitrSatrGhesmatForMojodiForoshTop",
+    "vMamorPakhsh",
+    "vMamorPakhshRanandeh",
+    "vMarjoee",
+    "vMarjoeeOnGoroh",
+    "vMarjoeeOnGorohForoshandeh",
+    "vMoghaieratTafkik_Faktor",
+    "vMojodyKalaForHajmVaznGhesmat",
+    "vMojodyKalaInMarkazPakhsh",
+    "vMojodyKalaInMarkazPakhsh8903",
+    "vMojodyKalaMarkazPakhsh",
+    "vMojodyKalaMarkazPakhshGhesmat",
+    "vSabeghehSefareshKala",
+    "vSefaresh",
+    "vSefareshAnbarak",
+    "vSefareshAnbarakSatr",
+    "vSefareshSatr",
+    "vTafkikJozeForoshSayar",
+    "vTafkikJozeForoshSayarSatr",
+    "vTafkikKolBeFaktor",
+    "vTafkikKolForoshSayar",
+    "vTafkikKolForoshSayarSatr",
+    "vTafkikKolMalzomat",
+    "vVahed",
+    "vVahedTabdil",
+    "vVaziateVarede",
+    "vrptMarjoee"
+  ],
+  "edges": [
+    {
+      "source": "Anbar",
+      "col": "ccAnbar_DamayeNegahdari",
+      "target": "Anbar_DamayeNegahdari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbar",
+      "col": "ccAnbar_Goroh",
+      "target": "Anbar_Goroh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbar",
+      "col": "ccAnbar_Noe",
+      "target": "Anbar_Noe",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbar",
+      "col": "ccAnbar_NoeEstefadeh",
+      "target": "Anbar_NoeEstefadeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbar",
+      "col": "ccAnbar_NoeSakhteman",
+      "target": "Anbar_NoeSakhteman",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarGardany",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarGardanyForoshSayar",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarGardanyForoshSayarShomareshKala",
+      "col": "ccAnbarGardanyForoshSayar",
+      "target": "AnbarGardanyForoshSayar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarGardanyForoshSayarShomareshKala",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarGardanyForoshSayarShomareshKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "AnbarGardanyShomaresh",
+      "col": "ccAnbarGardany",
+      "target": "AnbarGardany",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarGardanyShomareshKala",
+      "col": "ccAnbarGardanyShomaresh",
+      "target": "AnbarGardanyShomaresh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarGardanyShomareshKala",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarGardanyShomareshKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "AnbarGhesmat",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarMalzoomat_Kala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "AnbarPermission",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarSazmanSakhtar",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbar_Noe",
+      "col": "ccAnbar_Goroh",
+      "target": "Anbar_Goroh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbar_TajhizatJabeJaei",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbar_TajhizatJabeJaei",
+      "col": "ccAnbar_Tajhizat",
+      "target": "Anbar_Tajhizat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbarak",
+      "col": "ccNoeAnbarak",
+      "target": "NoeAnbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarakAfrad",
+      "col": "ccAnbarak",
+      "target": "Anbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarakAfrad",
+      "col": "ccMamorPakhsh",
+      "target": "MamorPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Anbarak_Control",
+      "col": "ccAnbarak",
+      "target": "Anbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BarNameh",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BarNamehSatr",
+      "col": "ccBarnameh",
+      "target": "BarNameh",
+      "match": "case",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "BarNamehSatr",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "BarNamehSatr",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BarnamehPhoto",
+      "col": "ccBarnameh",
+      "target": "BarNameh",
+      "match": "case",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Config_ControlKeyfi",
+      "col": "ccNoeKardex",
+      "target": "NoeKardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_GheymatTamamShodeh_Hesab",
+      "col": "ccConfig_GheymatTamamShodeh",
+      "target": "Config_GheymatTamamShodeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_GheymatTamamShodeh_Standard",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Config_GheymatTamamShodeh_StandardSatr",
+      "col": "ccConfig_GheymatTamamShodeh",
+      "target": "Config_GheymatTamamShodeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_GheymatTamamShodeh_StandardSatr",
+      "col": "ccConfig_GheymatTamamShodeh_Standard",
+      "target": "Config_GheymatTamamShodeh_Standard",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ControlKeyfi_Azmon",
+      "col": "ccKardexSatr",
+      "target": "KardexSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ControlKeyfi_AzmonSatr",
+      "col": "ccControlKeyfi_Azmon",
+      "target": "ControlKeyfi_Azmon",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastMalzomat",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastMalzomat",
+      "col": "ccElatOdatMalzomat",
+      "target": "ElatOdatMalzomat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastMalzomatSatr",
+      "col": "ccDarkhastMalzomat",
+      "target": "DarkhastMalzomat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastMalzomatSatr",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "DastehBandiNezaraty",
+      "col": "ccNoeDastehBandiNezaraty",
+      "target": "NoeDastehBandiNezaraty",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ElamMarjoeeZayeatAnbarak",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "ElamMarjoeeZayeatAnbarak",
+      "col": "ccKardexAnbarak",
+      "target": "KardexAnbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ElamMarjoeeZayeatAnbarak",
+      "col": "ccKardexAnbarakSatr",
+      "target": "KardexAnbarakSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FaktorKharidSatr",
+      "col": "ccFaktorKharid",
+      "target": "FaktorKharid",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FaktorKharidSatr",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "FaktorKharidSatrAnbar",
+      "col": "ccFaktorKharidSatr",
+      "target": "FaktorKharidSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FaktorKharidSatrAnbar",
+      "col": "ccKardexSatr",
+      "target": "KardexSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GheymatMianginKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "GheymatMianginKala",
+      "col": "ccKardexSatr",
+      "target": "KardexSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GheymatMianginKalaTaminKonandeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "GheymatMiangin_Arshiv",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "GorohPakhshMahal",
+      "col": "ccGorohPakhsh",
+      "target": "GorohPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "HadafMarkazAnbar",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "JaizehMamorPakhsh96_ArshiveReport98",
+      "col": "ccGorohPakhsh",
+      "target": "GorohPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Kala",
+      "col": "ccBrand",
+      "target": "Brand",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KalaAdamMarjoee",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaAdamSefaresh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaAnbar",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KalaAnbar",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaAnbarForoshandeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaAnbarGhesmat",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KalaAnbarGhesmat",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaAnbarMoshtary",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaArzeshAfzodeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaBachAdamForosh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaBachAdamMarjoee",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaDastehBandiNezaraty",
+      "col": "ccDastehBandiNezaraty",
+      "target": "DastehBandiNezaraty",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KalaDastehBandiNezaraty",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaGheymatKharid",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaGheymatMasrafKonandeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaGoroh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaHamsan",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaHamsanOld",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaModatEngheza",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaMosavabeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaPegahKadbanooProject",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaPhoto",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaSahmiehBandy",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaShomarehBach",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaTaminKonandeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaTolidKonandeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaZaribBazariaby",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaZaribSefareshAnbarShobeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KalaZayeatTolid",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Kala_14020830",
+      "col": "ccBrand",
+      "target": "Brand",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Kala_14020830",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Kala_14020830",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KaranehAnbar",
+      "col": "ccAmalkardRoozanehAnbar",
+      "target": "AmalkardRoozanehAnbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Kardex",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Kardex",
+      "col": "ccAnbarSazmanSakhtar",
+      "target": "AnbarSazmanSakhtar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Kardex",
+      "col": "ccNoeKardex",
+      "target": "NoeKardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexAnbarak",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexAnbarak",
+      "col": "ccAnbarSazmanSakhtar",
+      "target": "AnbarSazmanSakhtar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexAnbarak",
+      "col": "ccAnbarak",
+      "target": "Anbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexAnbarak",
+      "col": "ccMamorPakhsh",
+      "target": "MamorPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexAnbarak",
+      "col": "ccNoeKardex",
+      "target": "NoeKardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexAnbarakSatr",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KardexAnbarakSatr",
+      "col": "ccKardexAnbarak",
+      "target": "KardexAnbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexPPC",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexPPC",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexPhoto",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatr",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatr",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KardexSatr",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatrGhesmat",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatrGhesmat",
+      "col": "ccKardexSatr",
+      "target": "KardexSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatrGhesmatPPC",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatrGhesmatPPC",
+      "col": "ccKardexSatr",
+      "target": "KardexSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatrPPC",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatrPPC",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KardexSatrPPC",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatrPPC",
+      "col": "ccKardexSatr",
+      "target": "KardexSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSatr_GheymatMiangin",
+      "col": "ccKardexSatr",
+      "target": "KardexSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexSharh",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexTolid",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexTolid",
+      "col": "ccAnbarSazmanSakhtar",
+      "target": "AnbarSazmanSakhtar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexTolid",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexTolid",
+      "col": "ccNoeKardex",
+      "target": "NoeKardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexTolidSatr",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "KardexTolidSatr",
+      "col": "ccKardexTolid",
+      "target": "KardexTolid",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexTolidSatrGhesmat",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexTolidSatrGhesmat",
+      "col": "ccKardexTolidSatr",
+      "target": "KardexTolidSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexTolidSharh",
+      "col": "ccKardexTolid",
+      "target": "KardexTolid",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexVazeiatPPC",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KardexVazeiatPPC",
+      "col": "ccKardexVazeiat",
+      "target": "KardexVazeiat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MamorPakhsh",
+      "col": "ccGorohPakhsh",
+      "target": "GorohPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MamorPakhsh",
+      "col": "ccNoeMamorPakhsh",
+      "target": "NoeMamorPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MamorPakhshEtebar",
+      "col": "ccMamorPakhsh",
+      "target": "MamorPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarjoeeKamel_Image",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MizanMasrafMalzomat",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "MojodyAnbarGharantineh",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyAnbarGharantineh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "MojodyAnbarZayeat",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyAnbarZayeat",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "MojodyForosh",
+      "col": "ccAnbarGhesmat",
+      "target": "AnbarGhesmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyForosh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "MojodyForoshAnbar",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyForoshAnbar",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "MojodyForoshAnbarak",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyForoshAnbarak",
+      "col": "ccAnbarak",
+      "target": "Anbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyForoshAnbarak",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "MojodyForosh_ArshiveJob",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyForosh_ArshiveJob",
+      "col": "ccAnbarak",
+      "target": "Anbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyMajazi",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyMajazi",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "MojodyMoshtary",
+      "col": "ccBrand",
+      "target": "Brand",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MojodyMoshtary",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "MojodySefaresh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "SabeghehSefareshKala",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SabeghehSefareshKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "SabeghehSefareshMalzomatKala",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SabeghehSefareshMalzomatKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Sdpms",
+      "col": "ccNoeSanadSdpms",
+      "target": "NoeSanadSdpms",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SdpmsSatr",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SdpmsSatr",
+      "col": "ccSdpms",
+      "target": "Sdpms",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SefareshAnbarak",
+      "col": "ccAnbarak",
+      "target": "Anbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SefareshAnbarak",
+      "col": "ccNoeSefaresh",
+      "target": "NoeSefaresh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SefareshAnbarakSatr",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "SefareshAnbarakSatr",
+      "col": "ccSefareshAnbarak",
+      "target": "SefareshAnbarak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SefareshNoeBastehBandyKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "SefareshNoeMashin",
+      "col": "ccBrand",
+      "target": "Brand",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SefareshSatr",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SefareshSatr",
+      "col": "ccSefaresh",
+      "target": "Sefaresh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TafkikJozeForoshSayar",
+      "col": "ccKardex",
+      "target": "Kardex",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TafkikKolForoshSayarSatr",
+      "col": "ccTafkikJozeForoshSayar",
+      "target": "TafkikJozeForoshSayar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TafkikKolForoshSayarSatr",
+      "col": "ccTafkikKolForoshSayar",
+      "target": "TafkikKolForoshSayar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TafkikKolMalzomatSatr",
+      "col": "ccDarkhastMalzomat",
+      "target": "DarkhastMalzomat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TafkikKolMalzomatSatr",
+      "col": "ccTafkikKolMalzomat",
+      "target": "TafkikKolMalzomat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TmpGroupKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Tmp_AmarForoshTaminKonandeh",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Tmp_EnteghalAnbar",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_EnteghalAnbar",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Tmp_EnteghalSefarsh",
+      "col": "ccSefaresh",
+      "target": "Sefaresh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_KasriAnbar",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Tmp_MojodyAnbar",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_MojodyAnbar",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Tmp_MojodyRialy_MaxMojoudy",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "Tmp_PishBiniSefareshAnbar",
+      "col": "ccBrand",
+      "target": "Brand",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_PishBiniSefareshAnbar",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "VGheymatMianginKala",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VGheymatMianginKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "VazeiatMarjoeeFaktor",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VazeiatSefaresh",
+      "col": "ccSefaresh",
+      "target": "Sefaresh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "hashemi",
+      "col": "ccvahed",
+      "target": "Vahed",
+      "match": "case",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "rptTaghiratKala",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "tmpReportJaizehMamorPakhsh",
+      "col": "ccGorohPakhsh",
+      "target": "GorohPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "tmpReportJaizehMamorPakhsh96",
+      "col": "ccGorohPakhsh",
+      "target": "GorohPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "tmp_TajziehTahlilAnbar",
+      "col": "ccAnbar",
+      "target": "Anbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "tmp_TajziehTahlilAnbar",
+      "col": "ccKala",
+      "target": "Kala",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "tmp_TajziehTahlilAnbar",
+      "col": "ccKalaCode",
+      "target": "Kala",
+      "match": "altkey",
+      "proven": false,
+      "evidence": "SAME_NAME_ID_PATTERN",
+      "confidence": "MEDIUM"
+    }
+  ]
+}

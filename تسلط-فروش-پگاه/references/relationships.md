@@ -31,7 +31,7 @@
 | `cc` | تکرار | تفسیر |
 |---|---:|---|
 | `ccMarkazForosh` | 124 | مرکز فروش — در هیچ اسکیما جدول هم‌نام ندارد؛ مقصدش را پیدا کن |
-| `ccKalaCode` | 68 | کد کالا — کلیدِ کالا در آمار فروش. مقصدش هم‌نام نیست؛ Warehouse را ببین |
+| `ccKalaCode` | 68 | ✔ `Warehouse.Kala`  — کد کالا — کلیدِ کالا در آمار فروش. مقصدش هم‌نام نیست؛ Warehouse را ببین |
 | `ccMarkazPakhsh` | 62 | ✔ `Global.MarkazPakhsh` |
 | `ccMantaghehForosh` | 61 | ✔ `Global.MantaghehForosh`  — منطقه فروش |
 | `ccUser` | 57 | کاربر — دامنه‌ی امنیت، بیرون از این دیتابیس |
