@@ -61,8 +61,11 @@ description: نقشه‌ی اسکیمای Treasury پگاه — دریافت و 
 
    با `kind='python'` اجرا کن، نه `kind='bash'`.
 
-   دستورها: `table`، `refs`، `path`، `find`، `domain`، `external`، `traps`،
-   `drift`.
+   دستورها: `table`، `refs`، `path`، `find`، `domain`، `external`،
+   `crossref`، `traps`، `drift`.
+
+   **`crossref` وقتی است که ارجاعی جدولِ محلی ندارد** — و در این اسکیما
+   بیشتر از هرجای دیگری لازم می‌شود: `map.py crossref ccHesab3`.
 
 ۵. **دانه و علامت را با هم چک کن.** `BedBes` و وضعیت، هر دو.
 
@@ -134,32 +137,62 @@ description: نقشه‌ی اسکیمای Treasury پگاه — دریافت و 
 
 ## پل به بقیه‌ی اسکیماها
 
-۴۳ ارجاعِ `cc` این اسکیما مقصدشان بیرونِ `Treasury` است:
+**این اسکیما بیشتر از همه سر می‌زند و کمتر از همه سر زده می‌شود.** ۴۳ مقصدِ
+`cc` بیرونِ `Treasury` — به هر چهار اسکیمای دیگرِ خانواده — ولی در جهت عکس
+فقط `Sales` (۲ جدول) و `HumanResource` (۱) به آن اشاره می‌کنند.
 
-| مقصد | از | چه می‌دهد |
-|---|---|---|
-| `Global.MarkazPakhsh` | `ccMarkazPakhsh` | مرکز پخش |
-| `Global.Afrad` | `ccAfrad*` | صندوق‌دار، تحصیل‌دار، تنخواه‌دار |
-| `Global.ShomarehHesab` / `Global.Bank` | — | حساب و بانک |
-| `Sales.Moshtary` | `ccMoshtary` | طرفِ وصول |
-| `Sales.DarkhastFaktor` | `ccDarkhastFaktor` | فاکتور — منشأِ مطالبات |
-| `Purchase.TaminKonandeh` | `ccTaminKonandeh` | طرفِ پرداخت |
+| مقصد | از | چه می‌دهد | اسکیل |
+|---|---|---|---|
+| `Global.MarkazPakhsh` | `ccMarkazPakhsh` | مرکز پخش | `تسلط-مشترک-پگاه` |
+| `Global.Afrad` | `ccAfrad*` | صندوق‌دار، تحصیل‌دار، تنخواه‌دار | `تسلط-مشترک-پگاه` |
+| `Global.ShomarehHesab` / `Global.Bank` | `ccShomarehHesab`، `ccBank` | حساب و بانک — **شبا اینجاست** | `تسلط-مشترک-پگاه` |
+| `Sales.Moshtary` | `ccMoshtary` | طرفِ وصول | `تسلط-فروش-پگاه` |
+| `Sales.DarkhastFaktor` | `ccDarkhastFaktor` | فاکتور — منشأِ مطالبات | `تسلط-فروش-پگاه` |
+| `Warehouse.Kardex` | `ccKardex` | سندِ گردشِ انبار پشتِ سند مالی | `تسلط-انبار-پگاه` |
+| `Warehouse.MamorPakhsh` | `ccMamorPakhsh` | مأمور پخش — طرفِ تنخواه و وصول | `تسلط-انبار-پگاه` |
+| `HumanResource.Personel` | `ccPersonel` | پرسنل — طرفِ حقوق و وام | `منابع-انسانی-پگاه` |
+| `HumanResource.BastaneListHoghogh` | `ccBastaneListHoghogh` | بستنِ لیست حقوق | `منابع-انسانی-پگاه` |
+| `Purchase.TaminKonandeh` | `ccTaminKonandeh` | طرفِ پرداخت | — نقشه ندارد |
+
+`Warehouse` پنج جدول اینجا مقصد دارد (`Kardex`، `KardexAnbarak`،
+`MamorPakhsh`، `NoeMamorPakhsh`، `Vahed`) و **انبار در عوض هیچ‌چیز از خزانه
+نمی‌خواند** — جریان یک‌طرفه است.
 
 **و در جهت عکس — این مهم‌ترین است:** `EjazehPardakhtFaktor` مقصدِ ارجاع از
 `HumanResource` (حقوق، وام، تسویه‌حساب، هزینه درمان)، `Sales` و
 `AssetAccounting` است. **این اسکیما جایی است که تعهدِ همه‌ی دامنه‌ها به پولِ
 واقعی تبدیل می‌شود.**
 
+### ارجاعی که جدول ندارد — بیشترین نسبت در خانواده
+
+۱۵۶ ارجاعِ بی‌جدول در برابر ۱۵۲ جدول. ۴۸ تا نقش‌دارند (`ccMarkazAnbar` ×۱۷
+و `ccMarkazForosh` ×۱۵ هر دو نامزدشان `Global.Markaz` است،
+`ccAfradTahsildar` و `ccAfradMamorVosol` هر دو `Global.Afrad`)، و **۶۴ تا
+واقعاً بی‌مقصدند** — بیشترین در خانواده.
+
+دو دسته‌ی بزرگِ بی‌مقصد، و هر دو مهم‌اند:
+
+- **کدینگ حساب:** `ccHesab0` تا `ccHesab7`، `ccCodeHesabMoeen`،
+  `ccvTafsily0/1`. اینها به `FinancialAccounting` می‌روند که **نقشه ندارد**.
+  بدون آن اسکیما، سطحِ کدینگ را نمی‌شود تفسیر کرد.
+- **هویت کاربر:** `ccUser` (۳۱)، `ccUserSabegheh` (۹)،
+  `ccUserSabtKonandeh` (۴). در هیچ اسکیمای نقشه‌شده‌ای جدول ندارند.
+
+`map.py crossref` هر سه دسته را با هم می‌دهد.
+
 ## این اسکیل کجا تمام می‌شود
 
 | سؤال | اسکیل |
 |---|---|
 | خزانه، دریافت/پرداخت، تنخواه، چک | **این** |
-| فروش، فاکتور، هدف، تخفیف | `تسلط-فروش-پگاه` |
-| انبار، موجودی، کالا | `تسلط-انبار-پگاه` |
+| افراد، مرکز، بانک و شماره حساب، تقویم | `تسلط-مشترک-پگاه` |
+| فروش، فاکتور، مشتری، هدف، تخفیف | `تسلط-فروش-پگاه` |
+| انبار، موجودی، کالا، کاردکس | `تسلط-انبار-پگاه` |
 | پرسنل و حقوق | `منابع-انسانی-پگاه` |
 | نمره‌ی فروشنده | `ارزیابی-فروشنده-پگاه` (**تست‌شده**) |
 | درجه‌بندی مشتری | `رتبه-بندی-مشتریان-پگاه` (**تست‌شده**) |
+
+نقشه‌ی کلِ خانواده و ماتریسِ ارجاع در [../SKILLS.md](../SKILLS.md).
 
 ## سؤال‌های باز — از خزانه‌دار بپرس، خودت تصمیم نگیر
 
@@ -201,6 +234,9 @@ description: نقشه‌ی اسکیمای Treasury پگاه — دریافت و 
 - [references/entities.md](references/entities.md) — دامنه به دامنه.
 - [references/relationships.md](references/relationships.md) — گراف، پل‌ها، تله‌ها.
 - [references/reporting.md](references/reporting.md) — شکل گزارش و انضباطِ پول.
-- `schema.json` — نقشه‌ی ماشین‌خوان. داده است، نه کد.
-- `scripts/map.py` — پیمایش نقشه. اجرا کن، نخوان.
+- `schema.json` — نقشه‌ی ماشین‌خوان. داده است، نه کد. بلوکِ `cc_resolution`
+  ارجاع‌های بین‌اسکیمایی را دارد.
+- `scripts/map.py` — پیمایش نقشه. اجرا کن، نخوان. همین اسکریپت در هر پنج
+  اسکیلِ نقشه هست، پس دستورها همه‌جا یکی است.
 - [examples/walkthrough.md](examples/walkthrough.md) — یک سؤال واقعی از اول تا آخر.
+- [../SKILLS.md](../SKILLS.md) — نقشه‌ی خانواده و ماتریسِ ارجاعِ بین اسکیماها.

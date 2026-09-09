@@ -6,7 +6,7 @@
 ```
 SKILL.md                      دستورالعمل — چیزی که مدل هر بار می‌خواند
 schema.json                   نقشه‌ی ماشین‌خوان ۱۵۲ جدول (داده، نه کد)
-scripts/map.py                پیمایش نقشه — table / refs / path / find / domain / external / traps / drift
+scripts/map.py                پیمایش نقشه — table / refs / path / find / domain / external / crossref / traps / drift
 references/entities.md        دامنه به دامنه
 references/relationships.md   گراف اتصال، پل‌های بین‌اسکیمایی، تله‌ها
 references/queries.md         کوئری‌های تأیید و الگوهای دامنه
@@ -60,6 +60,7 @@ python scripts/map.py path   EjazehPardakhtFaktor Tankhah
 python scripts/map.py find   Check
 python scripts/map.py domain gozaresh
 python scripts/map.py external
+python scripts/map.py crossref ccMarkazForosh
 python scripts/map.py traps
 python scripts/map.py drift  live-tables.txt
 ```
@@ -92,6 +93,27 @@ python scripts/map.py drift  live-tables.txt
 
 نقشه از یک نسخه‌ی پشتیبان است. `map.py drift` تطبیق با دیتابیس زنده می‌دهد و
 وقتی چیزی عوض نشده ساکت می‌ماند.
+
+## پیوند با بقیه‌ی اسکیل‌ها
+
+بیشتر از همه سر می‌زند و کمتر از همه سر زده می‌شود: ۴۳ مقصد به هر چهار
+اسکیمای دیگر، ولی فقط `Sales` (۲ جدول) و `HumanResource` (۱) به آن اشاره
+می‌کنند.
+
+| مقصد | اسکیل | برای چه |
+|---|---|---|
+| `Global` (۲۲ جدول) | `تسلط-مشترک-پگاه` | بانک، شماره حساب، افراد، مرکز |
+| `Sales` (۷) | `تسلط-فروش-پگاه` | مشتری و فاکتور — طرفِ وصول |
+| `Warehouse` (۵) | `تسلط-انبار-پگاه` | کاردکس، مأمور پخش |
+| `HumanResource` (۴) | `منابع-انسانی-پگاه` | پرسنل، بستنِ لیست حقوق |
+
+**۶۴ ارجاع واقعاً بی‌مقصد — بیشترین در خانواده.** دو دسته‌اش مهم‌اند:
+کدینگِ حساب (`ccHesab0..7`، `ccvTafsily0/1`) که به `FinancialAccounting`
+می‌رود و **نقشه ندارد**، و هویت کاربر (`ccUser` ۳۱).
+
+نقشه‌ی کامل خانواده، ماتریسِ ارجاع و فهرستِ ارجاع‌های حل‌نشده در
+[../SKILLS.md](../SKILLS.md). عددها را `crosslink.py` می‌سازد؛ دستی
+به‌روزشان نکن.
 
 ## کارهای باقی‌مانده — به ترتیب اهمیت
 

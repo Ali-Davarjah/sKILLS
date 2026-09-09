@@ -6,7 +6,7 @@
 ```
 SKILL.md                      دستورالعمل — چیزی که مدل هر بار می‌خواند
 schema.json                   نقشه‌ی ماشین‌خوان ۴۳۵ جدول (داده، نه کد)
-scripts/map.py                پیمایش نقشه — table / refs / path / find / domain / external / traps / drift
+scripts/map.py                پیمایش نقشه — table / refs / path / find / domain / external / crossref / traps / drift
 references/entities.md        دامنه به دامنه: جدول، کلید، نشانه‌ها
 references/relationships.md   گراف اتصال، پل‌های بین‌اسکیمایی، تله‌ها
 references/queries.md         کوئری‌های تأیید و الگوهای دامنه
@@ -74,6 +74,7 @@ python scripts/map.py path   Moshtary AmarForosh_Arshive
 python scripts/map.py find   Jayezeh
 python scripts/map.py domain gozaresh
 python scripts/map.py external
+python scripts/map.py crossref ccMarkazForosh
 python scripts/map.py traps
 python scripts/map.py drift  live-tables.txt
 ```
@@ -94,6 +95,29 @@ python scripts/map.py drift  live-tables.txt
 
 نقشه از یک نسخه‌ی پشتیبان است. `map.py drift` تطبیق با دیتابیس زنده را
 می‌دهد و وقتی چیزی عوض نشده ساکت می‌ماند.
+
+## پیوند با بقیه‌ی اسکیل‌ها
+
+پرارجاع‌ترین اسکیمای خانواده — ۶۳ مقصدِ `cc` بیرونِ `Sales`، به هر چهار
+اسکیمای دیگر.
+
+| مقصد | اسکیل | برای چه |
+|---|---|---|
+| `Global` (۳۸ جدول) | `تسلط-مشترک-پگاه` | افراد، مرکز، تقویم، گروه، لاین |
+| `Warehouse` (۱۱) | `تسلط-انبار-پگاه` | کالا (`ccKalaCode`)، علتِ مرجوعی |
+| `HumanResource` (۴) | `منابع-انسانی-پگاه` | پرونده‌ی پرسنلی فروشنده |
+| `Treasury` (۲) | `تسلط-خزانه-پگاه` | وصول و مجوزِ پرداخت |
+
+**یک تله‌ی نقشه:** `ccKala` (۱۵ ارجاع) و `ccBrand` (۳۰) دوپهلواند —
+نقشه‌ساز `Amargar.*` را برداشت ولی `Warehouse.*` هم جدولِ هم‌نام دارد.
+`map.py crossref ccKala`. ارجاعِ کالای تأییدشده روی `ccKalaCode` است.
+
+و `ccMarkazForosh` با **۱۲۴ ارجاع** بزرگ‌ترین ارجاعِ بی‌جدولِ کلِ خانواده
+است؛ نامزدش `Global.Markaz` در نقشِ «فروش» است، نه `Global.MarkazPakhsh`.
+
+نقشه‌ی کامل خانواده، ماتریسِ ارجاع و فهرستِ ارجاع‌های حل‌نشده در
+[../SKILLS.md](../SKILLS.md). عددها را `crosslink.py` می‌سازد؛ دستی
+به‌روزشان نکن.
 
 ## کارهای باقی‌مانده
 

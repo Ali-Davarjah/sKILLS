@@ -16,7 +16,9 @@
     },
     "snapshot": "نسخه‌ی پشتیبانِ DB Master.xlsx",
     "snapshot_note": "نقشه قابل اعتماد است. عکسِ یک نسخه‌ی پشتیبان است، پس فهرست اسکیماها و اشیای هسته ثابت‌اند و فقط در حاشیه ممکن است چند جدول اضافه/کم شده باشد. تطبیق با دیتابیس زنده: hr_map.py drift",
-    "drift_checked": "۴۱۳ جدولِ هسته با فهرست اشیای دیتابیس خوانده — صفر اختلاف"
+    "drift_checked": "۴۱۳ جدولِ هسته با فهرست اشیای دیتابیس خوانده — صفر اختلاف",
+    "views_excluded_note": "نامِ ویوها در این نسخه‌ی نقشه ذخیره نشده — فقط شمارششان (meta.object_counts.views = 112). برای فهرستِ نام‌ها یک کوئری روی INFORMATION_SCHEMA.VIEWS بزن.",
+    "foreign_keys_declared": 0
   },
   "domains": {
     "personel": "پرسنل — هویت و پرونده",
@@ -44,19 +46,13 @@
       "resolves_to": "Global.Markaz",
       "evidence": "CROSS_SCHEMA_CC_MATCH"
     },
-    "ccElatOdat": {
-      "count": 37,
-      "note": "→ Global.ElatOdat (اثبات‌شده از فهرست اشیای دیتابیس). علت برگشت — محلی است، هر دامنه X_ElatOdat خودش را دارد. کدها بین دامنه‌ها منتقل نمی‌شوند.",
-      "resolves_to": "Global.ElatOdat",
-      "evidence": "CROSS_SCHEMA_CC_MATCH"
-    },
     "ccUser": {
       "count": 29,
       "note": "کاربر — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
       "evidence": "UNRESOLVED"
     },
     "ccSystem": {
-      "count": 25,
+      "count": 24,
       "note": "→ dbo.System (اثبات‌شده از فهرست اشیای دیتابیس). سیستم/زیرسامانه",
       "resolves_to": "dbo.System",
       "evidence": "CROSS_SCHEMA_CC_MATCH"
@@ -65,6 +61,12 @@
       "count": 23,
       "note": "→ Global.Photo (اثبات‌شده از فهرست اشیای دیتابیس). تصویر/پیوست — مخزن فایل",
       "resolves_to": "Global.Photo",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccElatOdat": {
+      "count": 18,
+      "note": "→ Global.ElatOdat (اثبات‌شده از فهرست اشیای دیتابیس). علت برگشت — محلی است، هر دامنه X_ElatOdat خودش را دارد. کدها بین دامنه‌ها منتقل نمی‌شوند.",
+      "resolves_to": "Global.ElatOdat",
       "evidence": "CROSS_SCHEMA_CC_MATCH"
     },
     "ccAfrad": {
@@ -107,6 +109,19 @@
       "resolves_to": "Global.ShomarehHesab",
       "evidence": "CROSS_SCHEMA_CC_MATCH"
     },
+    "ccRefrence": {
+      "count": 4,
+      "note": "ارجاع عمومی — با ccNoeRefrence معنی می‌گیرد — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
+      "evidence": "UNRESOLVED"
+    },
+    "ccLink": {
+      "count": 4,
+      "note": ""
+    },
+    "ccMamuryat": {
+      "count": 4,
+      "note": ""
+    },
     "ccOstan": {
       "count": 3,
       "note": "استان — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
@@ -117,8 +132,26 @@
       "note": "مدیر → Global.Afrad، نه Personel — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
       "evidence": "UNRESOLVED"
     },
-    "ccMoaseseh": {
+    "ccUserSabegheh": {
       "count": 3,
+      "note": ""
+    },
+    "ccPersonelJaygozin": {
+      "count": 3,
+      "note": ""
+    },
+    "ccNoeVasilehNaghlieh": {
+      "count": 3,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.NoeVasilehNaghlieh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccNoeHazineDarman": {
+      "count": 3,
+      "note": ""
+    },
+    "ccMoaseseh": {
+      "count": 2,
       "note": "مؤسسه — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
       "evidence": "UNRESOLVED"
     },
@@ -128,15 +161,386 @@
       "resolves_to": "Global.Company",
       "evidence": "CROSS_SCHEMA_CC_MATCH"
     },
-    "ccNoeFile": {
+    "ccGeraiesh": {
       "count": 2,
+      "note": ""
+    },
+    "ccKeshvarMahalTahsil": {
+      "count": 2,
+      "note": ""
+    },
+    "ccShahrMahalTahsil": {
+      "count": 2,
+      "note": ""
+    },
+    "ccNoeHazine": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMarkazSazmanForoshSakhtarForosh": {
+      "count": 2,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.MarkazSazmanForoshSakhtarForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccNoeKhedmat": {
+      "count": 2,
+      "note": ""
+    },
+    "ccAfradBimar": {
+      "count": 2,
+      "note": ""
+    },
+    "ccElatTasviehHesab": {
+      "count": 2,
+      "note": ""
+    },
+    "ccElatTasviehHesab_Link": {
+      "count": 2,
+      "note": ""
+    },
+    "ccNoeFile": {
+      "count": 1,
       "note": "نوع فایل — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
       "evidence": "UNRESOLVED"
     },
-    "ccRefrence": {
-      "count": 4,
-      "note": "ارجاع عمومی — با ccNoeRefrence معنی می‌گیرد — در هیچ اسکیمای این دیتابیس جدول هم‌نام ندارد.",
-      "evidence": "UNRESOLVED"
+    "ccMarkazEstekhdam": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAddress": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.Address",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccNoeEstefadeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUserTaghirDahandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoePhoto": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.NoePhoto",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccNoeLebas": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeVazeiat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradVabasteh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUserHazfKonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDinMazhabLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGoroh": {
+      "count": 1,
+      "note": "گروه‌بندی عمومی، با ccGorohLink تفکیک می‌شود",
+      "resolves_to": "Global.Goroh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccZirGoroh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccReshtehGeraieshLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccVahedSazmaniLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLinkCharteSazmani": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazHazineh": {
+      "count": 1,
+      "note": "مرکز هزینه — اسکیمای حسابداری مالی",
+      "resolves_to": "FinancialAccounting.MarkazHazineh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccNoeMarkazPakhsh": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.NoeMarkazPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccNoeVahedForosh": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.NoeVahedForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccTafsily": {
+      "count": 1,
+      "note": "تفصیلی حسابداری",
+      "resolves_to": "FinancialAccounting.Tafsily",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccMarkazAsliBimeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazMoshabeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccTasviyehesab": {
+      "count": 1,
+      "note": ""
+    },
+    "ccElatTaghirHokm": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSazmanForosh": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.SazmanForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccSakhtarForosh": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.SakhtarForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccMarkazPakhsh_NoeMarkazPakhshBakhsh": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.MarkazPakhsh_NoeMarkazPakhshBakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccUserGheyreFaalKonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPersonelHokmMazaya": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazMoshabeh_BimehMaliat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazMoshabeh_Bimeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazMoshabeh_Maliat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDarkhastFaktor": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Sales.DarkhastFaktor",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccEjazehPardakhtFaktor_Hoghogh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccEjazehPardakhtFaktor_Bimeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccEjazehPardakhtFaktor_Maliat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUserTaeed_ListBime": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUserTaeed_ListMaliat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPersonelJaygozinShodeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeVorod": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeKhoroj": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUser_SabtKonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccVasile": {
+      "count": 1,
+      "note": ""
+    },
+    "ccphoto": {
+      "count": 1,
+      "note": ""
+    },
+    "ccuser": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShahr_Mabda": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShahr_Maghsad": {
+      "count": 1,
+      "note": ""
+    },
+    "ccEjazehPardakhtFaktor_Eydi": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfrad_SabtKonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazMoshabehBimeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccReference": {
+      "count": 1,
+      "note": ""
+    },
+    "ccVahedSazmaniParent": {
+      "count": 1,
+      "note": ""
+    },
+    "ccHouzeh": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.Houzeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccMantaghehPakhsh": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.MantaghehPakhsh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccMahalePardakht": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.MahalePardakht",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccMahalTaminVam": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMahalBazPardakhtVam": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazPardakhtVam": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeHazinehDarmanLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeHazineDarmanLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazPardakht": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPersonelDarkhastKonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPersonelMosahebehgar": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDarkhstJazbNiroAgahiMosahebeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfrad_ArzyabiKonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSystem_Next": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShakhesArzyabiLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeRotbehArzyabiLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccPersonelDorehAmozesh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccUserSabegh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSystemKartabl": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoePardakht": {
+      "count": 1,
+      "note": ""
+    },
+    "ccDin": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMazhab": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGrayesh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccNoeHesab": {
+      "count": 1,
+      "note": "مقصد در فهرست کاملِ اشیای دیتابیس پیدا شد",
+      "resolves_to": "Global.NoeHesab",
+      "evidence": "CROSS_SCHEMA_CC_MATCH"
+    },
+    "ccShoghlSharhNoe": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShoghlSharh": {
+      "count": 1,
+      "note": ""
     }
   },
   "tables": {
@@ -5554,7 +5958,8 @@
       "Maliat",
       "ItemhayeHoghogh",
       "SaghfeNoeVam"
-    ]
+    ],
+    "fk_contradicts_naming": []
   },
   "cross_schema": {
     "FinancialAccounting.MarkazHazineh": {
@@ -5724,6 +6129,4240 @@
       "evidence": "OBSERVED_OBJECT",
       "verified": true,
       "note": "تقویم شمسی شرکت: Tarikh, TarikhShamsi, Sal, Mah, Rooz, CodeNoeTatili (NULL = روز کاری)."
+    }
+  },
+  "views_excluded": [],
+  "edges": [
+    {
+      "source": "Personel",
+      "col": "ccPersonelVazeiatMoafiat_BimehMaliat",
+      "target": "PersonelVazeiatMoafiat_BimehMaliat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Personel",
+      "col": "ccNoeBazneshasteh",
+      "target": "NoeBazneshasteh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelTakmily",
+      "col": "ccKargahBimeh",
+      "target": "KargahBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelTakmily",
+      "col": "ccDinMazhab",
+      "target": "DinMazhab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelTakmily",
+      "col": "ccVazeiatTaahol",
+      "target": "VazeiatTaahol",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelTakmily",
+      "col": "ccBloodGroup",
+      "target": "BloodGroup",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelVabasteh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelVabasteh",
+      "col": "ccNoeNesbat",
+      "target": "NoeNesbat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelVabasteh",
+      "col": "ccMadrakTahsily",
+      "target": "MadrakTahsily",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelVabasteh",
+      "col": "ccVazeiatTaahol",
+      "target": "VazeiatTaahol",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelVabasteh",
+      "col": "ccReshteh",
+      "target": "Reshteh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelVabasteh_Madrak",
+      "col": "ccPersonelVabasteh",
+      "target": "PersonelVabasteh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMadrakTahsily",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMadrakTahsily",
+      "col": "ccMadrakTahsily",
+      "target": "MadrakTahsily",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMadrakTahsily",
+      "col": "ccReshteh",
+      "target": "Reshteh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMadrakTahsily_Madrak",
+      "col": "ccPersonelMadrakTahsily",
+      "target": "PersonelMadrakTahsily",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelSabegheKari",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelSavabeghKary",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKhedmatSarbazy",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKhedmatSarbazy",
+      "col": "ccNoeMoafiat",
+      "target": "NoeMoafiat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKhedmatSarbazy",
+      "col": "ccYeganKhedmat",
+      "target": "YeganKhedmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKhedmatSarbazy",
+      "col": "ccRastehKhedmat",
+      "target": "RastehKhedmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKhedmatSarbazy_Madrak",
+      "col": "ccPersonelKhedmatSarbazy",
+      "target": "PersonelKhedmatSarbazy",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelZaban",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelZaban",
+      "col": "ccNoeZaban",
+      "target": "NoeZaban",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMaharatComputer",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMaharatComputer",
+      "col": "ccNoeMaharatComputer",
+      "target": "NoeMaharatComputer",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGavahinamehRanandegy",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGavahinamehRanandegy",
+      "col": "ccNoeGavahinamehRanandegy",
+      "target": "NoeGavahinamehRanandegy",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelBimary",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelBimary",
+      "col": "ccBimary",
+      "target": "Bimary",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelSabeghehBimari",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelShomarehHesab",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelShomarehHesab",
+      "col": "ccNoePardakhtHoghogh",
+      "target": "NoePardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelShomarehHesab_Madrak",
+      "col": "ccPersonelShomarehHesab",
+      "target": "PersonelShomarehHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelPhoto",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMadrak",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMadrak",
+      "col": "ccNoeMadrak",
+      "target": "NoeMadrak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Personel_Madrak",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Personel_Madrak",
+      "col": "ccNoeMadrak",
+      "target": "NoeMadrak",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMoaref",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelTashvighiEnzebati",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelTashvighiEnzebati",
+      "col": "ccNoeTashvighiEnzebati",
+      "target": "NoeTashvighiEnzebati",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelVazeiat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelInfo_Movaghat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelAdmin",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelAdmin",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VaziatZaheri",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazMohasebat_Personel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TarikhEtebarHaghOlad",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Personel_ErsaliEjazehPardakht",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Personel_ErsaliEjazehPardakht",
+      "col": "ccBastanListHoghogh",
+      "target": "BastanListHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Personel_GheyreFaal_Voc",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Post",
+      "col": "ccPostBimeh",
+      "target": "PostBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Post",
+      "col": "ccShoghl",
+      "target": "Shoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Post",
+      "col": "ccShoghl_Old",
+      "target": "Shoghl",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "PostShoghl",
+      "col": "ccShoghl",
+      "target": "Shoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PostShoghl",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PostShoghl",
+      "col": "ccShoghlTitr",
+      "target": "ShoghlTitr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohShoghli_MablaghSanavat",
+      "col": "ccGorohShoghli",
+      "target": "GorohShoghli",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohShoghliAfzayeshHoghogh",
+      "col": "ccGorohShoghli",
+      "target": "GorohShoghli",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VahedSazmani_Post",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VahedSazmani_Post",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VahedSazmaniPostShoghl",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VahedSazmaniPostShoghl",
+      "col": "ccPostShoghl",
+      "target": "PostShoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VahedSazmani_MarkazHazineh",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VahedSazmani_NoeMarkazPakhsh",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VahedSazmani_Tafsily",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Post_SandoghRefah",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "post_HazineMamuryat",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazMoshabeh_Bime_Maliat",
+      "col": "ccKargahBimeh",
+      "target": "KargahBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazMoshabeh_Bime_Maliat",
+      "col": "ccShobehBimeh",
+      "target": "ShobehBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardad",
+      "col": "ccNoeEstekhdam",
+      "target": "NoeEstekhdam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardad",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardad_Movaghat",
+      "col": "ccNoeEstekhdam",
+      "target": "NoeEstekhdam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardad_Movaghat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardad_Movaghat",
+      "col": "ccPersonelGharardad_Asli",
+      "target": "PersonelGharardad",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "PersonelGharardadVaziat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardadVaziat",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardadVaziat",
+      "col": "ccNoeEstekhdam",
+      "target": "NoeEstekhdam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardad_Madarek",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGharardad_Madarek",
+      "col": "ccPersonelGharardad_Movaghat",
+      "target": "PersonelGharardad_Movaghat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokm",
+      "col": "ccNoeHokm",
+      "target": "NoeHokm",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokm",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokm",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmVazeiat",
+      "col": "ccPersonelHokm",
+      "target": "PersonelHokm",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh",
+      "col": "ccGorohShoghli",
+      "target": "GorohShoghli",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh",
+      "col": "ccNoeMohasebehKarkard",
+      "target": "NoeMohasebehKarkard",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh",
+      "col": "ccNoeAyabZahab",
+      "target": "NoeAyabZahab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh",
+      "col": "ccPersonelHokm",
+      "target": "PersonelHokm",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh",
+      "col": "ccPersonelHokmPostVahedSazmani_Link",
+      "target": "PersonelHokmPostVahedSazmani",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "PersonelHokmHoghoghSatr",
+      "col": "ccPersonelHokmHoghogh",
+      "target": "PersonelHokmHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghoghSatr",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh_SayerAvamel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghogh_SayerAvamel",
+      "col": "ccPersonelHokmPostVahedSazmani_Link",
+      "target": "PersonelHokmPostVahedSazmani",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "PersonelHokmHoghoghSatr_SayerAvamel",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmHoghoghSatr_SayerAvamel",
+      "col": "ccPersonelHokmHoghogh_SayerAvamel",
+      "target": "PersonelHokmHoghogh_SayerAvamel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostVahedSazmani",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostVahedSazmani",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostVahedSazmani",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostVahedSazmani",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostVahedSazmani_SystemPermission",
+      "col": "ccPersonelHokmPostVahedSazmani",
+      "target": "PersonelHokmPostVahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostVahedSazmani_SystemPermission",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostShoghl",
+      "col": "ccPersonelHokm",
+      "target": "PersonelHokm",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostShoghl",
+      "col": "ccPostShoghl",
+      "target": "PostShoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmPostShoghl",
+      "col": "ccNoeHamkari",
+      "target": "NoeHamkari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmVahedSazmani",
+      "col": "ccPersonelHokm",
+      "target": "PersonelHokm",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmVahedSazmani",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmShiftKary",
+      "col": "ccPersonelHokm",
+      "target": "PersonelHokm",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelHokmShiftKary",
+      "col": "ccShiftKary",
+      "target": "ShiftKary",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemHoghogh",
+      "col": "ccVahedMohasebehHoghogh",
+      "target": "VahedMohasebehHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemHoghogh_FormulMohasebeh",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemHoghogh_Mashmol_BimehMaliat",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemHoghogh_SabetPardakhti",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemHoghogh_SabetPardakhti",
+      "col": "ccItemHoghogh_Link",
+      "target": "ItemHoghogh",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "ItemHoghogh_Sanavat_Eydi",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemHoghogh_ChandPardakhti",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemHokmHoghogh_SayerAvamel",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemHokmHoghogh_SayerAvamel",
+      "col": "ccVahedMohasebehHoghogh",
+      "target": "VahedMohasebehHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ItemhayeHoghogh",
+      "col": "ccNoeItemhayeHoghogh",
+      "target": "NoeItemhayeHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeItemhayeHoghoghSharayet",
+      "col": "ccNoeItemhayeHoghogh",
+      "target": "NoeItemhayeHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccPersonelHokmVahedSazmani",
+      "target": "PersonelHokmVahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccPersonelHokmHoghogh",
+      "target": "PersonelHokmHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccPersonelHokmPostShoghl",
+      "target": "PersonelHokmPostShoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccNoePardakhti",
+      "target": "NoePardakhti",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccPersonelHokmPostVahedSazmani",
+      "target": "PersonelHokmPostVahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccNoeEstekhdam",
+      "target": "NoeEstekhdam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccShobehBimeh",
+      "target": "ShobehBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh",
+      "col": "ccPersonelHokmHoghogh_SayerAvamel",
+      "target": "PersonelHokmHoghogh_SayerAvamel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghoghSatr",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghoghSatr",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh_FaktorTaavoni",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtHoghogh_FaktorTaavoni",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtEydi",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtEydi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtEydi",
+      "col": "ccPersonelHokmPostVahedSazmani",
+      "target": "PersonelHokmPostVahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtEydi",
+      "col": "ccPersonelHokmHoghogh",
+      "target": "PersonelHokmHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtEydi",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtEydi",
+      "col": "ccNoeEstekhdam",
+      "target": "NoeEstekhdam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Karaneh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Karaneh",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Karaneh_MojavezPardakht",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtMosaedehGorohi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtMosaedehGorohi",
+      "col": "ccPersonelHokmHoghogh",
+      "target": "PersonelHokmHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtMosaedehGorohi",
+      "col": "ccPersonelHokmPostVahedSazmani",
+      "target": "PersonelHokmPostVahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PardakhtMosaedehGorohi",
+      "col": "ccAeenNamehMosaedeh",
+      "target": "AeenNamehMosaedeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AfzayeshHoghoghSalianeh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AfzayeshHoghoghSalianeh",
+      "col": "ccPersonelHokmHoghogh_Old",
+      "target": "PersonelHokmHoghogh",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "AfzayeshHoghoghSalianeh",
+      "col": "ccPersonelHokmHoghogh_Jadid",
+      "target": "PersonelHokmHoghogh",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "MaliatBarDaramadHoghogh",
+      "col": "ccNoeEstekhdam",
+      "target": "NoeEstekhdam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Zakhireh_ItemHoghogh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Zakhireh_ItemHoghogh",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MablaghZakhireh_Eydi_Sanavat",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BastanListHoghogh",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BastanListHoghoghVazeiat",
+      "col": "ccBastanListHoghogh",
+      "target": "BastanListHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MoavaghePardakhtiHoghogh",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EslahItemhayeHoghoghPardakhtiMah",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EslahItemhayeHoghoghPardakhtiMah",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EslahItemhayeHoghoghPardakhtiMah",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SaghfeEzafeKar",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SaghfeMablaghAghsat",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SaghfeMablaghAghsat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EzafeKarBazneshastegi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TashvighiBeNesbatRoozKarkard",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TashvighiBeNesbatRoozKarkard",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TashvighiBeNesbatRoozKarkard",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KarkardePayaneMahGhabl",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard",
+      "col": "ccGorohKari",
+      "target": "GorohKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard",
+      "col": "ccShiftKari",
+      "target": "ShiftKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard",
+      "col": "ccNoeMorakhasi",
+      "target": "NoeMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard",
+      "col": "ccNobatKari",
+      "target": "NobatKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkardSatr",
+      "col": "ccPersonelKarkard",
+      "target": "PersonelKarkard",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkardSatr",
+      "col": "ccPersonelMorakhasi",
+      "target": "PersonelMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkardSatr",
+      "col": "ccPersonelMamoriat",
+      "target": "PersonelMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkardSatr",
+      "col": "ccNoeMamoriat",
+      "target": "NoeMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_NoeMorakhasi",
+      "col": "ccPersonelKarkard",
+      "target": "PersonelKarkard",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_NoeMorakhasi",
+      "col": "ccNoeMorakhasi",
+      "target": "NoeMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_Morakhasi_Mamuryat",
+      "col": "ccPersonelKarkard",
+      "target": "PersonelKarkard",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_Morakhasi_Mamuryat",
+      "col": "ccNoeRefrence",
+      "target": "NoeRefrence",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_Excel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_ExcelDariaftiSatr",
+      "col": "ccPersonelKarkard_ExcelDariafti",
+      "target": "PersonelKarkard_ExcelDariafti",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_ExcelDariaftiSatr",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_ExcelDariaftiSatr",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_ExcelDariafti_Arshive",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_ExcelDariafti_Arshive",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_ExcelDariafti_Arshive_Nahaee",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_ExcelDariafti_Arshive_Nahaee",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_oooold",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelKarkard_oooold",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ErrorKarkard",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "VorodKhorojPersonel",
+      "col": "ccNoeVorodKhoroj",
+      "target": "NoeVorodKhoroj",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShiftKari",
+      "col": "ccNobatKari",
+      "target": "NobatKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShiftKarySatr",
+      "col": "ccShiftKary",
+      "target": "ShiftKary",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShiftKaryTaghirat",
+      "col": "ccShiftKary",
+      "target": "ShiftKary",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelShiftKary",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelShiftKary",
+      "col": "ccShiftKary",
+      "target": "ShiftKary",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohKari",
+      "col": "ccShiftKari",
+      "target": "ShiftKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohKariDorehGardesh",
+      "col": "ccGorohKari",
+      "target": "GorohKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohKariDorehGardesh",
+      "col": "ccShiftKari",
+      "target": "ShiftKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimKariPersonel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimKariPersonel",
+      "col": "ccGorohKari",
+      "target": "GorohKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimKariPersonel",
+      "col": "ccShiftKari",
+      "target": "ShiftKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimKariPersonel",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimKariPersonel",
+      "col": "ccShiftKari_RoozTatil",
+      "target": "ShiftKari",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "TaghvimKariPersonelJaygozin",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimKariPersonelJaygozin",
+      "col": "ccShiftKari",
+      "target": "ShiftKari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimTatilManabeEnsani",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KhorojMojaz",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDarkhastMorakhasi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDarkhastMorakhasi",
+      "col": "ccNoeMorakhasi",
+      "target": "NoeMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDarkhastMorakhasi_Madarek",
+      "col": "ccPersonelDarkhastMorakhasi",
+      "target": "PersonelDarkhastMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDarkhastMorakhasiVazeiat",
+      "col": "ccPersonelDarkhastMorakhasi",
+      "target": "PersonelDarkhastMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDarkhastMorakhasiVazeiat",
+      "col": "ccElatOdatMorakhasi",
+      "target": "ElatOdatMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasi",
+      "col": "ccNoeMorakhasi",
+      "target": "NoeMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasi",
+      "col": "ccNoeRefrence",
+      "target": "NoeRefrence",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasiSatr",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasiSatr",
+      "col": "ccPersonelMorakhasi",
+      "target": "PersonelMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasiSatr",
+      "col": "ccNoeMorakhasi",
+      "target": "NoeMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasiSatr",
+      "col": "ccBazKharid",
+      "target": "BazKharid",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasiSatr",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasiVazeiat",
+      "col": "ccPersonelMorakhasi",
+      "target": "PersonelMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMorakhasi_Madrak",
+      "col": "ccPersonelMorakhasi",
+      "target": "PersonelMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMandehMorakhasi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMandehMorakhasi",
+      "col": "ccPersonelDarkhastMorakhasi",
+      "target": "PersonelDarkhastMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMandehMorakhasi",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMandehMorakhasi",
+      "col": "ccNoeMorakhasi",
+      "target": "NoeMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMandehMorakhasi",
+      "col": "ccBazKharid",
+      "target": "BazKharid",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMandehMorakhasiTakhirGheybat",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDarkhastGheybat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDarkhastGheybat_Vaziat",
+      "col": "ccPersonelDarkhastGheybat",
+      "target": "PersonelDarkhastGheybat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGheybat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelGheybat",
+      "col": "ccPersonelDarkhastGheybat",
+      "target": "PersonelDarkhastGheybat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMamoriat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMamoriat",
+      "col": "ccNoeMamoriat",
+      "target": "NoeMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMamoriat_Madarek",
+      "col": "ccPersonelMamoriat",
+      "target": "PersonelMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMamoriatVazeiat",
+      "col": "ccPersonelMamoriat",
+      "target": "PersonelMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMamuryat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMamuryat",
+      "col": "ccNoeMamuryat",
+      "target": "NoeMamuryat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMamuryat_Vazeiat",
+      "col": "ccPersonelMamuryat_ElatOdat",
+      "target": "PersonelMamuryat_ElatOdat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMandehMamuryat",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMandehMamuryat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelFogholadeMamoriat",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameFogholadehMamoriat",
+      "col": "ccItemFogholadehMamoriat",
+      "target": "ItemFogholadehMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameFogholadehMamoriatSatr",
+      "col": "ccAeenNameFogholadehMamoriat",
+      "target": "AeenNameFogholadehMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameFogholadehMamoriatSatr",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameFogholadehMamoriatSatrNew",
+      "col": "ccAeenNameFogholadehMamoriat",
+      "target": "AeenNameFogholadehMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameFogholadehMamoriatSatrNew",
+      "col": "ccItemFogholadehMamoriat",
+      "target": "ItemFogholadehMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameFogholadehMamoriat_PostNew",
+      "col": "ccAeenNameFogholadehMamoriat",
+      "target": "AeenNameFogholadehMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameFogholadehMamoriat_PostNew",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameFogholadehMamoriatKilometrNew",
+      "col": "ccItemFogholadehMamoriat",
+      "target": "ItemFogholadehMamoriat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SabtKiloometer",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KarKardMamoorPakhshKaregarAnbar",
+      "col": "ccPostShoghl",
+      "target": "PostShoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_Morakhasi",
+      "col": "ccNoeMorakhasi",
+      "target": "NoeMorakhasi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMaliatSatr",
+      "col": "ccPersonelMaliat",
+      "target": "PersonelMaliat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMaliatSatr",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMaliatSatr",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMaliatInformation",
+      "col": "ccPersonelMaliat",
+      "target": "PersonelMaliat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMaliatInformation",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MaliatRizPersonel",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MaliatBarayeShoroMohasebe",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarsadTakhfifMaliat_Personel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarsadTakhfifMaliat_Personel_Photo",
+      "col": "ccDarsadTakhfifMaliat_Personel",
+      "target": "DarsadTakhfifMaliat_Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BimehDarsadMaliat_Bimeh_Personel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ListBime",
+      "col": "ccShobehBimeh",
+      "target": "ShobehBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ListBimeSatr",
+      "col": "ccListBime",
+      "target": "ListBime",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ListBimeSatr",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ListBimeh_JabejaeiPersonel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "LitsBimeh_AdamErsalPersonel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelSabeghehBimeh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelSabeghehBimeh",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelShomarehHesabOBime_Sabeghe",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShobehBimeh",
+      "col": "ccKargahBimeh",
+      "target": "KargahBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BimehGharardad",
+      "col": "ccSherkateBimeh",
+      "target": "SherkateBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BimehGharardad_Madrak",
+      "col": "ccBimehGharardad",
+      "target": "BimehGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeNesbat_TarefeBimehTakmily",
+      "col": "ccNoeNesbat",
+      "target": "NoeNesbat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeNesbat_TarefeBimehTakmily",
+      "col": "ccSherkateBimeh",
+      "target": "SherkateBimeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeNesbat_TarefeBimehTakmily",
+      "col": "ccNoeBimehNameh",
+      "target": "NoeBimehNameh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TarefeBimehTakmily_SabeghehPersonel",
+      "col": "ccNoeNesbat",
+      "target": "NoeNesbat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BimehTakmilyPardakhti",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BimehTakmilyPardakhti",
+      "col": "ccNoeNesbat",
+      "target": "NoeNesbat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BimehTakmilyPardakhti",
+      "col": "ccNoeBimehNameh",
+      "target": "NoeBimehNameh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastAzSandoghRefah",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastAzSandoghRefah",
+      "col": "ccNoeSandoghRefah",
+      "target": "NoeSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastAzSandoghRefah_Vazeiat",
+      "col": "ccDarkhastAzSandoghRefah",
+      "target": "DarkhastAzSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastAzSandoghRefahModir",
+      "col": "ccDarkhastAzSandoghRefah",
+      "target": "DarkhastAzSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastAzSandoghRefahModir",
+      "col": "ccSandoghRefahModir",
+      "target": "SandoghRefahModir",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccPersonelHokmVahedSazmani",
+      "target": "PersonelHokmVahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccNoeSandoghRefah",
+      "target": "NoeSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccDarkhastAzSandoghRefah",
+      "target": "DarkhastAzSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccItemSandoghRefah",
+      "target": "ItemSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccBazKharid",
+      "target": "BazKharid",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccPersonelHokmPostVahedSazmani",
+      "target": "PersonelHokmPostVahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefah",
+      "col": "ccNoeRefrence",
+      "target": "NoeRefrence",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SandoghRefahModir",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TarefeZakhireNoeSandoghRefahSatr",
+      "col": "ccTarefeZakhireNoeSandoghRefah",
+      "target": "TarefeZakhireNoeSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TarefeZakhireNoeSandoghRefahSatr",
+      "col": "ccNoeSandoghRefah",
+      "target": "NoeSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_Rpt_SandoghRefah",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_Rpt_SandoghRefah",
+      "col": "ccNoeSandoghRefah",
+      "target": "NoeSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_Rpt_SandoghRefah",
+      "col": "ccItemSandoghRefah",
+      "target": "ItemSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Tmp_Rpt_SandoghRefah",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVam",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVam",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVam",
+      "col": "ccDarkhastAzSandoghRefah",
+      "target": "DarkhastAzSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVam",
+      "col": "ccConfig_Vam",
+      "target": "Config_Vam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamSatr",
+      "col": "ccDarkhastAzSandoghRefah",
+      "target": "DarkhastAzSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamSatr",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamSatr_Madarek",
+      "col": "ccDarkhastVamSatr",
+      "target": "DarkhastVamSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVam_Madarek",
+      "col": "ccDarkhastVam",
+      "target": "DarkhastVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamVazeiat",
+      "col": "ccDarkhastVam",
+      "target": "DarkhastVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamPardakhtAghsat",
+      "col": "ccDarkhastVam",
+      "target": "DarkhastVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamPardakhtAghsat",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamZamen",
+      "col": "ccDarkhastVam",
+      "target": "DarkhastVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamZamen",
+      "col": "ccNoeZamen",
+      "target": "NoeZamen",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamZamen",
+      "col": "ccPersonel_Zamen",
+      "target": "Personel",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "DarkhastVamZamenInfo",
+      "col": "ccNoeNesbat",
+      "target": "NoeNesbat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamZamenInfo",
+      "col": "ccDarkhastVamSatr",
+      "target": "DarkhastVamSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamZamenInfo",
+      "col": "ccDarkhastVamZamen",
+      "target": "DarkhastVamZamen",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamZamenInfo",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamZamenMadrakZemanat",
+      "col": "ccDarkhastVamZamen",
+      "target": "DarkhastVamZamen",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamZamen_ListEntezar",
+      "col": "ccDarkhastVamSatr",
+      "target": "DarkhastVamSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamNatijeHeyatModireSandogh",
+      "col": "ccDarkhastVamSatr",
+      "target": "DarkhastVamSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastVamNatijeHeyatModireSandogh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeVam_Items",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeVam_Items",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeVam_Items",
+      "col": "ccNoeGavahinamehRanandegy",
+      "target": "NoeGavahinamehRanandegy",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SaghfeNoeVam",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNamehVam",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNamehVam",
+      "col": "ccNoeTaminBazPardakhtVam",
+      "target": "NoeTaminBazPardakhtVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNamehVam",
+      "col": "ccNoeGavahinamehRanandegy",
+      "target": "NoeGavahinamehRanandegy",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNamehVam_TakhsisMablaghPost",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNamehVam_TakhsisMablaghPost",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Kind_Vam",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_Vam",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_VamDetail",
+      "col": "ccConfig_Vam",
+      "target": "Config_Vam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazinehDarman",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazinehDarman",
+      "col": "ccNoeHazinehDarman",
+      "target": "NoeHazinehDarman",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazinehDarman",
+      "col": "ccPersonelVabasteh",
+      "target": "PersonelVabasteh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazinehDarman_Madarek",
+      "col": "ccDarkhastHazinehDarman",
+      "target": "DarkhastHazinehDarman",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazinehDarmanVazeiat",
+      "col": "ccDarkhastHazinehDarman",
+      "target": "DarkhastHazinehDarman",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazineDarmanSatr",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazineDarmanSatr",
+      "col": "ccDarkhastAzSandoghRefah",
+      "target": "DarkhastAzSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazineDarmanSatr",
+      "col": "ccNoeNesbat",
+      "target": "NoeNesbat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazineDarmanSatr",
+      "col": "ccDarkhastHazineDarmanSatrElatOdat",
+      "target": "DarkhastHazineDarmanSatrElatOdat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastHazineDarmanSatr_Madarek",
+      "col": "ccDarkhastHazineDarmanSatr",
+      "target": "DarkhastHazineDarmanSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohBandiHazinehDarmanSatr",
+      "col": "ccGorohBandiHazinehDarman",
+      "target": "GorohBandiHazinehDarman",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastJazbNiro",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastJazbNiro",
+      "col": "ccVahedSazmaniPostShoghl",
+      "target": "VahedSazmaniPostShoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastJazbNiroVazeiat",
+      "col": "ccDarkhastJazbNiro",
+      "target": "DarkhastJazbNiro",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastJazbNiroAgahi",
+      "col": "ccAgahi",
+      "target": "Agahi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastJazbNiroAgahi",
+      "col": "ccDarkhastJazbNiro",
+      "target": "DarkhastJazbNiro",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastJazbNiroAgahiMosahebeh",
+      "col": "ccDarkhastJazbNiroAgahi",
+      "target": "DarkhastJazbNiroAgahi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastJazbNiroAgahiMosahebeh",
+      "col": "ccPostShoghl",
+      "target": "PostShoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DarkhastJazbNiroAgahiMosahebehRadif",
+      "col": "ccDarkhastJazbNiroAgahiMosahebeh",
+      "target": "DarkhastJazbNiroAgahiMosahebeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Agahi",
+      "col": "ccNoeAgahi",
+      "target": "NoeAgahi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMosahebeh",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMosahebehRadif",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelMosahebehRadif",
+      "col": "ccDarkhastJazbNiroAgahiMosahebehRadif",
+      "target": "DarkhastJazbNiroAgahiMosahebehRadif",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonNoeBarresi",
+      "col": "ccAzmoonNoe",
+      "target": "AzmoonNoe",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonNoePasokh",
+      "col": "ccAzmoonNoe",
+      "target": "AzmoonNoe",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonSoal",
+      "col": "ccAzmoonNoe",
+      "target": "AzmoonNoe",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonSoalEmtiyaz",
+      "col": "ccAzmoonSoal",
+      "target": "AzmoonSoal",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonSoalEmtiyaz",
+      "col": "ccAzmoonNoeBarresi",
+      "target": "AzmoonNoeBarresi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonSoalEmtiyaz",
+      "col": "ccAzmoonNoePasokh",
+      "target": "AzmoonNoePasokh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonTitr",
+      "col": "ccAzmoonNoe",
+      "target": "AzmoonNoe",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonSatr",
+      "col": "ccAzmoonTitr",
+      "target": "AzmoonTitr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AzmoonSatr",
+      "col": "ccAzmoonSoal",
+      "target": "AzmoonSoal",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PorseshnameSoal",
+      "col": "ccPorseshnameNoe",
+      "target": "PorseshnameNoe",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ArzyabiPersonel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ArzyabiPersonel",
+      "col": "ccFormArzyabi",
+      "target": "FormArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ArzyabiPersonel",
+      "col": "ccPersonelHokmPostVahedSazmani",
+      "target": "PersonelHokmPostVahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ArzyabiPersonelSatr",
+      "col": "ccArzyabiPersonel",
+      "target": "ArzyabiPersonel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ArzyabiPersonelSatr",
+      "col": "ccFormArzyabiSatr",
+      "target": "FormArzyabiSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ArzyabiPersonelSatr",
+      "col": "ccNoeRotbehArzyabi",
+      "target": "NoeRotbehArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabi",
+      "col": "ccNoeFormArzyabi",
+      "target": "NoeFormArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabi",
+      "col": "ccNoeRotbehArzyabi",
+      "target": "NoeRotbehArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabi",
+      "col": "ccNoeArzyabi",
+      "target": "NoeArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabiSatr",
+      "col": "ccFormArzyabi",
+      "target": "FormArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabiSatr",
+      "col": "ccShakhesArzyabi",
+      "target": "ShakhesArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabi_Post",
+      "col": "ccFormArzyabi",
+      "target": "FormArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabi_Post",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabi_Response",
+      "col": "ccFormArzyabi",
+      "target": "FormArzyabi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "FormArzyabi_Response",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDorehAmozeshi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PersonelDorehAmozeshi",
+      "col": "ccNoeAmoozeshPersonel",
+      "target": "NoeAmoozeshPersonel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehHesab",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehHesab",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehHesab",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehHesab",
+      "col": "ccDarkhastVam",
+      "target": "DarkhastVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehHesabSatr",
+      "col": "ccTasviehHesab",
+      "target": "TasviehHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehHesabSatr",
+      "col": "ccItemHoghogh",
+      "target": "ItemHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehHesab_Vazeiat",
+      "col": "ccTasviehHesab",
+      "target": "TasviehHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TasviehHesabPhoto",
+      "col": "ccTasviehHesab",
+      "target": "TasviehHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BazKharid",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BazKharid",
+      "col": "ccPersonelGharardad",
+      "target": "PersonelGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BazKharid",
+      "col": "ccPardakhtHoghogh",
+      "target": "PardakhtHoghogh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MosaedeNazdikBazneshastegi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_TasviehHesab",
+      "col": "ccNoeTasviehHesab",
+      "target": "NoeTasviehHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_ItemSatr",
+      "col": "ccConfig_Item",
+      "target": "Config_Item",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Config_ItemSatr_Info",
+      "col": "ccConfig_ItemSatr",
+      "target": "Config_ItemSatr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_PersonelInfo",
+      "col": "ccBloodGroup",
+      "target": "BloodGroup",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_PersonelHokmHoghogh",
+      "col": "ccNoeMohasebehKarkard",
+      "target": "NoeMohasebehKarkard",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_PersonelHokmHoghogh",
+      "col": "ccGorohShoghli",
+      "target": "GorohShoghli",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_PersonelHokmPostVahedSazmani",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_PersonelHokmPostVahedSazmani",
+      "col": "ccPost",
+      "target": "Post",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_PersonelHokmPostVahedSazmani",
+      "col": "ccVahedSazmani",
+      "target": "VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_MandehMorakhasi",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_MandehVam",
+      "col": "ccNoeVam",
+      "target": "NoeVam",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_MandehVam",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_SandoghRefah",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_SandoghRefah",
+      "col": "ccNoeSandoghRefah",
+      "target": "NoeSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_SandoghRefah",
+      "col": "ccItemSandoghRefah",
+      "target": "ItemSandoghRefah",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_MaliatPardakhti",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_MadrakTahsily",
+      "col": "ccMadrakTahsily",
+      "target": "MadrakTahsily",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_MadrakTahsily",
+      "col": "ccReshteh",
+      "target": "Reshteh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_AfradVabasteh",
+      "col": "ccNoeNesbat",
+      "target": "NoeNesbat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_AfradVabasteh",
+      "col": "ccMadrakTahsily",
+      "target": "MadrakTahsily",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_AfradVabasteh",
+      "col": "ccVazeiatTaahol",
+      "target": "VazeiatTaahol",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_ShomarehHesabPersonel",
+      "col": "ccPersonel",
+      "target": "Personel",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_ShomarehHesabPersonel",
+      "col": "ccNoePardakhti",
+      "target": "NoePardakhti",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_KhedmatSarbazy",
+      "col": "ccNoeMoafiat",
+      "target": "NoeMoafiat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_KhedmatSarbazy",
+      "col": "ccYeganKhedmat",
+      "target": "YeganKhedmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "EnteghalAvalieh_KhedmatSarbazy",
+      "col": "ccRastehKhedmat",
+      "target": "RastehKhedmat",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DELETED_vShoghlSharh",
+      "col": "ccShoghl",
+      "target": "Shoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DELETED_vKarKardMamoorPakhshKaregarAnbar",
+      "col": "ccKarKardMamoorPakhshKaregarAnbar",
+      "target": "KarKardMamoorPakhshKaregarAnbar",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "DELETED_vKarKardMamoorPakhshKaregarAnbar",
+      "col": "ccPostShoghl",
+      "target": "PostShoghl",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    }
+  ],
+  "cc_resolution": {
+    "generated_by": "ساخت-اسکیل-اسکیما-پگاه/scripts/crosslink.py",
+    "family": [
+      "Global",
+      "HumanResource",
+      "Sales",
+      "Treasury",
+      "Warehouse"
+    ],
+    "note": "همه‌ی اینها نامزدند. ROLE_QUALIFIED_PREFIX از نام درآمده و کلید خارجی نیست — قبل از استفاده با کوئریِ ارجاعِ یتیم تأیید بگیر.",
+    "role_qualified": {
+      "ccAfradModir": {
+        "count": 3,
+        "target": "Global.Afrad",
+        "role": "Modir",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccPersonelJaygozin": {
+        "count": 3,
+        "target": "HumanResource.Personel",
+        "role": "Jaygozin",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradBimar": {
+        "count": 2,
+        "target": "Global.Afrad",
+        "role": "Bimar",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradVabasteh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "Vabasteh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfrad_ArzyabiKonandeh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "ArzyabiKonandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfrad_SabtKonandeh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "SabtKonandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccDinMazhabLink": {
+        "count": 1,
+        "target": "HumanResource.DinMazhab",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccEjazehPardakhtFaktor_Bimeh": {
+        "count": 1,
+        "target": "Treasury.EjazehPardakhtFaktor",
+        "role": "Bimeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccEjazehPardakhtFaktor_Eydi": {
+        "count": 1,
+        "target": "Treasury.EjazehPardakhtFaktor",
+        "role": "Eydi",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccEjazehPardakhtFaktor_Hoghogh": {
+        "count": 1,
+        "target": "Treasury.EjazehPardakhtFaktor",
+        "role": "Hoghogh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccEjazehPardakhtFaktor_Maliat": {
+        "count": 1,
+        "target": "Treasury.EjazehPardakhtFaktor",
+        "role": "Maliat",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMahalBazPardakhtVam": {
+        "count": 1,
+        "target": "Global.Mahal",
+        "role": "BazPardakhtVam",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMahalTaminVam": {
+        "count": 1,
+        "target": "Global.Mahal",
+        "role": "TaminVam",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazAsliBimeh": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "AsliBimeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazEstekhdam": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Estekhdam",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazMoshabeh": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Moshabeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazMoshabehBimeh": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "MoshabehBimeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazMoshabeh_Bimeh": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Moshabeh_Bimeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazMoshabeh_BimehMaliat": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Moshabeh_BimehMaliat",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazMoshabeh_Maliat": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Moshabeh_Maliat",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazPardakht": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Pardakht",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazPardakhtVam": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "PardakhtVam",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccNoeHazinehDarmanLink": {
+        "count": 1,
+        "target": "HumanResource.NoeHazinehDarman",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccNoeRotbehArzyabiLink": {
+        "count": 1,
+        "target": "HumanResource.NoeRotbehArzyabi",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccPersonelDarkhastKonandeh": {
+        "count": 1,
+        "target": "HumanResource.Personel",
+        "role": "DarkhastKonandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccPersonelDorehAmozesh": {
+        "count": 1,
+        "target": "HumanResource.Personel",
+        "role": "DorehAmozesh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccPersonelHokmMazaya": {
+        "count": 1,
+        "target": "HumanResource.PersonelHokm",
+        "role": "Mazaya",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccPersonelJaygozinShodeh": {
+        "count": 1,
+        "target": "HumanResource.Personel",
+        "role": "JaygozinShodeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccPersonelMosahebehgar": {
+        "count": 1,
+        "target": "HumanResource.Personel",
+        "role": "Mosahebehgar",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccReshtehGeraieshLink": {
+        "count": 1,
+        "target": "HumanResource.ReshtehGeraiesh",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccShakhesArzyabiLink": {
+        "count": 1,
+        "target": "HumanResource.ShakhesArzyabi",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccShoghlSharh": {
+        "count": 1,
+        "target": "HumanResource.Shoghl",
+        "role": "Sharh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccShoghlSharhNoe": {
+        "count": 1,
+        "target": "HumanResource.Shoghl",
+        "role": "SharhNoe",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccVahedSazmaniLink": {
+        "count": 1,
+        "target": "HumanResource.VahedSazmani",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccVahedSazmaniParent": {
+        "count": 1,
+        "target": "HumanResource.VahedSazmani",
+        "role": "Parent",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      }
+    },
+    "documented": {},
+    "ambiguous": {},
+    "unresolved_here": {
+      "ccUserSabtKonandeh": 68,
+      "ccUser": 29,
+      "ccShahr": 9,
+      "ccSystemNext": 8,
+      "ccLink": 4,
+      "ccMamuryat": 4,
+      "ccRefrence": 4,
+      "ccNoeHazineDarman": 3,
+      "ccOstan": 3,
+      "ccUserSabegheh": 3,
+      "ccElatTasviehHesab": 2,
+      "ccElatTasviehHesab_Link": 2,
+      "ccGeraiesh": 2,
+      "ccKeshvarMahalTahsil": 2,
+      "ccMoaseseh": 2,
+      "ccNoeHazine": 2,
+      "ccNoeKhedmat": 2,
+      "ccShahrMahalTahsil": 2,
+      "ccDarkhstJazbNiroAgahiMosahebeh": 1,
+      "ccDin": 1,
+      "ccElatTaghirHokm": 1,
+      "ccGrayesh": 1,
+      "ccLinkCharteSazmani": 1,
+      "ccMazhab": 1,
+      "ccNoeEstefadeh": 1,
+      "ccNoeFile": 1,
+      "ccNoeHazineDarmanLink": 1,
+      "ccNoeKhoroj": 1,
+      "ccNoeLebas": 1,
+      "ccNoePardakht": 1,
+      "ccNoeVazeiat": 1,
+      "ccNoeVorod": 1,
+      "ccReference": 1,
+      "ccShahr_Mabda": 1,
+      "ccShahr_Maghsad": 1,
+      "ccSystemKartabl": 1,
+      "ccSystem_Next": 1,
+      "ccTasviyehesab": 1,
+      "ccUserGheyreFaalKonandeh": 1,
+      "ccUserHazfKonandeh": 1,
+      "ccUserSabegh": 1,
+      "ccUserTaeed_ListBime": 1,
+      "ccUserTaeed_ListMaliat": 1,
+      "ccUserTaghirDahandeh": 1,
+      "ccUser_SabtKonandeh": 1,
+      "ccVasile": 1,
+      "ccZirGoroh": 1,
+      "ccphoto": 1,
+      "ccuser": 1
+    },
+    "unresolved_family_top": {
+      "ccUser": 136,
+      "ccUserSabtKonandeh": 72,
+      "ccUserSabegheh": 56,
+      "ccShahr": 26,
+      "ccNoeSenf": 25,
+      "ccElat": 21,
+      "ccReport": 16,
+      "ccMantagheh": 14,
+      "ccMahaleh": 13,
+      "ccRefrence": 12,
+      "ccLink": 10,
+      "ccOstan": 10,
+      "ccSystemNext": 9,
+      "ccRow": 8,
+      "ccNoeField": 8,
+      "ccShahrestan": 8,
+      "ccRpt": 7,
+      "ccNoeFieldMoshtary": 7,
+      "ccHesab3": 5,
+      "ccvTafsily1": 5,
+      "ccShahrMoshtary": 5
     }
   }
 }

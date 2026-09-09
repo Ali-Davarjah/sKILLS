@@ -5,8 +5,9 @@
 
 ```
 SKILL.md                      دستورالعمل — چیزی که مدل هر بار می‌خواند
-schema.json                   نقشه‌ی ماشین‌خوان ۴۱۲ جدول (داده، نه کد)
-scripts/hr_map.py             پیمایش نقشه — table / refs / path / find / domain / external / traps
+schema.json                   نقشه‌ی ماشین‌خوان ۴۱۳ جدول و ۴۳۳ یال (داده، نه کد)
+scripts/map.py                پیمایش نقشه — table / refs / path / find / domain / external / crossref / traps / drift
+scripts/hr_map.py             نامِ قدیمی — به map.py می‌سپارد
 references/entities.md        دامنه به دامنه: جدول مرجع، ستون‌های مهم، دانه
 references/relationships.md   گراف اتصال، واژگان مشترک، و فهرست کامل تله‌ها
 references/queries.md         کوئری‌های تأیید و الگوهای آماده
@@ -69,7 +70,7 @@ examples/walkthrough.md       یک سؤال واقعی از اول تا آخر
   ولی تقریباً همه‌ی فرزندانش `int`، و
   `Zakhireh_ItemHoghogh.ccItemHoghogh` از نوع `tinyint` است — سقف ۲۵۵.
 
-`python scripts/hr_map.py traps` همه را یک‌جا می‌دهد.
+`python scripts/map.py traps` همه را یک‌جا می‌دهد.
 
 ## پل به اسکیل‌های فروش
 
@@ -89,19 +90,20 @@ https://github.com/<owner>/<repo>/tree/main/منابع-انسانی-پگاه
 ```
 
 کل پوشه با هم می‌آید. چون اسکریپت اجرایی دارد، اسکیل **خاموش** ایمپورت می‌شود؛
-بعد از اینکه یک نفر `scripts/hr_map.py` را خواند، روشنش کنید. تغییرات این
+بعد از اینکه یک نفر `scripts/map.py` را خواند، روشنش کنید. تغییرات این
 فایل‌ها تا ایمپورت دوباره به محصول نمی‌رسد.
 
 ## اجرای مستقیم
 
 ```bash
-python scripts/hr_map.py table  PersonelHokmHoghogh
-python scripts/hr_map.py refs   Personel
-python scripts/hr_map.py path   DarkhastVam PardakhtHoghogh --avoid Personel
-python scripts/hr_map.py find   Morakhasi
-python scripts/hr_map.py domain hoghogh
-python scripts/hr_map.py external
-python scripts/hr_map.py traps  ShiftKari
+python scripts/map.py table  PersonelHokmHoghogh
+python scripts/map.py refs   Personel
+python scripts/map.py path   DarkhastVam PardakhtHoghogh --avoid Personel
+python scripts/map.py find   Morakhasi
+python scripts/map.py domain hoghogh
+python scripts/map.py external
+python scripts/map.py crossref ccMarkazForosh
+python scripts/map.py traps  ShiftKari
 ```
 
 پایتون ۳.۹ به بالا، بدون هیچ وابستگی بیرونی.
@@ -151,3 +153,25 @@ python scripts/hr_map.py traps  ShiftKari
 - **ستون پهن یا سطرِ اقلام** در `PardakhtHoghogh` کدام مرجع است (کوئری ۵.۲).
 - **`MablaghPersonelOLD` در `SandoghRefah`** کنارِ `Mablagh_SahmPersonel` — کدام
   زنده است.
+
+## پیوند با بقیه‌ی اسکیل‌ها
+
+۲۸ مقصدِ `cc` بیرونِ `HumanResource` و **۲۳ تای آنها در `Global`** — این
+اسکیما تقریباً فقط با واژگانِ مشترک حرف می‌زند.
+
+| مقصد | اسکیل | برای چه |
+|---|---|---|
+| `Global` (۲۳ جدول) | `تسلط-مشترک-پگاه` | **نام کارمند** (`Afrad`)، مرکز، تقویم، بانک |
+| `Treasury` (۱) | `تسلط-خزانه-پگاه` | `EjazehPardakhtFaktor` — مجوزِ خروجِ پول |
+| `Sales` (۱) | `تسلط-فروش-پگاه` | فاکتور |
+
+**«چقدر باید بگیرد» و «چقدر گرفت» اینجاست، ولی «کِی و با چه مجوزی پرداخت
+شد» در `Treasury` است.**
+
+نقشه حالا ۴۳۳ یالِ داخلی و ۱۱۱ ارجاعِ بیرونی دارد (قبلاً یال ذخیره‌شده
+نداشت و ۱۹ ارجاع ثبت شده بود). ۳۵ ارجاع نامزدِ نقش‌دار گرفتند و ۴۹ تا
+واقعاً بی‌مقصد ماندند.
+
+نقشه‌ی کامل خانواده، ماتریسِ ارجاع و فهرستِ ارجاع‌های حل‌نشده در
+[../SKILLS.md](../SKILLS.md). عددها را `crosslink.py` می‌سازد؛ دستی
+به‌روزشان نکن.

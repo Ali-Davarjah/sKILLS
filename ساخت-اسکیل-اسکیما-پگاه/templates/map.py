@@ -10,11 +10,15 @@
     python map.py find     <متن>
     python map.py domain   [<domain-key>]
     python map.py external
+    python map.py crossref [<ccName>]
     python map.py traps    [<TableName>]
     python map.py drift    <live-tables.txt>
 
 خروجی «حدسِ اول» است مگر جایی که `CONFIRMED` بنویسد؛ آن یعنی کلید خارجی
 واقعی. بقیه از هم‌نامی درآمده و اسکیمای زنده حرف آخر را می‌زند.
+
+`crossref` ارجاعی را می‌گیرد که در این اسکیما جدول ندارد و می‌گوید کدام
+اسکیلِ دیگرِ خانواده مقصدش را دارد — و با چه اطمینانی.
 """
 
 import io
@@ -70,9 +74,52 @@ FLAG_LABEL = {
 }
 
 
+INDEX_PATH = next(
+    (p for p in (os.path.join(HERE, os.pardir, os.pardir, "skills-index.json"),
+                 os.path.join(HERE, os.pardir, "skills-index.json"))
+     if os.path.exists(p)), None)
+
+
 def load():
     with io.open(SCHEMA_PATH, encoding="utf-8") as fh:
         return json.load(fh)
+
+
+def load_index():
+    """فهرستِ خانواده — اگر کنارِ اسکیل‌ها باشد. نبودش خطا نیست."""
+    if not INDEX_PATH:
+        return None
+    try:
+        with io.open(INDEX_PATH, encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception:
+        return None
+
+
+def explain_cc(data, cc):
+    """یک ارجاعِ بی‌جدول در این اسکیما → نامزدِ مقصد، اگر هست.
+
+    (متن، اطمینان) یا (None, None). هیچ‌کدام کلید خارجی نیست.
+    """
+    res = data.get("cc_resolution") or {}
+    hit = res.get("documented", {}).get(cc)
+    if hit:
+        txt = "→ %s" % hit["target"]
+        if hit.get("filter"):
+            txt += "  با فیلترِ %s" % hit["filter"]
+        return txt, hit.get("confidence", "MEDIUM")
+    hit = res.get("ambiguous", {}).get(cc)
+    if hit:
+        return ("دوپهلو: %s" % " یا ".join(hit["candidates"]),
+                hit.get("confidence", "LOW"))
+    hit = res.get("role_qualified", {}).get(cc)
+    if hit:
+        return ("→ %s  (نقش: %s)" % (hit["target"], hit["role"]),
+                hit.get("confidence", "LOW"))
+    if cc in (res.get("unresolved_family_top") or {}):
+        return ("در هیچ‌کدام از اسکیماهای خانواده جدول ندارد (%d ارجاع در کل)"
+                % res["unresolved_family_top"][cc], "NONE")
+    return None, None
 
 
 def resolve(cc, tables):
@@ -173,10 +220,22 @@ def cmd_table(data, args):
 
     unresolved = [cc for cc in meta.get("cc", []) if not resolve(cc, tables)[0]]
     if unresolved:
-        print("\n  ارجاعِ بیرونی/حل‌نشده (جدول محلی برایشان نساز):")
+        print("\n  ارجاعِ بیرونی (جدول محلی برایشان نساز):")
         for cc in sorted(unresolved):
-            note = data.get("external_cc", {}).get(cc, {}).get("note", "")
-            print("    ? %s%s" % (cc, ("  — " + note) if note else ""))
+            ext = data.get("external_cc", {}).get(cc, {})
+            note = ext.get("note", "")
+            target = ext.get("resolves_to")
+            if target:
+                print("    · %s  →  %s%s"
+                      % (cc, target, ("  — " + note) if note else ""))
+                continue
+            guess, conf = explain_cc(data, cc)
+            if guess:
+                print("    ? %s  %s   [%s]" % (cc, guess, conf))
+            else:
+                print("    ? %s%s" % (cc, ("  — " + note) if note else ""))
+        print("    (نامزدها از نام درآمده‌اند — با crossref و کوئریِ ارجاعِ"
+              " یتیم تأیید بگیر.)")
 
     inc = [s for (s, cc, dst, conf, ev) in edges if dst == name]
     print("\n  ارجاعِ ورودی: %d جدول (برای فهرست: refs %s)" % (len(inc), name))
@@ -304,15 +363,108 @@ def cmd_domain(data, args):
 
 def cmd_external(data, args):
     print("ارجاع‌هایی که در این اسکیما جدول ندارند — جدول محلی برایشان نساز\n")
-    for cc, m in data.get("external_cc", {}).items():
-        print("%-30s %4s   %s" % (cc, m.get("count", "?"), m.get("note") or "؟"))
+    for cc, m in sorted(data.get("external_cc", {}).items(),
+                        key=lambda kv: -kv[1].get("count", 0)):
+        guess, conf = explain_cc(data, cc)
+        tail = m.get("resolves_to") or guess or m.get("note") or "؟"
+        if guess and conf and conf != "NONE":
+            tail += "   [%s]" % conf
+        print("%-32s %4s   %s" % (cc, m.get("count", "?"), tail))
     cs = data.get("cross_schema", {})
     if cs:
         print("\nپلِ بین اسکیمایی:")
-        for name, m in cs.items():
-            print("  %-20s [%s] از %s — %s"
+        for name, m in sorted(cs.items()):
+            print("  %-42s [%s] از %s — %s"
                   % (name, "تأییدشده" if m.get("verified") else "تأییدنشده",
                      m.get("via", "?"), m.get("note", "")))
+    print("\nبرای یک ارجاعِ مشخص: crossref <ccName>")
+    return 0
+
+
+def cmd_crossref(data, args):
+    """این ارجاع مقصدش کجاست، و کدام اسکیل آنجا را نقشه کرده."""
+    res = data.get("cc_resolution")
+    idx = load_index()
+    owner = {}
+    if idx:
+        for schema, s in idx.get("schemas", {}).items():
+            owner[schema] = s.get("skill", "?")
+
+    def skill_of(target):
+        return owner.get(target.split(".", 1)[0], "— اسکیل ندارد")
+
+    if not res:
+        print("این نقشه بلوکِ cc_resolution ندارد.")
+        print("برای ساختنش: python crosslink.py apply <ریشه‌ی اسکیل‌ها>")
+        return 1
+
+    if args:
+        cc = args[0]
+        if not cc.startswith("cc"):
+            cc = "cc" + cc
+        ext = data.get("external_cc", {}).get(cc)
+        if ext and ext.get("resolves_to") and cc not in res.get("ambiguous", {}):
+            t = ext["resolves_to"]
+            print("%s  →  %s" % (cc, t))
+            print("  اسکیل: %s" % skill_of(t))
+            print("  شواهد: %s" % ext.get("evidence", "?"))
+            if ext.get("note"):
+                print("  %s" % ext["note"])
+            return 0
+        guess, conf = explain_cc(data, cc)
+        if not guess:
+            print("«%s» نه در ارجاع‌های بیرونیِ این اسکیما هست و نه نامزدی دارد."
+                  % cc)
+            print("اگر مطمئنی هست، شاید جدولِ خودش را دارد: table %s" % cc[2:])
+            return 1
+        print("%s  %s   [%s]" % (cc, guess, conf))
+        for bucket in ("documented", "ambiguous", "role_qualified"):
+            hit = res.get(bucket, {}).get(cc)
+            if not hit:
+                continue
+            for t in ([hit["target"]] if "target" in hit else hit["candidates"]):
+                print("  %-40s اسکیل: %s" % (t, skill_of(t)))
+            if hit.get("note"):
+                print("  %s" % hit["note"])
+        print("\nنامزد است، نه کلید خارجی. قبل از استفاده ارجاعِ یتیم بگیر.")
+        return 0
+
+    print("ارجاع‌هایی که مقصدشان بیرونِ این اسکیماست\n")
+    doc = res.get("documented", {})
+    if doc:
+        print("=== مستند — از سند دانش، نه از نام ===")
+        for cc, v in sorted(doc.items(), key=lambda kv: -kv[1].get("count", 0)):
+            print("  %-28s ×%-4s → %-32s %s"
+                  % (cc, v.get("count", "?"), v["target"], v.get("filter", "")))
+        print("")
+    amb = res.get("ambiguous", {})
+    if amb:
+        print("=== دوپهلو — دو مقصدِ هم‌نام. قبل از join تعیین کن ===")
+        for cc, v in sorted(amb.items(), key=lambda kv: -kv[1].get("count", 0)):
+            print("  %-28s ×%-4s %s" % (cc, v.get("count", "?"),
+                                        " یا ".join(v["candidates"])))
+        print("")
+    rq = res.get("role_qualified", {})
+    if rq:
+        print("=== نقش‌دار — نامِ موجودیت + نقش. همه LOW ===")
+        for cc, v in list(sorted(rq.items(),
+                                 key=lambda kv: -kv[1].get("count", 0)))[:30]:
+            print("  %-32s ×%-4s → %-30s نقش: %s"
+                  % (cc, v.get("count", "?"), v["target"], v["role"]))
+        if len(rq) > 30:
+            print("  … و %d تای دیگر" % (len(rq) - 30))
+        print("")
+    un = res.get("unresolved_here", {})
+    if un:
+        print("=== بی‌مقصد — در هیچ اسکیمای نقشه‌شده‌ای جدول ندارند ===")
+        top = list(sorted(un.items(), key=lambda kv: -kv[1]))[:20]
+        print("  " + "، ".join("%s(%s)" % (c, n) for c, n in top))
+        if len(un) > 20:
+            print("  … و %d تای دیگر" % (len(un) - 20))
+    if idx and idx.get("spelling_variants"):
+        print("\n=== یک شناسه با دو املا — join روی اشتباهی صفر سطر می‌دهد ===")
+        for key, forms in idx["spelling_variants"].items():
+            print("  " + " ⟷ ".join("%s(%s)" % (k, v) for k, v in forms.items()))
     return 0
 
 
@@ -534,7 +686,7 @@ def err(msg):
 
 COMMANDS = {"table": cmd_table, "refs": cmd_refs, "path": cmd_path,
             "find": cmd_find, "domain": cmd_domain, "external": cmd_external,
-            "traps": cmd_traps,
+            "crossref": cmd_crossref, "traps": cmd_traps,
             "drift": cmd_drift}
 
 

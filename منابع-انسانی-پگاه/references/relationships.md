@@ -99,7 +99,7 @@ Personel → BazKharid.ccPersonel                    (مسیر دوم، سبک �
 اینها در `HumanResource` جدول ندارند. **۲۸ تای آنها در اسکیمای دیگری پیدا
 شدند** (ستون «مقصد»)؛ بقیه واقعاً بیرون از این دیتابیس‌اند. فهرست کامل و
 اثبات‌شده در `schema.json` بخش `cross_schema` — یا
-`python scripts/hr_map.py external`. **جدولِ محلی برایشان نساز.**
+`python scripts/map.py external`. **جدولِ محلی برایشان نساز.**
 
 | `cc` | تکرار | تفسیر | مقصد |
 |---|---:|---|---|

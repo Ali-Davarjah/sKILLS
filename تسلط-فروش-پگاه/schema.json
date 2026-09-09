@@ -15228,5 +15228,886 @@
       "evidence": "EXACT_CC_ID_MATCH",
       "confidence": "HIGH"
     }
-  ]
+  ],
+  "cc_resolution": {
+    "generated_by": "ساخت-اسکیل-اسکیما-پگاه/scripts/crosslink.py",
+    "family": [
+      "Global",
+      "HumanResource",
+      "Sales",
+      "Treasury",
+      "Warehouse"
+    ],
+    "note": "همه‌ی اینها نامزدند. ROLE_QUALIFIED_PREFIX از نام درآمده و کلید خارجی نیست — قبل از استفاده با کوئریِ ارجاعِ یتیم تأیید بگیر.",
+    "role_qualified": {
+      "ccMarkazForosh": {
+        "count": 124,
+        "target": "Global.Markaz",
+        "role": "Forosh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccKalaCode": {
+        "count": 68,
+        "target": "Warehouse.Kala",
+        "role": "Code",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradForoshandeh": {
+        "count": 37,
+        "target": "Global.Afrad",
+        "role": "Foroshandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazAnbar": {
+        "count": 16,
+        "target": "Global.Markaz",
+        "role": "Anbar",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradModirMantagheh": {
+        "count": 13,
+        "target": "Global.Afrad",
+        "role": "ModirMantagheh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradGorohForosh": {
+        "count": 10,
+        "target": "Global.AfradGoroh",
+        "role": "Forosh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradRaees": {
+        "count": 8,
+        "target": "Global.Afrad",
+        "role": "Raees",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccKalaCodeAsli": {
+        "count": 8,
+        "target": "Warehouse.Kala",
+        "role": "CodeAsli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazPakhshAsli": {
+        "count": 8,
+        "target": "Global.MarkazPakhsh",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradRaeesMarkaz": {
+        "count": 7,
+        "target": "Global.Afrad",
+        "role": "RaeesMarkaz",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradSarparast": {
+        "count": 7,
+        "target": "Global.Afrad",
+        "role": "Sarparast",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehForoshandeh": {
+        "count": 7,
+        "target": "Sales.Jayezeh",
+        "role": "Foroshandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradRanandeh": {
+        "count": 6,
+        "target": "Global.Afrad",
+        "role": "Ranandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAddressMoshtary": {
+        "count": 5,
+        "target": "Global.Address",
+        "role": "Moshtary",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccDarajehEtebar": {
+        "count": 5,
+        "target": "Global.Darajeh",
+        "role": "Etebar",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehAsli": {
+        "count": 5,
+        "target": "Sales.Foroshandeh",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazPakhshFaal": {
+        "count": 5,
+        "target": "Global.MarkazPakhsh",
+        "role": "Faal",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradMamorPakhsh": {
+        "count": 4,
+        "target": "Global.Afrad",
+        "role": "MamorPakhsh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradMoshtary": {
+        "count": 4,
+        "target": "Global.Afrad",
+        "role": "Moshtary",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohMoshtary": {
+        "count": 4,
+        "target": "Global.Goroh",
+        "role": "Moshtary",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohTakidi": {
+        "count": 4,
+        "target": "Global.Goroh",
+        "role": "Takidi",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehRaeesMarkaz": {
+        "count": 4,
+        "target": "Sales.Jayezeh",
+        "role": "RaeesMarkaz",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazForoshAsli": {
+        "count": 4,
+        "target": "Global.Markaz",
+        "role": "ForoshAsli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccTafkikJozeAnbarak": {
+        "count": 3,
+        "target": "Sales.TafkikJoze",
+        "role": "Anbarak",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradModir": {
+        "count": 2,
+        "target": "Global.Afrad",
+        "role": "Modir",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradModirForosh": {
+        "count": 2,
+        "target": "Global.Afrad",
+        "role": "ModirForosh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradModirMarkazPakhsh": {
+        "count": 2,
+        "target": "Global.Afrad",
+        "role": "ModirMarkazPakhsh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradVijeh": {
+        "count": 2,
+        "target": "Global.Afrad",
+        "role": "Vijeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccBrandAsli": {
+        "count": 2,
+        "target": "Warehouse.Brand",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccDarkhastFaktorSatrTaavoni": {
+        "count": 2,
+        "target": "Sales.DarkhastFaktorSatr",
+        "role": "Taavoni",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehForosh_ArshiveReport": {
+        "count": 2,
+        "target": "Sales.Jayezeh",
+        "role": "Forosh_ArshiveReport",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccKalaAdamForoshMarkaz": {
+        "count": 2,
+        "target": "Warehouse.Kala",
+        "role": "AdamForoshMarkaz",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccKalaCodeJayezeh": {
+        "count": 2,
+        "target": "Warehouse.Kala",
+        "role": "CodeJayezeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMoshtaryEtebarPishnahadyLink": {
+        "count": 2,
+        "target": "Sales.MoshtaryEtebarPishnahady",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccPost_Link": {
+        "count": 2,
+        "target": "HumanResource.Post",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccVahedShomaresh": {
+        "count": 2,
+        "target": "Warehouse.Vahed",
+        "role": "Shomaresh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradForoshandehJaygozin": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "ForoshandehJaygozin",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradForoshandeh_Telephoni": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "Foroshandeh_Telephoni",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradForoshaneh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "Foroshaneh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradKarshenasForosh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "KarshenasForosh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradMamorPakhshJaygozin": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "MamorPakhshJaygozin",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradMorajehKonandeh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "MorajehKonandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradPakhsh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "Pakhsh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradRanadeh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "Ranadeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradRanandehJaygozin": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "RanandehJaygozin",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradSarGorohForosh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "SarGorohForosh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccDarkhastHavalehSatrPPC": {
+        "count": 1,
+        "target": "Sales.DarkhastHavalehSatr",
+        "role": "PPC",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehDarkhastFaktorTaavoni": {
+        "count": 1,
+        "target": "Sales.Foroshandeh",
+        "role": "DarkhastFaktorTaavoni",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehFeli": {
+        "count": 1,
+        "target": "Sales.Foroshandeh",
+        "role": "Feli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehLink": {
+        "count": 1,
+        "target": "Sales.Foroshandeh",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehMah": {
+        "count": 1,
+        "target": "Sales.Foroshandeh",
+        "role": "Mah",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehMoshtary_Telephoni": {
+        "count": 1,
+        "target": "Sales.ForoshandehMoshtary",
+        "role": "Telephoni",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehMoshtary_Zanjiree_Archive": {
+        "count": 1,
+        "target": "Sales.ForoshandehMoshtary",
+        "role": "Zanjiree_Archive",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehNew": {
+        "count": 1,
+        "target": "Sales.Foroshandeh",
+        "role": "New",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehRoz": {
+        "count": 1,
+        "target": "Sales.Foroshandeh",
+        "role": "Roz",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandehTelephoni": {
+        "count": 1,
+        "target": "Sales.Foroshandeh",
+        "role": "Telephoni",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccForoshandeh_Telephoni": {
+        "count": 1,
+        "target": "Sales.Foroshandeh",
+        "role": "Telephoni",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohBedooneZarib": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "BedooneZarib",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohDarokhaneh": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "Darokhaneh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohHadaf": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "Hadaf",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohKhordehForosh": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "KhordehForosh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohMohasebeh": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "Mohasebeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohMoshtaryFaktorTaavoni": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "MoshtaryFaktorTaavoni",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohNoehazineh": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "Noehazineh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohNotHamleMostaghim": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "NotHamleMostaghim",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohNotKhordeh": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "NotKhordeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohOmdehForosh": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "OmdehForosh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohPrintFaktor": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "PrintFaktor",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohRob": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "Rob",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohRootNoeMoshtary": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "RootNoeMoshtary",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohTavoniVijeh": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "TavoniVijeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohZanjirehee": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "Zanjirehee",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGoroh_NoeMoshtary": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "NoeMoshtary",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccHadafForoshRoozanehWithMoshtary": {
+        "count": 1,
+        "target": "Sales.HadafForoshRoozaneh",
+        "role": "WithMoshtary",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehEntekhabi": {
+        "count": 1,
+        "target": "Sales.Jayezeh",
+        "role": "Entekhabi",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehForosh_Froshandeh98New": {
+        "count": 1,
+        "target": "Sales.Jayezeh",
+        "role": "Forosh_Froshandeh98New",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehForosh_ModirMantagheh98New": {
+        "count": 1,
+        "target": "Sales.Jayezeh",
+        "role": "Forosh_ModirMantagheh98New",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehForosh_MoshtarianVijeh98New": {
+        "count": 1,
+        "target": "Sales.Jayezeh",
+        "role": "Forosh_MoshtarianVijeh98New",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehForosh_RaeesMarkaz98New": {
+        "count": 1,
+        "target": "Sales.Jayezeh",
+        "role": "Forosh_RaeesMarkaz98New",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehForosh_Sarparast98New": {
+        "count": 1,
+        "target": "Sales.Jayezeh",
+        "role": "Forosh_Sarparast98New",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehModirMantagheh": {
+        "count": 1,
+        "target": "Sales.Jayezeh",
+        "role": "ModirMantagheh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccJayezehSarparast": {
+        "count": 1,
+        "target": "Sales.Jayezeh",
+        "role": "Sarparast",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccKalaCodeJayezehMazad": {
+        "count": 1,
+        "target": "Warehouse.Kala",
+        "role": "CodeJayezehMazad",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccKalaCodeMah": {
+        "count": 1,
+        "target": "Warehouse.Kala",
+        "role": "CodeMah",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccKalaCodeRoz": {
+        "count": 1,
+        "target": "Warehouse.Kala",
+        "role": "CodeRoz",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazForoshJadid": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "ForoshJadid",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazForoshMah": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "ForoshMah",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazForoshRoz": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "ForoshRoz",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazPakhshNew": {
+        "count": 1,
+        "target": "Global.MarkazPakhsh",
+        "role": "New",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazSazmanForoshAsli": {
+        "count": 1,
+        "target": "Global.MarkazSazmanForosh",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazSazmanForoshSakhtarForoshAsli": {
+        "count": 1,
+        "target": "Global.MarkazSazmanForoshSakhtarForosh",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMasirErsalFaktor": {
+        "count": 1,
+        "target": "Sales.Masir",
+        "role": "ErsalFaktor",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMoshtaryJadidPPC": {
+        "count": 1,
+        "target": "Sales.MoshtaryJadid",
+        "role": "PPC",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMoshtaryRotbehByBrand": {
+        "count": 1,
+        "target": "Sales.MoshtaryRotbeh",
+        "role": "ByBrand",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMoshtaryTaghiratShomareHesab": {
+        "count": 1,
+        "target": "Sales.MoshtaryTaghirat",
+        "role": "ShomareHesab",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccNoeAddressMahalKar": {
+        "count": 1,
+        "target": "Global.NoeAddress",
+        "role": "MahalKar",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccSakhtarForoshAsli": {
+        "count": 1,
+        "target": "Global.SakhtarForosh",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccSazmanForoshAsli": {
+        "count": 1,
+        "target": "Global.SazmanForosh",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccVahedSize": {
+        "count": 1,
+        "target": "Warehouse.Vahed",
+        "role": "Size",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccVahedSizeFaktor": {
+        "count": 1,
+        "target": "Warehouse.Vahed",
+        "role": "SizeFaktor",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccVahedVazn": {
+        "count": 1,
+        "target": "Warehouse.Vahed",
+        "role": "Vazn",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccVahedVaznFaktor": {
+        "count": 1,
+        "target": "Warehouse.Vahed",
+        "role": "VaznFaktor",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "cctmp_ForoshAzDastRafteh_Shahr": {
+        "count": 1,
+        "target": "Sales.tmp_ForoshAzDastRafteh",
+        "role": "Shahr",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      }
+    },
+    "documented": {
+      "ccElatMarjoeeKala": {
+        "target": "Warehouse.ElatMarjoeeKala",
+        "filter": "MasoleiatElat = 1 برای مرجوعیِ مسئولیتِ فروش",
+        "note": "علتِ مرجوعی و مسئولیتش. اسکیل ارزیابی فروشنده روی همین می‌نشیند.",
+        "count": 3,
+        "evidence": "DOCUMENTED",
+        "confidence": "MEDIUM"
+      },
+      "ccGorohKala": {
+        "target": "Global.Goroh",
+        "filter": "ccGorohLink = 560",
+        "note": "گروه کالا سطرهای Goroh با ccGorohLink = 560 است (۵۵ گروه). vGorohMahsol فقط ۳۳ تا را دارد — از آن استفاده نکن.",
+        "count": 21,
+        "evidence": "DOCUMENTED",
+        "confidence": "MEDIUM"
+      },
+      "ccNoeMoshtary": {
+        "target": "Global.Goroh",
+        "filter": "ccGorohLink = 304",
+        "note": "نوع مشتری جدول جدا ندارد — سطرهای Goroh با ccGorohLink = 304 است (خرده، عمده، زنجیره‌ای…).",
+        "count": 40,
+        "evidence": "DOCUMENTED",
+        "confidence": "MEDIUM"
+      }
+    },
+    "ambiguous": {
+      "ccBrand": {
+        "count": 30,
+        "picked_by_builder": "Amargar.Brand",
+        "candidates": [
+          "Amargar.Brand",
+          "Warehouse.Brand"
+        ],
+        "evidence": "NAME_MATCH_OUTSIDE_AND_INSIDE_FAMILY",
+        "confidence": "LOW",
+        "note": "سازنده Amargar.Brand را برداشت چون اول در فهرست بود؛ Warehouse.Brand هم جدولِ هم‌نام دارد. کدام درست است از داده تأیید بگیر."
+      },
+      "ccKala": {
+        "count": 15,
+        "picked_by_builder": "Amargar.Kala",
+        "candidates": [
+          "Amargar.Kala",
+          "Warehouse.Kala"
+        ],
+        "evidence": "NAME_MATCH_OUTSIDE_AND_INSIDE_FAMILY",
+        "confidence": "LOW",
+        "note": "سازنده Amargar.Kala را برداشت چون اول در فهرست بود؛ Warehouse.Kala هم جدولِ هم‌نام دارد. کدام درست است از داده تأیید بگیر."
+      }
+    },
+    "unresolved_here": {
+      "ccUser": 57,
+      "ccUserSabegheh": 32,
+      "ccNoeSenf": 25,
+      "ccShahr": 15,
+      "ccReport": 14,
+      "ccMahaleh": 12,
+      "ccMantagheh": 12,
+      "ccElat": 8,
+      "ccNoeField": 8,
+      "ccShahrestan": 8,
+      "ccNoeFieldMoshtary": 7,
+      "ccOstan": 7,
+      "ccRow": 7,
+      "ccShahrMoshtary": 5,
+      "ccRpt": 4,
+      "ccTakhfif": 4,
+      "ccAmalkard": 3,
+      "ccRanandeh": 3,
+      "cc": 2,
+      "ccEmtiaz": 2,
+      "ccTaminkonandeh": 2,
+      "ccUser1": 2,
+      "ccUser2": 2,
+      "ccUser3": 2,
+      "ccUser4": 2,
+      "ccAdamTakhfifJayezeh": 1,
+      "ccAmarMarjoeeForosh": 1,
+      "ccArazyabi": 1,
+      "ccBarkhordForoshandeh": 1,
+      "ccCodeToziee": 1,
+      "ccConfig": 1,
+      "ccDarkhastAuto": 1,
+      "ccDaste": 1,
+      "ccDastehBandi": 1,
+      "ccDeviceNumber": 1,
+      "ccEMojaz": 1,
+      "ccEmzaMoshtary": 1,
+      "ccEtebar": 1,
+      "ccHadaf": 1,
+      "ccKholaseh": 1,
+      "ccLink": 1,
+      "ccMabnaMohasebeh": 1,
+      "ccMarkazpakhsh": 1,
+      "ccMasouliatForosh_Tmp": 1,
+      "ccMojodi": 1,
+      "ccMojodiGiri": 1,
+      "ccNoeEmtiaz": 1,
+      "ccNoeGheymatSaderat": 1,
+      "ccNoeVasileyeNaghliye": 1,
+      "ccNoeYakhchal": 1,
+      "ccNoeZemanat": 1,
+      "ccPolygonLink": 1,
+      "ccPolygon_MahdodiatePakhsh": 1,
+      "ccSaranehForosh": 1,
+      "ccSaranehForoshMarkaz": 1,
+      "ccSenfMoshtary": 1,
+      "ccSystemLink": 1,
+      "ccTafkikJoz": 1,
+      "ccTarafHesab": 1,
+      "ccTedadMasirForoshandeh": 1,
+      "ccTedadMoshtaryBaZaribSenf": 1,
+      "ccTmpListMoshtaryTekrari": 1,
+      "ccTmp_Error": 1,
+      "ccTmp_JamiatSaraneForosh": 1,
+      "ccUserHesabrasi": 1,
+      "ccUserSabtkonade": 1,
+      "ccVazietForoshandeh": 1,
+      "ccVisitForoshandeh": 1,
+      "ccZoneHamjavar": 1,
+      "ccZoneId": 1,
+      "cc_AsibShenasiForosh": 1,
+      "cctmp": 1
+    },
+    "unresolved_family_top": {
+      "ccUser": 136,
+      "ccUserSabtKonandeh": 72,
+      "ccUserSabegheh": 56,
+      "ccShahr": 26,
+      "ccNoeSenf": 25,
+      "ccElat": 21,
+      "ccReport": 16,
+      "ccMantagheh": 14,
+      "ccMahaleh": 13,
+      "ccRefrence": 12,
+      "ccLink": 10,
+      "ccOstan": 10,
+      "ccSystemNext": 9,
+      "ccRow": 8,
+      "ccNoeField": 8,
+      "ccShahrestan": 8,
+      "ccRpt": 7,
+      "ccNoeFieldMoshtary": 7,
+      "ccHesab3": 5,
+      "ccvTafsily1": 5,
+      "ccShahrMoshtary": 5
+    }
+  }
 }

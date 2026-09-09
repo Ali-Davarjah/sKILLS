@@ -60,7 +60,7 @@
 ## گام ۳ — مسیر اتصال
 
 ```
-python scripts/hr_map.py path VahedSazmani PardakhtHoghogh --avoid Personel
+python scripts/map.py path VahedSazmani PardakhtHoghogh --avoid Personel
 ```
 
 مسیر واقعی سه جدول است:
@@ -81,7 +81,7 @@ VahedSazmani.ccVahedSazmani
 ## گام ۴ — دو فیلتری که فراموش می‌شوند
 
 ```
-python scripts/hr_map.py table PersonelHokmPostVahedSazmani
+python scripts/map.py table PersonelHokmPostVahedSazmani
 ```
 
 می‌گوید `effective_dated` و `status_header` است. یعنی:

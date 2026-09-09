@@ -6,7 +6,7 @@
 ```
 SKILL.md                      دستورالعمل — چیزی که مدل هر بار می‌خواند
 schema.json                   نقشه‌ی ماشین‌خوان ۱۷۰ جدول (داده، نه کد)
-scripts/map.py                پیمایش نقشه — table / refs / path / find / domain / external / traps / drift
+scripts/map.py                پیمایش نقشه — table / refs / path / find / domain / external / crossref / traps / drift
 references/entities.md        دامنه به دامنه
 references/relationships.md   گراف اتصال، پل‌های بین‌اسکیمایی، تله‌ها
 references/queries.md         کوئری‌های تأیید و الگوهای دامنه
@@ -60,6 +60,7 @@ python scripts/map.py path   Kala Kardex
 python scripts/map.py find   Mojody
 python scripts/map.py domain gozaresh
 python scripts/map.py external
+python scripts/map.py crossref ccMarkazForosh
 python scripts/map.py traps
 python scripts/map.py drift  live-tables.txt
 ```
@@ -94,6 +95,24 @@ python scripts/map.py drift  live-tables.txt
 
 نقشه از یک نسخه‌ی پشتیبان است. `map.py drift` تطبیق با دیتابیس زنده می‌دهد و
 وقتی چیزی عوض نشده ساکت می‌ماند.
+
+## پیوند با بقیه‌ی اسکیل‌ها
+
+| مقصد | اسکیل | برای چه |
+|---|---|---|
+| `Global` (۱۹ جدول) | `تسلط-مشترک-پگاه` | مرکز پخش، افراد، گروه |
+| `Sales` (۱۰) | `تسلط-فروش-پگاه` | مشتری، فروشنده، فاکتور |
+| `HumanResource` (۲) | `منابع-انسانی-پگاه` | پرسنل و پست |
+
+**در جهت عکس:** `Sales` یازده جدول اینجا را می‌خواند (`ccKalaCode` تنهایی
+۶۸ ارجاع) و `Treasury` پنج تا — ولی این اسکیما هیچ‌چیز از خزانه نمی‌خواند.
+
+از ۱۰۹ ارجاعِ بی‌جدول، ۵۳ تا نقش‌دارند. بزرگ‌ترینشان `ccMarkazAnbar` (۳۷)
+که نامزدش `Global.Markaz` در نقشِ «انبار» است — **نامزد، نه کلید خارجی**.
+
+نقشه‌ی کامل خانواده، ماتریسِ ارجاع و فهرستِ ارجاع‌های حل‌نشده در
+[../SKILLS.md](../SKILLS.md). عددها را `crosslink.py` می‌سازد؛ دستی
+به‌روزشان نکن.
 
 ## کارهای باقی‌مانده
 

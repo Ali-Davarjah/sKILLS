@@ -1,0 +1,3569 @@
+{
+  "meta": {
+    "version": "0.1-generated",
+    "database": "PegahAI",
+    "schema": "Global",
+    "source": "فهرست کاملِ اشیای PegahAI + دانشِ دو اسکیل تست‌شده‌ی فروش + بررسی ساختار ستون‌ها",
+    "verified_against_live_db": false,
+    "snapshot": "پشتیبانِ DB Master.xlsx",
+    "snapshot_note": "نقشه قابل اعتماد است و از آن استفاده کن. فقط بدان عکسِ یک لحظه است: فهرست اسکیماها و اشیای هسته ثابت‌اند، و در حاشیه ممکن است چند جدول اضافه یا کم شده باشد. اگر جدولی که مطمئنی هست در نقشه نبود، `map.py drift` بزن — نه اینکه بگویی وجود ندارد.",
+    "foreign_keys_declared": 0,
+    "join_rule": "اگر A.ccB هست و جدول B هم هست → حدسِ اول A.ccB = B.ccB.",
+    "warning": "یال‌های proven=false از هم‌نامی حدس زده شده‌اند و کلید خارجی ندارند."
+  },
+  "domains": {
+    "gozaresh": "موقت و میراث — منبع حقیقت نیست",
+    "sazman": "ساختار سازمانی — مرکز، منطقه، حوزه، لاین",
+    "afrad": "اشخاص",
+    "taghvim": "تقویم",
+    "goroh": "گروه‌بندی چندریخت",
+    "mali": "بانک، حساب و محل پرداخت",
+    "makan": "مکان و آدرس",
+    "rasaneh": "تصویر و پیوست",
+    "sherkat": "شرکت و تولید",
+    "config": "پیکربندی، نوع و قاعده"
+  },
+  "external_cc": {
+    "ccUser": {
+      "count": 3,
+      "note": ""
+    },
+    "ccAfradModir": {
+      "count": 3,
+      "note": ""
+    },
+    "ccShahr": {
+      "count": 2,
+      "note": ""
+    },
+    "ccMantagheh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccVahedSazmani": {
+      "count": 2,
+      "resolves_to": "HumanResource.VahedSazmani",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccDastehBandyJaizehForosh": {
+      "count": 2,
+      "resolves_to": "Sales.DastehBandyJaizehForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMarkazForosh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccUserSabegheh": {
+      "count": 2,
+      "note": ""
+    },
+    "ccNoeMoshtary": {
+      "count": 2,
+      "note": ""
+    },
+    "ccLink": {
+      "count": 2,
+      "note": ""
+    },
+    "ccVahedSazmani_Tanzimkonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfrad_TanzimKonandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSystem": {
+      "count": 1,
+      "resolves_to": "dbo.System",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAeenNameh_Post": {
+      "count": 1,
+      "note": ""
+    },
+    "ccVahedSazmani_Post": {
+      "count": 1,
+      "resolves_to": "HumanResource.VahedSazmani_Post",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccShahrTavalod": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShahrSodor": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazPakhshFaal": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazFaal": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSazmanForoshFaal": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSakhtarForoshFaal": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazAnbar": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMoshtary": {
+      "count": 1,
+      "resolves_to": "Sales.Moshtary",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccSh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccHesab3": {
+      "count": 1,
+      "note": ""
+    },
+    "ccBankShobehPosition": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradSystem": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAddressLatin": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLink_ElatOdat": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGorohLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccRoot": {
+      "count": 1,
+      "note": ""
+    },
+    "cchesab4": {
+      "count": 1,
+      "note": ""
+    },
+    "ccBrand": {
+      "count": 1,
+      "resolves_to": "Amargar.Brand",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccConfig_CodingKala": {
+      "count": 1,
+      "resolves_to": "Warehouse.Config_CodingKala",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccAfradSabegheh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccLevelTolidLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMahalLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazPakhshAsli": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMantaghehOld": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazAsli": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShahreMahal": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShahreZone": {
+      "count": 1,
+      "note": ""
+    },
+    "ccAfradBazariaby": {
+      "count": 1,
+      "note": ""
+    },
+    "ccGorohMantaghehPakhsh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccMarkazLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShobehBimeh": {
+      "count": 1,
+      "resolves_to": "HumanResource.ShobehBimeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccMahaleh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSenfMoshtary": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSherkathayeTarafGharardadLink": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSherkathayeTarafGharardad_From": {
+      "count": 1,
+      "note": ""
+    },
+    "ccSherkathayeTarafGharardad_To": {
+      "count": 1,
+      "note": ""
+    },
+    "ccTaminKonandeh": {
+      "count": 1,
+      "resolves_to": "Purchase.TaminKonandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    },
+    "ccUserTaghirDahandeh": {
+      "count": 1,
+      "note": ""
+    },
+    "ccShiftKary": {
+      "count": 1,
+      "resolves_to": "HumanResource.ShiftKary",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "note": ""
+    }
+  },
+  "tables": {
+    "Address": {
+      "domain": "makan",
+      "pk": "ccAddress",
+      "role": "آدرس",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccAddress",
+        "ccShahr",
+        "ccMantagheh"
+      ],
+      "note": "ccShahr دارد ولی **جدول Shahr در Global نیست** — مقصدش را پیدا کن."
+    },
+    "AeenNameh": {
+      "domain": "config",
+      "pk": "ccAeenNameh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAeenNameh",
+        "ccAeenNameh_VahedSazmani",
+        "ccAeenNameh_NoeTabaghehBandi",
+        "ccAeenNameh_Onvan",
+        "ccAeenNameh_NoeAfrad",
+        "ccAeenNameh_DorehBaznegari",
+        "ccVahedSazmani_Tanzimkonandeh",
+        "ccAfrad_TanzimKonandeh",
+        "ccAfrad_SabtKonandeh"
+      ]
+    },
+    "AeenNamehSatr": {
+      "domain": "config",
+      "pk": "ccAeenNamehSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAeenNamehSatr",
+        "ccPhoto",
+        "ccAeenNameh",
+        "ccAfrad_SabtKonandeh"
+      ]
+    },
+    "AeenNamehSystem": {
+      "domain": "config",
+      "pk": "ccAeenNamehSystem",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAeenNamehSystem",
+        "ccSystem",
+        "ccUser"
+      ]
+    },
+    "AeenNameh_DorehBaznegari": {
+      "domain": "config",
+      "pk": "ccAeenNameh_DorehBaznegari",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAeenNameh_DorehBaznegari"
+      ]
+    },
+    "AeenNameh_NoeAfrad": {
+      "domain": "config",
+      "pk": "ccAeenNameh_NoeAfrad",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAeenNameh_NoeAfrad"
+      ]
+    },
+    "AeenNameh_NoeTabaghehBandi": {
+      "domain": "config",
+      "pk": "ccAeenNameh_NoeTabaghehBandi",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAeenNameh_NoeTabaghehBandi"
+      ]
+    },
+    "AeenNameh_Onvan": {
+      "domain": "config",
+      "pk": "ccAeenNameh_Onvan",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAeenNameh_Onvan",
+        "ccAeenNameh_VahedSazmani",
+        "ccAeenNameh_NoeTabaghehBandi"
+      ]
+    },
+    "AeenNameh_SazmanForosh": {
+      "domain": "config",
+      "pk": "ccAeenNameh_SazmanForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAeenNameh_SazmanForosh",
+        "ccAeenNameh",
+        "ccSazmanForosh"
+      ]
+    },
+    "AeenNameh_VahedSazmani": {
+      "domain": "config",
+      "pk": "ccAeenNameh_VahedSazmani",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAeenNameh_VahedSazmani",
+        "ccVahedSazmani"
+      ]
+    },
+    "AeenNameh_VahedsazmaniPost": {
+      "domain": "config",
+      "pk": "ccAeenNameh_Post",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rule",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAeenNameh_Post",
+        "ccAeenNameh",
+        "ccVahedSazmani_Post"
+      ]
+    },
+    "Afrad": {
+      "domain": "afrad",
+      "pk": "ccAfrad",
+      "role": "شخص — **مرجعِ هویتِ کلِ دیتابیس** (۹۶ ارجاع از همه‌ی اسکیماها).",
+      "rows": null,
+      "flags": [
+        "sensitive",
+        "hub_target",
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccAfrad",
+        "ccShahrTavalod",
+        "ccShahrSodor",
+        "ccMarkazPakhshFaal",
+        "ccDastehBandyJaizehForosh",
+        "ccMarkazPakhsh",
+        "ccMarkaz",
+        "ccMarkazFaal",
+        "ccSazmanForoshFaal",
+        "ccSakhtarForoshFaal",
+        "ccSherkathayeTarafGharardad",
+        "ccNoeAfrad"
+      ],
+      "note": "FName، LName، CodeMely، Mobile، Telephone. **پلِ اصلی بین اسکیل‌ها**: HumanResource.Personel.ccAfrad و Sales.AmarForosh_Arshive.ccAfradForoshandeh هر دو به اینجا می‌آیند — یعنی پرونده‌ی پرسنلی به عملکرد فروش وصل می‌شود. **داده‌ی هویتی: کد ملی و شماره شناسنامه دارد.**"
+    },
+    "AfradAddress": {
+      "domain": "afrad",
+      "pk": "ccAfrad",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAfrad",
+        "ccAddress",
+        "ccNoeAddress"
+      ]
+    },
+    "AfradGoroh": {
+      "domain": "afrad",
+      "pk": "ccAfrad",
+      "role": "گروه‌بندی اشخاص",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAfrad",
+        "ccGoroh"
+      ]
+    },
+    "AnbarPakhshShahr": {
+      "domain": "sherkat",
+      "pk": "ccAnbarPakhshShahr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccAnbarPakhshShahr",
+        "ccMarkazAnbar",
+        "ccMarkazForosh",
+        "ccMantagheh",
+        "ccMarkazSazmanForosh"
+      ]
+    },
+    "AnbarPakhshShahrSatr": {
+      "domain": "sherkat",
+      "pk": "ccAnbarPakhshShahrSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccAnbarPakhshShahrSatr",
+        "ccAnbarPakhshShahr",
+        "ccMoshtary",
+        "ccSh"
+      ]
+    },
+    "Bakhsh": {
+      "domain": "sazman",
+      "pk": "ccBakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccBakhsh"
+      ]
+    },
+    "Bank": {
+      "domain": "mali",
+      "pk": "ccBank",
+      "role": "بانک",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccBank",
+        "ccHesab3"
+      ],
+      "note": "کدهای مالیاتی و حقوقی جدا دارد: CodeBank_Maliat، CodeBank_Hoghogh."
+    },
+    "BankPosition": {
+      "domain": "mali",
+      "pk": "ccBankShobehPosition",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccBankShobehPosition"
+      ]
+    },
+    "BankShobeh": {
+      "domain": "mali",
+      "pk": "ccBankShobeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccBank",
+        "ccMarkazPakhsh",
+        "ccBankShobeh",
+        "ccAddress",
+        "ccMarkaz"
+      ]
+    },
+    "BankShobehAfrad": {
+      "domain": "mali",
+      "pk": "ccBankShobeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccBankShobeh",
+        "ccAfrad"
+      ]
+    },
+    "Border": {
+      "domain": "makan",
+      "pk": "ccBorder",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccBorder"
+      ]
+    },
+    "Company": {
+      "domain": "sherkat",
+      "pk": "ccCompany",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccCompany",
+        "ccAddress",
+        "ccNoeCompany",
+        "ccAfradSystem",
+        "ccAddressLatin",
+        "ccSherkathayeTarafGharardad"
+      ]
+    },
+    "Config_Madarek": {
+      "domain": "config",
+      "pk": "ccConfig_Madarek",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "attachment",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_Madarek"
+      ]
+    },
+    "Config_Page": {
+      "domain": "config",
+      "pk": "ccConfig_Page",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccConfig_Page"
+      ]
+    },
+    "Config_TolidCodeAutoMatic": {
+      "domain": "config",
+      "pk": "ccConfig_TolidCodeAutoMatic",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "config",
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccConfig_TolidCodeAutoMatic"
+      ]
+    },
+    "DamayeNegahdari": {
+      "domain": "sherkat",
+      "pk": "ccDamayeNegahdari",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDamayeNegahdari",
+        "ccUserSabegheh"
+      ]
+    },
+    "Darajeh": {
+      "domain": "sazman",
+      "pk": "ccDarajeh",
+      "role": "درجه",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDarajeh"
+      ]
+    },
+    "Depo": {
+      "domain": "sherkat",
+      "pk": "ccDepo",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccDepo",
+        "ccMantaghehPakhsh",
+        "ccAfradModir"
+      ]
+    },
+    "ElatOdat": {
+      "domain": "config",
+      "pk": "ccElatOdat",
+      "role": "علتِ برگشت/ردِ عمومی — ۶۴ ارجاع.",
+      "rows": null,
+      "flags": [
+        "reason_dict",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccElatOdat",
+        "ccLink_ElatOdat"
+      ],
+      "note": "ccLink_ElatOdat سلسله‌مراتب. **ولی هر دامنه جدولِ علتِ خودش را هم دارد** (X_ElatOdat)؛ اول جدولِ همان دامنه، بعد اینجا."
+    },
+    "Goroh": {
+      "domain": "goroh",
+      "pk": "ccGoroh",
+      "role": "گروه‌بندیِ **چندریخت** — یک جدول برای ده‌ها تاکسونومیِ متفاوت.",
+      "rows": null,
+      "flags": [
+        "tree",
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccGoroh",
+        "ccGorohLink",
+        "ccRoot",
+        "cchesab4"
+      ],
+      "note": "**ccGorohLink تفکیک‌کننده است**: ۵۶۰ گروه کالا (۵۵ گروه)، ۳۰۴ نوع مشتری (خرده، عمده، زنجیره‌ای…). ccRoot و CodeNoeGoroh هم تفکیک‌کننده‌اند. **بدونِ فیلترِ ccGorohLink، گروه کالا با نوع مشتری قاطی می‌شود.**"
+    },
+    "GorohMahsol": {
+      "domain": "goroh",
+      "pk": "ccGorohMahsol",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccGorohMahsol",
+        "ccGoroh",
+        "ccBrand"
+      ]
+    },
+    "GorohMantaghehForosh": {
+      "domain": "goroh",
+      "pk": "ccGorohMantaghehForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccGorohMantaghehForosh",
+        "ccAfrad"
+      ]
+    },
+    "GorohMantaghehVahedForosh": {
+      "domain": "goroh",
+      "pk": "ccGorohMantaghehVahedForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccGorohMantaghehVahedForosh",
+        "ccGorohMantaghehForosh",
+        "ccMantaghehPakhsh",
+        "ccMarkazPakhsh"
+      ]
+    },
+    "GorohSort": {
+      "domain": "goroh",
+      "pk": "ccGoroh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccGoroh"
+      ]
+    },
+    "Goroh_CodeingKala": {
+      "domain": "goroh",
+      "pk": "ccGoroh_CodeingKala",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccGoroh_CodeingKala",
+        "ccConfig_CodingKala",
+        "ccGoroh",
+        "ccAfradSabegheh"
+      ]
+    },
+    "Govahinameh": {
+      "domain": "config",
+      "pk": "ccGovahinameh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccGovahinameh"
+      ]
+    },
+    "Holding": {
+      "domain": "sazman",
+      "pk": "ccHolding",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccHolding"
+      ]
+    },
+    "Houzeh": {
+      "domain": "sazman",
+      "pk": "ccHouzeh",
+      "role": "حوزه",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccHouzeh",
+        "ccMantaghehPakhsh"
+      ]
+    },
+    "HouzehForosh": {
+      "domain": "sazman",
+      "pk": "ccHouzehForosh",
+      "role": "حوزه فروش",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccHouzehForosh",
+        "ccMantaghehForosh",
+        "ccHouzeh"
+      ],
+      "note": "زیرِ ccMantaghehForosh."
+    },
+    "Karkhaneh": {
+      "domain": "sherkat",
+      "pk": "ccKarkhaneh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKarkhaneh"
+      ]
+    },
+    "KhatTolid": {
+      "domain": "sherkat",
+      "pk": "ccKhatTolid",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccKhatTolid",
+        "ccSalonTolid"
+      ]
+    },
+    "LevelTolid": {
+      "domain": "sherkat",
+      "pk": "ccLevelTolid",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "tree",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccLevelTolid",
+        "ccLevelTolidLink"
+      ]
+    },
+    "Mah": {
+      "domain": "taghvim",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected"
+    },
+    "Mahal": {
+      "domain": "makan",
+      "pk": "ccMahal",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "tree",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMahal",
+        "ccMahalLink",
+        "ccMarkazPakhshAsli",
+        "ccMantaghehOld",
+        "ccMarkazAsli"
+      ]
+    },
+    "MahalRotbeh": {
+      "domain": "makan",
+      "pk": "ccMahalRotbeh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMahalRotbeh",
+        "ccMahal"
+      ]
+    },
+    "Mahal_CodePosti": {
+      "domain": "makan",
+      "pk": "ccMahal_CodePosti",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMahal_CodePosti",
+        "ccMahal"
+      ]
+    },
+    "Mahal_PishShomarehTel": {
+      "domain": "makan",
+      "pk": "ccMahal_PishShomarehTel",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMahal_PishShomarehTel",
+        "ccMahal"
+      ]
+    },
+    "Mahal_Zone": {
+      "domain": "makan",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccShahreMahal",
+        "ccShahreZone"
+      ]
+    },
+    "MahalePardakht": {
+      "domain": "mali",
+      "pk": "ccMahalePardakht",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMahalePardakht"
+      ]
+    },
+    "MantaghehAnbarPakhsh": {
+      "domain": "sazman",
+      "pk": "ccMantaghehAnbarPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMantaghehAnbarPakhsh",
+        "ccAfradModir"
+      ]
+    },
+    "MantaghehForosh": {
+      "domain": "sazman",
+      "pk": "ccMantaghehForosh",
+      "role": "منطقه فروش — ۷۴ ارجاع، تقریباً همه از Sales.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMantaghehForosh",
+        "ccNoeVahedForosh",
+        "ccAfradModir"
+      ],
+      "note": "ccNoeVahedForosh سطح را می‌گوید و ccAfradModir مدیر."
+    },
+    "MantaghehPakhsh": {
+      "domain": "sazman",
+      "pk": "ccMantaghehPakhsh",
+      "role": "منطقه پخش",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMantaghehPakhsh",
+        "ccVahedSazmani",
+        "ccAfrad",
+        "ccAfradBazariaby",
+        "ccGorohMantaghehPakhsh"
+      ],
+      "note": "سطحِ بالای MarkazPakhsh."
+    },
+    "Markaz": {
+      "domain": "sazman",
+      "pk": "ccMarkaz",
+      "role": "مرکز — ۱۳۱ ارجاع، بیشترش از HumanResource.",
+      "rows": null,
+      "flags": [
+        "tree",
+        "hub_target",
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccMarkaz",
+        "ccHouzeh",
+        "ccMantaghehAnbarPakhsh",
+        "ccAddress",
+        "ccAfrad",
+        "ccMarkazPakhsh_Old",
+        "ccMantaghehForosh",
+        "ccMarkazLink",
+        "ccNoeKarbariMarkaz"
+      ],
+      "note": "ccHouzeh، ccMantaghehForosh و ccMantaghehAnbarPakhsh دارد. **ccMarkazPakhsh_Old ستونِ مرده است.** **Markaz و MarkazPakhsh دو مفهومِ متفاوت‌اند** و اسکیماهای مختلف یکی را بیشتر به کار می‌برند."
+    },
+    "MarkazHistory": {
+      "domain": "sazman",
+      "pk": "ccMarkazHistory",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "cc": [
+        "ccMarkazHistory",
+        "ccMarkaz",
+        "ccHouzeh",
+        "ccMantaghehAnbarPakhsh",
+        "ccMantaghehForosh"
+      ]
+    },
+    "MarkazPakhsh": {
+      "domain": "sazman",
+      "pk": "ccMarkazPakhsh",
+      "role": "مرکز پخش — **پرارجاع‌ترین جدولِ کلِ دیتابیس** (۱۸۴ ارجاع).",
+      "rows": null,
+      "flags": [
+        "hub_target",
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccMantaghehPakhsh",
+        "ccHouzeh",
+        "ccMarkazPakhsh",
+        "ccNoeMarkazPakhsh",
+        "ccAfrad",
+        "ccAddress",
+        "ccShobehBimeh",
+        "ccDastehBandyJaizehForosh"
+      ],
+      "note": "زیرِ ccMantaghehPakhsh و ccHouzeh. Setad ستادی بودن را می‌گوید و CodeDarajeh درجه. **با Markaz یکی نیست — بخش تله‌ها را بخوان.**"
+    },
+    "MarkazPakhshMahal": {
+      "domain": "sazman",
+      "pk": "ccMarkazPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccMahal",
+        "ccMarkazForosh"
+      ]
+    },
+    "MarkazPakhshShomarehHesab": {
+      "domain": "sazman",
+      "pk": "ccMarkazPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccShomarehHesab",
+        "ccMarkaz"
+      ]
+    },
+    "MarkazPakhsh_NoeMarkazPakhshBakhsh": {
+      "domain": "sazman",
+      "pk": "ccMarkazPakhsh_NoeMarkazPakhshBakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh_NoeMarkazPakhshBakhsh",
+        "ccMarkazPakhsh",
+        "ccNoeMarkazPakhshBakhsh",
+        "ccMarkaz"
+      ]
+    },
+    "MarkazSazmanForosh": {
+      "domain": "sazman",
+      "pk": "ccMarkazSazmanForosh",
+      "role": "مرکز × لاین فروش",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazSazmanForosh",
+        "ccMarkaz",
+        "ccSazmanForosh"
+      ],
+      "note": "جدولِ اتصالِ Markaz و SazmanForosh."
+    },
+    "MarkazSazmanForoshSakhtarForosh": {
+      "domain": "sazman",
+      "pk": "ccMarkazSazmanForoshSakhtarForosh",
+      "role": "مرکز × لاین × ساختار فروش",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMarkazSazmanForoshSakhtarForosh",
+        "ccMarkazSazmanForosh",
+        "ccSakhtarForosh",
+        "ccAfrad",
+        "ccModirMantaghehForosh"
+      ],
+      "note": "سطحِ ریزترِ تخصیصِ سازمان فروش."
+    },
+    "Markaz_ShahrMarkazi": {
+      "domain": "sazman",
+      "pk": "ccMarkaz_ShahrMarkazi",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkaz_ShahrMarkazi",
+        "ccMarkaz",
+        "ccMahaleh"
+      ]
+    },
+    "MarzKhorojAzKeshvar": {
+      "domain": "makan",
+      "pk": "ccMarzKhorojAzKeshvar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarzKhorojAzKeshvar"
+      ]
+    },
+    "MessageInbox": {
+      "domain": "config",
+      "pk": "Id",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf"
+    },
+    "MoavenatSazmanForosh": {
+      "domain": "sazman",
+      "pk": "ccMoavenatSazmanForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccMoavenatSazmanForosh",
+        "ccAfrad"
+      ]
+    },
+    "ModirMantaghehForosh": {
+      "domain": "afrad",
+      "pk": "ccModirMantaghehForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccModirMantaghehForosh",
+        "ccAfrad",
+        "ccModirSakhtarForosh"
+      ]
+    },
+    "ModirSakhtarForosh": {
+      "domain": "afrad",
+      "pk": "ccModirSakhtarForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccModirSakhtarForosh",
+        "ccAfrad",
+        "ccModirSazmanForosh"
+      ]
+    },
+    "ModirSazmanForosh": {
+      "domain": "afrad",
+      "pk": "ccModirSazmanForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccModirSazmanForosh",
+        "ccAfrad",
+        "ccMoavenatSazmanForosh"
+      ]
+    },
+    "MoghayeratSystem": {
+      "domain": "config",
+      "pk": "ccMoghayeratSystem",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMoghayeratSystem",
+        "ccNoeMoghayeratSystem",
+        "ccMarkaz"
+      ]
+    },
+    "NoeAddress": {
+      "domain": "config",
+      "pk": "ccNoeAddress",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeAddress"
+      ]
+    },
+    "NoeAddressNoeAfrad": {
+      "domain": "config",
+      "pk": "ccNoeAfrad",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeAfrad",
+        "ccNoeAddress"
+      ]
+    },
+    "NoeAfrad": {
+      "domain": "afrad",
+      "pk": "ccNoeAfrad",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeAfrad"
+      ]
+    },
+    "NoeCompany": {
+      "domain": "config",
+      "pk": "ccNoeCompany",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeCompany"
+      ]
+    },
+    "NoeEtebar": {
+      "domain": "config",
+      "pk": "ccNoeEtebar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeEtebar"
+      ]
+    },
+    "NoeHesab": {
+      "domain": "mali",
+      "pk": "ccNoeHesab",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccBank",
+        "ccNoeHesab"
+      ]
+    },
+    "NoeKarbariMarkaz": {
+      "domain": "config",
+      "pk": "ccNoeKarbariMarkaz",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeKarbariMarkaz"
+      ]
+    },
+    "NoeKerayeHaml": {
+      "domain": "config",
+      "pk": "ccNoeKerayeHaml",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeKerayeHaml"
+      ]
+    },
+    "NoeMarkazPakhsh": {
+      "domain": "sazman",
+      "pk": "ccNoeMarkazPakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeMarkazPakhsh",
+        "ccNoeVahedForosh"
+      ]
+    },
+    "NoeMarkazPakhshBakhsh": {
+      "domain": "sazman",
+      "pk": "ccNoeMarkazPakhshBakhsh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeMarkazPakhshBakhsh",
+        "ccBakhsh",
+        "ccNoeMarkazPakhsh",
+        "ccNoeVahedForosh"
+      ]
+    },
+    "NoeMoghayeratSystem": {
+      "domain": "config",
+      "pk": "ccNoeMoghayeratSystem",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeMoghayeratSystem"
+      ]
+    },
+    "NoeMohasebehEtebar": {
+      "domain": "config",
+      "pk": "ccNoeMohasebehEtebar",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeMohasebehEtebar"
+      ]
+    },
+    "NoeMoshtaryModatVosol": {
+      "domain": "config",
+      "pk": "ccNoeMoshtaryModatVosol",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeMoshtaryModatVosol",
+        "ccNoeMoshtary"
+      ]
+    },
+    "NoePhoto": {
+      "domain": "rasaneh",
+      "pk": "ccNoePhoto",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoePhoto"
+      ]
+    },
+    "NoePhotoNoeAfrad": {
+      "domain": "rasaneh",
+      "pk": "ccNoeAfrad",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeAfrad",
+        "ccNoePhoto"
+      ]
+    },
+    "NoeSenfMoshtary": {
+      "domain": "config",
+      "pk": "ccNoeSenfMoshtary",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeSenfMoshtary",
+        "ccNoeMoshtary",
+        "ccSenfMoshtary"
+      ]
+    },
+    "NoeSenfMoshtarySakhtarForosh": {
+      "domain": "config",
+      "pk": "ccNoeSenfMoshtarySakhtarForosh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeSenfMoshtarySakhtarForosh",
+        "ccNoeSenfMoshtary",
+        "ccMarkazSazmanForoshSakhtarForosh"
+      ]
+    },
+    "NoeShakhsiat": {
+      "domain": "config",
+      "pk": "ccNoeShakhsiat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeShakhsiat"
+      ]
+    },
+    "NoeSys": {
+      "domain": "config",
+      "pk": "ccNoeSys",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeSys"
+      ]
+    },
+    "NoeTatili": {
+      "domain": "config",
+      "pk": "ccNoeTatili",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeTatili"
+      ]
+    },
+    "NoeVahedForosh": {
+      "domain": "sazman",
+      "pk": "ccNoeVahedForosh",
+      "role": "نوع واحد فروش — ۴۵ ارجاع",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeVahedForosh"
+      ]
+    },
+    "NoeVasile": {
+      "domain": "config",
+      "pk": "ccNoeVasile",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeVasile"
+      ]
+    },
+    "NoeVasilehNaghlieh": {
+      "domain": "config",
+      "pk": "ccNoeVasilehNaghlieh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccNoeVasilehNaghlieh"
+      ]
+    },
+    "OutBoxEventItems": {
+      "domain": "config",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf"
+    },
+    "Photo": {
+      "domain": "rasaneh",
+      "pk": "ccPhoto",
+      "role": "مخزن تصویر/پیوست — ۴۹ ارجاع.",
+      "rows": null,
+      "flags": [
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccPhoto"
+      ],
+      "note": "PhotoSmall و Photo هر دو varbinary؛ **در SELECT نیاورشان مگر لازم باشد**."
+    },
+    "PhotoSize": {
+      "domain": "rasaneh",
+      "pk": "ccPhotoSize",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPhotoSize"
+      ]
+    },
+    "PosShomarehHesab": {
+      "domain": "mali",
+      "pk": "ccPosShomarehHesab",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccPosShomarehHesab",
+        "ccShomarehHesab"
+      ]
+    },
+    "RoozHafteh": {
+      "domain": "taghvim",
+      "pk": "ccRoozHafteh",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccRoozHafteh"
+      ]
+    },
+    "SakhtarForosh": {
+      "domain": "sazman",
+      "pk": "ccSakhtarForosh",
+      "role": "ساختار فروش",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSakhtarForosh"
+      ]
+    },
+    "SalonTolid": {
+      "domain": "sherkat",
+      "pk": "ccSalonTolid",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSalonTolid",
+        "ccKarkhaneh"
+      ]
+    },
+    "SazmanForosh": {
+      "domain": "sazman",
+      "pk": "ccSazmanForosh",
+      "role": "لاین فروش — ۴۹ ارجاع.",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSazmanForosh"
+      ],
+      "note": "۱ لاین یک، ۲ نوشيدني، ۳ لاین دو، ۴ مشتريان ويژه. Faal را فیلتر کن."
+    },
+    "SherkathayeTarafGharardad": {
+      "domain": "sherkat",
+      "pk": "ccSherkathayeTarafGharardad",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "tree",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSherkathayeTarafGharardad",
+        "ccSherkathayeTarafGharardadLink",
+        "ccSherkathayeTarafGharardad_Noe"
+      ]
+    },
+    "SherkathayeTarafGharardad_Noe": {
+      "domain": "sherkat",
+      "pk": "ccSherkathayeTarafGharardad_Noe",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSherkathayeTarafGharardad_Noe"
+      ]
+    },
+    "SherkathayeTarafGharardad_System": {
+      "domain": "sherkat",
+      "pk": "ccSherkathayeTarafGharardad_System",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccSherkathayeTarafGharardad_System"
+      ]
+    },
+    "SherkathayeTarafGharardad_SystemLink": {
+      "domain": "sherkat",
+      "pk": "ccSherkathayeTarafGharardad_SystemLink",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "effective_dated",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSherkathayeTarafGharardad_SystemLink",
+        "ccSherkathayeTarafGharardad_System",
+        "ccSherkathayeTarafGharardad_From",
+        "ccSherkathayeTarafGharardad_To",
+        "ccUserSabegheh"
+      ]
+    },
+    "ShobeBankMarkazPakhsh": {
+      "domain": "sazman",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccShomarehHesab",
+        "ccMarkaz"
+      ]
+    },
+    "ShobeBankShahr": {
+      "domain": "sazman",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccShahr"
+      ]
+    },
+    "ShomarehHesab": {
+      "domain": "mali",
+      "pk": "ccShomarehHesab",
+      "role": "شماره حساب بانکی — ۳۸ ارجاع، بیشترش از Treasury.",
+      "rows": null,
+      "flags": [
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccShomarehHesab",
+        "ccBankShobeh",
+        "ccNoeHesab",
+        "ccLink"
+      ],
+      "note": "ShomarehSheba هم دارد. **داده‌ی حساس.** ccBankShobeh شعبه را می‌دهد."
+    },
+    "ShomarehHesabTaghirat": {
+      "domain": "mali",
+      "pk": "ccShomarehHesabTaghirat",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "sensitive",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccShomarehHesabTaghirat",
+        "ccBankShobeh",
+        "ccNoeHesab",
+        "ccLink"
+      ]
+    },
+    "SotooheGozaresheSarane": {
+      "domain": "config",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTaminKonandeh"
+      ]
+    },
+    "SystemConfig": {
+      "domain": "config",
+      "pk": "ccSystemConfig",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccSystemConfig"
+      ]
+    },
+    "Taghvim": {
+      "domain": "taghvim",
+      "pk": "ID",
+      "role": "تقویم شمسی شرکت — مبنای هر منطقِ تاریخی در کلِ دیتابیس.",
+      "rows": null,
+      "flags": [
+        "rows_unknown",
+        "anchor"
+      ],
+      "stability": "core",
+      "cc": [
+        "ccUserTaghirDahandeh"
+      ],
+      "note": "**TarikhShamsi از نوع int است** (مثل ۱۴۰۵۰۵۳۱)، نه رشته. TarikhShamsiWithSlash نسخه‌ی متنی است. Sal/Mah/Rooz و NameMah/NameRooz و ستون‌های Olaviat* برای مرتب‌سازی. برای روز کاری به TaghvimTatil وصل شو."
+    },
+    "TaghvimTatil": {
+      "domain": "taghvim",
+      "pk": "ccTaghvimTatil",
+      "role": "تعطیلات تقویم",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccMarkazPakhsh",
+        "ccTaghvimTatil",
+        "ccMarkaz"
+      ]
+    },
+    "TaghvimTatilManabeEnsani": {
+      "domain": "taghvim",
+      "pk": "ccTaghvimTatilManabeEnsani",
+      "role": "تعطیلات منابع انسانی",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTaghvimTatilManabeEnsani",
+        "ccMarkazPakhsh",
+        "ccShiftKary"
+      ],
+      "note": "ممکن است با TaghvimTatil یکی نباشد؛ اگر روز کاری مهم است هر دو را بگیر."
+    },
+    "Taghvim_old": {
+      "domain": "gozaresh",
+      "pk": "ID",
+      "role": "تقویم — نسخه‌ی قدیمی.",
+      "rows": null,
+      "flags": [
+        "legacy",
+        "rows_unknown"
+      ],
+      "stability": "volatile",
+      "note": "**استفاده نکن.** Taghvim جایش را گرفته."
+    },
+    "TolidCodeAutoMatic": {
+      "domain": "sherkat",
+      "pk": "ccTolidCodeAutoMatic",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccTolidCodeAutoMatic",
+        "ccConfig_TolidCodeAutoMatic",
+        "ccUser"
+      ]
+    },
+    "TolidCodeAutoMaticSatr": {
+      "domain": "sherkat",
+      "pk": "ccTolidCodeAutoMaticSatr",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "detail",
+        "status_header",
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccTolidCodeAutoMaticSatr",
+        "ccTolidCodeAutoMatic",
+        "ccUser"
+      ]
+    },
+    "VahedPool": {
+      "domain": "config",
+      "pk": "ccVahedPool",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "dict",
+        "rows_unknown"
+      ],
+      "stability": "connected",
+      "cc": [
+        "ccVahedPool"
+      ]
+    },
+    "VaziatHoghooghi": {
+      "domain": "sazman",
+      "pk": "ccVaziatHoghooghi",
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf",
+      "cc": [
+        "ccVaziatHoghooghi"
+      ]
+    },
+    "voice_menu_company_name": {
+      "domain": "config",
+      "pk": null,
+      "role": "",
+      "rows": null,
+      "flags": [
+        "rows_unknown"
+      ],
+      "stability": "leaf"
+    }
+  },
+  "traps": {
+    "twins": [
+      {
+        "pair": [
+          "Taghvim",
+          "Taghvim_old"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "type_mismatch": [
+      {
+        "col": "AeenNameh_SazmanForosh.ccSazmanForosh",
+        "declared": "nvarchar",
+        "target": "SazmanForosh.ccSazmanForosh int"
+      },
+      {
+        "col": "Afrad.ccSherkathayeTarafGharardad",
+        "declared": "nvarchar",
+        "target": "SherkathayeTarafGharardad.ccSherkathayeTarafGharardad int"
+      },
+      {
+        "col": "ShobeBankMarkazPakhsh.ccShomarehHesab",
+        "declared": "nchar",
+        "target": "ShomarehHesab.ccShomarehHesab int"
+      }
+    ],
+    "width_mismatch": [
+      {
+        "child": "AeenNamehSatr.ccPhoto",
+        "child_type": "int",
+        "parent": "Photo.ccPhoto",
+        "parent_type": "bigint",
+        "note": "سقف 2147483647 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      },
+      {
+        "child": "Afrad.ccNoeAfrad",
+        "child_type": "int",
+        "parent": "NoeAfrad.ccNoeAfrad",
+        "parent_type": "tinyint",
+        "note": ""
+      },
+      {
+        "child": "Markaz.ccNoeKarbariMarkaz",
+        "child_type": "smallint",
+        "parent": "NoeKarbariMarkaz.ccNoeKarbariMarkaz",
+        "parent_type": "int",
+        "note": "سقف 32767 — مقادیر بزرگ‌تر ذخیره نمی‌شوند"
+      }
+    ],
+    "misleading_satr": [],
+    "dead_columns": {
+      "rule_dead": "پسوند _deeeel / _deeel — استفاده نکن",
+      "rule_suspect": "پسوند _Old — اول ببین؛ گاهی یعنی «قبلی»",
+      "by_table": {},
+      "suspect_by_table": {
+        "Markaz": [
+          "ccMarkazPakhsh_Old"
+        ],
+        "vMarkaz": [
+          "ccMarkazPakhsh_Old"
+        ]
+      }
+    },
+    "begin_date_tables": [],
+    "end_date_not_null": [],
+    "fk_contradicts_naming": []
+  },
+  "cross_schema": {
+    "Amargar.Brand": {
+      "via": "ccBrand",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.ShiftKary": {
+      "via": "ccShiftKary",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.ShobehBimeh": {
+      "via": "ccShobehBimeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.VahedSazmani": {
+      "via": "ccVahedSazmani",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "HumanResource.VahedSazmani_Post": {
+      "via": "ccVahedSazmani_Post",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Purchase.TaminKonandeh": {
+      "via": "ccTaminKonandeh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.DastehBandyJaizehForosh": {
+      "via": "ccDastehBandyJaizehForosh",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Sales.Moshtary": {
+      "via": "ccMoshtary",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "Warehouse.Config_CodingKala": {
+      "via": "ccConfig_CodingKala",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    },
+    "dbo.System": {
+      "via": "ccSystem",
+      "evidence": "CROSS_SCHEMA_CC_MATCH",
+      "verified": true,
+      "note": "مقصد در فهرست اشیای دیتابیس پیدا شد"
+    }
+  },
+  "views_excluded": [
+    "vAfrad",
+    "vAfradAddress",
+    "vAfradAddress_LastVazeiat",
+    "vAfradGoroh",
+    "vAnbarPakhshShahr",
+    "vAnbarPakhshShahrSatr",
+    "vBankShobeh",
+    "vBankShobehAfrad",
+    "vCompany",
+    "vGoroh",
+    "vGorohMahsol",
+    "vJameiat",
+    "vMahal",
+    "vMahal_CodePosti",
+    "vMantaghehForosh",
+    "vMantaghehPakhsh",
+    "vMarkaz",
+    "vMarkazForosh",
+    "vMarkazPakhsh",
+    "vMarkazPakhshMahal",
+    "vMarkazPakhshShomarehHesab",
+    "vMarkazSazmanForosh",
+    "vMarkazSazmanForoshSakhtarForosh",
+    "vMarkazShomarehHesab",
+    "vNoeAddressNoeAfrad",
+    "vNoeHesab",
+    "vNoePhoto",
+    "vNoePhotoNoeAfrad",
+    "vNoeSenfMoshtary",
+    "vNoeSenfMoshtarySakhtarForosh",
+    "vOstanShahrestanShahr",
+    "vPersonelName",
+    "vPosShomarehHesab",
+    "vShomarehHesab",
+    "vTaghvim",
+    "vTaghvimTatil",
+    "v_JamiatShahrestan"
+  ],
+  "edges": [
+    {
+      "source": "AeenNameh",
+      "col": "ccAeenNameh_DorehBaznegari",
+      "target": "AeenNameh_DorehBaznegari",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh",
+      "col": "ccAeenNameh_NoeAfrad",
+      "target": "AeenNameh_NoeAfrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh",
+      "col": "ccAeenNameh_NoeTabaghehBandi",
+      "target": "AeenNameh_NoeTabaghehBandi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh",
+      "col": "ccAeenNameh_Onvan",
+      "target": "AeenNameh_Onvan",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh",
+      "col": "ccAeenNameh_VahedSazmani",
+      "target": "AeenNameh_VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh",
+      "col": "ccAfrad_SabtKonandeh",
+      "target": "Afrad",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "AeenNamehSatr",
+      "col": "ccAeenNameh",
+      "target": "AeenNameh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNamehSatr",
+      "col": "ccAfrad_SabtKonandeh",
+      "target": "Afrad",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "AeenNamehSatr",
+      "col": "ccPhoto",
+      "target": "Photo",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh_Onvan",
+      "col": "ccAeenNameh_NoeTabaghehBandi",
+      "target": "AeenNameh_NoeTabaghehBandi",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh_Onvan",
+      "col": "ccAeenNameh_VahedSazmani",
+      "target": "AeenNameh_VahedSazmani",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh_SazmanForosh",
+      "col": "ccAeenNameh",
+      "target": "AeenNameh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh_SazmanForosh",
+      "col": "ccSazmanForosh",
+      "target": "SazmanForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AeenNameh_VahedsazmaniPost",
+      "col": "ccAeenNameh",
+      "target": "AeenNameh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Afrad",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Afrad",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Afrad",
+      "col": "ccNoeAfrad",
+      "target": "NoeAfrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Afrad",
+      "col": "ccSherkathayeTarafGharardad",
+      "target": "SherkathayeTarafGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AfradAddress",
+      "col": "ccAddress",
+      "target": "Address",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AfradAddress",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AfradAddress",
+      "col": "ccNoeAddress",
+      "target": "NoeAddress",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AfradGoroh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AfradGoroh",
+      "col": "ccGoroh",
+      "target": "Goroh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarPakhshShahr",
+      "col": "ccMarkazSazmanForosh",
+      "target": "MarkazSazmanForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "AnbarPakhshShahrSatr",
+      "col": "ccAnbarPakhshShahr",
+      "target": "AnbarPakhshShahr",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BankShobeh",
+      "col": "ccAddress",
+      "target": "Address",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BankShobeh",
+      "col": "ccBank",
+      "target": "Bank",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BankShobeh",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BankShobeh",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BankShobehAfrad",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "BankShobehAfrad",
+      "col": "ccBankShobeh",
+      "target": "BankShobeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Company",
+      "col": "ccAddress",
+      "target": "Address",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Company",
+      "col": "ccNoeCompany",
+      "target": "NoeCompany",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Company",
+      "col": "ccSherkathayeTarafGharardad",
+      "target": "SherkathayeTarafGharardad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Depo",
+      "col": "ccMantaghehPakhsh",
+      "target": "MantaghehPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohMahsol",
+      "col": "ccGoroh",
+      "target": "Goroh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohMantaghehForosh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohMantaghehVahedForosh",
+      "col": "ccGorohMantaghehForosh",
+      "target": "GorohMantaghehForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohMantaghehVahedForosh",
+      "col": "ccMantaghehPakhsh",
+      "target": "MantaghehPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohMantaghehVahedForosh",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "GorohSort",
+      "col": "ccGoroh",
+      "target": "Goroh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Goroh_CodeingKala",
+      "col": "ccGoroh",
+      "target": "Goroh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Houzeh",
+      "col": "ccMantaghehPakhsh",
+      "target": "MantaghehPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "HouzehForosh",
+      "col": "ccHouzeh",
+      "target": "Houzeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "HouzehForosh",
+      "col": "ccMantaghehForosh",
+      "target": "MantaghehForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "KhatTolid",
+      "col": "ccSalonTolid",
+      "target": "SalonTolid",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MahalRotbeh",
+      "col": "ccMahal",
+      "target": "Mahal",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Mahal_CodePosti",
+      "col": "ccMahal",
+      "target": "Mahal",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Mahal_PishShomarehTel",
+      "col": "ccMahal",
+      "target": "Mahal",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MantaghehForosh",
+      "col": "ccNoeVahedForosh",
+      "target": "NoeVahedForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MantaghehPakhsh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Markaz",
+      "col": "ccAddress",
+      "target": "Address",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Markaz",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Markaz",
+      "col": "ccHouzeh",
+      "target": "Houzeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Markaz",
+      "col": "ccMantaghehAnbarPakhsh",
+      "target": "MantaghehAnbarPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Markaz",
+      "col": "ccMantaghehForosh",
+      "target": "MantaghehForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Markaz",
+      "col": "ccMarkazPakhsh_Old",
+      "target": "MarkazPakhsh",
+      "match": "suffix",
+      "proven": false,
+      "evidence": "NAMING_ONLY",
+      "confidence": "LOW"
+    },
+    {
+      "source": "Markaz",
+      "col": "ccNoeKarbariMarkaz",
+      "target": "NoeKarbariMarkaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazHistory",
+      "col": "ccHouzeh",
+      "target": "Houzeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazHistory",
+      "col": "ccMantaghehAnbarPakhsh",
+      "target": "MantaghehAnbarPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazHistory",
+      "col": "ccMantaghehForosh",
+      "target": "MantaghehForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazHistory",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhsh",
+      "col": "ccAddress",
+      "target": "Address",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhsh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhsh",
+      "col": "ccHouzeh",
+      "target": "Houzeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhsh",
+      "col": "ccMantaghehPakhsh",
+      "target": "MantaghehPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhsh",
+      "col": "ccNoeMarkazPakhsh",
+      "target": "NoeMarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhshMahal",
+      "col": "ccMahal",
+      "target": "Mahal",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhshMahal",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhshShomarehHesab",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhshShomarehHesab",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhshShomarehHesab",
+      "col": "ccShomarehHesab",
+      "target": "ShomarehHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhsh_NoeMarkazPakhshBakhsh",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhsh_NoeMarkazPakhshBakhsh",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazPakhsh_NoeMarkazPakhshBakhsh",
+      "col": "ccNoeMarkazPakhshBakhsh",
+      "target": "NoeMarkazPakhshBakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazSazmanForosh",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazSazmanForosh",
+      "col": "ccSazmanForosh",
+      "target": "SazmanForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazSazmanForoshSakhtarForosh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazSazmanForoshSakhtarForosh",
+      "col": "ccMarkazSazmanForosh",
+      "target": "MarkazSazmanForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazSazmanForoshSakhtarForosh",
+      "col": "ccModirMantaghehForosh",
+      "target": "ModirMantaghehForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MarkazSazmanForoshSakhtarForosh",
+      "col": "ccSakhtarForosh",
+      "target": "SakhtarForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "Markaz_ShahrMarkazi",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MoavenatSazmanForosh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ModirMantaghehForosh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ModirMantaghehForosh",
+      "col": "ccModirSakhtarForosh",
+      "target": "ModirSakhtarForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ModirSakhtarForosh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ModirSakhtarForosh",
+      "col": "ccModirSazmanForosh",
+      "target": "ModirSazmanForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ModirSazmanForosh",
+      "col": "ccAfrad",
+      "target": "Afrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ModirSazmanForosh",
+      "col": "ccMoavenatSazmanForosh",
+      "target": "MoavenatSazmanForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MoghayeratSystem",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "MoghayeratSystem",
+      "col": "ccNoeMoghayeratSystem",
+      "target": "NoeMoghayeratSystem",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeAddressNoeAfrad",
+      "col": "ccNoeAddress",
+      "target": "NoeAddress",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeAddressNoeAfrad",
+      "col": "ccNoeAfrad",
+      "target": "NoeAfrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeHesab",
+      "col": "ccBank",
+      "target": "Bank",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeMarkazPakhsh",
+      "col": "ccNoeVahedForosh",
+      "target": "NoeVahedForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeMarkazPakhshBakhsh",
+      "col": "ccBakhsh",
+      "target": "Bakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeMarkazPakhshBakhsh",
+      "col": "ccNoeMarkazPakhsh",
+      "target": "NoeMarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeMarkazPakhshBakhsh",
+      "col": "ccNoeVahedForosh",
+      "target": "NoeVahedForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoePhotoNoeAfrad",
+      "col": "ccNoeAfrad",
+      "target": "NoeAfrad",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoePhotoNoeAfrad",
+      "col": "ccNoePhoto",
+      "target": "NoePhoto",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeSenfMoshtarySakhtarForosh",
+      "col": "ccMarkazSazmanForoshSakhtarForosh",
+      "target": "MarkazSazmanForoshSakhtarForosh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NoeSenfMoshtarySakhtarForosh",
+      "col": "ccNoeSenfMoshtary",
+      "target": "NoeSenfMoshtary",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PosShomarehHesab",
+      "col": "ccShomarehHesab",
+      "target": "ShomarehHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SalonTolid",
+      "col": "ccKarkhaneh",
+      "target": "Karkhaneh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SherkathayeTarafGharardad",
+      "col": "ccSherkathayeTarafGharardad_Noe",
+      "target": "SherkathayeTarafGharardad_Noe",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SherkathayeTarafGharardad_SystemLink",
+      "col": "ccSherkathayeTarafGharardad_System",
+      "target": "SherkathayeTarafGharardad_System",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShobeBankMarkazPakhsh",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShobeBankMarkazPakhsh",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShobeBankMarkazPakhsh",
+      "col": "ccShomarehHesab",
+      "target": "ShomarehHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShomarehHesab",
+      "col": "ccBankShobeh",
+      "target": "BankShobeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShomarehHesab",
+      "col": "ccNoeHesab",
+      "target": "NoeHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShomarehHesabTaghirat",
+      "col": "ccBankShobeh",
+      "target": "BankShobeh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "ShomarehHesabTaghirat",
+      "col": "ccNoeHesab",
+      "target": "NoeHesab",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimTatil",
+      "col": "ccMarkaz",
+      "target": "Markaz",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimTatil",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TaghvimTatilManabeEnsani",
+      "col": "ccMarkazPakhsh",
+      "target": "MarkazPakhsh",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TolidCodeAutoMatic",
+      "col": "ccConfig_TolidCodeAutoMatic",
+      "target": "Config_TolidCodeAutoMatic",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "TolidCodeAutoMaticSatr",
+      "col": "ccTolidCodeAutoMatic",
+      "target": "TolidCodeAutoMatic",
+      "match": "exact",
+      "proven": false,
+      "evidence": "EXACT_CC_ID_MATCH",
+      "confidence": "HIGH"
+    }
+  ],
+  "cc_resolution": {
+    "generated_by": "ساخت-اسکیل-اسکیما-پگاه/scripts/crosslink.py",
+    "family": [
+      "Global",
+      "HumanResource",
+      "Sales",
+      "Treasury",
+      "Warehouse"
+    ],
+    "note": "همه‌ی اینها نامزدند. ROLE_QUALIFIED_PREFIX از نام درآمده و کلید خارجی نیست — قبل از استفاده با کوئریِ ارجاعِ یتیم تأیید بگیر.",
+    "role_qualified": {
+      "ccAfradModir": {
+        "count": 3,
+        "target": "Global.Afrad",
+        "role": "Modir",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazForosh": {
+        "count": 2,
+        "target": "Global.Markaz",
+        "role": "Forosh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAddressLatin": {
+        "count": 1,
+        "target": "Global.Address",
+        "role": "Latin",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAeenNameh_Post": {
+        "count": 1,
+        "target": "Global.AeenNameh",
+        "role": "Post",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradBazariaby": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "Bazariaby",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradSabegheh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "Sabegheh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfradSystem": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "System",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccAfrad_TanzimKonandeh": {
+        "count": 1,
+        "target": "Global.Afrad",
+        "role": "TanzimKonandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccBankShobehPosition": {
+        "count": 1,
+        "target": "Global.BankShobeh",
+        "role": "Position",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohLink": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccGorohMantaghehPakhsh": {
+        "count": 1,
+        "target": "Global.Goroh",
+        "role": "MantaghehPakhsh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccLevelTolidLink": {
+        "count": 1,
+        "target": "Global.LevelTolid",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMahalLink": {
+        "count": 1,
+        "target": "Global.Mahal",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazAnbar": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Anbar",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazAsli": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazFaal": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Faal",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazLink": {
+        "count": 1,
+        "target": "Global.Markaz",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazPakhshAsli": {
+        "count": 1,
+        "target": "Global.MarkazPakhsh",
+        "role": "Asli",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccMarkazPakhshFaal": {
+        "count": 1,
+        "target": "Global.MarkazPakhsh",
+        "role": "Faal",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccSakhtarForoshFaal": {
+        "count": 1,
+        "target": "Global.SakhtarForosh",
+        "role": "Faal",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccSazmanForoshFaal": {
+        "count": 1,
+        "target": "Global.SazmanForosh",
+        "role": "Faal",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccSherkathayeTarafGharardadLink": {
+        "count": 1,
+        "target": "Global.SherkathayeTarafGharardad",
+        "role": "Link",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccSherkathayeTarafGharardad_From": {
+        "count": 1,
+        "target": "Global.SherkathayeTarafGharardad",
+        "role": "From",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccSherkathayeTarafGharardad_To": {
+        "count": 1,
+        "target": "Global.SherkathayeTarafGharardad",
+        "role": "To",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      },
+      "ccVahedSazmani_Tanzimkonandeh": {
+        "count": 1,
+        "target": "HumanResource.VahedSazmani",
+        "role": "Tanzimkonandeh",
+        "evidence": "ROLE_QUALIFIED_PREFIX",
+        "confidence": "LOW"
+      }
+    },
+    "documented": {
+      "ccNoeMoshtary": {
+        "target": "Global.Goroh",
+        "filter": "ccGorohLink = 304",
+        "note": "نوع مشتری جدول جدا ندارد — سطرهای Goroh با ccGorohLink = 304 است (خرده، عمده، زنجیره‌ای…).",
+        "count": 2,
+        "evidence": "DOCUMENTED",
+        "confidence": "MEDIUM"
+      }
+    },
+    "ambiguous": {
+      "ccBrand": {
+        "count": 1,
+        "picked_by_builder": "Amargar.Brand",
+        "candidates": [
+          "Amargar.Brand",
+          "Warehouse.Brand"
+        ],
+        "evidence": "NAME_MATCH_OUTSIDE_AND_INSIDE_FAMILY",
+        "confidence": "LOW",
+        "note": "سازنده Amargar.Brand را برداشت چون اول در فهرست بود؛ Warehouse.Brand هم جدولِ هم‌نام دارد. کدام درست است از داده تأیید بگیر."
+      }
+    },
+    "unresolved_here": {
+      "ccUser": 3,
+      "ccLink": 2,
+      "ccMantagheh": 2,
+      "ccShahr": 2,
+      "ccUserSabegheh": 2,
+      "ccHesab3": 1,
+      "ccLink_ElatOdat": 1,
+      "ccMahaleh": 1,
+      "ccMantaghehOld": 1,
+      "ccRoot": 1,
+      "ccSenfMoshtary": 1,
+      "ccSh": 1,
+      "ccShahrSodor": 1,
+      "ccShahrTavalod": 1,
+      "ccShahreMahal": 1,
+      "ccShahreZone": 1,
+      "ccUserTaghirDahandeh": 1,
+      "cchesab4": 1
+    },
+    "unresolved_family_top": {
+      "ccUser": 136,
+      "ccUserSabtKonandeh": 72,
+      "ccUserSabegheh": 56,
+      "ccShahr": 26,
+      "ccNoeSenf": 25,
+      "ccElat": 21,
+      "ccReport": 16,
+      "ccMantagheh": 14,
+      "ccMahaleh": 13,
+      "ccRefrence": 12,
+      "ccLink": 10,
+      "ccOstan": 10,
+      "ccSystemNext": 9,
+      "ccRow": 8,
+      "ccNoeField": 8,
+      "ccShahrestan": 8,
+      "ccRpt": 7,
+      "ccNoeFieldMoshtary": 7,
+      "ccHesab3": 5,
+      "ccvTafsily1": 5,
+      "ccShahrMoshtary": 5
+    }
+  }
+}

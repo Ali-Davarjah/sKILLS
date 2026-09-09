@@ -1,0 +1,708 @@
+{
+  "generated_by": "ساخت-اسکیل-اسکیما-پگاه/scripts/crosslink.py",
+  "note": "نامزد است، نه واقعیت. هر یالِ LOW باید روی دیتابیس زنده تأیید شود.",
+  "schemas": {
+    "Global": {
+      "skill": "تسلط-مشترک-پگاه",
+      "database": "PegahAI",
+      "tables": 119,
+      "views_excluded": 37,
+      "internal_edges": 118,
+      "cross_schema_targets": 10,
+      "external_cc": 54,
+      "refers_to": {
+        "HumanResource": 4,
+        "Sales": 2,
+        "Amargar": 1,
+        "Purchase": 1,
+        "Warehouse": 1,
+        "dbo": 1
+      },
+      "referred_to_by": {
+        "Sales": 38,
+        "HumanResource": 23,
+        "Treasury": 22,
+        "Warehouse": 19
+      }
+    },
+    "HumanResource": {
+      "skill": "منابع-انسانی-پگاه",
+      "database": "PegahAI",
+      "tables": 413,
+      "views_excluded": 0,
+      "internal_edges": 433,
+      "cross_schema_targets": 28,
+      "external_cc": 111,
+      "refers_to": {
+        "Global": 23,
+        "FinancialAccounting": 2,
+        "Sales": 1,
+        "Treasury": 1,
+        "dbo": 1
+      },
+      "referred_to_by": {
+        "Treasury": 4,
+        "Sales": 4,
+        "Global": 4,
+        "Warehouse": 2
+      }
+    },
+    "Sales": {
+      "skill": "تسلط-فروش-پگاه",
+      "database": "PegahAI",
+      "tables": 435,
+      "views_excluded": 135,
+      "internal_edges": 604,
+      "cross_schema_targets": 63,
+      "external_cc": 238,
+      "refers_to": {
+        "Global": 38,
+        "Warehouse": 11,
+        "HumanResource": 4,
+        "Amargar": 2,
+        "Purchase": 2,
+        "Treasury": 2,
+        "FinancialAccounting": 1,
+        "Map": 1,
+        "OfficeAutomation": 1,
+        "dbo": 1
+      },
+      "referred_to_by": {
+        "Warehouse": 10,
+        "Treasury": 7,
+        "Global": 2,
+        "HumanResource": 1
+      }
+    },
+    "Treasury": {
+      "skill": "تسلط-خزانه-پگاه",
+      "database": "PegahAI",
+      "tables": 152,
+      "views_excluded": 54,
+      "internal_edges": 110,
+      "cross_schema_targets": 43,
+      "external_cc": 156,
+      "refers_to": {
+        "Global": 22,
+        "Sales": 7,
+        "Warehouse": 5,
+        "HumanResource": 4,
+        "FinancialAccounting": 2,
+        "Amargar": 1,
+        "AssetAccounting": 1,
+        "Purchase": 1
+      },
+      "referred_to_by": {
+        "Sales": 2,
+        "HumanResource": 1
+      }
+    },
+    "Warehouse": {
+      "skill": "تسلط-انبار-پگاه",
+      "database": "PegahAI",
+      "tables": 170,
+      "views_excluded": 137,
+      "internal_edges": 192,
+      "cross_schema_targets": 37,
+      "external_cc": 109,
+      "refers_to": {
+        "Global": 19,
+        "Sales": 10,
+        "Purchase": 3,
+        "HumanResource": 2,
+        "dbo": 2,
+        "FinancialAccounting": 1
+      },
+      "referred_to_by": {
+        "Sales": 11,
+        "Treasury": 5,
+        "Global": 1
+      }
+    }
+  },
+  "spelling_variants": {
+    "ccbarnameh": {
+      "ccBarNameh": 0,
+      "ccBarnameh": 0
+    },
+    "ccdariaftpardakht": {
+      "ccDariaftPardakht": 2,
+      "ccdariaftPardakht": 0
+    },
+    "ccdariaftpardakhtppc": {
+      "ccDariaftPardakhtPPC": 0,
+      "ccDariaftPardakhtppc": 0
+    },
+    "ccdarkhastfaktor": {
+      "ccDarkhastFaktor": 25,
+      "ccdarkhastFaktor": 1,
+      "ccDarkhastfaktor": 1
+    },
+    "cchesab4": {
+      "ccHesab4": 4,
+      "cchesab4": 1
+    },
+    "ccmarkazpakhsh": {
+      "ccMarkazPakhsh": 134,
+      "ccMarkazpakhsh": 1
+    },
+    "ccphoto": {
+      "ccPhoto": 43,
+      "ccphoto": 1
+    },
+    "ccsazmanforosh": {
+      "ccSazmanForosh": 40,
+      "ccSazmanforosh": 1
+    },
+    "cctaminkonandeh": {
+      "ccTaminKonandeh": 72,
+      "ccTaminkonandeh": 4
+    },
+    "ccuser": {
+      "ccUser": 136,
+      "ccuser": 1
+    },
+    "ccvahed": {
+      "ccVahed": 1,
+      "ccvahed": 0
+    }
+  },
+  "unresolved_family": {
+    "ccUser": {
+      "count": 136,
+      "schemas": [
+        "Global",
+        "HumanResource",
+        "Sales",
+        "Treasury",
+        "Warehouse"
+      ]
+    },
+    "ccUserSabtKonandeh": {
+      "count": 72,
+      "schemas": [
+        "HumanResource",
+        "Treasury"
+      ]
+    },
+    "ccUserSabegheh": {
+      "count": 56,
+      "schemas": [
+        "Global",
+        "HumanResource",
+        "Sales",
+        "Treasury",
+        "Warehouse"
+      ]
+    },
+    "ccShahr": {
+      "count": 26,
+      "schemas": [
+        "Global",
+        "HumanResource",
+        "Sales"
+      ]
+    },
+    "ccNoeSenf": {
+      "count": 25,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccElat": {
+      "count": 21,
+      "schemas": [
+        "Sales",
+        "Treasury",
+        "Warehouse"
+      ]
+    },
+    "ccReport": {
+      "count": 16,
+      "schemas": [
+        "Sales",
+        "Warehouse"
+      ]
+    },
+    "ccMantagheh": {
+      "count": 14,
+      "schemas": [
+        "Global",
+        "Sales"
+      ]
+    },
+    "ccMahaleh": {
+      "count": 13,
+      "schemas": [
+        "Global",
+        "Sales"
+      ]
+    },
+    "ccRefrence": {
+      "count": 12,
+      "schemas": [
+        "HumanResource",
+        "Treasury",
+        "Warehouse"
+      ]
+    },
+    "ccLink": {
+      "count": 10,
+      "schemas": [
+        "Global",
+        "HumanResource",
+        "Sales",
+        "Treasury"
+      ]
+    },
+    "ccOstan": {
+      "count": 10,
+      "schemas": [
+        "HumanResource",
+        "Sales"
+      ]
+    },
+    "ccSystemNext": {
+      "count": 9,
+      "schemas": [
+        "HumanResource",
+        "Warehouse"
+      ]
+    },
+    "ccRow": {
+      "count": 8,
+      "schemas": [
+        "Sales",
+        "Treasury"
+      ]
+    },
+    "ccNoeField": {
+      "count": 8,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccShahrestan": {
+      "count": 8,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccRpt": {
+      "count": 7,
+      "schemas": [
+        "Sales",
+        "Treasury",
+        "Warehouse"
+      ]
+    },
+    "ccNoeFieldMoshtary": {
+      "count": 7,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccHesab3": {
+      "count": 5,
+      "schemas": [
+        "Global",
+        "Treasury"
+      ]
+    },
+    "ccvTafsily1": {
+      "count": 5,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccShahrMoshtary": {
+      "count": 5,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccRanandeh": {
+      "count": 4,
+      "schemas": [
+        "Sales",
+        "Warehouse"
+      ]
+    },
+    "ccTaminkonandeh": {
+      "count": 4,
+      "schemas": [
+        "Sales",
+        "Warehouse"
+      ]
+    },
+    "ccHesab4": {
+      "count": 4,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccTakhfif": {
+      "count": 4,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccMamuryat": {
+      "count": 4,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccCodeHesabMoeen": {
+      "count": 3,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccHesab0": {
+      "count": 3,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccHesab1": {
+      "count": 3,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccHesab2": {
+      "count": 3,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccHesab7": {
+      "count": 3,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccShahrCheck": {
+      "count": 3,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccUserPardakhtKonandeh": {
+      "count": 3,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccAmalkard": {
+      "count": 3,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccNoeHazineDarman": {
+      "count": 3,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccElateOdat": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccLinkTakhirTajil": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccLinkTakhirTajilFaktor": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccMadrakShenasaie": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccNoeBedehy": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccNoeTarafHesab": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccRoot": {
+      "count": 2,
+      "schemas": [
+        "Global",
+        "Treasury"
+      ]
+    },
+    "ccSuratHesab": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccTasviehMoavaghatBoodjeh": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccdpdf_PPC": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "ccvTafsily0": {
+      "count": 2,
+      "schemas": [
+        "Treasury"
+      ]
+    },
+    "cc": {
+      "count": 2,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccEmtiaz": {
+      "count": 2,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccSenfMoshtary": {
+      "count": 2,
+      "schemas": [
+        "Global",
+        "Sales"
+      ]
+    },
+    "ccUser1": {
+      "count": 2,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccUser2": {
+      "count": 2,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccUser3": {
+      "count": 2,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccUser4": {
+      "count": 2,
+      "schemas": [
+        "Sales"
+      ]
+    },
+    "ccUserTaghirDahandeh": {
+      "count": 2,
+      "schemas": [
+        "Global",
+        "HumanResource"
+      ]
+    },
+    "ccElatTasviehHesab": {
+      "count": 2,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccElatTasviehHesab_Link": {
+      "count": 2,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccGeraiesh": {
+      "count": 2,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccKeshvarMahalTahsil": {
+      "count": 2,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccMoaseseh": {
+      "count": 2,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccNoeHazine": {
+      "count": 2,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccNoeKhedmat": {
+      "count": 2,
+      "schemas": [
+        "HumanResource"
+      ]
+    },
+    "ccShahrMahalTahsil": {
+      "count": 2,
+      "schemas": [
+        "HumanResource"
+      ]
+    }
+  },
+  "unresolved_family_singletons": {
+    "count": 126,
+    "note": "یک‌بارمصرف‌اند و بیشترشان ستونِ جدولِ گزارش‌اند، نه ارجاع.",
+    "names": [
+      "ccAdamTakhfifJayezeh",
+      "ccAmarMarjoeeForosh",
+      "ccAmvalSatr_EjazehFaktorSatr",
+      "ccArazyabi",
+      "ccBarkhordForoshandeh",
+      "ccBedehyPersonel",
+      "ccBodejhYekDarHezar",
+      "ccBodjehYekDarHezar",
+      "ccCodeToziee",
+      "ccConfig",
+      "ccControlKeyfi_ShakhesKala",
+      "ccDP",
+      "ccDarkhastAuto",
+      "ccDarkhastfaktor",
+      "ccDarkhstJazbNiroAgahiMosahebeh",
+      "ccDaste",
+      "ccDastehBandi",
+      "ccDeviceNumber",
+      "ccDin",
+      "ccEMojaz",
+      "ccElatAdamSakhtSefaresh",
+      "ccElatTaghirHokm",
+      "ccEmzaMoshtary",
+      "ccEtebar",
+      "ccGheymatMiangin",
+      "ccGrayesh",
+      "ccHadaf",
+      "ccHesab",
+      "ccHesab5",
+      "ccHesab6",
+      "ccItemNaghdinegiSatr1",
+      "ccItemNaghdinegiSatr2",
+      "ccKholaseh",
+      "ccLinkBoodjeh_Rizmarkaz",
+      "ccLinkCharteSazmani",
+      "ccLinkDariaftPardakht",
+      "ccLinkPishPardakht",
+      "ccLinkPoshtiban",
+      "ccLinkSandoghMarkazi",
+      "ccLinkSatr",
+      "ccLinkVosol",
+      "ccLink_BedehyPersonel",
+      "ccLink_ElatOdat",
+      "ccMabnaMohasebeh",
+      "ccMantaghehOld",
+      "ccMarjooeeKamel_Image",
+      "ccMarkazpakhsh",
+      "ccMasouliatForosh_Tmp",
+      "ccMazhab",
+      "ccMoghayeratLink",
+      "ccMojodi",
+      "ccMojodiGiri",
+      "ccMoshakhasatAmvalsatr",
+      "ccNoeDasteCheck",
+      "ccNoeEmtiaz",
+      "ccNoeEstefadeh",
+      "ccNoeFile",
+      "ccNoeGheymatSaderat",
+      "ccNoeHazineDarmanLink",
+      "ccNoeKhoroj",
+      "ccNoeLebas",
+      "ccNoeMohasebeh_GheymatTamamShodeh_Standard",
+      "ccNoePardakht",
+      "ccNoeVasileyeNaghliye",
+      "ccNoeVazeiat",
+      "ccNoeVorod",
+      "ccNoeYakhchal",
+      "ccNoeZemanat",
+      "ccOdatTafkik",
+      "ccPishPardakht",
+      "ccPolygonLink",
+      "ccPolygon_MahdodiatePakhsh",
+      "ccRaveshTankhah",
+      "ccReference",
+      "ccRptKartBank",
+      "ccSabtCheck",
+      "ccSaranehForosh",
+      "ccSaranehForoshMarkaz",
+      "ccSazamanForosh",
+      "ccSazmanforosh",
+      "ccSh",
+      "ccShahrSodor",
+      "ccShahrTavalod",
+      "ccShahr_Mabda",
+      "ccShahr_Maghsad",
+      "ccShahreMahal",
+      "ccShahreZone",
+      "ccSystemKartabl",
+      "ccSystemLink",
+      "ccSystem_Next",
+      "ccTable",
+      "ccTafkikJoz",
+      "ccTarafHesab",
+      "ccTasviehMoavaghatSatrBoodjeh",
+      "ccTasviyehesab",
+      "ccTedadMasirForoshandeh",
+      "ccTedadMoshtaryBaZaribSenf",
+      "ccTmpKartBankEjazehPardakht",
+      "ccTmpListMoshtaryTekrari",
+      "ccTmp_Error",
+      "ccTmp_JamiatSaraneForosh",
+      "ccUserGheyreFaalKonandeh",
+      "ccUserHazfKonandeh",
+      "ccUserHesabrasi",
+      "ccUserOfReport",
+      "ccUserSabegh",
+      "ccUserSabtkonade",
+      "ccUserTaeed_ListBime",
+      "ccUserTaeed_ListMaliat",
+      "ccUser_KartBank",
+      "ccUser_MamorPakhsh",
+      "ccUser_SabtKonandeh",
+      "ccVasile",
+      "ccVazietForoshandeh",
+      "ccVisitForoshandeh",
+      "ccVorodKhoroj",
+      "ccZirGoroh",
+      "ccZoneHamjavar",
+      "ccZoneId",
+      "cc_AsibShenasiForosh",
+      "ccdarkhastFaktor",
+      "cchesab4",
+      "ccphoto",
+      "cctmp",
+      "cctmpSefareshKala",
+      "ccuser"
+    ]
+  }
+}

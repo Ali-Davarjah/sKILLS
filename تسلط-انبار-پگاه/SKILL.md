@@ -62,8 +62,11 @@ description: نقشه‌ی اسکیمای Warehouse پگاه — کاردکس و
 
    با `kind='python'` اجرا کن، نه `kind='bash'`.
 
-   دستورها: `table`، `refs`، `path`، `find`، `domain`، `external`، `traps`،
-   `drift`.
+   دستورها: `table`، `refs`، `path`، `find`، `domain`، `external`،
+   `crossref`، `traps`، `drift`.
+
+   **`crossref` وقتی است که ارجاعی جدولِ محلی ندارد** — می‌گوید مقصدش در
+   کدام اسکیما و کدام اسکیل است: `map.py crossref ccMarkazAnbar`.
 
 ۵. **دانه را بشمار.** بچ، قسمتِ انبار و تاریخ هر سه سطر را ضرب می‌کنند.
 
@@ -143,21 +146,45 @@ description: نقشه‌ی اسکیمای Warehouse پگاه — کاردکس و
 
 ۳۷ ارجاعِ `cc` این اسکیما مقصدشان بیرونِ `Warehouse` است:
 
-| مقصد | از | چه می‌دهد |
-|---|---|---|
-| `Global.MarkazPakhsh` | `ccMarkazPakhsh` | مرکز پخش — پرتکرارترین |
-| `Purchase.TaminKonandeh` | `ccTaminKonandeh` | تأمین‌کننده |
-| `Sales.Moshtary` | `ccMoshtary` | مشتری |
-| `Sales.Foroshandeh` | `ccForoshandeh` | فروشنده/مسیر |
-| `Sales.DarkhastFaktor` | `ccDarkhastFaktor` | فاکتور فروش — منشأ سفارش انبار |
-| `Global.Afrad` | `ccAfrad` | شخص |
+| مقصد | از | چه می‌دهد | اسکیل |
+|---|---|---|---|
+| `Global.MarkazPakhsh` | `ccMarkazPakhsh` | مرکز پخش — پرتکرارترین | `تسلط-مشترک-پگاه` |
+| `Global.Afrad` | `ccAfrad` | شخص | `تسلط-مشترک-پگاه` |
+| `Sales.Moshtary` | `ccMoshtary` | مشتری | `تسلط-فروش-پگاه` |
+| `Sales.Foroshandeh` | `ccForoshandeh` | فروشنده/مسیر | `تسلط-فروش-پگاه` |
+| `Sales.DarkhastFaktor` | `ccDarkhastFaktor` | فاکتور فروش — منشأ سفارش انبار | `تسلط-فروش-پگاه` |
+| `HumanResource.Personel` | `ccPersonel` | پرونده‌ی پرسنلی | `منابع-انسانی-پگاه` |
+| `Purchase.TaminKonandeh` | `ccTaminKonandeh` | تأمین‌کننده | — نقشه ندارد |
 
 **و در جهت عکس:** `Sales.ccKalaCode` (۶۸ ارجاع) به `Warehouse.Kala` می‌آید.
 یعنی **هر تحلیلِ فروش که بخواهد اطلاعات کالا داشته باشد از این اسکیما رد
-می‌شود.**
+می‌شود.** و `Treasury` هم ۵ جدول اینجا را می‌خواند — `Kardex`،
+`KardexAnbarak`، `MamorPakhsh`، `NoeMamorPakhsh`، `Vahed` — ولی **این
+اسکیما هیچ‌چیز از خزانه نمی‌خواند.** جریان یک‌طرفه است.
 
-`ccMarkazAnbar` (۳۷ ارجاع) و `ccUser` در **هیچ** اسکیمای این دیتابیس جدول
-هم‌نام ندارند.
+> **`ccKala` را در ارجاع‌های `Sales` با احتیاط بگیر.** ارجاعِ تأییدشده روی
+> `ccKalaCode` است؛ آن ۱۵ ارجاعِ `ccKala` در `Sales` را نقشه‌ساز به
+> `Amargar.Kala` بست، نه به این جدول. `map.py crossref ccKala` (از اسکیل
+> فروش) هر دو نامزد را نشان می‌دهد.
+
+### ارجاعی که جدول ندارد
+
+از ۱۰۹ ارجاعِ بی‌جدولِ این اسکیما، ۵۳ تا **نقش‌دار**ند: نامِ یک موجودیت
+به‌علاوه‌ی نقش. بزرگ‌ترینشان:
+
+| ارجاع | تعداد | نامزد |
+|---|---:|---|
+| `ccMarkazAnbar` | ۳۷ | `Global.Markaz` در نقشِ «انبار» |
+| `ccMarkazForosh` | ۷ | `Global.Markaz` در نقشِ «فروش» |
+| `ccAfradMamorPakhsh` | ۵ | `Global.Afrad` در نقشِ «مأمور پخش» |
+| `ccAnbarBe` / `ccAnbarAz` | ۳ + ۳ | `Warehouse.Anbar` — مقصد و مبدأِ انتقال |
+
+**اینها نامزدند، نه کلید خارجی.** جدولی به نام `MarkazAnbar` در هیچ‌کدام از
+پنج اسکیمای نقشه‌شده نیست؛ `Global.Markaz` نزدیک‌ترین کاندید است و باید با
+کوئریِ ارجاعِ یتیم تأیید شود. `map.py crossref ccMarkazAnbar`.
+
+۱۷ ارجاع واقعاً بی‌مقصدند — `ccUser` (۱۶) و `ccUserSabegheh` (۱۰) سرِ
+فهرست‌اند. **هویتِ کاربر در این خانواده نقشه ندارد.**
 
 ## این اسکیل کجا تمام می‌شود
 
@@ -165,12 +192,16 @@ description: نقشه‌ی اسکیمای Warehouse پگاه — کاردکس و
 |---|---|
 | نمره و رتبه‌ی فروشنده | `ارزیابی-فروشنده-پگاه` (**تست‌شده**) |
 | درجه‌بندی مشتری | `رتبه-بندی-مشتریان-پگاه` (**تست‌شده**) |
-| فروش، فاکتور، هدف، تخفیف | `تسلط-فروش-پگاه` |
+| افراد، مرکز پخش، تقویم، گروه | `تسلط-مشترک-پگاه` |
+| فروش، فاکتور، هدف، تخفیف، مشتری | `تسلط-فروش-پگاه` |
+| خزانه، دریافت/پرداخت، تنخواه | `تسلط-خزانه-پگاه` |
 | پرسنل و حقوق | `منابع-انسانی-پگاه` |
 
 اسکیل ارزیابی فروشنده برای معیارِ مرجوعی از `Warehouse.ElatMarjoeeKala`
 استفاده می‌کند — **`MasoleiatElat = 1` یعنی مسئولیتِ فروش**؛ خرابی و ضایعات
 تولید مسئولیتِ تولید و پخش‌اند و در آن معیار نیستند.
+
+نقشه‌ی کلِ خانواده و ماتریسِ ارجاع در [../SKILLS.md](../SKILLS.md).
 
 ## سؤال‌های باز — از مسئول انبار بپرس، خودت تصمیم نگیر
 
@@ -213,6 +244,9 @@ description: نقشه‌ی اسکیمای Warehouse پگاه — کاردکس و
 - [references/entities.md](references/entities.md) — دامنه به دامنه.
 - [references/relationships.md](references/relationships.md) — گراف، پل‌ها، تله‌ها.
 - [references/reporting.md](references/reporting.md) — شکل گزارش.
-- `schema.json` — نقشه‌ی ماشین‌خوان. داده است، نه کد.
-- `scripts/map.py` — پیمایش نقشه. اجرا کن، نخوان.
+- `schema.json` — نقشه‌ی ماشین‌خوان. داده است، نه کد. بلوکِ `cc_resolution`
+  ارجاع‌های بین‌اسکیمایی را دارد.
+- `scripts/map.py` — پیمایش نقشه. اجرا کن، نخوان. همین اسکریپت در هر پنج
+  اسکیلِ نقشه هست، پس دستورها همه‌جا یکی است.
 - [examples/walkthrough.md](examples/walkthrough.md) — یک سؤال واقعی از اول تا آخر.
+- [../SKILLS.md](../SKILLS.md) — نقشه‌ی خانواده و ماتریسِ ارجاعِ بین اسکیماها.
